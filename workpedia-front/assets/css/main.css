@@ -1,12 +1,62 @@
+/* Reuseable stles */
 .navbar {
   color: #000;
+  margin-top: 10px;
 }
 
 .navbar a {
-  color: #000;
+  color: #2d2d2d;
+  font-size: 18px;
 }
 
-.sign-in {
+/* Landing page  button styles */
+
+.landing-outline {
   border: 2px solid #251e8c;
   border-radius: 6px;
+  padding: 8px;
+}
+.landing-outline:nth-child(3) {
+  background-color: #251e8c;
+  color: #fff;
+}
+.bg-hero {
+  height: 90vh;
+}
+
+.bg-texts {
+  margin-top: 100px;
+}
+.bg-hero p {
+  margin-top: 25px;
+}
+
+.freelance {
+  background-color: #2b7dc4;
+  border: 2px solid #2b7dc4;
+  padding: 10px;
+  color: #fff;
+  font-size: 12px;
+}
+.jobs {
+  box-shadow: 0px 3px 6px #f5c01e26;
+  border: 2px solid #0db47b;
+  border-radius: 2px;
+  padding: 10px;
+  color: #0db47b;
+  font-size: 12px;
+}
+.tutor {
+  background: #ff9b17 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #f5c01e26;
+  border-radius: 2px;
+  border: 2px solid #ff9b17;
+  padding: 10px;
+  color: #000;
+  font-size: 12px;
+}
+
+.image-rap img {
+  width: 497px;
+  height: 460px;
 }
