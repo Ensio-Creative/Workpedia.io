@@ -9,7 +9,7 @@
   font-size: 18px;
 }
 
-/* Landing page  button styles */
+/* ------ ------ Landing page ------- ------ */
 
 .landing-outline {
   border: 2px solid #251e8c;
@@ -21,7 +21,7 @@
   color: #fff;
 }
 .bg-hero {
-  height: 90vh;
+  padding-bottom: 174px;
 }
 
 .bg-texts {
@@ -80,7 +80,6 @@
 }
 .walk-column {
   background-color: #fff;
-  margin-right: 50px;
   box-shadow: 0px 20px 20px #7682b72e;
   padding-bottom: 20px;
   padding-top: 20px;
@@ -114,7 +113,161 @@
   text-decoration: none;
 }
 
+/* Freelance gigs */
+.freelancing-gigs {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+.freelance-heading {
+  padding-top: 0px;
+  padding-bottom: 90px;
+}
+.freelance-column {
+  background-color: #fff;
+  /* margin-right: 50px; */
+  box-shadow: 0px 20px 20px rgba(118, 130, 183, 0.18039);
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 0px;
+}
+
+.freelance-img-head {
+  background-image: url("~assets/img/Kentwood_Phone_03B-1280x850.jpg");
+  padding: 82px;
+  background-position: center;
+  background-size: cover;
+}
+
+.freelance-text h3 {
+  font: normal normal bold 18px/50px Archivo;
+  letter-spacing: 0px;
+  color: #151d41;
+  opacity: 1;
+}
+
+.freelance-amount p {
+  font: normal normal bold 18px/50px Archivo;
+  letter-spacing: 0px;
+  color: #151d41;
+  opacity: 1;
+}
+
+/* Popular jobs */
+
+.popular-jobs {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.popular-column {
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 0px 16px rgba(37, 30, 140, 0.2902);
+  border-radius: 21px;
+  opacity: 1;
+  margin-top: 10px;
+}
+.popular-column-heading {
+  color: #0db47b;
+}
+
+.popular-column-heading i {
+  font-size: 30px;
+  padding-bottom: 10px;
+  padding-top: 20px;
+}
+
+.popular-column-heading h5 {
+  color: #a19d9d;
+}
+
+.popular-text {
+  font: normal normal normal 18px/21px Archivo;
+  letter-spacing: 0px;
+  color: #606060;
+}
+
+.popular-durations {
+  display: flex;
+}
+
+.gray-background {
+  background-color: #efefef;
+  padding: 10px 10px 5px 10px;
+  margin-right: 20px;
+  font: normal normal normal 16px/50px Archivo;
+  letter-spacing: 0px;
+}
+
+.gray-background:nth-child(1) {
+  color: #be9310;
+}
+.gray-background:nth-child(2) {
+  color: #0db47b;
+}
+.gray-background:nth-child(3) {
+  color: #b40d0d;
+}
+.popular-button {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.popular-button a {
+  padding: 10px 80px;
+  font: normal normal bold 16px/50px Archivo;
+  letter-spacing: 0px;
+  color: #0db47b;
+  opacity: 1;
+  border: 2px solid #0db47b;
+  border-radius: 2px;
+  opacity: 1;
+}
+
+/* Private-tutors */
+.private-tutor {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+.private-tutor-column {
+  background-color: #fff;
+  /* margin-right: 50px; */
+  box-shadow: 0px 20px 20px rgba(118, 130, 183, 0.18039);
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 0px;
+}
+
+.private-tutor-img-head {
+  background-image: url("~assets/img/maths_e@2x.png");
+  padding: 82px;
+  background-position: center;
+  background-size: cover;
+}
+.private-tutor-img-head:nth-child(2) {
+  background-image: url("~assets/img/biology@2x.png");
+}
+
+.private-tutor-text {
+  color: #251e8c;
+  font: normal normal bold 21px/58px Archivo;
+  letter-spacing: 0px;
+  padding-top: 20px;
+}
+
+.private-tutor-info {
+  display: flex;
+  padding-bottom: 10px;
+}
+
+.private-tutor-info p:nth-child(1) {
+  padding-right: 10px;
+  padding-left: 5px;
+}
+
 @media screen and (max-width: 780px) {
+  /* ------ ------ Landing page ------- ------ */
+  /* Walk you through */
   .heading {
     padding-top: 0px;
     padding-bottom: 90px;
@@ -135,5 +288,10 @@
     box-shadow: 0px 20px 20px #7682b72e;
     padding-bottom: 20px;
     padding-top: 20px;
+  }
+
+  /* Freelance */
+  .freelance-column {
+    margin-top: 40px;
   }
 }

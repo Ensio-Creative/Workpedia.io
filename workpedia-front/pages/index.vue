@@ -23,7 +23,7 @@
         </div>
         <div class="col-12 col-md-4 text-center">
           <div class="image-rap">
-            <img src="~/assets/img/avatar_d@2x.png">
+            <!-- <img src="~/assets/img/avatar_d@2x.png"> -->
           </div>
         </div>
       </div>
@@ -35,7 +35,7 @@
         <div class="heading-line" />
       </div>
       <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-between">
           <div class="col-12 col-md-3 walk-column">
             <div class="img-head">
               <img src="~/assets/img/avatar_d@2x.png">
@@ -83,6 +83,295 @@
                 Know more <img src="~/assets/img/arrow.svg">
               </NuxtLink>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="freelancing-gigs container">
+      <div class="freelance-heading">
+        <h1>Get your Freelancing gigs</h1>
+        <div class="heading-line" />
+      </div>
+      <div class="row justify-content-between">
+        <div class="col-12 col-md-3 freelance-column text-center">
+          <div class="freelance-img-head" />
+          <div class="freelance-text">
+            <h3>Website Design</h3>
+          </div>
+          <div class="freelance-amount">
+            <p>$450</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-3 freelance-column text-center">
+          <div class="freelance-img-head" />
+          <div class="freelance-text">
+            <h3>Website Design</h3>
+          </div>
+          <div class="freelance-amount">
+            <p>$450</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-3 freelance-column text-center">
+          <div class="freelance-img-head" />
+          <div class="freelance-text">
+            <h3>Website Design</h3>
+          </div>
+          <div class="freelance-amount">
+            <p>$450</p>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-between mt-3">
+        <div class="col-12 col-md-3 freelance-column text-center">
+          <div class="freelance-img-head">
+            <!-- <img src="~/assets/img/avatar_d@2x.png"> -->
+          </div>
+          <div class="freelance-text">
+            <h3>Website Design</h3>
+          </div>
+          <div class="freelance-amount">
+            <p>$450</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-3 freelance-column text-center">
+          <div class="freelance-img-head">
+            <!-- <img src="~/assets/img/avatar_d@2x.png"> -->
+          </div>
+          <div class="freelance-text">
+            <h3>Website Design</h3>
+          </div>
+          <div class="freelance-amount">
+            <p>$450</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-3 freelance-column text-center">
+          <div class="freelance-img-head">
+            <!-- <img src="~/assets/img/avatar_d@2x.png"> -->
+          </div>
+          <div class="freelance-text">
+            <h3>Website Design</h3>
+          </div>
+          <div class="freelance-amount">
+            <p>$450</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="popular-jobs container">
+      <div class="freelance-heading">
+        <h1>Our Popular Jobs</h1>
+        <div class="heading-line" />
+      </div>
+      <div class="row justify-content-around">
+        <div class="col-12 col-md-4 popular-column">
+            <div class="popular-column-heading">
+              <i class="fas fa-suitcase" />
+              <h3>Electrical Engineer</h3>
+              <h5>Port Harcourt</h5>
+            </div>
+            <div class="popular-text">
+              <p>
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolor.
+              </p>
+            </div>
+            <div class="popular-durations">
+              <span class="gray-background">
+                <h6>4 days ago</h6>
+              </span>
+              <span class="gray-background">
+                <h6>Full time</h6>
+              </span>
+              <span class="gray-background">
+                <h6>Min 2 Years</h6>
+              </span>
+            </div>
+            <div class="popular-button text-center">
+              <NuxtLink to="/">
+                Apply Now
+              </NuxtLink>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 popular-column">
+            <div class="popular-column-heading">
+              <i class="fas fa-suitcase" />
+              <h3>Electrical Engineer</h3>
+              <h5>Port Harcourt</h5>
+            </div>
+            <div class="popular-text">
+              <p>
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolor.
+              </p>
+            </div>
+            <div class="popular-durations">
+              <span class="gray-background">
+                <h6>4 days ago</h6>
+              </span>
+              <span class="gray-background">
+                <h6>Full time</h6>
+              </span>
+              <span class="gray-background">
+                <h6>Min 2 Years</h6>
+              </span>
+            </div>
+            <div class="popular-button text-center">
+              <NuxtLink to="/">
+                Apply Now
+              </NuxtLink>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 popular-column">
+            <div class="popular-column-heading">
+              <i class="fas fa-suitcase" />
+              <h3>Electrical Engineer</h3>
+              <h5>Port Harcourt</h5>
+            </div>
+            <div class="popular-text">
+              <p>
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolor.
+              </p>
+            </div>
+            <div class="popular-durations">
+              <span class="gray-background">
+                <h6>4 days ago</h6>
+              </span>
+              <span class="gray-background">
+                <h6>Full time</h6>
+              </span>
+              <span class="gray-background">
+                <h6>Min 2 Years</h6>
+              </span>
+            </div>
+            <div class="popular-button text-center">
+              <NuxtLink to="/">
+                Apply Now
+              </NuxtLink>
+            </div>
+        </div>
+      </div>
+      <div class="row justify-content-around mt-5">
+        <div class="col-12 col-md-4 popular-column">
+            <div class="popular-column-heading">
+              <i class="fas fa-suitcase" />
+              <h3>Electrical Engineer</h3>
+              <h5>Port Harcourt</h5>
+            </div>
+            <div class="popular-text">
+              <p>
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolor.
+              </p>
+            </div>
+            <div class="popular-durations">
+              <span class="gray-background">
+                <h6>4 days ago</h6>
+              </span>
+              <span class="gray-background">
+                <h6>Full time</h6>
+              </span>
+              <span class="gray-background">
+                <h6>Min 2 Years</h6>
+              </span>
+            </div>
+            <div class="popular-button text-center">
+              <NuxtLink to="/">
+                Apply Now
+              </NuxtLink>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 popular-column">
+            <div class="popular-column-heading">
+              <i class="fas fa-suitcase" />
+              <h3>Electrical Engineer</h3>
+              <h5>Port Harcourt</h5>
+            </div>
+            <div class="popular-text">
+              <p>
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolor.
+              </p>
+            </div>
+            <div class="popular-durations">
+              <span class="gray-background">
+                <h6>4 days ago</h6>
+              </span>
+              <span class="gray-background">
+                <h6>Full time</h6>
+              </span>
+              <span class="gray-background">
+                <h6>Min 2 Years</h6>
+              </span>
+            </div>
+            <div class="popular-button text-center">
+              <NuxtLink to="/">
+                Apply Now
+              </NuxtLink>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 popular-column">
+            <div class="popular-column-heading">
+              <i class="fas fa-suitcase" />
+              <h3>Electrical Engineer</h3>
+              <h5>Port Harcourt</h5>
+            </div>
+            <div class="popular-text">
+              <p>
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolor.
+              </p>
+            </div>
+            <div class="popular-durations">
+              <span class="gray-background">
+                <h6>4 days ago</h6>
+              </span>
+              <span class="gray-background">
+                <h6>Full time</h6>
+              </span>
+              <span class="gray-background">
+                <h6>Min 2 Years</h6>
+              </span>
+            </div>
+            <div class="popular-button text-center">
+              <NuxtLink to="/">
+                Apply Now
+              </NuxtLink>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container private-tutor">
+      <div class="freelance-heading">
+        <h1>Get your private tutor/ E-learning</h1>
+        <div class="heading-line" />
+      </div>
+      <div class="row justify-content-between">
+        <div class="col-12 col-md-3 private-tutor-column text-center">
+          <div class="private-tutor-img-head" />
+          <div class="private-tutor-text">
+            <h3>Biology</h3>
+          </div>
+          <div class="private-tutor-info">
+            <p>Femi Adesanya</p>
+            <p>Cell, Genetics</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-3 private-tutor-column text-center">
+          <div class="private-tutor-img-head" />
+          <div class="private-tutor-text">
+            <h3>Mathematics</h3>
+          </div>
+          <div class="private-tutor-info">
+            <p>Great John</p>
+            <p>Algebra, Geometry, Surds</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-3 private-tutor-column text-center">
+          <div class="private-tutor-img-head" />
+          <div class="private-tutor-text">
+            <h3>Mathematics</h3>
+          </div>
+          <div class="private-tutor-info">
+            <p>Great John</p>
+            <p>Algebra, Geometry, Surds</p>
           </div>
         </div>
       </div>
