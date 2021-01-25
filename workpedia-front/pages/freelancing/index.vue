@@ -1,5 +1,6 @@
 <template>
   <div>
+    <FixedNav />
     <h1>Freelancing</h1>
   </div>
 </template>

@@ -1,0 +1,149 @@
+<template>
+  <div class="footer">
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class="col-12 col-md-4">
+          <div class="footer-title">
+            <img src="~/assets/img/Workpedia logo transparent (White).png" alt="">
+            <h1>Workpedia</h1>
+          </div>
+          <p class="footer-text">
+            Lorem ipsum dolor sit amet,Stet clita kasd gubergren, no sea takimata sanctus est is the is the magna aliquyam.
+          </p>
+          <div class="footer-social">
+            <a href="#">
+              <i class="fab fa-facebook-f" />
+            </a>
+            <a href="#">
+              <i class="fab fa-twitter" />
+            </a>
+            <a href="#">
+              <i class="fab fa-dribbble" />
+            </a>
+            <a href="#">
+              <i class="fab fa-linkedin-in" />
+            </a>
+          </div>
+        </div>
+        <div class="col-12 col-md-7">
+          <div class="row">
+            <div class="col-12 col-md-3">
+              <h4 class="footer-nav-title">
+                Freelancing
+              </h4>
+              <div class="footer-nav">
+                <NuxtLink
+                  class="footer-nav-item"
+                  to="/"
+                >
+                  Post a Job
+                </NuxtLink>
+                <NuxtLink
+                  class="footer-nav-item"
+                  to="/"
+                >
+                  Find a gig
+                </NuxtLink>
+              </div>
+            </div>
+            <div class="col-12 col-md-3">
+              <h4 class="footer-nav-title">
+                Jobs
+              </h4>
+              <div class="footer-nav">
+                <NuxtLink
+                  class="footer-nav-item"
+                  to="/"
+                >
+                  Apply for a Job
+                </NuxtLink>
+                <NuxtLink
+                  class="footer-nav-item"
+                  to="/"
+                >
+                  Find a Job
+                </NuxtLink>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <h4 class="footer-nav-title">
+                Private Tutor
+              </h4>
+              <div class="footer-nav">
+                <NuxtLink
+                  class="footer-nav-item"
+                  to="/"
+                >
+                  Get a Tutor
+                </NuxtLink>
+                <NuxtLink
+                  class="footer-nav-item"
+                  to="/"
+                >
+                  Become a Tutor
+                </NuxtLink>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="all-rights text-center">
+        <p class="rights">
+          workpedia.io All Rights Reserved
+        </p>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Footer'
+}
+</script>
+
+<style scoped>
+.footer{
+  background-color: #251E8C;
+  padding: 100px 0px 20px 0px;
+  color: #fff;
+}
+.footer-title{
+  display: flex;
+}
+.footer-title img{
+  width: 100px;
+}
+.footer-title h1{
+  padding-top: 10px;
+  padding-left: 20px;
+}
+.footer-text {
+  padding-top: 30px;
+  width: 380px;
+}
+.footer-social{
+  padding-top: 20px;
+}
+.footer-social a i{
+  font-size: 18px;
+  color: #fff;
+  padding-right: 20px;
+}
+
+.footer-social a:hover {
+  text-decoration: none;
+  color: #fff;
+}
+.footer-nav-title{
+  padding-top: 15px;
+}
+.footer-nav-item{
+  display: block;
+  color: #fff;
+}
+.all-rights{
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
+</style>
