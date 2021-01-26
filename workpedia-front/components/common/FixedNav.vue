@@ -33,6 +33,7 @@ export default {
 .fixed{
   position: fixed;
   left: 20px;
+  bottom: 250px;
 }
 .nav-fixed{
   padding: 20px 10px;
@@ -45,5 +46,6 @@ export default {
   margin-top: 10px;
   border-radius: 20px;
   padding: 10px;
+  font-size: 15px;
 }
 </style>

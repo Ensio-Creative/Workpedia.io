@@ -1,7 +1,13 @@
 <template>
   <div>
-    <FixedNav />
     <section class="bg-hero">
+      <TheTutorHeader
+        @sidenavToggle="displaySidenav = !displaySidenav"
+      />
+      <TheTutorSidenav
+        :show="displaySidenav"
+        @close="displaySidenav = false"
+      />
       <div class="container">
         <div class="row">
           <div class="col-12 col-md-6 bg-texts">
@@ -21,12 +27,102 @@
         </div>
       </div>
     </section>
+    <!-- About -->
+    <section class="container about">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-3 about-column">
+          <div class="img-head">
+            <img src="~/assets/img/avatar_d@2x.png">
+          </div>
+          <div class="column-title">
+            <h3>Get Affordable tutors</h3>
+          </div>
+          <div class="column-text">
+            <p>Lorem ipsum dolor sit amet,Stet clita kasd lorem ipsum dolor sit amet. sed diam eirmod tempor dolore.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-3 about-column">
+          <div class="img-head">
+            <img src="~/assets/img/avatar_d@2x.png">
+          </div>
+          <div class="column-title">
+            <h3>Rate tutors</h3>
+          </div>
+          <div class="column-text">
+            <p>Lorem ipsum dolor sit amet,Stet clita kasd lorem ipsum dolor sit amet. sed diam eirmod tempor dolore.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-3 about-column">
+          <div class="img-head">
+            <img src="~/assets/img/avatar_d@2x.png">
+          </div>
+          <div class="column-title">
+            <h3>Get Cash back</h3>
+          </div>
+          <div class="column-text">
+            <p>Lorem ipsum dolor sit amet,Stet clita kasd lorem ipsum dolor sit amet. sed diam eirmod tempor dolore.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Popular -->
+    <Tutors />
+    <!-- Find private tutors -->
+    <section class="find-private-tutors">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-6 find-private-column">
+            <img src="~assets/img/pexels-roman-odintsov-4925916@2x.png" alt="">
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="workpedia-text-div">
+              <p class="workpedia-text">
+                workpedia
+              </p>
+            </div>
+            <div class="find-private-title">
+              <h3>Find private tutors</h3>
+            </div>
+            <div class="find-private-texts">
+              <p>
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                justo duo dolores et ea rebum. . Stet clita kasd gubergren,
+                no sea takimata sanctus est
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet. Lorem
+                ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+                sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+                rebum. Stet clita kasd gubergren, no sea takimata sanctus .
+              </p>
+            </div>
+            <NuxtLink
+              class="find-private-button"
+              to="/"
+            >
+              Search
+            </NuxtLink>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- News Letter -->
+    <NewsLetter />
+    <!-- Footer -->
+    <Footer />
   </div>
 </template>
 
 <script>
 export default {
-  layout: 'tutor'
+  data () {
+    return {
+      displaySidenav: false
+    }
+  }
 }
 </script>
 
@@ -37,14 +133,64 @@ export default {
   background-position: top;
   background-size: cover;
   background-repeat: no-repeat;
+  padding-bottom: 217px;
 }
 .search-input{
   padding: 10px;
+  background-color: transparent;
   border: 1px solid #FF9B17;
 }
 .search-btn{
   padding: 10px;
   background-color: #FF9B17;
-  border: #FF9B17;
+  border: 1px solid #FF9B17;
+  margin-left: -4px;
+}
+.about{
+  margin-top: 80px;
+}
+.about-column{
+  margin-right: 60px;
+  background-color: #fff;
+  margin-top: 10px;
+  box-shadow: 0px 20px 20px #7682b72e;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.find-private-tutors{
+  background-color: #F1F1FF;
+  padding: 100px 0px;
+}
+.workpedia-text-div{
+  background-color: #f2e8e8;
+  padding: 0px;
+  width: 105px;
+  margin-top: 40px;
+}
+.workpedia-text{
+  color: #FF9B17;
+  padding: 11px 11px;
+  font-size: 18px;
+}
+.find-private-title{
+  padding-top: 30px;
+}
+.find-private-column img{
+  width: 518px;
+}
+.find-private-text{
+  padding-top: 40px;
+  padding-bottom: 54px;
+}
+.find-private-button{
+  color: #fff;
+  background-color: #FF9B17;
+  padding: 15px 42px;
+  margin-top: 30px;
+}
+
+.find-private-button:hover{
+  text-decoration: none;
 }
 </style>

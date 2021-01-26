@@ -1,6 +1,12 @@
 <template>
   <div>
-    <FixedNav />
+    <TheHeader
+      @sidenavToggle="displaySidenav = !displaySidenav"
+    />
+    <TheSidenav
+      :show="displaySidenav"
+      @close="displaySidenav = false"
+    />
     <section class="bg-hero container">
       <div class="row">
         <div class="col-12 col-md-6 bg-texts">
@@ -42,11 +48,16 @@
     <!-- Footer -->
     <Footer />
   </div>
-  </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data () {
+    return {
+      displaySidenav: false
+    }
+  }
+}
 </script>
 
 <style>

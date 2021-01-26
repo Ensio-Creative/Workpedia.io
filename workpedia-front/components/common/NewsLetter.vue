@@ -61,7 +61,7 @@ export default {
 .news-input {
   background: #FFFFFF 0% 0% no-repeat padding-box;
   box-shadow: 0px 12px 40px #251E8C40;
-  border-radius: 10px;
+  border-radius: 11px 0px 0px 11px;
   border: #FFFFFF;
   padding: 15px 70px;
 }
@@ -70,8 +70,9 @@ export default {
   padding: 15px 70px;
   color: #FFFFFF;
   box-shadow: 0px 12px 40px #251E8C40;
-  border-radius: 10px;
+  border-radius: 0px 11px 11px 0px;
   border: #251E8C;
+  margin-left: -4px;
 }
 
 </style>

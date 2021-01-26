@@ -1,6 +1,6 @@
 <template>
   <div class="header-container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <nav class="navbar navbar-expand-lg navbar-light transparent">
       <div class="container">
         <NuxtLink class="navbar-brand" to="/">
           <img src="~/assets/img/Workpedia logo transparent (Blue).png" alt="">
@@ -71,6 +71,6 @@ export default {
 .tutor-outline:nth-child(3):hover{
   box-shadow: 0px 3px 19px #00000029;
   border: 2px solid #FF9B17;
-  background-color: #fff;
+  background-color: transparent;
 }
 </style>
