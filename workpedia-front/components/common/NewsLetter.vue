@@ -74,5 +74,15 @@ export default {
   border: #251E8C;
   margin-left: -4px;
 }
-
+@media screen and (max-width: 780px) {
+  .news-paragraph{
+  padding: 0px;
+  }
+  .news-input{
+    padding: 15px 8px;
+  }
+  .news-btn{
+    padding: 15px 8px;
+  }
+}
 </style>

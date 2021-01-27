@@ -25,7 +25,18 @@
         </div>
       </div>
     </section>
-    <h1>Jobs</h1>
+    <!-- About -->
+    <About />
+    <!-- Popular -->
+    <Popular />
+    <!-- Post a job -->
+    <Find
+      private-title="Find Private Tutors"
+    />
+    <!-- News Letter -->
+    <NewsLetter />
+    <!-- Footer -->
+    <Footer />
   </div>
 </template>
 
@@ -42,6 +53,7 @@ export default {
 <style scoped>
 .bg-hero{
   background-image: url('~assets/img/Macbook.jpeg');
+  padding-bottom: 310px;
 }
 .search-input{
   padding: 10px;

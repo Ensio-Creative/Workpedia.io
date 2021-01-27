@@ -12,6 +12,10 @@
   width: 60px;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 /* ------ ------ Landing page ------- ------ */
 
 .landing-outline {
@@ -27,21 +31,36 @@
   padding-bottom: 174px;
 }
 
+.bg-hero h1 {
+  padding: 10px 165px 33px 0px;
+}
+
 .bg-texts {
   margin-top: 100px;
 }
 .bg-hero p {
-  margin-top: 25px;
+  padding: 10px 200px 10px 0px;
 }
 
-.freelance {
+.bg-buttons {
+  margin-top: 50px;
+}
+
+.bg-buttons a:hover {
+  color: none;
+}
+.bg-buttons-item {
+  margin-right: 10px;
+}
+.bg-buttons-item:nth-child(1) {
   background-color: #2b7dc4;
   border: 2px solid #2b7dc4;
   padding: 10px;
   color: #fff;
   font-size: 12px;
 }
-.jobs {
+
+.bg-buttons-item:nth-child(2) {
   box-shadow: 0px 3px 6px #f5c01e26;
   border: 2px solid #0db47b;
   border-radius: 2px;
@@ -49,7 +68,8 @@
   color: #0db47b;
   font-size: 12px;
 }
-.tutor {
+
+.bg-buttons-item:nth-child(3) {
   background: #ff9b17 0% 0% no-repeat padding-box;
   box-shadow: 0px 3px 6px #f5c01e26;
   border-radius: 2px;
@@ -57,11 +77,6 @@
   padding: 10px;
   color: #000;
   font-size: 12px;
-}
-
-.image-rap img {
-  width: 497px;
-  height: 460px;
 }
 
 /* Let's walk you through */
@@ -145,7 +160,8 @@
 }
 .freelance-column {
   background-color: #fff;
-  /* margin-right: 50px; */
+  margin-right: 60px;
+  margin-top: 20px;
   box-shadow: 0px 20px 20px rgba(118, 130, 183, 0.18039);
   padding-bottom: 0px;
   padding-left: 0px;
@@ -296,6 +312,20 @@
 
 @media screen and (max-width: 780px) {
   /* ------ ------ Landing page ------- ------ */
+  .bg-hero h1 {
+    padding: 0px;
+  }
+  .bg-hero p {
+    padding: 0px;
+  }
+  .bg-buttons {
+    margin-top: 10px;
+  }
+  .bg-buttons-item {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+  }
   /* Walk you through */
   .heading {
     padding-top: 0px;
@@ -322,5 +352,6 @@
   /* Freelance */
   .freelance-column {
     margin-top: 40px;
+    margin-right: 0px;
   }
 }

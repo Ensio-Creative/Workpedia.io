@@ -9,28 +9,28 @@
     />
     <section class="bg-hero container">
       <div class="row">
-        <div class="col-12 col-md-6 bg-texts">
+        <div class="col-12 col-md-6 bg-texts order-4 order-sm-4">
           <h1>
             Find your dream job, career and tutor all in one place.
           </h1>
           <p>
             Workpedia allows you get everything in once place, freelancing job opportunity, tutors and easily manage all three with ease.
           </p>
-          <div class="page-buttons">
-            <NuxtLink class="freelance mr-2" to="/freelancing">
+          <div class="bg-buttons">
+            <NuxtLink class="bg-buttons-item" to="/freelancing">
               FREELANCING & HANDY MEN
             </NuxtLink>
-            <NuxtLink class="jobs mr-2" to="/jobs">
+            <NuxtLink class="bg-buttons-item" to="/jobs">
               JOBS / CAREER
             </NuxtLink>
-            <NuxtLink class="tutor mr-2" to="/tutor">
+            <NuxtLink class="bg-buttons-item" to="/tutor">
               TUTOR / LEARNING
             </NuxtLink>
           </div>
         </div>
-        <div class="col-12 col-md-4 text-center">
+        <div class="col-12 col-md-4 order-2 order-sm-6">
           <div class="image-rap">
-            <!-- <img src="~/assets/img/avatar_d@2x.png"> -->
+            <img src="~/assets/img/pexels-emmy-e-2381069.png">
           </div>
         </div>
       </div>
@@ -38,7 +38,9 @@
     <!-- Walk you through -->
     <Walk />
     <!-- Freelancing gigs -->
-    <Freelancing />
+    <Freelancing
+      frelance-gigs="Get your Freelancing gigs"
+    />
     <!-- Popular jobs -->
     <Popular />
     <!-- Private tutors -->
@@ -60,5 +62,38 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.bg-hero img{
+  width: 423px;
+  transform: scaleX(-1);
+  margin-bottom: 20px;
+}
+.image-rap {
+  margin-top: 35px;
+  width: 430px;
+  height: 430px;
+  border: 20px solid #251e8c;
+  border-radius: 100%;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 780px){
+  .bg-texts {
+    margin-top: 50px;
+}
+.image-rap {
+  margin-top: 35px;
+  width: 300px;
+  height: 300px;
+  border: 7px solid #251e8c;
+  border-radius: 100%;
+  overflow: hidden;
+}
+.bg-hero img {
+  width: 307px;
+  transform: scaleX(-1);
+  margin-bottom: 20px;
+}
+}
+
 </style>

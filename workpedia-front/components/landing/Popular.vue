@@ -6,7 +6,7 @@
         <div class="heading-line" />
       </div>
       <div class="row justify-content-around">
-        <div class="col-12 col-md-4 popular-column">
+        <div class="col-12 col-md-5 col-lg-4 popular-column">
           <div class="popular-column-heading">
             <i class="fas fa-suitcase" />
             <h3>Electrical Engineer</h3>
@@ -34,7 +34,7 @@
             </NuxtLink>
           </div>
         </div>
-        <div class="col-12 col-md-4 popular-column">
+        <div class="col-12 col-md-5 col-lg-4 popular-column">
           <div class="popular-column-heading">
             <i class="fas fa-suitcase" />
             <h3>Electrical Engineer</h3>
@@ -62,7 +62,7 @@
             </NuxtLink>
           </div>
         </div>
-        <div class="col-12 col-md-4 popular-column">
+        <div class="col-12 col-md-5 col-lg-4 popular-column">
           <div class="popular-column-heading">
             <i class="fas fa-suitcase" />
             <h3>Electrical Engineer</h3>
@@ -90,9 +90,7 @@
             </NuxtLink>
           </div>
         </div>
-      </div>
-      <div class="row justify-content-around mt-5">
-        <div class="col-12 col-md-4 popular-column">
+        <div class="col-12 col-md-5 col-lg-4 popular-column">
           <div class="popular-column-heading">
             <i class="fas fa-suitcase" />
             <h3>Electrical Engineer</h3>
@@ -120,7 +118,7 @@
             </NuxtLink>
           </div>
         </div>
-        <div class="col-12 col-md-4 popular-column">
+        <div class="col-12 col-md-5 col-lg-4 popular-column">
           <div class="popular-column-heading">
             <i class="fas fa-suitcase" />
             <h3>Electrical Engineer</h3>
@@ -148,7 +146,7 @@
             </NuxtLink>
           </div>
         </div>
-        <div class="col-12 col-md-4 popular-column">
+        <div class="col-12 col-md-5 col-lg-4 popular-column">
           <div class="popular-column-heading">
             <i class="fas fa-suitcase" />
             <h3>Electrical Engineer</h3>

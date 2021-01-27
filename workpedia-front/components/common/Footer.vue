@@ -26,8 +26,8 @@
           </div>
         </div>
         <div class="col-12 col-md-7">
-          <div class="row">
-            <div class="col-12 col-md-3">
+          <div class="row justify-content-center">
+            <div class="col-6 col-sm-6 col-md-6 col-lg-4">
               <h4 class="footer-nav-title">
                 Freelancing
               </h4>
@@ -46,7 +46,7 @@
                 </NuxtLink>
               </div>
             </div>
-            <div class="col-12 col-md-3">
+            <div class="col-6 col-sm-6 col-md-6 col-lg-4">
               <h4 class="footer-nav-title">
                 Jobs
               </h4>
@@ -65,7 +65,7 @@
                 </NuxtLink>
               </div>
             </div>
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-4">
               <h4 class="footer-nav-title">
                 Private Tutor
               </h4>
@@ -120,7 +120,6 @@ export default {
 }
 .footer-text {
   padding-top: 30px;
-  width: 380px;
 }
 .footer-social{
   padding-top: 20px;
@@ -145,5 +144,13 @@ export default {
 .all-rights{
   padding-top: 20px;
   padding-bottom: 30px;
+}
+@media screen and (max-width: 780px) {
+  .footer-title{
+    display: block;
+  }
+  .footer-text {
+  padding-top: 30px;
+}
 }
 </style>

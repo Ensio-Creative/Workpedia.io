@@ -1,43 +1,8 @@
 <template>
   <div>
-    <section class="bg-hero">
-      <TheTutorHeader
-        @sidenavToggle="displaySidenav = !displaySidenav"
-      />
-      <TheTutorSidenav
-        :show="displaySidenav"
-        @close="displaySidenav = false"
-      />
+    <section class="find-private-jobs">
       <div class="container">
         <div class="row">
-          <div class="col-12 col-md-6 bg-texts">
-            <h1>
-              Find your dream job, career and tutor all in one place.
-            </h1>
-            <p>
-              Workpedia allows you get everything in once place, freelancing job opportunity, tutors and easily manage all three with ease.
-            </p>
-            <div class="search">
-              <input class="search-input" type="email" placeholder="Search Your Courses">
-              <button class="search-btn">
-                Search
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- About -->
-    <About />
-    <!-- Popular -->
-    <Tutors />
-    <!-- Find private tutors -->
-    <section class="find-private-tutors">
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-md-6 find-private-column">
-            <img src="~assets/img/pexels-roman-odintsov-4925916@2x.png" alt="">
-          </div>
           <div class="col-12 col-md-6">
             <div class="workpedia-text-div">
               <p class="workpedia-text">
@@ -45,7 +10,7 @@
               </p>
             </div>
             <div class="find-private-title">
-              <h3>Find private tutors</h3>
+              <h3>{{ privateTitle }}</h3>
             </div>
             <div class="find-private-texts">
               <p>
@@ -70,58 +35,40 @@
               Search
             </NuxtLink>
           </div>
+          <div class="col-12 col-md-6 find-private-column">
+            <img src="~assets/img/pexels-roman-odintsov-4925916@2x.png" alt="">
+          </div>
         </div>
       </div>
     </section>
-    <!-- News Letter -->
-    <NewsLetter />
-    <!-- Footer -->
-    <Footer />
   </div>
 </template>
 
 <script>
 export default {
-  data () {
-    return {
-      displaySidenav: false
+  name: 'Find',
+  props: {
+    privateTitle: {
+      type: String,
+      required: true
     }
   }
 }
 </script>
 
 <style scoped>
-.bg-hero{
-  background-image: linear-gradient(to right, rgba(232, 232, 232, 1), rgba(209, 206, 206, 0)),
-    url('~assets/img/pexels-julia-m-cameron-4143791@2x.png');
-  background-position: top;
-  background-size: cover;
-  background-repeat: no-repeat;
-  padding-bottom: 217px;
-}
-.search-input{
-  padding: 10px 40px;
-  background-color: transparent;
-  border: 1px solid #FF9B17;
-}
-.search-btn{
-  padding: 10px 40px;
-  background-color: #FF9B17;
-  border: 1px solid #FF9B17;
-  margin-left: -4px;
-}
 .find-private-tutors{
   background-color: #F1F1FF;
   padding: 100px 0px;
 }
 .workpedia-text-div{
-  background-color: #f2e8e8;
+  background-color: #d9eaf2;
   padding: 0px;
   width: 105px;
   margin-top: 40px;
 }
 .workpedia-text{
-  color: #FF9B17;
+  color: #0DB47B;
   padding: 11px 11px;
   font-size: 18px;
 }
@@ -130,6 +77,7 @@ export default {
 }
 .find-private-column img{
   width: 518px;
+  transform: scaleX(-1);
 }
 .find-private-text{
   padding-top: 40px;
@@ -137,7 +85,7 @@ export default {
 }
 .find-private-button{
   color: #fff;
-  background-color: #FF9B17;
+  background-color: #0DB47B;
   padding: 15px 42px;
   margin-top: 30px;
 }

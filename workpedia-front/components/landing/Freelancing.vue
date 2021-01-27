@@ -2,11 +2,11 @@
   <div>
     <section class="freelancing-gigs container">
       <div class="freelance-heading">
-        <h1>Get your Freelancing gigs</h1>
+        <h1> {{ frelanceGigs }} </h1>
         <div class="heading-line" />
       </div>
-      <div class="row justify-content-between">
-        <div class="col-12 col-md-3 freelance-column text-center">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-4 col-lg-3 freelance-column text-center">
           <div class="freelance-img-head" />
           <div class="freelance-text">
             <h3>Website Design</h3>
@@ -15,7 +15,7 @@
             <p>$450</p>
           </div>
         </div>
-        <div class="col-12 col-md-3 freelance-column text-center">
+        <div class="col-12 col-md-4 col-lg-3 freelance-column text-center">
           <div class="freelance-img-head" />
           <div class="freelance-text">
             <h3>Website Design</h3>
@@ -24,7 +24,7 @@
             <p>$450</p>
           </div>
         </div>
-        <div class="col-12 col-md-3 freelance-column text-center">
+        <div class="col-12 col-md-4 col-lg-3 freelance-column text-center">
           <div class="freelance-img-head" />
           <div class="freelance-text">
             <h3>Website Design</h3>
@@ -33,12 +33,8 @@
             <p>$450</p>
           </div>
         </div>
-      </div>
-      <div class="row justify-content-between mt-3">
-        <div class="col-12 col-md-3 freelance-column text-center">
-          <div class="freelance-img-head">
-            <!-- <img src="~/assets/img/avatar_d@2x.png"> -->
-          </div>
+        <div class="col-12 col-md-4 col-lg-3 freelance-column text-center">
+          <div class="freelance-img-head" />
           <div class="freelance-text">
             <h3>Website Design</h3>
           </div>
@@ -46,10 +42,8 @@
             <p>$450</p>
           </div>
         </div>
-        <div class="col-12 col-md-3 freelance-column text-center">
-          <div class="freelance-img-head">
-            <!-- <img src="~/assets/img/avatar_d@2x.png"> -->
-          </div>
+        <div class="col-12 col-md-4 col-lg-3 freelance-column text-center">
+          <div class="freelance-img-head" />
           <div class="freelance-text">
             <h3>Website Design</h3>
           </div>
@@ -57,10 +51,8 @@
             <p>$450</p>
           </div>
         </div>
-        <div class="col-12 col-md-3 freelance-column text-center">
-          <div class="freelance-img-head">
-            <!-- <img src="~/assets/img/avatar_d@2x.png"> -->
-          </div>
+        <div class="col-12 col-md-4 col-lg-3 freelance-column text-center">
+          <div class="freelance-img-head" />
           <div class="freelance-text">
             <h3>Website Design</h3>
           </div>
@@ -80,7 +72,13 @@
 
 <script>
 export default {
-  name: 'Freelancing'
+  name: 'Freelancing',
+  props: {
+    frelanceGigs: {
+      type: String,
+      required: true
+    }
+  }
 }
 </script>
 
