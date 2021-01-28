@@ -1,6 +1,6 @@
 <template>
   <div class="header-container">
-    <nav class="navbar navbar-expand-lg navbar-light transparent">
+    <nav class="navbar navbar-expand-lg transparent">
       <div class="container">
         <NuxtLink class="navbar-brand" to="/">
           <img src="~/assets/img/Workpedia logo transparent (Blue).png" alt="">
@@ -12,12 +12,12 @@
         <div class="collapse navbar-collapse">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <NuxtLink class="nav-link" to="/jobs">
+              <a class="nav-link" href="#">
                 About
-              </NuxtLink>
+              </a>
             </li>
             <li class="nav-item">
-              <NuxtLink class="nav-link" to="/job/jobs">
+              <NuxtLink class="nav-link" to="/jobs/job-search">
                 Jobs
               </NuxtLink>
             </li>
@@ -50,7 +50,7 @@ export default {
 .nav-item a:hover,
 .nav-item a:active,
 .nav-item a.nuxt-link-active {
-  color: #000;
+  color: #0DB47B;
 }
 .become-tutor{
   background-color: #0DB47B;

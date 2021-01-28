@@ -1,19 +1,12 @@
 /* Reuseable stles */
-.navbar {
-  color: #000;
-}
 
 .navbar a {
-  color: #2d2d2d;
+  color: #000;
   font-size: 18px;
 }
 
 .navbar-brand img {
   width: 60px;
-}
-
-a:hover {
-  text-decoration: none;
 }
 
 /* ------ ------ Landing page ------- ------ */
