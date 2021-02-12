@@ -9,17 +9,21 @@
         @close="displaySidenav = false"
       />
       <div class="container">
-        <div class="row">
+        <div class="row justify-content-around">
           <div class="col-12 col-md-6 bg-texts">
             <h1>
               Find your dream job, career and Jobs all in one place.
             </h1>
-            <div class="search">
-              <input class="search-input" type="email" placeholder="Search Your Courses">
-              <input class="search-input" type="email" placeholder="Search Your Courses">
+            <div class="search mt-5">
+              <input class="search-input" type="email" placeholder="Search for Jobs">
               <button class="search-btn">
                 Search
               </button>
+            </div>
+          </div>
+          <div class="col-12 col-md-4 order-2 order-sm-6">
+            <div class="image-rap">
+              <img src="~/assets/img/pexels-emmy-e-2381069.png">
             </div>
           </div>
         </div>
@@ -52,18 +56,24 @@ export default {
 
 <style scoped>
 .bg-hero{
-  background-image: url('~assets/img/Macbook.jpeg');
-  padding-bottom: 310px;
+  /* background-image: url('~assets/img/Macbook.jpeg'); */
+  background-color: #fff;
+}
+.bg-hero img{
+  width: 423px;
+  transform: scaleX(-1);
+  margin-bottom: 20px;
 }
 .search-input{
-  padding: 10px;
-  background-color: #fff;
+  padding: 10px 40px;
+  background-color: #f1f1f1;
   border:  #fff;
 }
 .search-btn{
-  padding: 10px;
+  padding: 10px 40px;
   background-color: #0DB47B;
   border:  #0DB47B;
   margin-left: -4px;
+  color: #fff;
 }
 </style>

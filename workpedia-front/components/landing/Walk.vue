@@ -1,12 +1,11 @@
 <template>
   <div>
     <section class="walk-you-through">
-      <div class="heading">
-        <h1>Let's walk you through</h1>
-        <div class="heading-line" />
-      </div>
       <div class="container">
-        <div class="row justify-content-between">
+        <div class="heading">
+          <h1>Let's walk you through</h1>
+        </div>
+        <div class="row justify-content-center">
           <div class="col-12 col-md-3 walk-column">
             <div class="img-head">
               <img src="~/assets/img/avatar_d@2x.png">

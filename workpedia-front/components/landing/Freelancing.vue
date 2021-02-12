@@ -1,9 +1,8 @@
 <template>
   <div>
     <section class="freelancing-gigs container">
-      <div class="freelance-heading">
+      <div class="heading">
         <h1> {{ frelanceGigs }} </h1>
-        <div class="heading-line" />
       </div>
       <div class="row justify-content-center">
         <div class="col-12 col-md-4 col-lg-3 freelance-column text-center">

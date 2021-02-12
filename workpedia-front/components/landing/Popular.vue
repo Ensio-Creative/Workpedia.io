@@ -1,9 +1,8 @@
 <template>
   <div>
     <section class="popular-jobs container">
-      <div class="freelance-heading">
+      <div class="heading">
         <h1>Our Popular Jobs</h1>
-        <div class="heading-line" />
       </div>
       <div class="row justify-content-around">
         <div class="col-12 col-md-5 col-lg-4 popular-column">

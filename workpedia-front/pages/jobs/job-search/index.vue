@@ -133,7 +133,7 @@
               <input type="email" class="form-control gray mb-2" placeholder="eg. mathematics">
               <b-form-select v-model="selected" :options="options" />
               <b-form-select v-model="selected" :options="options" size="sm" class="mt-3" />
-              <button class="btn btn-primary form-control mt-2">
+              <button class="btn btn-search form-control mt-2">
                 Search
               </button>
             </div>
@@ -144,7 +144,7 @@
     <section class="what-student-say">
       <div class="container">
         <div class="title text-center">
-          <h2>What Students Say</h2>
+          <h2>Testimonials</h2>
         </div>
         <div class="text text-center">
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
@@ -258,13 +258,13 @@ export default {
 
 <style scoped>
 .categories-nav{
-  background-color: #0DB47B;
-}
-.categories-nav .active{
-  color: #fff;
+  background-color: #fff;
 }
 .categories-nav a{
-  color: #fff;
+  color: rgba(0, 0, 0, 0.5);
+}
+.categories-nav .active{
+  color: #0DB47B;
 }
 .nav-link a:hover
 .nav-link a:focus{
@@ -281,34 +281,16 @@ export default {
 .btn-apply:hover{
   text-decoration: none;
 }
-
+.btn-search{
+  background-color: #0DB47B;
+  color: #fff;
+}
 .search-container{
   margin-top: 20px;
   background: #FFFFFF 0% 0% no-repeat padding-box;
-  box-shadow: 3px 7px 9px #00000029;
-  border: 1px solid #7070706E;
+  box-shadow: 0px 0px 5px #00000029;
   border-radius: 8px;
   padding: 20px;
   margin-bottom: 20px;
-}
-.what-student-say{
-  margin-top: 180px;
-  margin-bottom: 80px;
-}
-.round{
-  background: #D8D8D8 0% 0% no-repeat padding-box;
-  padding: 26px;
-  width: 26px;
-  height: 26px;
-  border-radius: 72px;
-}
-
-.what-students-say-column{
-  box-shadow: 3px 7px 9px #00000029;
-  border: 1px solid #7070706E;
-  border-radius: 8px;
-  padding: 10px;
-  margin-top: 20px;
-  margin-right: 10px;
 }
 </style>

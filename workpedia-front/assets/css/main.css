@@ -21,7 +21,7 @@
   color: #fff;
 }
 .bg-hero {
-  padding-bottom: 174px;
+  padding-bottom: 80px;
 }
 
 .bg-hero h1 {
@@ -72,6 +72,14 @@
   font-size: 12px;
 }
 
+.image-rap {
+  margin-top: 35px;
+  width: 430px;
+  height: 430px;
+  border-radius: 7%;
+  overflow: hidden;
+}
+
 /* Let's walk you through */
 .walk-you-through {
   background-color: #f1f1ff;
@@ -80,19 +88,17 @@
 }
 .heading {
   padding-top: 0px;
-  padding-bottom: 90px;
-  padding-left: 90px;
+  padding-bottom: 30px;
 }
-.heading-line {
-  width: 350px;
-  background-color: #251e8c;
-  height: 2px;
-  opacity: 1;
+.heading h1 {
+  font-size: 26px;
 }
+
 .walk-column {
   background-color: #fff;
   box-shadow: 0px 20px 20px #7682b72e;
   padding-bottom: 20px;
+  margin-right: 40px;
   padding-top: 20px;
 }
 .img-head {
@@ -125,8 +131,9 @@
 }
 
 .view-more {
-  float: right;
+  text-align: center;
   padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 .view-btn {
@@ -145,7 +152,7 @@
 /* Freelance gigs */
 .freelancing-gigs {
   padding-top: 100px;
-  padding-bottom: 100px;
+  /* padding-bottom: 100px; */
 }
 .freelance-heading {
   padding-top: 0px;
@@ -153,9 +160,9 @@
 }
 .freelance-column {
   background-color: #fff;
-  margin-right: 60px;
+  margin-right: 40px;
   margin-top: 20px;
-  box-shadow: 0px 20px 20px rgba(118, 130, 183, 0.18039);
+  box-shadow: 0px 0px 5px rgba(118, 130, 183, 0.18039);
   padding-bottom: 0px;
   padding-left: 0px;
   padding-right: 0px;
@@ -186,13 +193,12 @@
 /* Popular jobs */
 
 .popular-jobs {
-  padding-top: 100px;
-  padding-bottom: 100px;
+  padding-top: 50px;
 }
 
 .popular-column {
   background: #ffffff 0% 0% no-repeat padding-box;
-  box-shadow: 0px 0px 16px rgba(37, 30, 140, 0.2902);
+  box-shadow: 0px 0px 5px rgba(37, 30, 140, 0.2902);
   border-radius: 21px;
   opacity: 1;
   margin-top: 10px;
@@ -255,13 +261,13 @@
 
 /* Private-tutors */
 .private-tutor {
-  padding-top: 100px;
+  padding-top: 0px;
   padding-bottom: 100px;
 }
 .private-tutor-column {
   background-color: #fff;
-  /* margin-right: 50px; */
-  box-shadow: 0px 20px 20px rgba(118, 130, 183, 0.18039);
+  margin-right: 40px;
+  box-shadow: 0px 0px 5px rgba(118, 130, 183, 0.18039);
   padding-bottom: 0px;
   padding-left: 0px;
   padding-right: 0px;
@@ -303,6 +309,29 @@
   background-color: #f1f1ff;
 }
 
+/* What students say */
+.gray {
+  background-color: #d8d8d8;
+}
+.what-student-say {
+  margin-top: 180px;
+  margin-bottom: 80px;
+}
+.round {
+  background: #d8d8d8 0% 0% no-repeat padding-box;
+  padding: 26px;
+  width: 26px;
+  height: 26px;
+  border-radius: 72px;
+}
+
+.what-students-say-column {
+  box-shadow: 0px 0px 5px rgb(0 0 0 / 16%);
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 20px;
+  margin-right: 10px;
+}
 @media screen and (max-width: 780px) {
   /* ------ ------ Landing page ------- ------ */
   .bg-hero h1 {
@@ -323,14 +352,9 @@
   .heading {
     padding-top: 0px;
     padding-bottom: 90px;
-    padding-left: 10px;
   }
-
-  .heading-line {
-    width: 50px;
-    background-color: #251e8c;
-    height: 2px;
-    opacity: 1;
+  .heading h1 {
+    font-size: 26px;
   }
 
   .walk-column {

@@ -27,12 +27,7 @@
               </NuxtLink>
             </li>
           </ul>
-          <button class="btn landing-outline">
-            Sign in
-          </button>
-          <button class="btn landing-outline ml-3">
-            Register for free
-          </button>
+          <UserSign />
         </div>
       </div>
     </nav>
@@ -40,7 +35,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'TheHeader'
 }

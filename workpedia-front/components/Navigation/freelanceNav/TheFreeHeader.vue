@@ -22,17 +22,12 @@
               </NuxtLink>
             </li>
             <li class="nav-item">
-              <NuxtLink class="nav-link become-tutor" to="/freelancing/post">
-                Freelance/Handymen
+              <NuxtLink class="nav-link become-tutor" to="/freelancing/become-freelancer">
+                Become a Freelancer
               </NuxtLink>
             </li>
           </ul>
-          <button class="btn freelance-outline">
-            Sign in
-          </button>
-          <button class="btn freelance-outline ml-3">
-            Register for free
-          </button>
+          <UserSign />
         </div>
       </div>
     </nav>
@@ -60,17 +55,9 @@ export default {
 .freelance-outline {
   border: 2px solid #2B7DC4;
 }
-.freelance-outline:hover {
-  border: 2px solid #2B7DC4;
-  background-color: #2B7DC4;
-}
 .freelance-outline:nth-child(3){
   border: 2px solid #2B7DC4;
   background-color: #2B7DC4;
-}
-.freelance-outline:nth-child(3):hover{
-  box-shadow: 0px 3px 19px #00000029;
-  border: 2px solid #2B7DC4;
-  background-color: transparent;
+  color: #fff;
 }
 </style>

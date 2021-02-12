@@ -27,12 +27,7 @@
               </NuxtLink>
             </li>
           </ul>
-          <button class="btn tutor-outline">
-            Sign in
-          </button>
-          <button class="btn tutor-outline ml-3">
-            Register for free
-          </button>
+          <UserSign />
         </div>
       </div>
     </nav>

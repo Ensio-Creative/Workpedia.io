@@ -8,7 +8,7 @@
       @close="displaySidenav = false"
     />
     <section class="bg-hero container">
-      <div class="row">
+      <div class="row justify-content-around">
         <div class="col-12 col-md-6 bg-texts order-4 order-sm-4">
           <h1>
             Find your dream job, career and tutor all in one place.
@@ -54,6 +54,7 @@
 
 <script>
 export default {
+  name: 'Home',
   data () {
     return {
       displaySidenav: false
@@ -68,26 +69,10 @@ export default {
   transform: scaleX(-1);
   margin-bottom: 20px;
 }
-.image-rap {
-  margin-top: 35px;
-  width: 430px;
-  height: 430px;
-  border: 20px solid #251e8c;
-  border-radius: 100%;
-  overflow: hidden;
-}
 
 @media screen and (max-width: 780px){
   .bg-texts {
     margin-top: 50px;
-}
-.image-rap {
-  margin-top: 35px;
-  width: 300px;
-  height: 300px;
-  border: 7px solid #251e8c;
-  border-radius: 100%;
-  overflow: hidden;
 }
 .bg-hero img {
   width: 307px;

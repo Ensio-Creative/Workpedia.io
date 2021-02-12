@@ -1,11 +1,10 @@
 <template>
   <div>
     <section class="container private-tutor">
-      <div class="freelance-heading">
-        <h1>Get your private tutor/ E-learning</h1>
-        <div class="heading-line" />
+      <div class="heading">
+        <h1>Get your private tutor</h1>
       </div>
-      <div class="row justify-content-between">
+      <div class="row justify-content-center">
         <div class="col-12 col-md-3 private-tutor-column text-center">
           <div class="private-tutor-img-head" />
           <div class="private-tutor-text">

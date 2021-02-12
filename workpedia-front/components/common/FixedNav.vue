@@ -38,7 +38,7 @@ export default {
 .nav-fixed{
   padding: 20px 10px;
   background-color: #fff;
-  box-shadow: 0px 28px 21px #00000029;
+  box-shadow: 0px 0px 5px rgb(0 0 0 / 16%);
   border-radius: 10px;
 }
 .nav-fixed-item{

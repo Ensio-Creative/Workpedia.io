@@ -27,12 +27,7 @@
               </NuxtLink>
             </li>
           </ul>
-          <button class="btn jobs-outline">
-            Sign in
-          </button>
-          <button class="btn jobs-outline ml-3">
-            Register for free
-          </button>
+          <UserSign />
         </div>
       </div>
     </nav>
@@ -55,22 +50,15 @@ export default {
 .become-tutor{
   background-color: #0DB47B;
   border-radius: 2px;
-  color: #000 i !important;
+  color: #fff  !important;
+
 }
 .jobs-outline {
   border: 2px solid #0DB47B;
 }
-.jobs-outline:hover {
-  border: 2px solid #0DB47B;
-  background-color: #0DB47B;
-}
 .jobs-outline:nth-child(3){
   border: 2px solid #0DB47B;
   background-color: #0DB47B;
-}
-.jobs-outline:nth-child(3):hover{
-  box-shadow: 0px 3px 19px #00000029;
-  border: 2px solid #0DB47B;
-  background-color: transparent;
+  color: #fff;
 }
 </style>

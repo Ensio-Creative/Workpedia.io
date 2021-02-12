@@ -8,14 +8,14 @@
         :show="displaySidenav"
         @close="displaySidenav = false"
       />
-      <div class="container mt-5">
-        <div class="row ">
+      <div class="container">
+        <div class="row justify-content-around">
           <div class="col-12 col-md-6 bg-texts">
             <h1>
               Find your dream job, career and Jobs all in one place.
             </h1>
             <div class="search mt-5">
-              <input class="search-input" type="email" placeholder="e.g Graphic Design, User Interface, Technical Writing">
+              <input class="search-input" type="email" placeholder="e.g Copywriting">
               <button class="search-btn">
                 Search
               </button>
@@ -58,26 +58,20 @@ export default {
 
 <style scoped>
 .bg-hero{
-  background-color: #E2E2E2;
+  background-color: #fff;
 }
 .bg-hero img{
   width: 423px;
   transform: scaleX(-1);
 }
-.image-rap {
-  width: 405px;
-  height: 455px;
-  border-radius: 100%;
-  overflow: hidden;
-}
 .search-input{
-  background-color: #fff;
+  background-color: #E2E2E2;
   padding: 10px 70px;
   border: #fff;
 }
 .search-btn{
   background-color: #2B7DC4;
-  border-radius: 0px 20px 0px 0px;
+  color: #fff;
   border: #2B7DC4;
   padding: 10px 60px;
   margin-left: -3px;

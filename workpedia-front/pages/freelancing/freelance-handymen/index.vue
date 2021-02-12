@@ -28,10 +28,12 @@
           <div class="navbar-nav">
             <a class="nav-link active" href="#">All Categories <span class="sr-only">(current)</span></a>
             <a class="nav-link mr-2" href="#">Design</a>
-            <a class="nav-link mr-2" href="#">Freelance/Handymen</a>
-            <a class="nav-link mr-2" href="#">Videos&Animation</a>
-            <a class="nav-link mr-2" href="#">Music&Audio</a>
-            <a class="nav-link mr-2" href="#">Tech&Programming</a>
+            <a class="nav-link mr-2" href="#">Handymen</a>
+            <a class="nav-link mr-2" href="#">Animation</a>
+            <a class="nav-link mr-2" href="#">Music</a>
+            <a class="nav-link mr-2" href="#">Programming</a>
+            <a class="nav-link mr-2" href="#">Photography</a>
+            <a class="nav-link mr-2" href="#">Copywriting</a>
             <a class="nav-link mr-2" href="#">Business</a>
             <a class="nav-link mr-2" href="#">Lifestyle</a>
           </div>
@@ -40,32 +42,20 @@
     </nav>
     <!-- Different categories -->
     <Freelancing
-      class="mt-3"
+      class="mt-1"
       frelance-gigs="Graphics & Design"
     />
     <Freelancing
-      class="mt-3"
+      class="mt-1"
       frelance-gigs="Handy men"
     />
     <Freelancing
-      class="mt-3"
+      class="mt-1"
       frelance-gigs="Popular Gigs"
     />
     <Freelancing
-      class="mt-3"
+      class="mt-1"
       frelance-gigs="Videos & Animation"
-    />
-    <Freelancing
-      class="mt-3"
-      frelance-gigs="Tech & Programming"
-    />
-    <Freelancing
-      class="mt-3"
-      frelance-gigs="Business"
-    />
-    <Freelancing
-      class="mt-3 mb-5"
-      frelance-gigs="Lifestyle"
     />
 
     <!-- Footer -->
@@ -85,13 +75,13 @@ export default {
 
 <style scoped>
 .categories-nav{
-  background-color: #2B7DC4;
+  background-color: #fff;
 }
 .categories-nav .active{
-  color: #fff;
+  color: #2B7DC4;
 }
 .categories-nav a{
-  color: #fff;
+  color: rgba(0, 0, 0, 0.5);
 }
 .nav-link a:hover
 .nav-link a:focus{

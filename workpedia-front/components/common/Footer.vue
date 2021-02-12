@@ -3,85 +3,89 @@
     <div class="container">
       <div class="row justify-content-between">
         <div class="col-12 col-md-4">
-          <div class="footer-title">
+          <div
+            class="footer-title"
+            @click="showRoute"
+          >
             <img src="~/assets/img/Workpedia logo transparent (White).png" alt="">
             <h1>Workpedia</h1>
           </div>
           <p class="footer-text">
             Lorem ipsum dolor sit amet,Stet clita kasd gubergren, no sea takimata sanctus est is the is the magna aliquyam.
           </p>
-          <div class="footer-social">
-            <a href="#">
-              <i class="fab fa-facebook-f" />
-            </a>
-            <a href="#">
-              <i class="fab fa-twitter" />
-            </a>
-            <a href="#">
-              <i class="fab fa-dribbble" />
-            </a>
-            <a href="#">
-              <i class="fab fa-linkedin-in" />
-            </a>
-          </div>
         </div>
         <div class="col-12 col-md-7">
           <div class="row justify-content-center">
             <div class="col-6 col-sm-6 col-md-6 col-lg-4">
-              <h4 class="footer-nav-title">
-                Freelancing
-              </h4>
               <div class="footer-nav">
                 <NuxtLink
                   class="footer-nav-item"
                   to="/"
                 >
-                  Post a Job
+                  About us
                 </NuxtLink>
                 <NuxtLink
                   class="footer-nav-item"
                   to="/"
                 >
-                  Find a gig
+                  FAQ
+                </NuxtLink>
+                <NuxtLink
+                  class="footer-nav-item"
+                  to="/"
+                >
+                  Privacy Policy
+                </NuxtLink>
+                <NuxtLink
+                  class="footer-nav-item"
+                  to="/"
+                >
+                  Terms of Service
+                </NuxtLink>
+                <NuxtLink
+                  class="footer-nav-item"
+                  to="/"
+                >
+                  Help and Support
                 </NuxtLink>
               </div>
             </div>
             <div class="col-6 col-sm-6 col-md-6 col-lg-4">
-              <h4 class="footer-nav-title">
-                Jobs
-              </h4>
               <div class="footer-nav">
                 <NuxtLink
                   class="footer-nav-item"
                   to="/"
                 >
-                  Apply for a Job
+                  Tutor
                 </NuxtLink>
                 <NuxtLink
                   class="footer-nav-item"
                   to="/"
                 >
-                  Find a Job
+                  Jobs
+                </NuxtLink>
+                <NuxtLink
+                  class="footer-nav-item"
+                  to="/"
+                >
+                  Freelancing/Handymen
                 </NuxtLink>
               </div>
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4">
-              <h4 class="footer-nav-title">
-                Private Tutor
-              </h4>
-              <div class="footer-nav">
-                <NuxtLink
-                  class="footer-nav-item"
-                  to="/"
-                >
-                  Get a Tutor
-                </NuxtLink>
-                <NuxtLink
-                  class="footer-nav-item"
-                  to="/"
-                >
-                  Become a Tutor
-                </NuxtLink>
+              <div class="footer-social">
+                <a href="#">
+                  <i class="fab fa-facebook-f" />
+                </a>
+                <a href="#">
+                  <i class="fab fa-twitter" />
+                </a>
+                <a href="#">
+                  <i class="fab fa-dribbble" />
+                </a>
+                <a href="#">
+                  <i class="fab fa-linkedin-in" />
+                </a>
               </div>
             </div>
           </div>
@@ -98,7 +102,12 @@
 
 <script>
 export default {
-  name: 'Footer'
+  name: 'Footer',
+  methods: {
+    showRoute () {
+      console.log(this.$route.path)
+    }
+  }
 }
 </script>
 
@@ -112,11 +121,12 @@ export default {
   display: flex;
 }
 .footer-title img{
-  width: 100px;
+  width: 85px;
 }
 .footer-title h1{
   padding-top: 10px;
   padding-left: 20px;
+  font-size: 30px;
 }
 .footer-text {
   padding-top: 30px;

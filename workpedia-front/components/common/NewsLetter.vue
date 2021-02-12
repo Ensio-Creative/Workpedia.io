@@ -37,15 +37,15 @@ export default {
     }
   },
   methods: {
-    // sendEmail () {
-    //   if (this.email === '') {
-    //     console.log('Fill in your email')
-    //   } else if (!this.validEmail(this.email)) {
-    //     console.log('Enter a valid email')
-    //   } else {
-    //     console.log(this.email)
-    //   }
-    // },
+    sendEmail () {
+      if (this.email === '') {
+        console.log('Fill in your email')
+      } else if (!this.validEmail(this.email)) {
+        console.log('Enter a valid email')
+      } else {
+        console.log(this.email)
+      }
+    },
     validEmail (email) {
       const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       return re.test(email)
@@ -60,7 +60,7 @@ export default {
 }
 .news-input {
   background: #FFFFFF 0% 0% no-repeat padding-box;
-  box-shadow: 0px 12px 40px #251E8C40;
+  box-shadow: 0px 0px 5px #251E8C40;
   border-radius: 11px 0px 0px 11px;
   border: #FFFFFF;
   padding: 15px 70px;
@@ -69,7 +69,7 @@ export default {
   background-color: #251E8C;
   padding: 15px 70px;
   color: #FFFFFF;
-  box-shadow: 0px 12px 40px #251E8C40;
+  box-shadow: 0px 0px 5px #251E8C40;
   border-radius: 0px 11px 11px 0px;
   border: #251E8C;
   margin-left: -4px;

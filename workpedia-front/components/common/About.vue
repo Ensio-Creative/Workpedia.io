@@ -54,10 +54,10 @@ export default {
   margin-top: 80px;
 }
 .about-column{
-  margin-right: 60px;
+  margin-right: 40px;
   background-color: #fff;
   margin-top: 10px;
-  box-shadow: 0px 20px 20px #7682b72e;
+  box-shadow: 0px 0px 5px rgb(118 130 183 / 18%);
   padding-bottom: 20px;
   padding-top: 20px;
 }

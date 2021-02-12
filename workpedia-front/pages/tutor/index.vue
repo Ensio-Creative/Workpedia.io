@@ -9,7 +9,7 @@
         @close="displaySidenav = false"
       />
       <div class="container">
-        <div class="row">
+        <div class="row justify-content-around">
           <div class="col-12 col-md-6 bg-texts">
             <h1>
               Find your dream job, career and tutor all in one place.
@@ -24,13 +24,20 @@
               </button>
             </div>
           </div>
+          <div class="col-12 col-md-4 order-2 order-sm-6">
+            <div class="image-rap">
+              <img src="~/assets/img/pexels-emmy-e-2381069.png">
+            </div>
+          </div>
         </div>
       </div>
     </section>
     <!-- About -->
     <About />
     <!-- Popular -->
-    <Tutors />
+    <Tutors
+      class="mt-5"
+    />
     <!-- Find private tutors -->
     <section class="find-private-tutors">
       <div class="container">
@@ -92,12 +99,17 @@ export default {
 
 <style scoped>
 .bg-hero{
-  background-image: linear-gradient(to right, rgba(232, 232, 232, 1), rgba(209, 206, 206, 0)),
-    url('~assets/img/pexels-julia-m-cameron-4143791@2x.png');
+  /* background-image: linear-gradient(to right, rgba(232, 232, 232, 1), rgba(209, 206, 206, 0)),
+    url('~assets/img/pexels-julia-m-cameron-4143791@2x.png'); */
+  background-color: #fff;
   background-position: top;
   background-size: cover;
   background-repeat: no-repeat;
-  padding-bottom: 217px;
+}
+.bg-hero img{
+  width: 423px;
+  transform: scaleX(-1);
+  margin-bottom: 20px;
 }
 .search-input{
   padding: 10px 40px;

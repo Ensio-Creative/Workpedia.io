@@ -486,7 +486,6 @@ readers do not read off random characters that represent icons */
 
 .fa-bell:before {
   content: "\f0f3";
-  color: #001fb0;
 }
 
 .fa-bell-slash:before {
