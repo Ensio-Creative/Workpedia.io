@@ -27,9 +27,22 @@
   }
 }
 
-.drawer-toggle .bar {
+.bar {
   width: 90%;
-  height: 2px;
-  background-color: white;
+  height: 1px;
+  background-color: #000;
+  padding: 2px;
+}
+ .bar:nth-child(2) {
+  width: 90%;
+  height: 1px;
+  margin-top: 5px;
+  background-color: #000;
+}
+.bar:nth-child(3){
+  width: 90%;
+  height: 1px;
+  margin-top: 5px;
+  background-color: #000;
 }
 </style>

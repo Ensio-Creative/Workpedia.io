@@ -3,7 +3,7 @@
     <section class="find-private-jobs">
       <div class="container">
         <div class="row">
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-md-6 mb-5">
             <div class="workpedia-text-div">
               <p class="workpedia-text">
                 workpedia
@@ -92,5 +92,11 @@ export default {
 
 .find-private-button:hover{
   text-decoration: none;
+}
+@media screen and (max-width: 780px){
+.find-private-column img {
+  width: 305px;
+  transform: scaleX(-1);
+}
 }
 </style>

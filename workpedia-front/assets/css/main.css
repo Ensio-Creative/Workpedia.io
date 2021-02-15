@@ -340,6 +340,11 @@
   .bg-hero p {
     padding: 0px;
   }
+  .image-rap {
+    margin-top: 0px;
+    width: 305px;
+    height: 335px;
+  }
   .bg-buttons {
     margin-top: 10px;
   }

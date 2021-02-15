@@ -10,20 +10,23 @@
       />
       <div class="container">
         <div class="row justify-content-around">
-          <div class="col-12 col-md-6 bg-texts">
+          <div class="col-12 col-md-12 col-lg-6 bg-texts order-4 order-md-4">
             <h1>
-              Find your dream job, career and Jobs all in one place.
+              Find your dream job, career and tutor all in one place.
             </h1>
-            <div class="search mt-5">
-              <input class="search-input" type="email" placeholder="e.g Copywriting">
+            <p>
+              Workpedia allows you get everything in once place, freelancing job opportunity, tutors and easily manage all three with ease.
+            </p>
+            <div class="search">
+              <input class="search-input" type="email" placeholder="Search Your Courses">
               <button class="search-btn">
                 Search
               </button>
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-md-12 col-lg-6 order-2 order-md-6">
             <div class="image-rap">
-              <img src="~/assets/img/pexels-emmy-e-2381069.png" alt="">
+              <img src="~/assets/img/pexels-emmy-e-2381069.png">
             </div>
           </div>
         </div>
@@ -63,6 +66,7 @@ export default {
 .bg-hero img{
   width: 423px;
   transform: scaleX(-1);
+  margin-bottom: 20px;
 }
 .search-input{
   background-color: #E2E2E2;
@@ -75,5 +79,26 @@ export default {
   border: #2B7DC4;
   padding: 10px 60px;
   margin-left: -3px;
+}
+@media screen and (max-width: 780px){
+  .bg-texts {
+    margin-top: 50px;
+}
+.bg-hero img {
+  width: 307px;
+  transform: scaleX(-1);
+  margin-bottom: 20px;
+}
+
+.search-input {
+  width: 293px;
+}
+.search-btn{
+  margin-left: 0px;
+}
+.find-private-column img {
+  width: 305px;
+  transform: scaleX(-1);
+}
 }
 </style>

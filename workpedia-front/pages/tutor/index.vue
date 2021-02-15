@@ -10,7 +10,7 @@
       />
       <div class="container">
         <div class="row justify-content-around">
-          <div class="col-12 col-md-6 bg-texts">
+          <div class="col-12 col-md-12 col-lg-6 bg-texts order-4 order-md-4">
             <h1>
               Find your dream job, career and tutor all in one place.
             </h1>
@@ -24,7 +24,7 @@
               </button>
             </div>
           </div>
-          <div class="col-12 col-md-4 order-2 order-sm-6">
+          <div class="col-12 col-md-12 col-lg-6 order-2 order-md-6">
             <div class="image-rap">
               <img src="~/assets/img/pexels-emmy-e-2381069.png">
             </div>
@@ -106,8 +106,8 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
 }
-.bg-hero img{
-  width: 423px;
+.bg-hero img {
+  width: 307px;
   transform: scaleX(-1);
   margin-bottom: 20px;
 }
@@ -156,5 +156,13 @@ export default {
 
 .find-private-button:hover{
   text-decoration: none;
+}
+@media screen and (max-width: 780px) {
+  .find-private-column img {
+    width: 304px;
+}
+.search-btn {
+  margin-left: 0px;
+}
 }
 </style>

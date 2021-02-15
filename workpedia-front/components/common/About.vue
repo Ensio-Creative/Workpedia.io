@@ -61,4 +61,9 @@ export default {
   padding-bottom: 20px;
   padding-top: 20px;
 }
+@media screen and (max-width: 780px){
+  .about-column{
+    margin-right: 0px;
+  }
+}
 </style>

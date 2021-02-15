@@ -9,7 +9,7 @@
     />
     <section class="bg-hero container">
       <div class="row justify-content-around">
-        <div class="col-12 col-md-6 bg-texts order-4 order-sm-4">
+        <div class="col-12 col-md-12 col-lg-6 bg-texts order-4 order-md-4">
           <h1>
             Find your dream job, career and tutor all in one place.
           </h1>
@@ -28,8 +28,8 @@
             </NuxtLink>
           </div>
         </div>
-        <div class="col-12 col-md-4 order-2 order-sm-6">
-          <div class="image-rap">
+        <div class="col-12 col-md-12 col-lg-6 order-2 order-md-6">
+          <div class="image-rap text-center">
             <img src="~/assets/img/pexels-emmy-e-2381069.png">
           </div>
         </div>

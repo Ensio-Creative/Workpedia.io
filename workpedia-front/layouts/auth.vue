@@ -1,18 +1,19 @@
 <template>
-  <div class="container-fluid">
-    <div class="row">
+  <div class="">
+    <!-- <div class="row">
       <div class="col-lg-6 auth-column">
         <h3>One Account for all</h3>
-        <FixedNav />
       </div>
       <div class="col-lg-6 auth-column" />
-    </div>
+    </div> -->
     <Nuxt />
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  name: 'AuthLayout'
+}
 </script>
 
 <style scoped>

@@ -68,7 +68,7 @@
                   class="footer-nav-item"
                   to="/"
                 >
-                  Freelancing/Handymen
+                  Freelancing / Handymen
                 </NuxtLink>
               </div>
             </div>
@@ -151,9 +151,12 @@ export default {
   display: block;
   color: #fff;
 }
-.all-rights{
+/* .all-rights{
   padding-top: 20px;
   padding-bottom: 30px;
+} */
+.rights {
+  margin-top: 78px;
 }
 @media screen and (max-width: 780px) {
   .footer-title{
