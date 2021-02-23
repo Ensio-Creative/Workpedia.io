@@ -32,8 +32,8 @@
             @click="$emit('close'
             )"
           >
-            <NuxtLink to="/tutor">
-              Tutors
+            <NuxtLink to="/tutor/Categories">
+              Categories
             </NuxtLink>
           </li>
           <li
@@ -41,7 +41,7 @@
             @click="$emit('close'
             )"
           >
-            <NuxtLink to="/jobs">
+            <NuxtLink to="/become-a-tutor">
               Become a Tutor
             </NuxtLink>
           </li>

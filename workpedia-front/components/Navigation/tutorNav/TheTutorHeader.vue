@@ -17,12 +17,12 @@
               </a>
             </li>
             <li class="nav-item">
-              <NuxtLink class="nav-link" to="/tutor/tutors">
-                Tutors
+              <NuxtLink class="nav-link" to="/tutor/categories">
+                Categories
               </NuxtLink>
             </li>
             <li class="nav-item">
-              <NuxtLink class="nav-link become-tutor" to="/tutor/becomeTutor">
+              <NuxtLink class="nav-link become-tutor" to="/tutor/become-a-tutor">
                 Become a Tutor
               </NuxtLink>
             </li>
@@ -51,7 +51,7 @@ export default {
 .become-tutor{
   background-color: #FF9B17;
   border-radius: 2px;
-  color: #000 i !important;
+  color: #000 !important;
 }
 .tutor-outline {
   border: 2px solid #FF9B17;
@@ -59,6 +59,7 @@ export default {
 .tutor-outline:hover {
   border: 2px solid #FF9B17;
   background-color: #FF9B17;
+  color: #000 !important;
 }
 .tutor-outline:nth-child(3){
   border: 2px solid #FF9B17;

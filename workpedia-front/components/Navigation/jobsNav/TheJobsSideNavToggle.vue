@@ -5,9 +5,7 @@
     @click="$emit('toggle'
     )"
   >
-    <div class="bar" />
-    <div class="bar" />
-    <div class="bar" />
+    <i class="fas fa-bars" />
   </div>
 </template>
 

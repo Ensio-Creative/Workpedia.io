@@ -17,8 +17,8 @@
               </a>
             </li>
             <li class="nav-item">
-              <NuxtLink class="nav-link" to="/jobs/job-search">
-                Jobs
+              <NuxtLink class="nav-link" to="/jobs/categories">
+                Categories
               </NuxtLink>
             </li>
             <li class="nav-item">

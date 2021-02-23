@@ -1,9 +1,12 @@
 <template>
   <div class="container mt-3">
     <div class="row justify-content-between">
-      <div class="col-4 top-nav">
+      <NuxtLink
+        class="col-4 top-nav"
+        to="/"
+      >
         <img src="~/assets/img/Workpedia logo transparent (Blue).png" alt="">
-      </div>
+      </NuxtLink>
       <div class="col-6 text-right">
         <UserSign />
       </div>

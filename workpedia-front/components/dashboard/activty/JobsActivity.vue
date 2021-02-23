@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container  mb-5">
     <div
       id="accordionExample"
       class="accordion mt-3"
@@ -92,20 +92,7 @@
 
 <script>
 export default {
-  name: 'JobsActivity',
-  head: {
-    script: [
-      {
-        src: 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js'
-      }
-    ],
-    link: [
-      {
-        rel: 'stylesheet',
-        href: 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css'
-      }
-    ]
-  }
+  name: 'JobsActivity'
 }
 </script>
 

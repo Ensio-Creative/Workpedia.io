@@ -1,5 +1,8 @@
 <template>
-  <div class="">
+  <div class="auth">
+    <video id="videoBG" poster="poster.JPG" autoplay muted loop>
+      <source src="~/assets/video/VID-20210221-WA0001.mp4" type="video/mp4">
+    </video>
     <!-- <div class="row">
       <div class="col-lg-6 auth-column">
         <h3>One Account for all</h3>
@@ -17,6 +20,12 @@ export default {
 </script>
 
 <style scoped>
+#videoBG {
+    position:fixed;
+    z-index: -1;
+    width:100%;
+    height: auto;
+}
 .auth-column:nth-child(1){
   background-image: url('~assets/img/pexels-julia-m-cameron-4143791.png');
   background-position: center;

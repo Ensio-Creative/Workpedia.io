@@ -11,15 +11,6 @@
 
 /* ------ ------ Landing page ------- ------ */
 
-.landing-outline {
-  border: 2px solid #251e8c;
-  border-radius: 6px;
-  padding: 8px;
-}
-.landing-outline:nth-child(3) {
-  background-color: #251e8c;
-  color: #fff;
-}
 .bg-hero {
   padding-bottom: 80px;
 }
@@ -73,6 +64,7 @@
 }
 
 .image-rap {
+  float: right;
   margin-top: 35px;
   width: 430px;
   height: 430px;
@@ -266,7 +258,7 @@
 }
 .private-tutor-column {
   background-color: #fff;
-  margin-right: 40px;
+  margin-right: 20px;
   box-shadow: 0px 0px 5px rgba(118, 130, 183, 0.18039);
   padding-bottom: 0px;
   padding-left: 0px;
@@ -280,20 +272,13 @@
   background-position: center;
   background-size: cover;
 }
-.private-tutor-img-head:nth-child(2) {
-  background-image: url("~assets/img/biology@2x.png");
-}
+
 
 .private-tutor-text {
   color: #251e8c;
   font: normal normal bold 21px/58px Archivo;
   letter-spacing: 0px;
   padding-top: 20px;
-}
-
-.private-tutor-info {
-  display: flex;
-  padding-bottom: 10px;
 }
 
 .private-tutor-info p:nth-child(1) {
@@ -342,8 +327,8 @@
   }
   .image-rap {
     margin-top: 0px;
-    width: 305px;
-    height: 335px;
+    width: 352px;
+    height: 390px;
   }
   .bg-buttons {
     margin-top: 10px;
@@ -376,4 +361,12 @@
     margin-top: 40px;
     margin-right: 0px;
   }
+  .private-tutor-column {
+    margin-right: 0px;
+}
+.private-tutor-info {
+  display: block;
+  padding-bottom: 0px;
+}
+
 }

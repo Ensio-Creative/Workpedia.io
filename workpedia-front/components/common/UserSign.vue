@@ -6,13 +6,15 @@
     >
       <NuxtLink
         to="/auth"
-        class="btn landing-outline"
+        class="btn"
+        :class="changeBtn()"
       >
         Sign in
       </NuxtLink>
       <NuxtLink
         to="/auth"
-        class="btn landing-outline ml-3"
+        class="btn ml-3"
+        :class="changeBtn()"
       >
         Register for free
       </NuxtLink>
@@ -71,7 +73,7 @@ export default {
   name: 'UserRegister',
   data () {
     return {
-      isUserLoggedIn: true,
+      isUserLoggedIn: false,
       showUserDroped: false,
       userOnDashboard: false
     }
@@ -97,6 +99,20 @@ export default {
         this.showUserDroped = true
         console.log('Work no!!!!!')
       }
+    },
+    changeBtn () {
+      let btnClass = ''
+      if (this.$route.path === '/') {
+        btnClass = 'landing-outline'
+      } else if (this.$route.path === '/tutor') {
+        btnClass = 'turor-outline'
+      } else if (this.$route.path === '/jobs') {
+        btnClass = 'jobs-outline'
+      } else if (this.$route.path === '/freelancing') {
+        btnClass = 'freelance-outline'
+      }
+
+      return btnClass
     }
   }
 }
@@ -130,5 +146,41 @@ export default {
 .postions-items{
   padding: 10px;
   font-size: 18px;
+}
+.landing-outline {
+  border: 2px solid #251e8c;
+  border-radius: 6px;
+  padding: 8px;
+}
+.landing-outline:nth-child(3) {
+  background-color: #251e8c;
+  color: #fff;
+}
+.turor-outline {
+  border: 2px solid #ff9b17;
+  border-radius: 6px;
+  padding: 8px;
+}
+.tutor-outline:nth-child(3) {
+  background-color: #ff9b17;
+  color: #fff;
+}
+.jobs-outline {
+  border: 2px solid #0db47b;
+  border-radius: 6px;
+  padding: 8px;
+}
+.jobs-outline:nth-child(3) {
+  background-color: #0db47b;
+  color: #fff;
+}
+.freelance-outline {
+  border: 2px solid #2b7dc4;
+  border-radius: 6px;
+  padding: 8px;
+}
+.freelance-outline:nth-child(3) {
+  background-color: #2b7dc4;
+  color: #fff;
 }
 </style>

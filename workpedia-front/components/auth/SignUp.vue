@@ -1,13 +1,61 @@
 <template>
   <div>
-    <form @submit.prevent="onSubmit">
+    <form
+      @submit.prevent="onSubmit"
+    >
       <div class="form-heading">
         <h2>Create account</h2>
         <p>Have an account? <strong @click="$emit('changeComponent')">Login</strong> </p>
       </div>
+      <div class="row">
+        <div class="col">
+          <AppControlInput
+            v-model.trim="firstName"
+            type="text"
+            required
+            @input="checkFirstName"
+          >
+            First Name
+          </AppControlInput>
+          <small
+            :class="[firstName.length < 3 ? 'info-error' : 'info-success']"
+          >
+            {{ firstNameInfo }}
+          </small>
+        </div>
+        <div class="col">
+          <AppControlInput
+            v-model.trim="lastName"
+            type="text"
+            required
+            @input="checklastName"
+          >
+            Last Name
+          </AppControlInput>
+          <small
+            :class="[lastName.length <= 3 ? 'info-error' : 'info-success']"
+          >
+            {{ lastNameInfo }}
+          </small>
+        </div>
+      </div>
+      <AppControlInput
+        v-model="phone"
+        type="number"
+        required
+        @input="checkPhone"
+      >
+        Phone
+      </AppControlInput>
+      <small
+        :class="[phone.length === 11 ? 'info-success' : 'info-error']"
+      >
+        {{ phoneInfo }}
+      </small>
       <AppControlInput
         v-model.trim="email"
         type="email"
+        required
         @input="checkEmail"
       >
         Enter Email
@@ -20,9 +68,58 @@
       <AppControlInput
         v-model.trim="password"
         type="password"
+        required
         @input="checkPassword"
       >
         Password
+      </AppControlInput>
+      <small
+        :class="[password.length <= 6 ? 'info-error' : 'info-success']"
+      >
+        {{ infoTextPassword }}
+      </small>
+      <div class="row">
+        <div class="col">
+          <label for="">State</label>
+          <select
+            v-model="stateSelect"
+            class="form-select"
+            aria-label="Default select example"
+            required
+          >
+            <option
+              v-for="state in states"
+              :key="state"
+              :value="state"
+              required
+            >
+              {{ state }}
+            </option>
+          </select>
+        </div>
+        <div class="col">
+          <AppControlInput
+            v-model.trim="city"
+            type="text"
+            required
+            @input="checkCity"
+          >
+            City
+          </AppControlInput>
+          <small
+            :class="[city.length < 3 ? 'info-error' : 'info-success']"
+          >
+            {{ cityInfo }}
+          </small>
+        </div>
+      </div>
+      <AppControlInput
+        v-model.trim="address"
+        type="text"
+        required
+        @input="checkPassword"
+      >
+        Address
       </AppControlInput>
       <small
         :class="[password.length <= 6 ? 'info-error' : 'info-success']"
@@ -37,7 +134,7 @@
       </AppButton>
     </form>
     <div class="sign-privacy">
-      <p>By signing up for Workepdia, you agree to our <strong>Privacy Policy</strong> & <strong>Terms of Service</strong> </p>
+      <p>By signing up for Workepdia, you agree to our <strong @click="routeToTerms">Privacy Policy</strong> & <strong @click="routeToTerms">Terms of Service</strong> </p>
     </div>
     <div class="sign-up-options pt-3 mb-5 text-center">
       <a href="#" class="btn sign-options-btn">
@@ -57,13 +154,90 @@ export default {
   emits: ['changeComponent'],
   data () {
     return {
+      firstName: '',
+      lastName: '',
+      phone: '',
       email: '',
       password: '',
+      address: '',
+      stateSelect: '',
+      city: '',
       infoTextPassword: '',
-      infoTextEmail: ''
+      infoTextEmail: '',
+      firstNameInfo: '',
+      lastNameInfo: '',
+      addressInfo: '',
+      cityInfo: '',
+      phoneInfo: '',
+      states: [
+        'Abia',
+        'Adamawa',
+        'Akwa Ibom',
+        'Anambra',
+        'Bauchi',
+        'Bayelsa',
+        'Benue',
+        'Borno',
+        'Cross River',
+        'Delta',
+        'Ebonyi',
+        'Edo',
+        'Ekiti',
+        'Enugu',
+        'FCT - Abuja',
+        'Gombe',
+        'Imo',
+        'Jigawa',
+        'Kaduna',
+        'Kano',
+        'Katsina',
+        'Kebbi',
+        'Kogi',
+        'Kwara',
+        'Lagos',
+        'Nasarawa',
+        'Niger',
+        'Ogun',
+        'Ondo',
+        'Osun',
+        'Oyo',
+        'Plateau',
+        'Rivers',
+        'Sokoto',
+        'Taraba',
+        'Yobe',
+        'Zamfara'
+      ]
     }
   },
   methods: {
+    checkFirstName () {
+      if (this.firstName.length < 3) {
+        this.firstNameInfo = 'Add your first name'
+        return false
+      } else {
+        this.firstNameInfo = ''
+        return true
+      }
+    },
+    checklastName () {
+      if (this.lastName.length < 3) {
+        this.lastNameInfo = 'Add your last name'
+        return false
+      } else {
+        this.lastNameInfo = ''
+        return true
+      }
+    },
+    checkPhone () {
+      if (this.phone.length < 11 || this.phone.length > 11) {
+        this.phoneInfo = 'Phone should be 11 digits'
+        return false
+      } else {
+        this.phoneInfo = ''
+        return true
+      }
+    },
     checkEmail () {
       if (!this.validEmail(this.email)) {
         this.infoTextEmail = 'Email should be valid'
@@ -82,12 +256,27 @@ export default {
         return true
       }
     },
+    checkCity () {
+      if (this.city.length < 3) {
+        this.cityInfo = 'Put a Valid city'
+        return false
+      } else {
+        this.infoTextPassword = ''
+        return true
+      }
+    },
     onSubmit () {
       if (this.checkPassword() && this.checkEmail) {
         const result =
         {
+          firstName: this.firstName,
+          lastName: this.lastName,
+          phone: this.phone,
           email: this.email,
-          password: this.password
+          password: this.password,
+          state: this.stateSelect,
+          city: this.city,
+          address: this.address
         }
         console.log(result)
         return
@@ -97,6 +286,9 @@ export default {
     validEmail (email) {
       const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       return re.test(email)
+    },
+    routeToTerms () {
+      this.$router.push('/terms')
     }
   }
 }
@@ -152,5 +344,8 @@ export default {
   background: #FBFBFB;
   border-radius: 5px !important;
   font-family: 'Roboto' !important;
+}
+strong {
+  cursor: pointer;
 }
 </style>

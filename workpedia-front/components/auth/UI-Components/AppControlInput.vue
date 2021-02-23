@@ -33,7 +33,8 @@ export default {
 
 .input-control label {
   display: block;
-  font-weight: bold;
+  font-weight: lighter;
+  font-size: 15px;
 }
 
 .input-control input,

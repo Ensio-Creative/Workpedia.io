@@ -48,7 +48,7 @@
     </div>
     <div class="side-nav-links mt-5">
       <NuxtLink
-        to="/dashboard/tutor"
+        to="/dashboard/settings"
         data-toggle="LogOut"
         data-placement="right"
         title="Settings"
@@ -62,7 +62,7 @@
         </span>
       </NuxtLink>
       <NuxtLink
-        to="/dashboard/jobs"
+        to="/logot"
         data-toggle="LogOut"
         data-placement="right"
         title="Logout"

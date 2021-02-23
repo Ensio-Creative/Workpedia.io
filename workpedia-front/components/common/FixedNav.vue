@@ -34,6 +34,7 @@ export default {
   position: fixed;
   left: 20px;
   bottom: 250px;
+  z-index: 10000;
 }
 .nav-fixed{
   padding: 20px 10px;

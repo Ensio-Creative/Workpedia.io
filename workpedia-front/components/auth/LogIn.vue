@@ -36,13 +36,13 @@
         Login
       </AppButton>
     </form>
-    <div class="sign-privacy">
+    <!-- <div class="sign-privacy">
       <p>By signing up for Workepdia, you agree to our <strong>Privacy Policy</strong> & <strong>Terms of Service</strong> </p>
-    </div>
+    </div> -->
     <div class="sign-up-options pt-3 mb-5 text-center">
       <a href="#" class="btn sign-options-btn">
         <img src="~assets/img/google-hangouts.svg" alt="">
-        SIGN UP WITH GOOGLE
+        LOG IN WITH GOOGLE
       </a>
       <a href="#" class="btn sign-options-btn">
         <img src="~assets/img/facebook2.svg" alt="">

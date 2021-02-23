@@ -92,20 +92,7 @@
 
 <script>
 export default {
-  name: 'TutorsActivity',
-  head: {
-    script: [
-      {
-        src: 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js'
-      }
-    ],
-    link: [
-      {
-        rel: 'stylesheet',
-        href: 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css'
-      }
-    ]
-  }
+  name: 'TutorsActivity'
 }
 </script>
 
