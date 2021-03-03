@@ -6,7 +6,7 @@
       </h2>
       <h3 class="welcome-message">
         <strong>Welcome!!!</strong>
-        Adams
+        {{ fullName }}
       </h3>
     </div>
     <div class="activity-row mt-4">
@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import FreelaceActivity from '../../components/dashboard/activty/FreelaceActivity.vue'
 import JobsActivity from '../../components/dashboard/activty/JobsActivity.vue'
 import TutorActivity from '../../components/dashboard/activty/TutorActivity.vue'
@@ -47,6 +48,13 @@ export default {
   data () {
     return {
       activeTab: ''
+    }
+  },
+  computed: {
+    ...mapState('auth', ['user']),
+    fullName () {
+      const userName = `${this.user.firstName} ${this.user.lastName}`
+      return userName
     }
   }
 }

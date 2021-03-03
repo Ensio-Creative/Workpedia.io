@@ -1,35 +1,35 @@
 <template>
   <div>
-    <TheJobsHeader
+    <TheTutorHeader
       @sidenavToggle="displaySidenav = !displaySidenav"
     />
-    <TheJobsSidenav
+    <TheTutorSidenav
       :show="displaySidenav"
       @close="displaySidenav = false"
     />
     <!-- Categories Nav -->
     <nav class="navbar navbar-expand-lg categories-nav">
-      <div class="container">
+      <div class="container text-center">
         <button
-          class="navbar-toggler"
+          class="navbar-toggler categories-btn"
           type="button"
-          data-toggle="collapse"
-          data-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <!-- <span class="navbar-toggler-icon" /> -->
+          <!-- <i class="fas fa-bars" /> -->
           <p>Categories</p>
         </button>
         <div
-          id="navbarNavAltMarkup"
+          id="navbarNav"
           class="collapse navbar-collapse"
         >
-          <div class="navbar-nav">
+          <ul class="navbar-nav">
             <NuxtLink
               class="nav-link active"
-              to="/jobs/categories"
+              to="/tutor/categories"
             >
               All Categories
             </NuxtLink>
@@ -37,11 +37,11 @@
               v-for="(route) in routes"
               :key="route.url"
               class="nav-link mr-3"
-              :to="`/jobs/categories/${route.url}`"
+              :to="`/tutor/categories/${route.url}`"
             >
               {{ route.title }}
             </NuxtLink>
-          </div>
+          </ul>
         </div>
       </div>
     </nav>
@@ -57,32 +57,36 @@ export default {
       displaySidenav: false,
       routes: [
         {
-          title: 'Design',
-          url: 'design'
+          title: 'Mathematics',
+          url: 'mathematics'
         },
         {
-          title: 'Web Dev',
-          url: 'web-dev'
+          title: 'English',
+          url: 'english'
         },
         {
-          title: 'Writing',
-          url: 'writing'
+          title: 'Sciences',
+          url: 'sciences'
         },
         {
-          title: 'Marketing',
-          url: 'marketing'
+          title: 'Arts',
+          url: 'arts'
         },
         {
-          title: 'Accounting',
-          url: 'accounting'
+          title: 'Computer Sciences',
+          url: 'computer-sciences'
         },
         {
           title: 'Business',
-          url: 'business'
+          url: 'businesss'
         },
         {
-          title: 'Customer Service',
-          url: 'customer-service'
+          title: 'Religion',
+          url: 'religion'
+        },
+        {
+          title: 'Hobbies',
+          url: 'hobbies'
         }
       ]
     }
@@ -100,6 +104,6 @@ export default {
 .categories-nav a:hover,
 .categories-nav a:active,
 .categories-nav a.nuxt-link-active {
-  color: #0DB47B;
+  color: #FF9B17;
 }
 </style>

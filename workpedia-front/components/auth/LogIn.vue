@@ -52,7 +52,7 @@
 </template>
 
 <script>
-
+import { mapActions } from 'vuex'
 export default {
   emits: ['changeComponent'],
   data () {
@@ -64,6 +64,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions('auth', ['login']),
     checkEmail () {
       if (!this.validEmail(this.email)) {
         this.infoTextEmail = 'Email should be valid'
@@ -84,12 +85,12 @@ export default {
     },
     onSubmit () {
       if (this.checkPassword() && this.checkEmail) {
-        const result =
-        {
+        const result = {
           email: this.email,
           password: this.password
         }
-        console.log(result)
+        // console.log(result)
+        this.login(result)
         return
       }
       console.log('Wrong pass')

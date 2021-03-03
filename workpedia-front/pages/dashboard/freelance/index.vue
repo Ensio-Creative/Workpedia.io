@@ -25,9 +25,9 @@
             >
               <a
                 href="#"
-                @click="activeTab = 'TutorDetails'"
+                @click="activeTab = 'Qulifications'"
               >
-                Tutor Details
+                Qulifications
               </a>
             </div>
             <div
@@ -35,21 +35,11 @@
             >
               <a
                 href="#"
-                @click="activeTab = 'TutorQulificatios'"
+                @click="activeTab = 'Skills'"
               >
-                Qualifications
+                Skills
               </a>
             </div>
-            <!-- <div
-              class="tab-items"
-            >
-              <a
-                href="#"
-                @click="changeComponent"
-              >
-                Documents
-              </a>
-            </div> -->
           </div>
           <keep-alive>
             <component
@@ -64,17 +54,17 @@
 </template>
 
 <script>
-import TutorDetails from '~/components/dashboard/tutor/TutorDetails.vue'
-import TutorQulificatios from '~/components/dashboard/tutor/TutorQulificatios.vue'
+import Qulifications from '~/components/dashboard/jobs/Qulifications.vue'
+import Skills from '~/components/dashboard/jobs/Skills.vue'
 export default {
-  name: 'TutorDashboard',
-  components: { TutorDetails, TutorQulificatios },
+  name: 'FreelanceDashboard',
+  components: { Qulifications, Skills },
   layout: 'dashboard',
   data () {
     return {
       userName: 'Great Adams',
       tutorDescription: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam accusantium ut adipisci',
-      activeTab: 'TutorDetails'
+      activeTab: 'Qulifications'
     }
   }
 }
@@ -106,13 +96,13 @@ export default {
   padding: 20px;
 }
 .tab-items:hover{
-  border-bottom: 1px solid #FF9B17;
+  border-bottom: 1px solid #2B7DC4;
 }
 .tab-items:focus{
-  border-bottom: 1px solid #FF9B17;
+  border-bottom: 1px solid #2B7DC4;
 }
 .tab-items a {
-  color: #FF9B17;
+  color: #0DB47B;
   text-decoration: none;
   margin-top: 10px;
 }

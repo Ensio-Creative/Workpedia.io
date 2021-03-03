@@ -149,7 +149,7 @@
 </template>
 
 <script>
-
+import { mapActions } from 'vuex'
 export default {
   emits: ['changeComponent'],
   data () {
@@ -211,6 +211,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions('auth', ['signUp']),
     checkFirstName () {
       if (this.firstName.length < 3) {
         this.firstNameInfo = 'Add your first name'
@@ -278,7 +279,8 @@ export default {
           city: this.city,
           address: this.address
         }
-        console.log(result)
+        this.signUp(result)
+        // console.log(result)
         return
       }
       console.log('Wrong pass')

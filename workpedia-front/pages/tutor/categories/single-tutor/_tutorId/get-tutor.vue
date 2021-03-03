@@ -300,6 +300,9 @@ export default {
 </script>
 
 <style scoped>
+form{
+  margin-bottom: 50px;
+}
 .get-tutor-input input{
   background: #FBFBFB6B 0% 0% no-repeat padding-box;
   border: 1px solid #70707073;

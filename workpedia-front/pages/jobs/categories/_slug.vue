@@ -6,8 +6,8 @@
           <div class="col-12 col-md-12 col-lg-8">
             <div class="row">
               <div
-                v-for="jobs in job"
-                :key="jobs._id"
+                v-for="jobs in fliteredJobs"
+                :key="jobs.id"
                 class="col-12 col-md-12 col-lg-12 popular-column"
               >
                 <JobsList
@@ -39,8 +39,18 @@
 <script>
 import { mapState } from 'vuex'
 export default {
+  name: 'JobsRoutes',
+  data () {
+    return {
+      routeUrl: this.$route.params.slug
+    }
+  },
   computed: {
-    ...mapState('jobs', ['job'])
+    ...mapState('jobs', ['job']),
+    fliteredJobs () {
+      const result = this.job.filter(job => job.jobCategory === this.routeUrl)
+      return result
+    }
   }
 }
 </script>

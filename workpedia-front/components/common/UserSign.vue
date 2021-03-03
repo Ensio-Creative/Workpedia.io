@@ -104,11 +104,11 @@ export default {
       let btnClass = ''
       if (this.$route.path === '/') {
         btnClass = 'landing-outline'
-      } else if (this.$route.path === '/tutor') {
+      } else if (this.$route.path.includes('/tutor')) {
         btnClass = 'turor-outline'
-      } else if (this.$route.path === '/jobs') {
+      } else if (this.$route.path.includes('/jobs')) {
         btnClass = 'jobs-outline'
-      } else if (this.$route.path === '/freelancing') {
+      } else if (this.$route.path.includes('/freelancing')) {
         btnClass = 'freelance-outline'
       }
 

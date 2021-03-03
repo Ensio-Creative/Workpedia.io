@@ -23,8 +23,17 @@
             @click="$emit('close'
             )"
           >
-            <NuxtLink to="/freelance">
+            <a href="#">
               About
+            </a>
+          </li>
+          <li
+            class="nav-item"
+            @click="$emit('close'
+            )"
+          >
+            <NuxtLink to="/freelancing/categories">
+              Categories
             </NuxtLink>
           </li>
           <li
@@ -32,17 +41,8 @@
             @click="$emit('close'
             )"
           >
-            <NuxtLink to="/freelance">
-              All Categories
-            </NuxtLink>
-          </li>
-          <li
-            class="nav-item"
-            @click="$emit('close'
-            )"
-          >
-            <NuxtLink to="/freelance">
-              Freelance/HandyMen
+            <NuxtLink to="/freelancing/become">
+              Become a Handymen
             </NuxtLink>
           </li>
         </ul>

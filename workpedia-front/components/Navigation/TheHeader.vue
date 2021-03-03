@@ -17,13 +17,13 @@
               </NuxtLink>
             </li>
             <li class="nav-item">
-              <NuxtLink class="nav-link" to="/freelancing">
-                Freelancing / Handy Men
+              <NuxtLink class="nav-link" to="jobs">
+                Jobs
               </NuxtLink>
             </li>
             <li class="nav-item">
-              <NuxtLink class="nav-link" to="jobs">
-                Jobs
+              <NuxtLink class="nav-link" to="/freelancing">
+                Freelancing / Handy Men
               </NuxtLink>
             </li>
           </ul>

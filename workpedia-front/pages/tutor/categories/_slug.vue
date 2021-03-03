@@ -6,7 +6,7 @@
           <div class="col-12 col-md-12 col-lg-9">
             <div class="row justify-content-center">
               <div
-                v-for="tutor in fetchedTutors"
+                v-for="tutor in fliteredTutors"
                 :key="tutor._id"
                 class="col-12 col-md-3 private-tutor-column text-center"
               >
@@ -37,24 +37,22 @@
 <script>
 import { mapState } from 'vuex'
 export default {
-  name: 'TutorsCategories',
-  layout: 'tutors',
+  name: 'SingleTutor',
   data () {
-    return {}
+    return {
+      routeUrl: this.$route.params.slug
+    }
   },
   computed: {
-    ...mapState('tutors', ['fetchedTutors'])
+    ...mapState('tutors', ['fetchedTutors']),
+    fliteredTutors () {
+      const result = this.fetchedTutors.filter(tutor => tutor.tutorCategory === this.routeUrl)
+      return result
+    }
   }
 }
 </script>
 
 <style scoped>
-.categories-btn{
-  margin: auto;
-}
-.private-tutor-column{
-  border-radius: 10px;
-  box-shadow: 0px 0px 5px #00000029;
-  margin-top: 20px;
-}
+
 </style>

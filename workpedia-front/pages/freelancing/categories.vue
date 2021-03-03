@@ -1,9 +1,9 @@
 <template>
   <div>
-    <TheJobsHeader
+    <TheFreeHeader
       @sidenavToggle="displaySidenav = !displaySidenav"
     />
-    <TheJobsSidenav
+    <TheFreeSidenav
       :show="displaySidenav"
       @close="displaySidenav = false"
     />
@@ -19,7 +19,6 @@
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <!-- <span class="navbar-toggler-icon" /> -->
           <p>Categories</p>
         </button>
         <div
@@ -29,15 +28,15 @@
           <div class="navbar-nav">
             <NuxtLink
               class="nav-link active"
-              to="/jobs/categories"
+              to="/freelancing/categories"
             >
               All Categories
             </NuxtLink>
             <NuxtLink
-              v-for="(route) in routes"
+              v-for="route in routes"
               :key="route.url"
-              class="nav-link mr-3"
-              :to="`/jobs/categories/${route.url}`"
+              class="nav-link active"
+              :to="`/freelancing/categories/${route.url}`"
             >
               {{ route.title }}
             </NuxtLink>
@@ -51,7 +50,7 @@
 
 <script>
 export default {
-  name: 'Categories',
+  name: 'FreelanceCategories',
   data () {
     return {
       displaySidenav: false,
@@ -61,28 +60,36 @@ export default {
           url: 'design'
         },
         {
-          title: 'Web Dev',
-          url: 'web-dev'
+          title: 'Handymen',
+          url: 'handymen'
         },
         {
-          title: 'Writing',
-          url: 'writing'
+          title: 'Animation',
+          url: 'animation'
         },
         {
-          title: 'Marketing',
-          url: 'marketing'
+          title: 'Music',
+          url: 'music'
         },
         {
-          title: 'Accounting',
-          url: 'accounting'
+          title: 'Programming',
+          url: 'programming'
+        },
+        {
+          title: 'Photography',
+          url: 'photography'
+        },
+        {
+          title: 'Copywriting',
+          url: 'copywriting'
         },
         {
           title: 'Business',
           url: 'business'
         },
         {
-          title: 'Customer Service',
-          url: 'customer-service'
+          title: 'Lifestyle',
+          url: 'lifestyle'
         }
       ]
     }
@@ -100,6 +107,6 @@ export default {
 .categories-nav a:hover,
 .categories-nav a:active,
 .categories-nav a.nuxt-link-active {
-  color: #0DB47B;
+  color: #2B7DC4;
 }
 </style>
