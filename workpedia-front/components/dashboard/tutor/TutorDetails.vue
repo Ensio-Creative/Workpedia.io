@@ -46,20 +46,15 @@
           </select>
         </div>
       </div>
-      <div class="row mb-3">
-        <label for="inputEmail3">Select Curriculum</label>
-        <div class="col-sm-10">
-          <select class="form-select" aria-label="Default select example">
-            <option selected>
-              British
-            </option>
-            <option value="1">
-              Nigerian
-            </option>
-            <option value="2">
-              American
-            </option>
-          </select>
+      <div class="row">
+        <div class="col">
+          <label for="">What you would cover</label>
+          <textarea
+            type="text"
+            class="form-control mb-3"
+            placeholder="What you would cover"
+            rows="2"
+          />
         </div>
       </div>
       <div class="row">

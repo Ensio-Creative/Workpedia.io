@@ -2,21 +2,17 @@
   <div>
     <section class="categorie mt-5 mb-5">
       <div class="container">
-        <div class="row">
-          <div class="col-12 col-md-12 col-lg-12">
-            <div class="row justify-content-center">
-              <div
-                v-for="works in fliteredFreelance"
-                :key="works._id"
-                class="col-12 col-md-3 col-lg-3 popular-column"
-              >
-                <FreelanceList
-                  :id="works._id"
-                  :title="works.title"
-                  :amount="works.amount"
-                />
-              </div>
-            </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div
+            v-for="works in fliteredFreelance"
+            :key="works._id"
+            class="col"
+          >
+            <FreelanceList
+              :id="works._id"
+              :title="works.title"
+              :amount="works.amount"
+            />
           </div>
         </div>
       </div>

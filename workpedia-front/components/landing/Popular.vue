@@ -4,179 +4,49 @@
       <div class="heading">
         <h1>Our Popular Jobs</h1>
       </div>
-      <div class="row justify-content-around">
-        <div class="col-12 col-md-5 col-lg-4 popular-column">
-          <div class="popular-column-heading">
-            <i class="fas fa-suitcase" />
-            <h3>Electrical Engineer</h3>
-            <h5>Port Harcourt</h5>
-          </div>
-          <div class="popular-text">
-            <p>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolor.
-            </p>
-          </div>
-          <div class="popular-durations">
-            <span class="gray-background">
-              <h6>4 days ago</h6>
-            </span>
-            <span class="gray-background">
-              <h6>Full time</h6>
-            </span>
-            <span class="gray-background">
-              <h6>Min 2 Years</h6>
-            </span>
-          </div>
-          <div class="popular-button text-center">
-            <NuxtLink to="/">
-              Apply Now
-            </NuxtLink>
-          </div>
-        </div>
-        <div class="col-12 col-md-5 col-lg-4 popular-column">
-          <div class="popular-column-heading">
-            <i class="fas fa-suitcase" />
-            <h3>Electrical Engineer</h3>
-            <h5>Port Harcourt</h5>
-          </div>
-          <div class="popular-text">
-            <p>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolor.
-            </p>
-          </div>
-          <div class="popular-durations">
-            <span class="gray-background">
-              <h6>4 days ago</h6>
-            </span>
-            <span class="gray-background">
-              <h6>Full time</h6>
-            </span>
-            <span class="gray-background">
-              <h6>Min 2 Years</h6>
-            </span>
-          </div>
-          <div class="popular-button text-center">
-            <NuxtLink to="/">
-              Apply Now
-            </NuxtLink>
-          </div>
-        </div>
-        <div class="col-12 col-md-5 col-lg-4 popular-column">
-          <div class="popular-column-heading">
-            <i class="fas fa-suitcase" />
-            <h3>Electrical Engineer</h3>
-            <h5>Port Harcourt</h5>
-          </div>
-          <div class="popular-text">
-            <p>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolor.
-            </p>
-          </div>
-          <div class="popular-durations">
-            <span class="gray-background">
-              <h6>4 days ago</h6>
-            </span>
-            <span class="gray-background">
-              <h6>Full time</h6>
-            </span>
-            <span class="gray-background">
-              <h6>Min 2 Years</h6>
-            </span>
-          </div>
-          <div class="popular-button text-center">
-            <NuxtLink to="/">
-              Apply Now
-            </NuxtLink>
-          </div>
-        </div>
-        <div class="col-12 col-md-5 col-lg-4 popular-column">
-          <div class="popular-column-heading">
-            <i class="fas fa-suitcase" />
-            <h3>Electrical Engineer</h3>
-            <h5>Port Harcourt</h5>
-          </div>
-          <div class="popular-text">
-            <p>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolor.
-            </p>
-          </div>
-          <div class="popular-durations">
-            <span class="gray-background">
-              <h6>4 days ago</h6>
-            </span>
-            <span class="gray-background">
-              <h6>Full time</h6>
-            </span>
-            <span class="gray-background">
-              <h6>Min 2 Years</h6>
-            </span>
-          </div>
-          <div class="popular-button text-center">
-            <NuxtLink to="/">
-              Apply Now
-            </NuxtLink>
-          </div>
-        </div>
-        <div class="col-12 col-md-5 col-lg-4 popular-column">
-          <div class="popular-column-heading">
-            <i class="fas fa-suitcase" />
-            <h3>Electrical Engineer</h3>
-            <h5>Port Harcourt</h5>
-          </div>
-          <div class="popular-text">
-            <p>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolor.
-            </p>
-          </div>
-          <div class="popular-durations">
-            <span class="gray-background">
-              <h6>4 days ago</h6>
-            </span>
-            <span class="gray-background">
-              <h6>Full time</h6>
-            </span>
-            <span class="gray-background">
-              <h6>Min 2 Years</h6>
-            </span>
-          </div>
-          <div class="popular-button text-center">
-            <NuxtLink to="/">
-              Apply Now
-            </NuxtLink>
-          </div>
-        </div>
-        <div class="col-12 col-md-5 col-lg-4 popular-column">
-          <div class="popular-column-heading">
-            <i class="fas fa-suitcase" />
-            <h3>Electrical Engineer</h3>
-            <h5>Port Harcourt</h5>
-          </div>
-          <div class="popular-text">
-            <p>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolor.
-            </p>
-          </div>
-          <div class="popular-durations">
-            <span class="gray-background">
-              <h6>4 days ago</h6>
-            </span>
-            <span class="gray-background">
-              <h6>Full time</h6>
-            </span>
-            <span class="gray-background">
-              <h6>Min 2 Years</h6>
-            </span>
-          </div>
-          <div class="popular-button text-center">
-            <NuxtLink to="/">
-              Apply Now
-            </NuxtLink>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div
+          v-for="jobs in filteredJobs"
+          :key="jobs._id"
+          class="col mt-4"
+        >
+          <div class="card">
+            <div class="card-body">
+              <div class="popular-column-heading">
+                <i class="fas fa-suitcase" />
+                <h3>{{ jobs.title }}</h3>
+                <h5>{{ jobs.location }}</h5>
+              </div>
+              <div class="popular-text">
+                <p>
+                  {{ jobs.description }}
+                </p>
+              </div>
+              <div class="popular-durations">
+                <span class="gray-background">
+                  <h6>{{ jobs.dayOFPostMade }}</h6>
+                </span>
+                <span class="gray-background">
+                  <h6>{{ jobs.timelineOfJobs }}</h6>
+                </span>
+                <span class="gray-background">
+                  <h6>{{ jobs.experience }}</h6>
+                </span>
+              </div>
+              <div class="popular-button text-center">
+                <NuxtLink
+                  :to="`/jobs/categories/single-job/${jobs._id}`"
+                >
+                  View Now
+                </NuxtLink>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="view-more">
-        <NuxtLink class="view-btn" to="/">
-          view more <img src="~/assets/img/arrow.svg">
+        <NuxtLink class="view-btn" to="/jobs/categories">
+          View More <img src="~/assets/img/arrow.svg">
         </NuxtLink>
       </div>
     </section>
@@ -184,8 +54,16 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
-  name: 'Popular'
+  name: 'Popular',
+  computed: {
+    ...mapState('jobs', ['job']),
+    filteredJobs () {
+      const listedJobs = this.job.slice(0, 6)
+      return listedJobs
+    }
+  }
 }
 </script>
 

@@ -1,8 +1,9 @@
 <template>
   <div class="auth">
-    <video id="videoBG" poster="poster.JPG" autoplay muted loop>
+    <video id="videoBG" autoplay muted loop>
       <source src="~/assets/video/VID-20210221-WA0001.mp4" type="video/mp4">
     </video>
+    <Errors />
     <!-- <div class="row">
       <div class="col-lg-6 auth-column">
         <h3>One Account for all</h3>

@@ -2,17 +2,19 @@
   <div>
     <section class="categorie mt-5 mb-5">
       <div class="container">
-        <div class="row">
-          <div class="col-12 col-md-12 col-lg-12">
-            <div class="row justify-content-center">
-              <div
-                v-for="works in fliteredFreelance"
-                :key="works._id"
-                class="col-12 col-md-4 col-lg-4 popular-column"
-              >
-                <div class="freelance-img-head" />
-                <div class="freelance-text">
-                  <h3>{{ works.title }}</h3>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div
+            v-for="works in fliteredFreelance"
+            :key="works._id"
+            class="col"
+          >
+            <div class="card h-100">
+              <img src="~/assets/img/Kentwood_Phone_03B-1280x850.jpg" alt="">
+              <div class="card-body">
+                <div class="private-tutor-text">
+                  <div class="freelance-text">
+                    <h3>{{ works.title }}</h3>
+                  </div>
                 </div>
                 <div class="freelance-amount">
                   <p>${{ works.amount }}</p>
@@ -27,6 +29,9 @@
                   Apply
                 </NuxtLink>
               </div>
+              <!-- <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </div> -->
             </div>
           </div>
         </div>

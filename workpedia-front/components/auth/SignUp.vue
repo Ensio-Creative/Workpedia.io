@@ -39,19 +39,32 @@
           </small>
         </div>
       </div>
-      <AppControlInput
-        v-model="phone"
-        type="number"
-        required
-        @input="checkPhone"
-      >
-        Phone
-      </AppControlInput>
-      <small
-        :class="[phone.length === 11 ? 'info-success' : 'info-error']"
-      >
-        {{ phoneInfo }}
-      </small>
+      <div class="row">
+        <div class="col">
+          <AppControlInput
+            v-model="phone"
+            type="number"
+            required
+            @input="checkPhone"
+          >
+            Phone
+          </AppControlInput>
+          <small
+            :class="[phone.length === 11 ? 'info-success' : 'info-error']"
+          >
+            {{ phoneInfo }}
+          </small>
+        </div>
+        <div class="col">
+          <AppControlInput
+            v-model="age"
+            type="number"
+            required
+          >
+            Age
+          </AppControlInput>
+        </div>
+      </div>
       <AppControlInput
         v-model.trim="email"
         type="email"
@@ -65,19 +78,38 @@
       >
         {{ infoTextEmail }}
       </small>
-      <AppControlInput
-        v-model.trim="password"
-        type="password"
-        required
-        @input="checkPassword"
-      >
-        Password
-      </AppControlInput>
-      <small
-        :class="[password.length <= 6 ? 'info-error' : 'info-success']"
-      >
-        {{ infoTextPassword }}
-      </small>
+      <div class="row">
+        <div class="col">
+          <AppControlInput
+            v-model.trim="password"
+            type="password"
+            required
+            @input="checkPassword"
+          >
+            Password
+          </AppControlInput>
+          <small
+            :class="[password.length <= 6 ? 'info-error' : 'info-success']"
+          >
+            {{ infoTextPassword }}
+          </small>
+        </div>
+        <div class="col">
+          <AppControlInput
+            v-model.trim="passwordRepeat"
+            type="password"
+            required
+            @input="checkPasswordRepeat"
+          >
+            Repeat password
+          </AppControlInput>
+          <small
+            :class="[!passwordRepeat.includes(password) ? 'info-error' : 'info-success']"
+          >
+            {{ infoTextPasswordRepeat }}
+          </small>
+        </div>
+      </div>
       <div class="row">
         <div class="col">
           <label for="">State</label>
@@ -124,7 +156,7 @@
       <small
         :class="[password.length <= 6 ? 'info-error' : 'info-success']"
       >
-        {{ infoTextPassword }}
+        {{ addressInfo }}
       </small>
       <AppButton
         type="submit"
@@ -157,12 +189,15 @@ export default {
       firstName: '',
       lastName: '',
       phone: '',
+      age: '',
       email: '',
       password: '',
+      passwordRepeat: '',
       address: '',
       stateSelect: '',
       city: '',
       infoTextPassword: '',
+      infoTextPasswordRepeat: '',
       infoTextEmail: '',
       firstNameInfo: '',
       lastNameInfo: '',
@@ -257,6 +292,15 @@ export default {
         return true
       }
     },
+    checkPasswordRepeat () {
+      if (!this.passwordRepeat.includes(this.password)) {
+        this.infoTextPasswordRepeat = 'Password Must march'
+        return false
+      } else {
+        this.infoTextPasswordRepeat = 'Marched'
+        return true
+      }
+    },
     checkCity () {
       if (this.city.length < 3) {
         this.cityInfo = 'Put a Valid city'
@@ -273,6 +317,7 @@ export default {
           firstName: this.firstName,
           lastName: this.lastName,
           phone: this.phone,
+          age: this.age,
           email: this.email,
           password: this.password,
           state: this.stateSelect,

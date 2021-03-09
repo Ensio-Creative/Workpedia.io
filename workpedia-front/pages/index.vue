@@ -17,14 +17,8 @@
             Workpedia allows you get everything in once place, freelancing job opportunity, tutors and easily manage all three with ease.
           </p>
           <div class="bg-buttons">
-            <NuxtLink class="bg-buttons-item" to="/freelancing">
-              FREELANCING & HANDY MEN
-            </NuxtLink>
-            <NuxtLink class="bg-buttons-item" to="/jobs">
-              JOBS / CAREER
-            </NuxtLink>
-            <NuxtLink class="bg-buttons-item" to="/tutor">
-              TUTOR / LEARNING
+            <NuxtLink class="view-btn" to="/auth">
+              Start Now
             </NuxtLink>
           </div>
         </div>

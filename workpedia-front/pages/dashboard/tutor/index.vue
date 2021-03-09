@@ -9,6 +9,9 @@
               <h4 class="user-name">
                 {{ userName }}
               </h4>
+              <h5 class="user-name">
+                Age: {{ tutorAge }}
+              </h5>
             </div>
             <div class="col-12 tutor-basic-info text-left">
               <h4 class="user-name">
@@ -74,7 +77,8 @@ export default {
     return {
       userName: 'Great Adams',
       tutorDescription: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam accusantium ut adipisci',
-      activeTab: 'TutorDetails'
+      activeTab: 'TutorDetails',
+      tutorAge: 34
     }
   }
 }
@@ -96,7 +100,8 @@ export default {
   margin-top: 20px;
 }
 .user-name{
-  padding-top: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 .tab {
     padding-top: 20px;

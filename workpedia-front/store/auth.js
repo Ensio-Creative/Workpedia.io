@@ -16,13 +16,22 @@ export const mutations = {
 
 export const actions = {
   async login ({ commit }, payload) {
-    const res = await this.$axios.$post(
-      'auth/login',
-      payload
-    )
-    commit('updateUser', res.loadedUser)
-    // console.log(res)
-    this.$router.push('/dashboard')
+    try {
+      await this.$axios.$post(
+        'auth/login',
+        payload
+      )
+        .then((res) => {
+          console.log(res)
+          commit('updateUser', res.loadedUser)
+          // console.log(res)
+          // commit('updateAlert', alert, { root: true })
+          this.$router.push('/dashboard')
+        })
+    } catch (error) {
+      console.error(error.message)
+      commit('errors', error, { root: true })
+    }
   },
 
   async signUp ({ commit }, payload) {

@@ -2,25 +2,17 @@
   <div>
     <section class="categorie mt-5 mb-5">
       <div class="container">
-        <div class="row ">
-          <div class="col-12 col-md-12 col-lg-9">
-            <div class="row justify-content-center">
-              <div
-                v-for="tutor in fliteredTutors"
-                :key="tutor._id"
-                class="col-12 col-md-3 private-tutor-column text-center"
-              >
-                <TutorList
-                  :id="tutor._id"
-                  :tutor-title="tutor.tutorTitle"
-                  :author="tutor.author"
-                  :course-category="tutor.courseCategory"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-12 col-lg-3">
-            <TheSideSearch />
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div
+            v-for="tutor in fliteredTutors"
+            :key="tutor._id"
+          >
+            <TutorList
+              :id="tutor._id"
+              :tutor-title="tutor.tutorTitle"
+              :author="tutor.author"
+              :course-category="tutor.courseCategory"
+            />
           </div>
         </div>
       </div>

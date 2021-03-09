@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid become-a-tutor">
     <div class="row justify-content-center">
-      <div class="col-5  tutor-form mt-5">
+      <div class="col-6  tutor-form mt-5">
         <form class="">
           <h4 class="mb-3">
             Become A Tutor
@@ -41,6 +41,10 @@
             <div class="col">
               <label for="">Where have you tutored?</label>
               <input type="text" class="form-control" placeholder="State" aria-label="Last name">
+            </div>
+            <div class="col">
+              <label for="">Age</label>
+              <input type="text" class="form-control" placeholder="age" aria-label="Last name">
             </div>
           </div>
           <div class="row">

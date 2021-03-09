@@ -17,8 +17,8 @@
               <p>Lorem ipsum dolor sit amet,Stet clita kasd lorem ipsum dolor sit amet. sed diam eirmod tempor dolore.</p>
             </div>
             <div class="know-more">
-              <NuxtLink class="know-btn" to="/">
-                Know more <img src="~/assets/img/arrow.svg">
+              <NuxtLink class="know-btn" to="/freelancing">
+                Know More <img src="~/assets/img/arrow.svg">
               </NuxtLink>
             </div>
           </div>
@@ -33,8 +33,8 @@
               <p>Lorem ipsum dolor sit amet,Stet clita kasd lorem ipsum dolor sit amet. sed diam eirmod tempor dolore.</p>
             </div>
             <div class="know-more">
-              <NuxtLink class="know-btn" to="/">
-                Know more <img src="~/assets/img/arrow.svg">
+              <NuxtLink class="know-btn" to="/jobs">
+                Know More <img src="~/assets/img/arrow.svg">
               </NuxtLink>
             </div>
           </div>
@@ -43,14 +43,14 @@
               <img src="~/assets/img/avatar_d@2x.png">
             </div>
             <div class="column-title">
-              <h3>Private Tutor</h3>
+              <h3>Tutors</h3>
             </div>
             <div class="column-text">
               <p>Lorem ipsum dolor sit amet,Stet clita kasd lorem ipsum dolor sit amet. sed diam eirmod tempor dolore.</p>
             </div>
             <div class="know-more">
-              <NuxtLink class="know-btn" to="/">
-                Know more <img src="~/assets/img/arrow.svg">
+              <NuxtLink class="know-btn" to="/tutor">
+                Know More <img src="~/assets/img/arrow.svg">
               </NuxtLink>
             </div>
           </div>

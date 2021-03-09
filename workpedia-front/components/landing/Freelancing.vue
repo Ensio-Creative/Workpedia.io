@@ -4,65 +4,28 @@
       <div class="heading">
         <h1> {{ frelanceGigs }} </h1>
       </div>
-      <div class="row justify-content-center">
-        <div class="col-12 col-md-4 col-lg-3 freelance-column text-center">
-          <div class="freelance-img-head" />
-          <div class="freelance-text">
-            <h3>Website Design</h3>
-          </div>
-          <div class="freelance-amount">
-            <p>$450</p>
-          </div>
-        </div>
-        <div class="col-12 col-md-4 col-lg-3 freelance-column text-center">
-          <div class="freelance-img-head" />
-          <div class="freelance-text">
-            <h3>Website Design</h3>
-          </div>
-          <div class="freelance-amount">
-            <p>$450</p>
-          </div>
-        </div>
-        <div class="col-12 col-md-4 col-lg-3 freelance-column text-center">
-          <div class="freelance-img-head" />
-          <div class="freelance-text">
-            <h3>Website Design</h3>
-          </div>
-          <div class="freelance-amount">
-            <p>$450</p>
-          </div>
-        </div>
-        <div class="col-12 col-md-4 col-lg-3 freelance-column text-center">
-          <div class="freelance-img-head" />
-          <div class="freelance-text">
-            <h3>Website Design</h3>
-          </div>
-          <div class="freelance-amount">
-            <p>$450</p>
-          </div>
-        </div>
-        <div class="col-12 col-md-4 col-lg-3 freelance-column text-center">
-          <div class="freelance-img-head" />
-          <div class="freelance-text">
-            <h3>Website Design</h3>
-          </div>
-          <div class="freelance-amount">
-            <p>$450</p>
-          </div>
-        </div>
-        <div class="col-12 col-md-4 col-lg-3 freelance-column text-center">
-          <div class="freelance-img-head" />
-          <div class="freelance-text">
-            <h3>Website Design</h3>
-          </div>
-          <div class="freelance-amount">
-            <p>$450</p>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div
+          v-for="freelance in splicedFreelancing"
+          :key="freelance._id"
+          class="col mt-4"
+        >
+          <div class="card">
+            <div class="card-body">
+              <div class="freelance-img-head" />
+              <div class="freelance-text mt-2">
+                <h3>{{ freelance.title }}</h3>
+              </div>
+              <div class="freelance-amount">
+                <p>${{ freelance.amount }}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="view-more">
-        <NuxtLink class="view-btn" to="/">
-          view more <img src="~/assets/img/arrow.svg">
+        <NuxtLink class="view-btn" to="/freelancing/categories">
+          View More <img src="~/assets/img/arrow.svg">
         </NuxtLink>
       </div>
     </section>
@@ -70,12 +33,20 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'Freelancing',
   props: {
     frelanceGigs: {
       type: String,
       required: true
+    }
+  },
+  computed: {
+    ...mapState('freelance', ['freelancing']),
+    splicedFreelancing () {
+      const listed = this.freelancing.slice(0, 6)
+      return listed
     }
   }
 }

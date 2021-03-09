@@ -1,33 +1,31 @@
 <template>
   <div>
-    <section class="bg-hero">
-      <TheFreeHeader
-        @sidenavToggle="displaySidenav = !displaySidenav"
-      />
-      <TheFreeSidenav
-        :show="displaySidenav"
-        @close="displaySidenav = false"
-      />
-      <div class="container">
-        <div class="row justify-content-around">
-          <div class="col-12 col-md-12 col-lg-6 bg-texts order-6 order-sm-2">
-            <h1>
-              Find your dream job, career and tutor all in one place.
-            </h1>
-            <p>
-              Workpedia allows you get everything in once place, freelancing job opportunity, tutors and easily manage all three with ease.
-            </p>
-            <div class="search">
-              <input class="search-input" type="email" placeholder="Search Your Courses">
-              <button class="search-btn">
-                Search
-              </button>
-            </div>
+    <TheFreeHeader
+      @sidenavToggle="displaySidenav = !displaySidenav"
+    />
+    <TheFreeSidenav
+      :show="displaySidenav"
+      @close="displaySidenav = false"
+    />
+    <section class="bg-hero container">
+      <div class="row justify-content-around">
+        <div class="col-12 col-md-12 col-lg-6 bg-texts order-6 order-sm-2">
+          <h1>
+            Find your dream job, career and tutor all in one place.
+          </h1>
+          <p>
+            Workpedia allows you get everything in once place, freelancing job opportunity, tutors and easily manage all three with ease.
+          </p>
+          <div class="search">
+            <input class="search-input" type="email" placeholder="Search Your Courses">
+            <button class="search-btn">
+              Search
+            </button>
           </div>
-          <div class="col-12 col-md-12 col-lg-6 order-2 order-sm-6">
-            <div class="image-rap">
-              <img src="~/assets/img/pexels-emmy-e-2381069.png">
-            </div>
+        </div>
+        <div class="col-12 col-md-12 col-lg-6 order-2 order-sm-6">
+          <div class="image-rap">
+            <img src="~/assets/img/pexels-emmy-e-2381069.png">
           </div>
         </div>
       </div>

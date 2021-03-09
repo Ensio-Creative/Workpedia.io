@@ -11,7 +11,10 @@
             <h1>Workpedia</h1>
           </div>
           <p class="footer-text">
-            Lorem ipsum dolor sit amet,Stet clita kasd gubergren, no sea takimata sanctus est is the is the magna aliquyam.
+            20 Okeke Street, Port Harcourt, Nigeria.
+          </p>
+          <p class="footer-text">
+            +234-801-666-1320
           </p>
         </div>
         <div class="col-12 col-md-7">
@@ -93,7 +96,7 @@
       </div>
       <div class="all-rights text-center">
         <p class="rights">
-          workpedia.io All Rights Reserved
+          &copy; 2021 Workpedia. All rights reserved.
         </p>
       </div>
     </div>
@@ -117,6 +120,9 @@ export default {
   padding: 100px 0px 20px 0px;
   color: #fff;
 }
+.footer p{
+  color: #fff;
+}
 .footer-title{
   display: flex;
 }
@@ -131,6 +137,9 @@ export default {
 .footer-text {
   padding-top: 30px;
 }
+.footer-text:nth-child(3) {
+  padding-top: 0px;
+}
 .footer-social{
   padding-top: 20px;
 }
@@ -144,12 +153,16 @@ export default {
   text-decoration: none;
   color: #fff;
 }
-.footer-nav-title{
-  padding-top: 15px;
+.footer-nav a:hover{
+ text-decoration: none;
+}
+.footer-nav-item a:hover{
+  text-decoration: none;
 }
 .footer-nav-item{
   display: block;
   color: #fff;
+  line-height: 2;
 }
 /* .all-rights{
   padding-top: 20px;

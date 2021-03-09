@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      v-if="!isUserLoggedIn"
+      v-if="!user"
       class="user-not-logged-in"
     >
       <NuxtLink
@@ -9,18 +9,18 @@
         class="btn"
         :class="changeBtn()"
       >
-        Sign in
+        Login
       </NuxtLink>
       <NuxtLink
         to="/auth"
-        class="btn ml-3"
+        class="btn ml-1"
         :class="changeBtn()"
       >
-        Register for free
+        Get Started
       </NuxtLink>
     </div>
     <div
-      v-if="isUserLoggedIn"
+      v-if="user"
       class="user-is-logged-in"
     >
       <div class="list-of-users-action">
@@ -69,6 +69,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'UserRegister',
   data () {
@@ -77,6 +78,9 @@ export default {
       showUserDroped: false,
       userOnDashboard: false
     }
+  },
+  computed: {
+    ...mapState('auth', ['user'])
   },
   mounted () {
     this.checkPath()
@@ -150,7 +154,6 @@ export default {
 .landing-outline {
   border: 2px solid #251e8c;
   border-radius: 6px;
-  padding: 8px;
 }
 .landing-outline:nth-child(3) {
   background-color: #251e8c;
@@ -159,7 +162,6 @@ export default {
 .turor-outline {
   border: 2px solid #ff9b17;
   border-radius: 6px;
-  padding: 8px;
 }
 .tutor-outline:nth-child(3) {
   background-color: #ff9b17;
@@ -168,7 +170,6 @@ export default {
 .jobs-outline {
   border: 2px solid #0db47b;
   border-radius: 6px;
-  padding: 8px;
 }
 .jobs-outline:nth-child(3) {
   background-color: #0db47b;
@@ -177,7 +178,6 @@ export default {
 .freelance-outline {
   border: 2px solid #2b7dc4;
   border-radius: 6px;
-  padding: 8px;
 }
 .freelance-outline:nth-child(3) {
   background-color: #2b7dc4;

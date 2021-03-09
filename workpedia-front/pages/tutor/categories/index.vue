@@ -2,25 +2,40 @@
   <div>
     <section class="categorie mt-5 mb-5">
       <div class="container">
-        <div class="row ">
-          <div class="col-12 col-md-12 col-lg-9">
-            <div class="row justify-content-center">
-              <div
-                v-for="tutor in fetchedTutors"
-                :key="tutor._id"
-                class="col-12 col-md-3 private-tutor-column text-center"
-              >
-                <TutorList
-                  :id="tutor._id"
-                  :tutor-title="tutor.tutorTitle"
-                  :author="tutor.author"
-                  :course-category="tutor.courseCategory"
-                />
+        <div
+          class="row row-cols-1 row-cols-md-3 g-4"
+        >
+          <div
+            v-for="route in routes"
+            :key="route.url"
+            class="col mt-3"
+          >
+            <NuxtLink
+              :to="`/tutor/categories/${route.url}`"
+            >
+              <div class="card h-100">
+                <div class="card-body">
+                  <div class="private-tutor-text">
+                    <h3>{{ route.title }}</h3>
+                  </div>
+                </div>
+                <!-- <div class="card-footer">
+                  <small class="text-muted">Last updated 3 mins ago</small>
+                </div> -->
               </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-12 col-lg-3">
-            <TheSideSearch />
+            </NuxtLink>
+            <!-- <div class="col">
+              <div class="card h-100">
+                <img src="~/assets/img/biology.png" alt="">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">Last updated 3 mins ago</small>
+                </div>
+              </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -35,15 +50,42 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 export default {
   name: 'TutorsCategories',
   layout: 'tutors',
   data () {
-    return {}
-  },
-  computed: {
-    ...mapState('tutors', ['fetchedTutors'])
+    return {
+      routes: [
+        {
+          title: 'Mathematics',
+          url: 'mathematics'
+        },
+        {
+          title: 'English',
+          url: 'english'
+        },
+        {
+          title: 'Sciences',
+          url: 'sciences'
+        },
+        {
+          title: 'Arts',
+          url: 'arts'
+        },
+        {
+          title: 'Computer Sciences',
+          url: 'computer-sciences'
+        },
+        {
+          title: 'Business',
+          url: 'businesss'
+        },
+        {
+          title: 'Religion',
+          url: 'religion'
+        }
+      ]
+    }
   }
 }
 </script>

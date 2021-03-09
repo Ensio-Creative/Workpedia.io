@@ -1,8 +1,7 @@
 <template>
   <div>
-    <NuxtLink
+    <!-- <NuxtLink
       :to="`/tutor/categories/single-tutor/${id}`"
-      class=" private-tutor-column"
     >
       <div
         class="private-img-head"
@@ -15,6 +14,26 @@
       <div class="private-tutor-info">
         <p>{{ author }}</p>
         <p>{{ courseCategory }}</p>
+      </div>
+    </NuxtLink> -->
+    <NuxtLink
+      :to="`/tutor/categories/single-tutor/${id}`"
+      class="col"
+    >
+      <div class="card h-100">
+        <img src="~/assets/img/biology.png" alt="">
+        <div class="card-body">
+          <div class="private-tutor-text">
+            <h3>{{ tutorTitle }}</h3>
+          </div>
+          <div class="private-tutor-info">
+            <p>{{ author }}</p>
+            <p>{{ courseCategory }}</p>
+          </div>
+        </div>
+        <!-- <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div> -->
       </div>
     </NuxtLink>
   </div>

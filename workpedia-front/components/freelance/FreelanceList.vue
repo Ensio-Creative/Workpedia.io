@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NuxtLink
+    <!-- <NuxtLink
       class="freelance-column text-center"
       :to="`/freelancing/categories/single-freelancing/${id}`"
     >
@@ -10,6 +10,26 @@
       </div>
       <div class="freelance-amount">
         <p>${{ amount }}</p>
+      </div>
+    </NuxtLink> -->
+    <NuxtLink
+      :to="`/freelancing/categories/single-freelancing/${id}`"
+      class="col"
+    >
+      <div class="card h-100">
+        <img src="~/assets/img/Kentwood_Phone_03B-1280x850.jpg" alt="">
+        <div class="card-body">
+          <div class="private-tutor-text">
+            <h3>{{ title }}</h3>
+          </div>
+          <div class="private-tutor-info">
+            <p>{{ author }}</p>
+            <p>${{ amount }}</p>
+          </div>
+        </div>
+        <!-- <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div> -->
       </div>
     </NuxtLink>
   </div>

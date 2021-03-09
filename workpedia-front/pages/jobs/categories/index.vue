@@ -2,28 +2,40 @@
   <div>
     <section class="categorie mt-5 mb-5">
       <div class="container">
-        <div class="row">
-          <div class="col-12 col-md-12 col-lg-8">
-            <div class="row">
-              <div
-                v-for="jobs in job"
-                :key="jobs._id"
-                class="col-12 col-md-12 col-lg-12 popular-column"
-              >
-                <JobsList
-                  :id="jobs._id"
-                  :title="jobs.title"
-                  :location="jobs.location"
-                  :day-of-post-made="jobs.dayOFPostMade"
-                  :timeline-of-jobs="jobs.timelineOfJobs"
-                  :experience="jobs.experience"
-                  :description="jobs.description"
-                />
+        <div
+          class="row row-cols-1 row-cols-md-3 g-4"
+        >
+          <div
+            v-for="route in routes"
+            :key="route.url"
+            class="col mt-3"
+          >
+            <NuxtLink
+              :to="`/jobs/categories/${route.url}`"
+            >
+              <div class="card h-100">
+                <div class="card-body">
+                  <div class="private-tutor-text">
+                    <h3>{{ route.title }}</h3>
+                  </div>
+                </div>
+                <!-- <div class="card-footer">
+                  <small class="text-muted">Last updated 3 mins ago</small>
+                </div> -->
               </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-12 col-lg-4">
-            <TheJobsSideSearch />
+            </NuxtLink>
+            <!-- <div class="col">
+              <div class="card h-100">
+                <img src="~/assets/img/biology.png" alt="">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">Last updated 3 mins ago</small>
+                </div>
+              </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -37,10 +49,40 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 export default {
-  computed: {
-    ...mapState('jobs', ['job'])
+  data () {
+    return {
+      routes: [
+        {
+          title: 'Design',
+          url: 'design'
+        },
+        {
+          title: 'Web Dev',
+          url: 'web-dev'
+        },
+        {
+          title: 'Writing',
+          url: 'writing'
+        },
+        {
+          title: 'Marketing',
+          url: 'marketing'
+        },
+        {
+          title: 'Accounting',
+          url: 'accounting'
+        },
+        {
+          title: 'Business',
+          url: 'business'
+        },
+        {
+          title: 'Customer Service',
+          url: 'customer-service'
+        }
+      ]
+    }
   }
 }
 </script>

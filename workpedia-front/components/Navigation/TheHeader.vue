@@ -10,7 +10,7 @@
         </button>
 
         <div class="collapse navbar-collapse">
-          <ul class="navbar-nav mr-auto">
+          <ul class="navbar-nav ml-auto">
             <li class="nav-item">
               <NuxtLink class="nav-link" to="/tutor">
                 Tutor

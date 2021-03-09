@@ -3,21 +3,23 @@
     <!-- Different categories -->
     <section class="categorie mt-5 mb-5">
       <div class="container">
-        <div class="row">
-          <div class="col-12 col-md-12 col-lg-12">
-            <div class="row justify-content-center">
-              <div
-                v-for="works in freelancing"
-                :key="works._id"
-                class="col-12 col-md-3 col-lg-3 popular-column"
-              >
-                <FreelanceList
-                  :id="works._id"
-                  :title="works.title"
-                  :amount="works.amount"
-                />
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div
+            v-for="route in routes"
+            :key="route.url"
+            class="col mt-4"
+          >
+            <NuxtLink
+              :to="`/freelancing/categories/${route.url}`"
+            >
+              <div class="card h-100">
+                <div class="card-body">
+                  <div class="private-tutor-text">
+                    <h3>{{ route.title }}</h3>
+                  </div>
+                </div>
               </div>
-            </div>
+            </NuxtLink>
           </div>
         </div>
       </div>
@@ -35,7 +37,40 @@ import { mapState } from 'vuex'
 export default {
   data () {
     return {
-      displaySidenav: false
+      routes: [
+        {
+          title: 'Design',
+          url: 'design'
+        },
+        {
+          title: 'Handymen',
+          url: 'handymen'
+        },
+        {
+          title: 'Animation',
+          url: 'animation'
+        },
+        {
+          title: 'Music',
+          url: 'music'
+        },
+        {
+          title: 'Programming',
+          url: 'programming'
+        },
+        {
+          title: 'Photography',
+          url: 'photography'
+        },
+        {
+          title: 'Copywriting',
+          url: 'copywriting'
+        },
+        {
+          title: 'Business',
+          url: 'business'
+        }
+      ]
     }
   },
   computed: {

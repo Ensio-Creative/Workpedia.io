@@ -8,43 +8,7 @@
       @close="displaySidenav = false"
     />
     <!-- Categories Nav -->
-    <nav class="navbar navbar-expand-lg categories-nav">
-      <div class="container">
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <!-- <span class="navbar-toggler-icon" /> -->
-          <p>Categories</p>
-        </button>
-        <div
-          id="navbarNavAltMarkup"
-          class="collapse navbar-collapse"
-        >
-          <div class="navbar-nav">
-            <NuxtLink
-              class="nav-link active"
-              to="/jobs/categories"
-            >
-              All Categories
-            </NuxtLink>
-            <NuxtLink
-              v-for="(route) in routes"
-              :key="route.url"
-              class="nav-link mr-3"
-              :to="`/jobs/categories/${route.url}`"
-            >
-              {{ route.title }}
-            </NuxtLink>
-          </div>
-        </div>
-      </div>
-    </nav>
+    <CategoryRoutes />
     <NuxtChild />
   </div>
 </template>

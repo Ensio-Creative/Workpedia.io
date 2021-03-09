@@ -3,7 +3,7 @@
     <section class="categorie mt-5 mb-5">
       <div class="container">
         <div class="row">
-          <div class="col-12 col-md-12 col-lg-8">
+          <div class="col-12 col-md-12 col-lg-10">
             <div class="row">
               <div
                 v-for="jobs in fliteredJobs"
@@ -45,9 +45,6 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-12 col-md-12 col-lg-4">
-            <TheJobsSideSearch />
           </div>
         </div>
       </div>

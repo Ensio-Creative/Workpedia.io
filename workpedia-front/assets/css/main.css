@@ -1,7 +1,16 @@
+/* Transitions */
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.5s;
+}
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+}
 /* Reuseable stles */
 
 .navbar a {
-  color: #000;
+  color: #00000080;
   font-size: 18px;
 }
 
@@ -9,25 +18,30 @@
   width: 60px;
 }
 
+p {
+  color: #00000080;;
+}
+
 /* ------ ------ Landing page ------- ------ */
 
 .bg-hero {
-  padding-bottom: 80px;
+  height: 95vh;
 }
 
 .bg-hero h1 {
-  padding: 10px 165px 33px 0px;
+  padding: 10px 107px 5px 0px;
 }
 
 .bg-texts {
   margin-top: 100px;
 }
 .bg-hero p {
-  padding: 10px 200px 10px 0px;
+  font-size: 18px;
+  padding: 10px 169px 10px 0px;
 }
 
 .bg-buttons {
-  margin-top: 50px;
+  margin-top: 25px;
 }
 
 .bg-buttons a:hover {
@@ -97,7 +111,6 @@
   margin-bottom: 20px;
 }
 .column-title {
-  font: normal normal bold 33px/42px Archivo;
   margin-top: 20px;
   margin-bottom: 20px;
   letter-spacing: 0px;
@@ -107,7 +120,6 @@
 .column-text {
   padding: 10px;
   color: #151d41;
-  font: normal normal 300 16px/35px Montserrat;
 }
 .know-btn {
   background: #251e8c 0% 0% no-repeat padding-box;
@@ -115,7 +127,6 @@
   opacity: 1;
   padding: 8px;
   color: #fff;
-  font: normal normal normal 16px/35px Archivo;
 }
 .know-btn:hover {
   color: #fff;
@@ -134,7 +145,6 @@
   opacity: 1;
   padding: 15px;
   color: #fff;
-  font: normal normal normal 16px/35px Archivo;
 }
 .view-btn:hover {
   color: #fff;
@@ -169,14 +179,12 @@
 }
 
 .freelance-text h3 {
-  font: normal normal bold 18px/50px Archivo;
   letter-spacing: 0px;
   color: #151d41;
   opacity: 1;
 }
 
 .freelance-amount p {
-  font: normal normal bold 18px/50px Archivo;
   letter-spacing: 0px;
   color: #151d41;
   opacity: 1;
@@ -210,7 +218,6 @@
 }
 
 .popular-text {
-  font: normal normal normal 18px/21px Archivo;
   letter-spacing: 0px;
   color: #606060;
 }
@@ -223,7 +230,6 @@
   background-color: #efefef;
   padding: 10px 10px 5px 10px;
   margin-right: 20px;
-  font: normal normal normal 16px/50px Archivo;
   letter-spacing: 0px;
 }
 
@@ -242,7 +248,6 @@
 }
 .popular-button a {
   padding: 10px 80px;
-  font: normal normal bold 16px/50px Archivo;
   letter-spacing: 0px;
   color: #0db47b;
   opacity: 1;
@@ -276,7 +281,6 @@
 
 .private-tutor-text {
   color: #251e8c;
-  font: normal normal bold 21px/58px Archivo;
   letter-spacing: 0px;
 }
 
@@ -295,7 +299,8 @@
 
 /* What students say */
 .gray {
-  background-color: #d8d8d8;
+  background-color: #fff;
+  width: 197px;
 }
 .what-student-say {
   margin-top: 180px;
