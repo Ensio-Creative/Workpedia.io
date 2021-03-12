@@ -8,6 +8,7 @@ exports.signUp = (req, res, next) => {
   const request = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
+    age: req.body.age,
     email: req.body.email,
     phone: req.body.phone,
     password: req.body.password,
@@ -21,6 +22,7 @@ exports.signUp = (req, res, next) => {
       const user = new User({
         firstName: request.firstName,
         lastName: request.lastName,
+        age: request.age,
         phone: request.phone,
         email: request.email,
         password: hashedPw,
