@@ -7,14 +7,16 @@
         <form>
           <div class="form-heading">
             <h2 class="my-4">
-              Post a job
+              Hire in Workpedia
             </h2>
           </div>
           <AppControlInput
-            v-model.trim="jobTitle"
+            v-model.trim="companyName"
             type="text"
+            placeholder="Name"
+            required
           >
-            Job title
+            Company Name*
           </AppControlInput>
           <!-- <small
             :class="[validEmail(email) ? 'info-success' : 'info-error']"
@@ -23,35 +25,27 @@
           </small> -->
           <div class="row">
             <div class="col">
-              <label for="">State</label>
-              <select
-                v-model="stateSelect"
-                class="form-select"
-                aria-label="Default select example"
-                required
+              <AppControlInput
+                v-model.trim="companyWeb"
+                type="text"
+                placeholder="Optional"
               >
-                <option
-                  v-for="state in states"
-                  :key="state"
-                  :value="state"
-                  required
-                >
-                  {{ state }}
-                </option>
-              </select>
+                Company Webpage
+              </AppControlInput>
             </div>
             <div class="col">
               <AppControlInput
-                v-model.trim="city"
+                v-model.trim="companyemail"
                 type="text"
+                placeholder="Email"
                 required
               >
-                City
+                Company Email*
               </AppControlInput>
               <!-- <small
-                :class="[city.length < 3 ? 'info-error' : 'info-success']"
+                :class="[companyemail.length < 3 ? 'info-error' : 'info-success']"
               >
-                {{ cityInfo }}
+                {{ companyemailInfo }}
               </small> -->
             </div>
           </div>
@@ -61,9 +55,12 @@
             {{ infoTextEmail }}
           </small> -->
           <AppControlInput
+            v-model="phone"
             type="text"
+            placeholder="Phone"
+            required
           >
-            Phone
+            Company Phone*
           </AppControlInput>
           <!-- <small
             :class="[password.length <= 6 ? 'info-error' : 'info-success']"
@@ -73,11 +70,11 @@
           <div class="row">
             <div class="col">
               <AppControlInput
-                v-model="duration"
+                v-model="facebook"
                 type="text"
-                placeholder="FullTime"
+                placeholder="http://...."
               >
-                Durations
+                Facebook
               </AppControlInput>
               <!-- <small
                 :class="[password.length <= 6 ? 'info-error' : 'info-success']"
@@ -87,41 +84,34 @@
             </div>
             <div class="col">
               <AppControlInput
-                v-model="experience"
+                v-model="twitter"
                 type="text"
-                placeholder="a year"
+                placeholder="http://"
               >
-                Experience
+                Twitter
               </AppControlInput>
             </div>
             <div class="col">
-              <label for="">Category</label>
-              <select
-                v-model="category"
-                class="form-select"
-                aria-label="Default select example"
-                required
+              <AppControlInput
+                v-model.trim="linkedIn"
+                type="text"
+                placeholder="http://"
               >
-                <option
-                  v-for="categor in categories"
-                  :key="categor"
-                  :value="categor"
-                  required
-                >
-                  {{ categor }}
-                </option>
-              </select>
+                LinkedIn
+              </AppControlInput>
             </div>
           </div>
           <div class="row">
             <div class="col">
-              <label for="">Job Description*</label>
+              <label for="">Company Description*</label>
               <textarea
+                v-model="companyDescription"
                 type="text"
                 class="form-control mb-3"
-                placeholder="Job Description"
+                placeholder="Company Description"
                 aria-label="First n ame"
                 rows="3"
+                required
               />
             </div>
           </div>
@@ -129,7 +119,7 @@
             type="submit"
             class="btn-apply my-4"
           >
-            Post
+            Hire now!
           </AppButton>
         </form>
       </div>
@@ -143,63 +133,14 @@ export default {
   layout: 'auth',
   data () {
     return {
-      jobTitle: '',
-      email: '',
+      companyName: '',
+      companyWeb: '',
+      companyemail: '',
       phone: '',
-      stateSelect: '',
-      city: '',
-      amount: '5000',
-      duration: '',
-      experience: '',
-      category: '',
-      categories: [
-        'web-dev',
-        'design',
-        'writing',
-        'marketing',
-        'accounting',
-        'business',
-        'customer-service'
-      ],
-      states: [
-        'Abia',
-        'Adamawa',
-        'Akwa Ibom',
-        'Anambra',
-        'Bauchi',
-        'Bayelsa',
-        'Benue',
-        'Borno',
-        'Cross River',
-        'Delta',
-        'Ebonyi',
-        'Edo',
-        'Ekiti',
-        'Enugu',
-        'FCT - Abuja',
-        'Gombe',
-        'Imo',
-        'Jigawa',
-        'Kaduna',
-        'Kano',
-        'Katsina',
-        'Kebbi',
-        'Kogi',
-        'Kwara',
-        'Lagos',
-        'Nasarawa',
-        'Niger',
-        'Ogun',
-        'Ondo',
-        'Osun',
-        'Oyo',
-        'Plateau',
-        'Rivers',
-        'Sokoto',
-        'Taraba',
-        'Yobe',
-        'Zamfara'
-      ]
+      facebook: '',
+      twitter: '',
+      linkedIn: '',
+      companyDescription: ''
     }
   },
   methods: {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>{{ errors.map(e => e) }}</h2>
+    <h2>{{ errors.message }}</h2>
   </div>
 </template>
 

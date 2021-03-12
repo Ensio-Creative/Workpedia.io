@@ -1,8 +1,10 @@
 <template>
   <div class="container-fluid become-a-tutor">
     <div class="row justify-content-center">
-      <div class="col-6  tutor-form mt-5">
-        <form class="">
+      <div class="col-5 tutor-form mt-5">
+        <form
+          @submit.prevent="onSubmit"
+        >
           <h4 class="mb-3">
             Become A Tutor
           </h4>
@@ -14,9 +16,12 @@
                   <div class="form-check">
                     <input
                       id="flexRadioDefault1"
+                      v-model.trim="haveYouTutoredBefore"
                       class="form-check-input"
                       type="radio"
                       name="flexRadioDefault"
+                      value="Yes"
+                      required
                     >
                     <label class="form-check-label" for="flexRadioDefault1">
                       Yes
@@ -27,9 +32,12 @@
                   <div class="form-check">
                     <input
                       id="flexRadioDefault2"
+                      v-model.trim="haveYouTutoredBefore"
                       class="form-check-input"
                       type="radio"
                       name="flexRadioDefault"
+                      value="No"
+                      required
                     >
                     <label class="form-check-label" for="flexRadioDefault2">
                       No
@@ -39,22 +47,27 @@
               </div>
             </div>
             <div class="col">
-              <label for="">Where have you tutored?</label>
-              <input type="text" class="form-control" placeholder="State" aria-label="Last name">
-            </div>
-            <div class="col">
-              <label for="">Age</label>
-              <input type="text" class="form-control" placeholder="age" aria-label="Last name">
+              <label for="">What subject did you tutor on?</label>
+              <input
+                v-model.trim="subject"
+                type="text"
+                class="form-control"
+                placeholder="Subject"
+                aria-label="Last name"
+                required
+              >
             </div>
           </div>
           <div class="row">
             <div class="col-12">
               <label for="">Descripe yourself as a Tutor</label>
               <textarea
+                v-model.trim="description"
                 type="text"
                 class="form-control mb-3"
                 placeholder="Extra info"
                 aria-label="First n ame"
+                required
                 rows="3"
               />
             </div>
@@ -77,7 +90,20 @@
 <script>
 export default {
   name: 'BecomeATutor',
-  layout: 'auth'
+  layout: 'auth',
+  data () {
+    return {
+      haveYouTutoredBefore: '',
+      subject: '',
+      description: ''
+    }
+  },
+  methods: {
+    onSubmit () {
+      console.log(this.haveYouTutoredBefore)
+      this.$router.push('/dashboard/tutor')
+    }
+  }
 }
 </script>
 

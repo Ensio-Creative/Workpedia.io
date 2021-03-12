@@ -22,8 +22,8 @@
               </NuxtLink>
             </li>
             <li class="nav-item">
-              <NuxtLink class="nav-link" to="/jobs/post">
-                Post a Job
+              <NuxtLink class="nav-link" to="/jobs/hire">
+                Hire
               </NuxtLink>
             </li>
           </ul>

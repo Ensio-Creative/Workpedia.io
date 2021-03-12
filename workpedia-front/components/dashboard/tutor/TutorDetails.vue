@@ -4,7 +4,11 @@
       <div class="row">
         <div class="col">
           <label for="">Select Subject</label>
-          <select class="form-select" aria-label="Default select example">
+          <select
+            v-model.trim="subject"
+            class="form-select"
+            aria-label="Default select example"
+          >
             <option selected>
               Mathematics
             </option>
@@ -30,7 +34,11 @@
         </div>
         <div class="col">
           <label for="">Select Class</label>
-          <select class="form-select" aria-label="Default select example">
+          <select
+            v-model.trim="classes"
+            class="form-select"
+            aria-label="Default select example"
+          >
             <option selected>
               Class 1 - 5
             </option>
@@ -50,6 +58,7 @@
         <div class="col">
           <label for="">What you would cover</label>
           <textarea
+            v-model.trim="whatYouWouldCover"
             type="text"
             class="form-control mb-3"
             placeholder="What you would cover"
@@ -61,6 +70,7 @@
         <div class="col">
           <label for="">Extra info*</label>
           <textarea
+            v-model="extraInfo"
             type="text"
             class="form-control mb-3"
             placeholder="Extra info"
@@ -81,7 +91,15 @@
 
 <script>
 export default {
-  name: 'TutorDetails'
+  name: 'TutorDetails',
+  data () {
+    return {
+      subject: '',
+      classes: '',
+      whatYouWouldCover: '',
+      extraInfo: ''
+    }
+  }
 }
 </script>
 

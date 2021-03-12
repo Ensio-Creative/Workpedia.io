@@ -7,10 +7,10 @@
             <div class="col-12 tutor-basic-info">
               <img src="~assets/img/avatar_c@2x.png" alt="" class="user-img rounded">
               <h4 class="user-name">
-                {{ userName }}
+                {{ fullName }}
               </h4>
               <h5 class="user-name">
-                Age: {{ tutorAge }}
+                Age: {{ user.age }}
               </h5>
             </div>
             <div class="col-12 tutor-basic-info text-left">
@@ -67,6 +67,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import TutorDetails from '~/components/dashboard/tutor/TutorDetails.vue'
 import TutorQulificatios from '~/components/dashboard/tutor/TutorQulificatios.vue'
 export default {
@@ -75,11 +76,19 @@ export default {
   layout: 'dashboard',
   data () {
     return {
-      userName: 'Great Adams',
       tutorDescription: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam accusantium ut adipisci',
-      activeTab: 'TutorDetails',
-      tutorAge: 34
+      activeTab: 'TutorDetails'
     }
+  },
+  computed: {
+    ...mapState('auth', ['user']),
+    fullName () {
+      const name = `${this.user.firstName} ${this.user.lastName}`
+      return name
+    }
+  },
+  mounted () {
+
   }
 }
 </script>

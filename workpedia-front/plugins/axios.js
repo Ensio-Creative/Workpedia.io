@@ -4,4 +4,5 @@ export default function ({ $axios, store }, inject) {
       console.log('Error')
     }
   })
+  $axios.setBaseURL('http://localhost:8000/')
 }

@@ -29,6 +29,7 @@ export default {
   ],
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
+    '~/plugins/axios',
     { src: '~/plugins/vuex-persist', ssr: false }
   ],
 
@@ -48,12 +49,16 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    '@nuxt/content'
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
-    baseURL: process.env.BASE_URL || 'http://localhost:8000/'
+    common: {
+      Accept: 'application/json, text/plain, */*'
+    }
+    // baseURL: process.env.BASE_URL || 'http://localhost:8000/'
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)

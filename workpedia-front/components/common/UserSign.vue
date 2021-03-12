@@ -54,7 +54,10 @@
           >
             Settings
           </NuxtLink>
-          <li class="list-group-item postions-items">
+          <li
+            class="list-group-item postions-items"
+            @click="logOut"
+          >
             LogOut
           </li>
         </ul>
@@ -69,12 +72,11 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 export default {
   name: 'UserRegister',
   data () {
     return {
-      isUserLoggedIn: false,
       showUserDroped: false,
       userOnDashboard: false
     }
@@ -86,6 +88,7 @@ export default {
     this.checkPath()
   },
   methods: {
+    ...mapActions('auth', ['logOutUser']),
     checkPath () {
       if (this.$route.path === '/dashboard') {
         this.userOnDashboard = false
@@ -117,6 +120,9 @@ export default {
       }
 
       return btnClass
+    },
+    logOut () {
+      this.logOutUser()
     }
   }
 }
@@ -150,6 +156,9 @@ export default {
 .postions-items{
   padding: 10px;
   font-size: 18px;
+}
+.postions-items:nth-child(3){
+  cursor: pointer;
 }
 .landing-outline {
   border: 2px solid #251e8c;

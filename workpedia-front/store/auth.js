@@ -1,5 +1,6 @@
 export const state = () => ({
-  user: {}
+  user: {},
+  token: ''
 })
 
 export const mutations = {
@@ -8,6 +9,9 @@ export const mutations = {
       ...state.user,
       ...payload
     }
+  },
+  updateUserToken (state, payload) {
+    state.token = payload
   },
   clearUserInfo (state) {
     state.user = {}
@@ -24,6 +28,7 @@ export const actions = {
         .then((res) => {
           console.log(res)
           commit('updateUser', res.loadedUser)
+          commit('updateUserToken', res.token)
           // console.log(res)
           // commit('updateAlert', alert, { root: true })
           this.$router.push('/dashboard')
@@ -42,8 +47,9 @@ export const actions = {
     console.log(res)
   },
 
-  logUserOut ({ commit }, payload) {
+  logOutUser ({ commit }, payload) {
     commit('clearUserInfo')
     localStorage.removeItem('token')
+    this.$router.push('/')
   }
 }
