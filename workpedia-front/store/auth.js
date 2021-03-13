@@ -14,7 +14,8 @@ export const mutations = {
     state.token = payload
   },
   clearUserInfo (state) {
-    state.user = {}
+    state.user = null
+    state.token = ''
   }
 }
 
