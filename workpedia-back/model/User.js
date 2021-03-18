@@ -64,6 +64,22 @@ const UserSchema = new Schema({
     type: Boolean,
     default: false
   },
+  isTutor: {
+    type: Boolean,
+    default: false
+  },
+  isHire: {
+    type: Boolean,
+    default: false
+  },
+  isApplicant: {
+    type: Boolean,
+    default: false
+  },
+  isFreelancer: {
+    type: Boolean,
+    default: false
+  },
   isVerified: {
     type: Boolean,
     default: false
