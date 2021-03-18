@@ -50,41 +50,13 @@
 </template>
 
 <script>
+import routes from '~/static/data/tutorCategory.js'
 export default {
   name: 'TutorsCategories',
   layout: 'tutors',
   data () {
     return {
-      routes: [
-        {
-          title: 'Mathematics',
-          url: 'mathematics'
-        },
-        {
-          title: 'English',
-          url: 'english'
-        },
-        {
-          title: 'Sciences',
-          url: 'sciences'
-        },
-        {
-          title: 'Arts',
-          url: 'arts'
-        },
-        {
-          title: 'Computer Sciences',
-          url: 'computer-sciences'
-        },
-        {
-          title: 'Business',
-          url: 'businesss'
-        },
-        {
-          title: 'Religion',
-          url: 'religion'
-        }
-      ]
+      routes
     }
   }
 }

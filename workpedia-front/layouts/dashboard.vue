@@ -41,6 +41,7 @@
 <script>
 export default {
   name: 'DashBoardLayout',
+  middleware: 'auth',
   data () {
     return {
       resize: true

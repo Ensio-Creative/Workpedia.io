@@ -20,7 +20,7 @@
                       class="form-check-input"
                       type="radio"
                       name="flexRadioDefault"
-                      value="Yes"
+                      value="true"
                       required
                     >
                     <label class="form-check-label" for="flexRadioDefault1">
@@ -36,7 +36,7 @@
                       class="form-check-input"
                       type="radio"
                       name="flexRadioDefault"
-                      value="No"
+                      value="false"
                       required
                     >
                     <label class="form-check-label" for="flexRadioDefault2">
@@ -52,7 +52,7 @@
                 v-model.trim="subject"
                 type="text"
                 class="form-control"
-                placeholder="Subject"
+                placeholder="subjectTutorBefore"
                 aria-label="Last name"
                 required
               >
@@ -65,7 +65,7 @@
                 v-model.trim="description"
                 type="text"
                 class="form-control mb-3"
-                placeholder="Extra info"
+                placeholder="Describe"
                 aria-label="First n ame"
                 required
                 rows="3"
@@ -88,20 +88,27 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'BecomeATutor',
   layout: 'auth',
   data () {
     return {
       haveYouTutoredBefore: '',
-      subject: '',
+      subjectTutorBefore: '',
       description: ''
     }
   },
   methods: {
+    ...mapActions('tutors', ['startTutor']),
     onSubmit () {
-      console.log(this.haveYouTutoredBefore)
-      this.$router.push('/dashboard/tutor')
+      const payload = {
+        haveYouTutoredBefore: this.haveYouTutoredBefore,
+        subjectTutorBefore: this.subjectTutorBefore,
+        description: this.description
+      }
+      this.startTutor(payload)
+      // this.$router.push('/dashboard/tutor')
     }
   }
 }

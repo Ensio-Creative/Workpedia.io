@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      v-if="!user"
+      v-if="!user.token"
       class="user-not-logged-in"
     >
       <NuxtLink
@@ -20,7 +20,7 @@
       </NuxtLink>
     </div>
     <div
-      v-if="user"
+      v-if="user.token"
       class="user-is-logged-in"
     >
       <div class="list-of-users-action">

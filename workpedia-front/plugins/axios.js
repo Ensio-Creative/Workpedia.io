@@ -4,5 +4,7 @@ export default function ({ $axios, store }, inject) {
       console.log('Error')
     }
   })
-  $axios.setBaseURL('http://localhost:8000/')
+  $axios.setBaseURL('http://localhost:8000/api/')
+  const token = store.state.auth.user.token
+  $axios.setToken(token, 'Bearer')
 }

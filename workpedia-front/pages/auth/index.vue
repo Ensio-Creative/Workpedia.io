@@ -23,6 +23,7 @@
 <script>
 export default {
   layout: 'auth',
+  middleware: 'checkIfLogin',
   name: 'Auth',
   data () {
     return {

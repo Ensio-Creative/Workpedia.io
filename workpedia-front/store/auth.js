@@ -1,6 +1,5 @@
 export const state = () => ({
-  user: {},
-  token: ''
+  user: {}
 })
 
 export const mutations = {
@@ -14,22 +13,21 @@ export const mutations = {
     state.token = payload
   },
   clearUserInfo (state) {
-    state.user = null
-    state.token = ''
+    state.user = {}
   }
 }
 
 export const actions = {
   async login ({ commit }, payload) {
     try {
+      console.log(payload)
       await this.$axios.$post(
         'auth/login',
         payload
       )
         .then((res) => {
           console.log(res)
-          commit('updateUser', res.loadedUser)
-          commit('updateUserToken', res.token)
+          commit('updateUser', res)
           // console.log(res)
           // commit('updateAlert', alert, { root: true })
           this.$router.push('/dashboard')
@@ -50,7 +48,12 @@ export const actions = {
 
   logOutUser ({ commit }, payload) {
     commit('clearUserInfo')
-    localStorage.removeItem('token')
     this.$router.push('/')
+  }
+}
+
+export const getters = {
+  isAuthenticated (state) {
+    return !state.user.token
   }
 }

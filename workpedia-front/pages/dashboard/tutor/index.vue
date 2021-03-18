@@ -15,9 +15,9 @@
             </div>
             <div class="col-12 tutor-basic-info text-left">
               <h4 class="user-name">
-                Description
+                Description:
               </h4>
-              <p>{{ tutorDescription }}</p>
+              <p>{{ tutorDescriptionInfo }}</p>
             </div>
           </div>
         </div>
@@ -58,6 +58,7 @@
             <component
               :is="activeTab"
               class="mt-4"
+              @changeComponent="activeTab = 'TutorQulificatios'"
             />
           </keep-alive>
         </div>
@@ -82,9 +83,19 @@ export default {
   },
   computed: {
     ...mapState('auth', ['user']),
+    ...mapState('tutors', ['tutor', 'startInfo']),
     fullName () {
       const name = `${this.user.firstName} ${this.user.lastName}`
       return name
+    },
+    tutorDescriptionInfo () {
+      let description
+      if (!this.tutor.description) {
+        description = this.startInfo.description
+      } else {
+        description = this.tutor.description
+      }
+      return description
     }
   },
   mounted () {

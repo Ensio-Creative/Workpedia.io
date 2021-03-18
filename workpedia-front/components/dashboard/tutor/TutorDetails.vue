@@ -1,34 +1,42 @@
 <template>
   <div class="container">
-    <form>
+    <form @submit.prevent="onSave">
       <div class="row">
+        <div class="col">
+          <label for="">Select Category</label>
+          <select
+            v-model.trim="category"
+            class="form-select"
+            aria-label="Default select example"
+            required
+          >
+            <option
+              v-for="selectCategory in tutorcategories"
+              :key="selectCategory.url"
+              :value="selectCategory.url"
+              selected
+              required
+            >
+              {{ selectCategory.title }}
+            </option>
+          </select>
+        </div>
         <div class="col">
           <label for="">Select Subject</label>
           <select
             v-model.trim="subject"
             class="form-select"
             aria-label="Default select example"
+            required
           >
-            <option selected>
-              Mathematics
-            </option>
-            <option value="1">
-              English
-            </option>
-            <option value="2">
-              Chemistry
-            </option>
-            <option value="3">
-              Geography
-            </option>
-            <option value="4">
-              Futher Maths
-            </option>
-            <option value="5">
-              Literature
-            </option>
-            <option value="5">
-              Agricultural Science
+            <option
+              v-for="tutorSubject in subjects"
+              :key="tutorSubject"
+              selected
+              :value="tutorSubject"
+              required
+            >
+              {{ tutorSubject }}
             </option>
           </select>
         </div>
@@ -38,18 +46,16 @@
             v-model.trim="classes"
             class="form-select"
             aria-label="Default select example"
+            required
           >
-            <option selected>
-              Class 1 - 5
-            </option>
-            <option value="1">
-              Js 1 - 3
-            </option>
-            <option value="2">
-              Ss 1 - 3
-            </option>
-            <option value="3">
-              Terriary - Beyound
+            <option
+              v-for="selectClass in classesSelect"
+              :key="selectClass"
+              :value="selectClass"
+              selected
+              required
+            >
+              {{ selectClass }}
             </option>
           </select>
         </div>
@@ -61,21 +67,23 @@
             v-model.trim="whatYouWouldCover"
             type="text"
             class="form-control mb-3"
-            placeholder="What you would cover"
+            placeholder="Be specific either in a topic or more!!"
             rows="2"
+            required
           />
         </div>
       </div>
       <div class="row">
         <div class="col">
-          <label for="">Extra info*</label>
+          <label for="">Description</label>
           <textarea
-            v-model="extraInfo"
+            v-model="description"
             type="text"
             class="form-control mb-3"
-            placeholder="Extra info"
+            placeholder="Need to change Description?"
             aria-label="First n ame"
             rows="3"
+            required
           />
         </div>
       </div>
@@ -90,14 +98,53 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
+import subjects from '~/static/data/subjects.js'
+import tutorcategories from '~/static/data/tutorCategory.js'
 export default {
   name: 'TutorDetails',
+  emits: ['changeComponent'],
   data () {
     return {
       subject: '',
       classes: '',
+      category: '',
       whatYouWouldCover: '',
-      extraInfo: ''
+      description: '',
+      subjects,
+      tutorcategories,
+      classesSelect: [
+        'Kindergarten',
+        'class 1 - 5',
+        'Junior 1 - 3',
+        'Senior 1 - 3',
+        'Beyound'
+      ]
+    }
+  },
+  computed: {
+    ...mapState('tutors', ['tutor'])
+  },
+  mounted () {
+    this.subject = this.tutor.tutorSubject
+    this.classes = this.tutor.tutoredClass
+    this.whatYouWouldCover = this.tutor.courseCategory
+    this.category = this.tutor.tutorCategory
+    this.description = this.tutor.description
+  },
+  methods: {
+    ...mapActions('tutors', ['updateTutor']),
+    onSave () {
+      const payload = {
+        tutorSubject: this.subject,
+        tutoredClass: this.classes,
+        courseCategory: this.whatYouWouldCover,
+        tutorCategory: this.category,
+        description: this.description
+      }
+      console.log(payload)
+      // this.updateTutor(payload)
+      this.$emit('changeComponent')
     }
   }
 }

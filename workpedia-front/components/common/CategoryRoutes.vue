@@ -52,100 +52,16 @@
 </template>
 
 <script>
+import tutorRoutes from '~/static/data/tutorRoutes.js'
+import jobsRoutes from '~/static/data/jobsRoutes.js'
+import freelanceRoutes from '~/static/data/freelanceRoutes.js'
 export default {
   name: 'CategoryRoutes',
   data () {
     return {
-      tutorRoutes: [
-        {
-          title: 'Mathematics',
-          url: '/tutor/categories/mathematics'
-        },
-        {
-          title: 'English',
-          url: '/tutor/categories/english'
-        },
-        {
-          title: 'Sciences',
-          url: '/tutor/categories/sciences'
-        },
-        {
-          title: 'Arts',
-          url: '/tutor/categories/arts'
-        },
-        {
-          title: 'Computer Sciences',
-          url: '/tutor/categories/computer-sciences'
-        },
-        {
-          title: 'Business',
-          url: '/tutor/categories/businesss'
-        },
-        {
-          title: 'Religion',
-          url: '/tutor/categories/religion'
-        }
-      ],
-      jobsRoutes: [
-        {
-          title: 'Design',
-          url: '/jobs/categories/design'
-        },
-        {
-          title: 'Web Dev',
-          url: '/jobs/categories/web-dev'
-        },
-        {
-          title: 'Writing',
-          url: '/jobs/categories/writing'
-        },
-        {
-          title: 'Marketing',
-          url: '/jobs/categories/marketing'
-        },
-        {
-          title: 'Accounting',
-          url: '/jobs/categories/accounting'
-        },
-        {
-          title: 'Business',
-          url: '/jobs/categories/business'
-        },
-        {
-          title: 'Customer Service',
-          url: '/jobs/categories/customer-service'
-        }
-      ],
-      freelanceroutes: [
-        {
-          title: 'Design',
-          url: '/freelancing/categories/design'
-        },
-        {
-          title: 'Handymen',
-          url: '/freelancing/categories/handymen'
-        },
-        {
-          title: 'Animation',
-          url: '/freelancing/categories/animation'
-        },
-        {
-          title: 'Music',
-          url: '/freelancing/categories/music'
-        },
-        {
-          title: 'Programming',
-          url: '/freelancing/categories/programming'
-        },
-        {
-          title: 'Copywriting',
-          url: '/freelancing/categories/copywriting'
-        },
-        {
-          title: 'Business',
-          url: '/freelancing/categories/business'
-        }
-      ]
+      tutorRoutes,
+      jobsRoutes,
+      freelanceRoutes
     }
   },
   computed: {
@@ -156,7 +72,7 @@ export default {
       } else if (this.$route.path.includes('/jobs')) {
         route = this.jobsRoutes
       } else if (this.$route.path.includes('/freelancing')) {
-        route = this.freelanceroutes
+        route = this.freelanceRoutes
       }
       return route
     },

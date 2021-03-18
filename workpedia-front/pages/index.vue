@@ -38,7 +38,7 @@
     <!-- Popular jobs -->
     <Popular />
     <!-- Private tutors -->
-    <Tutors />
+    <!-- <Tutors /> -->
     <!-- News Letter -->
     <NewsLetter />
     <!-- Footer -->

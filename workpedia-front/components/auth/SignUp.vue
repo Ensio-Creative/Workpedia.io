@@ -122,6 +122,7 @@
             <option
               v-for="state in states"
               :key="state"
+              selected
               :value="state"
               required
             >
@@ -182,6 +183,7 @@
 
 <script>
 import { mapActions } from 'vuex'
+import states from '~/static/data/states.js'
 export default {
   emits: ['changeComponent'],
   data () {
@@ -204,45 +206,7 @@ export default {
       addressInfo: '',
       cityInfo: '',
       phoneInfo: '',
-      states: [
-        'Abia',
-        'Adamawa',
-        'Akwa Ibom',
-        'Anambra',
-        'Bauchi',
-        'Bayelsa',
-        'Benue',
-        'Borno',
-        'Cross River',
-        'Delta',
-        'Ebonyi',
-        'Edo',
-        'Ekiti',
-        'Enugu',
-        'FCT - Abuja',
-        'Gombe',
-        'Imo',
-        'Jigawa',
-        'Kaduna',
-        'Kano',
-        'Katsina',
-        'Kebbi',
-        'Kogi',
-        'Kwara',
-        'Lagos',
-        'Nasarawa',
-        'Niger',
-        'Ogun',
-        'Ondo',
-        'Osun',
-        'Oyo',
-        'Plateau',
-        'Rivers',
-        'Sokoto',
-        'Taraba',
-        'Yobe',
-        'Zamfara'
-      ]
+      states
     }
   },
   methods: {
@@ -325,6 +289,7 @@ export default {
           address: this.address
         }
         this.signUp(result)
+        this.$emit('changeComponent')
         // console.log(result)
         return
       }
