@@ -1,12 +1,5 @@
 <template>
   <div>
-    <TheFreeHeader
-      @sidenavToggle="displaySidenav = !displaySidenav"
-    />
-    <TheFreeSidenav
-      :show="displaySidenav"
-      @close="displaySidenav = false"
-    />
     <!-- Categories Nav -->
     <CategoryRoutes />
     <NuxtChild />

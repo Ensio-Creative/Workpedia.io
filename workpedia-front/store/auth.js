@@ -3,16 +3,7 @@ export const state = () => ({
 })
 
 export const mutations = {
-  updateUser (state, payload) {
-    state.user = {
-      ...state.user,
-      ...payload
-    }
-  },
-  updateUserToken (state, payload) {
-    state.token = payload
-  },
-  clearUserInfo (state) {
+  CLEAR_USER (state) {
     state.user = {}
   }
 }
@@ -27,7 +18,7 @@ export const actions = {
       )
         .then((res) => {
           console.log(res)
-          commit('updateUser', res)
+          commit('UPDATE_USER', res, { root: true })
           // console.log(res)
           // commit('updateAlert', alert, { root: true })
           this.$router.push('/dashboard')
@@ -47,13 +38,17 @@ export const actions = {
   },
 
   logOutUser ({ commit }, payload) {
-    commit('clearUserInfo')
+    commit('CLEAR_USER')
     this.$router.push('/')
   }
 }
 
 export const getters = {
   isAuthenticated (state) {
-    return !state.user.token
+    if (state.user.token) {
+      return true
+    } else {
+      return false
+    }
   }
 }

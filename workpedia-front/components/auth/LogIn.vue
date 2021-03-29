@@ -24,11 +24,6 @@
       >
         Password
       </AppControlInput>
-      <small
-        :class="[password.length <= 6 ? 'info-error' : 'info-success']"
-      >
-        {{ infoTextPassword }}
-      </small>
       <AppButton
         type="submit"
         class="signin-btn mt-3"
@@ -111,12 +106,7 @@ export default {
   color: #251E8C;
   cursor: pointer;
 }
-.info-success{
-  color: green;
-}
-.info-error{
-  color: red;
-}
+
 .signin-btn{
   background-color: #251E8C;
 }

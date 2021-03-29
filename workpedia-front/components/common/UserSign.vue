@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      v-if="!user.token"
+      v-if="!authenticated"
       class="user-not-logged-in"
     >
       <NuxtLink
@@ -20,7 +20,7 @@
       </NuxtLink>
     </div>
     <div
-      v-if="user.token"
+      v-else
       class="user-is-logged-in"
     >
       <div class="list-of-users-action">
@@ -78,7 +78,8 @@ export default {
   data () {
     return {
       showUserDroped: false,
-      userOnDashboard: false
+      userOnDashboard: false,
+      authenticated: false
     }
   },
   computed: {
@@ -86,6 +87,7 @@ export default {
   },
   mounted () {
     this.checkPath()
+    this.loggedIn()
   },
   methods: {
     ...mapActions('auth', ['logOutUser']),
@@ -96,6 +98,13 @@ export default {
       } else {
         this.userOnDashboard = true
         console.log(this.$route.params.name)
+      }
+    },
+    loggedIn () {
+      if (this.user.token) {
+        this.authenticated = true
+      } else {
+        this.authenticated = false
       }
     },
     showUserDrop () {

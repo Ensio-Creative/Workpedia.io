@@ -1,12 +1,5 @@
 <template>
   <div>
-    <TheTutorHeader
-      @sidenavToggle="displaySidenav = !displaySidenav"
-    />
-    <TheTutorSidenav
-      :show="displaySidenav"
-      @close="displaySidenav = false"
-    />
     <section class="bg-hero container">
       <div class="row justify-content-around">
         <div class="col-12 col-md-12 col-lg-6 bg-texts order-6 order-sm-2">
@@ -88,9 +81,7 @@
 <script>
 export default {
   data () {
-    return {
-      displaySidenav: false
-    }
+    return {}
   }
 }
 </script>

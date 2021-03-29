@@ -5,14 +5,27 @@
         <div class="row row-cols-1 row-cols-md-3 g-4">
           <div
             v-for="tutor in fliteredTutors"
-            :key="tutor._id"
+            :key="tutor.title"
           >
-            <TutorList
-              :id="tutor._id"
-              :tutor-title="tutor.tutorTitle"
-              :author="tutor.author"
-              :course-category="tutor.courseCategory"
-            />
+            <NuxtLink
+              :to="`/tutor/${tutor.title}/get-tutor`"
+              class="col"
+            >
+              <div class="card h-100">
+                <img src="~/assets/img/biology.png" alt="">
+                <div class="card-body">
+                  <div class="private-tutor-text">
+                    <h3>{{ tutor.title }}</h3>
+                  </div>
+                  <div class="private-tutor-info">
+                    <p>{{ tutor.description }}</p>
+                  </div>
+                </div>
+                <!-- <div class="card-footer">
+                  <small class="text-muted">Last updated 3 mins ago</small>
+                </div> -->
+              </div>
+            </NuxtLink>
           </div>
         </div>
       </div>
@@ -27,7 +40,12 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import art from '~/static/tutor/art.js'
+import english from '~/static/tutor/english.js'
+import math from '~/static/tutor/math.js'
+import science from '~/static/tutor/science.js'
+import religion from '~/static/tutor/religion.js'
+import busines from '~/static/tutor/business.js'
 export default {
   name: 'SingleTutor',
   data () {
@@ -36,9 +54,21 @@ export default {
     }
   },
   computed: {
-    ...mapState('tutors', ['fetchedTutors']),
     fliteredTutors () {
-      const result = this.fetchedTutors.filter(tutor => tutor.tutorCategory === this.routeUrl)
+      let result
+      if (this.routeUrl === 'mathematics') {
+        result = math
+      } else if (this.routeUrl === 'english') {
+        result = english
+      } else if (this.routeUrl === 'science') {
+        result = science
+      } else if (this.routeUrl === 'arts') {
+        result = art
+      } else if (this.routeUrl === 'religion') {
+        result = religion
+      } else if (this.routeUrl === 'business') {
+        result = busines
+      }
       return result
     }
   }

@@ -1,6 +1,8 @@
 <template>
   <div>
+    <!-- Top nav -->
     <TopNavInfo />
+    <!-- Side nav -->
     <div
       :class="[!resize ? 'sidenav-backdrop' : '']"
     >
@@ -23,13 +25,12 @@
                 <img src="~assets/img/arrow-circle-left (1).svg" alt="">
               </a>
             </div>
-            <FirstNav
+            <!-- First Nav items -->
+            <SuperUser
               :check-resize="resize"
             />
             <!-- <hr> -->
-            <SecondNav
-              :check-resize="resize"
-            />
+            <!-- Remaining nav items -->
           </nav>
         </div>
       </transition>
@@ -44,15 +45,15 @@ export default {
   middleware: 'auth',
   data () {
     return {
-      resize: true
+      resize: false
     }
   },
   methods: {
     resized () {
-      if (this.resize === true) {
-        this.resize = false
-      } else {
+      if (this.resize === false) {
         this.resize = true
+      } else {
+        this.resize = false
       }
     }
   }
@@ -60,7 +61,7 @@ export default {
 </script>
 
 <style scoped>
-.sidenav-backdrop {
+/* .sidenav-backdrop {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
@@ -68,10 +69,10 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-}
+} */
 .sidenav {
   background-color: #0C0573;
-  width: 180px;
+  width: 140px;
   height: 100vh;
   z-index: 10000;
   position: fixed;

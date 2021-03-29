@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-5">
-    <div class="container top-container">
+    <div class="top-container">
       <h2 class="welcome-message">
         Dashboard
       </h2>
@@ -9,7 +9,7 @@
         {{ fullName }}
       </h3>
     </div>
-    <div class="activity-row mt-4">
+    <!-- <div class="activity-row mt-4">
       <div
         class="activity-column"
         @click="activeTab = 'TutorActivity'"
@@ -32,18 +32,18 @@
         <h3>Freelance</h3>
       </div>
     </div>
-    <component :is="activeTab" />
+    <component :is="activeTab" /> -->
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import FreelaceActivity from '../../components/dashboard/activty/FreelaceActivity.vue'
-import JobsActivity from '../../components/dashboard/activty/JobsActivity.vue'
-import TutorActivity from '../../components/dashboard/activty/TutorActivity.vue'
+// import FreelaceActivity from '../../components/dashboard/activty/FreelaceActivity.vue'
+// import JobsActivity from '../../components/dashboard/activty/JobsActivity.vue'
+// import TutorActivity from '../../components/dashboard/activty/TutorActivity.vue'
 export default {
   name: 'Dashboard',
-  components: { FreelaceActivity, TutorActivity, JobsActivity },
+  // components: { FreelaceActivity, TutorActivity, JobsActivity },
   layout: 'dashboard',
   data () {
     return {
@@ -61,6 +61,9 @@ export default {
 </script>
 
 <style scoped>
+.container, .container-sm, .container-md, .container-lg {
+  max-width: 1095px;
+}
 .top-container{
   background-color: #0C0573;
   height: 200px;

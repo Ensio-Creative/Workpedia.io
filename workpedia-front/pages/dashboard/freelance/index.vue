@@ -7,8 +7,9 @@
             <div class="col-12 tutor-basic-info">
               <img src="~assets/img/avatar_c@2x.png" alt="" class="user-img rounded">
               <h4 class="user-name">
-                {{ userName }}
+                {{ fullName }}
               </h4>
+              <h4>Age: {{ user.age }}</h4>
             </div>
             <div class="col-12 tutor-basic-info text-left">
               <h4 class="user-name">
@@ -19,34 +20,9 @@
           </div>
         </div>
         <div class="col-12 col-md-8 tab-colum">
-          <div class="tab">
-            <div
-              class="tab-items"
-            >
-              <a
-                href="#"
-                @click="activeTab = 'Qulifications'"
-              >
-                Qulifications
-              </a>
-            </div>
-            <div
-              class="tab-items"
-            >
-              <a
-                href="#"
-                @click="activeTab = 'Skills'"
-              >
-                Skills
-              </a>
-            </div>
-          </div>
-          <keep-alive>
-            <component
-              :is="activeTab"
-              class="mt-4"
-            />
-          </keep-alive>
+          <Qualifications
+            class="mt-4"
+          />
         </div>
       </div>
     </div>
@@ -54,17 +30,21 @@
 </template>
 
 <script>
-import Qulifications from '~/components/dashboard/jobs/Qulifications.vue'
-import Skills from '~/components/dashboard/jobs/Skills.vue'
+import { mapState } from 'vuex'
 export default {
   name: 'FreelanceDashboard',
-  components: { Qulifications, Skills },
   layout: 'dashboard',
   data () {
     return {
       userName: 'Great Adams',
-      tutorDescription: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam accusantium ut adipisci',
-      activeTab: 'Qulifications'
+      tutorDescription: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam accusantium ut adipisci'
+    }
+  },
+  computed: {
+    ...mapState('auth', ['user']),
+    fullName () {
+      const name = this.user.firstName + ' ' + this.user.lastName
+      return name
     }
   }
 }

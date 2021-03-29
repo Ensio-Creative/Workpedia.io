@@ -13,13 +13,13 @@ export const state = () => ({
 })
 
 export const mutations = {
-  updateTutorState (state, payload) {
+  UPDATE_TUTOR_STATE (state, payload) {
     state.tutor = {
       ...state.tutor,
       ...payload
     }
   },
-  updateStartInfo (state, payload) {
+  UPDATE_START_INFO (state, payload) {
     state.tutor = {
       ...state.startInfo,
       ...payload
@@ -29,14 +29,20 @@ export const mutations = {
 
 export const actions = {
   async startTutor ({ commit, rootState }, payload) {
+    // States from the root
     const userId = rootState.auth.user._id
+    const token = rootState.auth.user.token
     payload = { ...payload, userId }
     try {
       const res = await this.$axios.$patch(
         'tutors/start',
         payload
       )
-      commit('updateStartInfo', res.result)
+      // update the the user and add the token from the state
+      const user = { ...res.user, token }
+      commit('UPDATE_USER', user, { root: true })
+      // commit the start info
+      commit('UPDATE_START_INFO', res.result)
       this.$router.push('/dashboard/tutor')
     } catch (error) {
       console.log(error)
@@ -51,7 +57,7 @@ export const actions = {
         `tutors/update-tutor/${state.tutor._id}`,
         payload
       )
-      commit('updateTutorState', res.result)
+      commit('UPDATE_TUTOR_STATE', res.result)
     } catch (error) {
       console.log(error)
     }

@@ -1,12 +1,9 @@
 <template>
-  <div
-    class="sidenav-container"
-  >
+  <div class="sidenav-container">
     <div
       v-if="show"
       class="sidenav-backdrop"
-      @click="$emit('close'
-      )"
+      @click="$emit('close')"
     />
     <transition name="slide-side">
       <div
@@ -15,34 +12,17 @@
       >
         <ul
           class="nav-list"
-          @click="$emit('close'
-          )"
+          @click="$emit('close')"
         >
           <li
+            v-for="links in routes"
+            :key="links.url"
             class="nav-item"
-            @click="$emit('close'
-            )"
           >
-            <NuxtLink to="/tutor">
-              Tutor
-            </NuxtLink>
-          </li>
-          <li
-            class="nav-item"
-            @click="$emit('close'
-            )"
-          >
-            <NuxtLink to="/freelancing">
-              Freelancing / Handy Men
-            </NuxtLink>
-          </li>
-          <li
-            class="nav-item"
-            @click="$emit('close'
-            )"
-          >
-            <NuxtLink to="/jobs">
-              Jobs
+            <NuxtLink
+              :to="links.url"
+            >
+              {{ links.title }}
             </NuxtLink>
           </li>
         </ul>
@@ -52,12 +32,39 @@
 </template>
 
 <script>
+import homeNav from '~/static/baseNav/home.js'
+import tutorNav from '~/static/baseNav/tutor.js'
+import jobsNav from '~/static/baseNav/jobs.js'
+import freelanceNav from '~/static/baseNav/freelance.js'
 export default {
   name: 'TheSidenav',
   props: {
     show: {
       type: Boolean,
       default: false
+    }
+  },
+  data () {
+    return {
+      homeNav,
+      tutorNav,
+      jobsNav,
+      freelanceNav
+    }
+  },
+  computed: {
+    routes () {
+      let route = ''
+      if (this.$route.path === '/') {
+        route = this.homeNav
+      } else if (this.$route.path.includes('/tutor')) {
+        route = this.tutorNav
+      } else if (this.$route.path.includes('/jobs')) {
+        route = this.jobsNav
+      } else if (this.$route.path.includes('/freelancing')) {
+        route = this.freelanceNav
+      }
+      return route
     }
   }
 }
@@ -104,6 +111,7 @@ export default {
   list-style: none;
   padding: 0;
   margin: 0;
+  font-size: 18px;
 }
 
 .nav-item {
@@ -112,12 +120,11 @@ export default {
 
 .nav-item a {
   text-decoration: none;
-  color: black;
-  font-size: 1.5rem;
+  color: #0C0573;
 }
 
 .nav-item a:hover,
 .nav-item a:active {
-  color: red;
+  color: #0C0573;
 }
 </style>

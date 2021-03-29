@@ -47,29 +47,27 @@
               </div>
             </div>
             <div class="col">
-              <label for="">What subject did you tutor on?</label>
-              <input
-                v-model.trim="subject"
+              <AppControlInput
+                v-model.trim="subjectTutorBefore"
                 type="text"
-                class="form-control"
-                placeholder="subjectTutorBefore"
-                aria-label="Last name"
+                placeholder="Subject"
                 required
               >
+                What subject did you tutor on?
+              </AppControlInput>
             </div>
           </div>
           <div class="row">
             <div class="col-12">
-              <label for="">Descripe yourself as a Tutor</label>
-              <textarea
+              <AppTextarea
                 v-model.trim="description"
                 type="text"
-                class="form-control mb-3"
+                class="mb-3"
                 placeholder="Describe"
-                aria-label="First n ame"
                 required
-                rows="3"
-              />
+              >
+                Descripe yourself as a Tutor
+              </AppTextarea>
             </div>
           </div>
           <AppButton

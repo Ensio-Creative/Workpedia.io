@@ -9,10 +9,19 @@ export const state = () => ({
 })
 
 export const mutations = {
-  errors (state, errors) {
+  ERRORS (state, errors) {
     state.errors = errors
   },
-  clear_errors (state) {
+  CLEAR_ERRORS (state) {
     state.errors = []
+  },
+  UPDATE_USER (state, payload) {
+    state.auth.user = {
+      ...state.user,
+      ...payload
+    }
+  },
+  UPDATE_LOADING (state, Loading) {
+    state.isLoading = Loading
   }
 }

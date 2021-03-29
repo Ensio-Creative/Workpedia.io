@@ -99,8 +99,8 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import subjects from '~/static/data/subjects.js'
-import tutorcategories from '~/static/data/tutorCategory.js'
+import subjects from '~/static/tutor/subjects.js'
+import tutorcategories from '~/static/tutor/tutorRoutes.js'
 export default {
   name: 'TutorDetails',
   emits: ['changeComponent'],
@@ -142,8 +142,8 @@ export default {
         tutorCategory: this.category,
         description: this.description
       }
-      console.log(payload)
-      // this.updateTutor(payload)
+      // console.log(payload)
+      this.updateTutor(payload)
       this.$emit('changeComponent')
     }
   }

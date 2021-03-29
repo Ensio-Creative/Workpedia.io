@@ -21,7 +21,7 @@ export default [
   },
   {
     title: 'Business',
-    url: 'businesss'
+    url: 'business'
   },
   {
     title: 'Religion',

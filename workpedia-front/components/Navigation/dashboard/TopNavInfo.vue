@@ -29,4 +29,7 @@ export default {
 .top-nav img{
   width: 50px;
 }
+.container, .container-sm, .container-md, .container-lg {
+    max-width: 1095px;
+}
 </style>

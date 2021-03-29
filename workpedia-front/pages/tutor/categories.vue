@@ -1,12 +1,5 @@
 <template>
   <div>
-    <TheTutorHeader
-      @sidenavToggle="displaySidenav = !displaySidenav"
-    />
-    <TheTutorSidenav
-      :show="displaySidenav"
-      @close="displaySidenav = false"
-    />
     <CategoryRoutes />
     <NuxtChild />
   </div>
@@ -16,9 +9,7 @@
 export default {
   name: 'Categories',
   data () {
-    return {
-      displaySidenav: false
-    }
+    return {}
   }
 }
 </script>

@@ -25,14 +25,6 @@
                   <span class="gray-background">
                     <h6>{{ jobs.experience }}</h6>
                   </span>
-                  <button
-                    type="button"
-                    class="btn btn-apply text-center"
-                    data-bs-toggle="modal"
-                    data-bs-target="#staticBackdrop"
-                  >
-                    Apply Now
-                  </button>
                 </div>
                 <div class="popular-text mt-3 mb-4">
                   <h3>Job description</h3>
@@ -43,6 +35,14 @@
                 <div class="popular-text mb-4">
                   {{ jobs.totalDescription }}
                 </div>
+                <button
+                  type="button"
+                  class="btn btn-apply text-center"
+                  data-bs-toggle="modal"
+                  data-bs-target="#staticBackdrop"
+                >
+                  Apply Now
+                </button>
               </div>
             </div>
           </div>
@@ -96,14 +96,16 @@
               </div>
               <div class="contact-detail">
                 <!-- User name -->
-                <h5><strong>Great Adams</strong></h5>
+                <h5><strong>{{ fullName }}</strong></h5>
                 <!-- User Description -->
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                <p>{{ address }}</p>
                 <!-- User location -->
                 <small class="gray">Nigeria</small>
               </div>
             </div>
-            <form>
+            <form
+              @submit.prevent="onSubmit"
+            >
               <!-- Map the user info from vuex -->
               <div class="row">
                 <div class="col">
@@ -142,25 +144,17 @@
                     id="formFile"
                     class="form-control"
                     type="file"
+                    required
                   >
                 </div>
               </div>
+              <AppButton
+                type="submit"
+                class="btn btn-apply"
+              >
+                Submit
+              </AppButton>
             </form>
-          </div>
-          <div class="modal-footer">
-            <!-- <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button> -->
-            <button
-              type="button"
-              class="btn btn-apply"
-            >
-              Submit
-            </button>
           </div>
         </div>
       </div>
@@ -182,9 +176,31 @@ export default {
   computed: {
     // Change the code to from using fliters
     ...mapState('jobs', ['job']),
+    ...mapState('auth', ['user']),
     fliteredJobs () {
       const result = this.job.filter(job => job._id === this.routeUrl)
       return result
+    },
+    fullName () {
+      const name = this.user.firstName + ' ' + this.user.lastName
+      return name
+    },
+    address () {
+      const address = `${this.user.address} ${this.user.city} ${this.user.state}`
+      return address
+    }
+  },
+  mounted () {
+    this.email = this.user.email
+    this.phone = this.user.phone
+  },
+  methods: {
+    onSubmit () {
+      if (this.user.isApplicant) {
+        console.log('Free to apply')
+      } else {
+        this.$router.push('/jobs/subscribe')
+      }
     }
   }
 }
@@ -196,7 +212,7 @@ export default {
   padding: 10px;
   border-radius: 8px;
   color: #fff;
-  margin-left: 250px;
+  margin-bottom: 40px;
 }
 
 .btn-apply:hover{

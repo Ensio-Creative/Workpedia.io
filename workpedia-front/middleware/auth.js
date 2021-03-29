@@ -1,6 +1,8 @@
 export default function (context) {
-  if (context.store.getters.isAuthenticated) {
+  if (!context.store.state.auth.user.token) {
     // context.redirect('/auth')
-    console.log('context.store.state.auth.user.token')
+  } else {
+    // context.redirect('/auth')
+    console.log('We passed')
   }
 }

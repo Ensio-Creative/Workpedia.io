@@ -323,12 +323,7 @@ export default {
   border: 1px solid red;
   border-radius: 8px;
 }
-.info-success{
-  color: green;
-}
-.info-error{
-  color: red;
-}
+
 .signin-btn{
   background-color: #251E8C;
 }

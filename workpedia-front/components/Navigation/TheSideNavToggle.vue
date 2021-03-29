@@ -2,8 +2,7 @@
   <div
     class="drawer-toggle"
     role="button"
-    @click="$emit('toggle'
-    )"
+    @click="$emit('toggle')"
   >
     <div class="bar" />
     <div class="bar" />
@@ -27,22 +26,9 @@
   }
 }
 
-.bar {
+.drawer-toggle .bar {
   width: 90%;
-  height: 1px;
-  background-color: #000;
-  padding: 2px;
-}
- .bar:nth-child(2) {
-  width: 90%;
-  height: 1px;
-  margin-top: 5px;
-  background-color: #000;
-}
-.bar:nth-child(3){
-  width: 90%;
-  height: 1px;
-  margin-top: 5px;
-  background-color: #000;
+  height: 2px;
+  background-color: #0C0573;
 }
 </style>

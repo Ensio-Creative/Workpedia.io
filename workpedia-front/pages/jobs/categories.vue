@@ -1,12 +1,5 @@
 <template>
   <div>
-    <TheJobsHeader
-      @sidenavToggle="displaySidenav = !displaySidenav"
-    />
-    <TheJobsSidenav
-      :show="displaySidenav"
-      @close="displaySidenav = false"
-    />
     <!-- Categories Nav -->
     <CategoryRoutes />
     <NuxtChild />

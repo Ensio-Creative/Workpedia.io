@@ -1,12 +1,5 @@
 <template>
   <div>
-    <TheFreeHeader
-      @sidenavToggle="displaySidenav = !displaySidenav"
-    />
-    <TheFreeSidenav
-      :show="displaySidenav"
-      @close="displaySidenav = false"
-    />
     <section class="bg-hero container">
       <div class="row justify-content-around">
         <div class="col-12 col-md-12 col-lg-6 bg-texts order-6 order-sm-2">

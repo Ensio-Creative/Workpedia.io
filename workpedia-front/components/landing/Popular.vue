@@ -60,7 +60,7 @@ export default {
   computed: {
     ...mapState('jobs', ['job']),
     filteredJobs () {
-      const listedJobs = this.job.slice(0, 6)
+      const listedJobs = this.job
       return listedJobs
     }
   }

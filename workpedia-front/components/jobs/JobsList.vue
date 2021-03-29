@@ -19,7 +19,7 @@
         :to="`/jobs/categories/single-job/${id}`"
         class="btn-apply text-center"
       >
-        VIEW
+        VIEW NOW
       </NuxtLink>
     </div>
     <div class="popular-text mt-3 mb-4">

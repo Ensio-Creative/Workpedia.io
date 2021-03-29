@@ -39,7 +39,7 @@
               v-for="(route) in routes"
               :key="route.url"
               class="nav-link mr-3"
-              :to="route.url"
+              :to="`${checkUrl}${route.url}`"
             >
               {{ route.title }}
             </NuxtLink>
@@ -52,9 +52,9 @@
 </template>
 
 <script>
-import tutorRoutes from '~/static/data/tutorRoutes.js'
-import jobsRoutes from '~/static/data/jobsRoutes.js'
-import freelanceRoutes from '~/static/data/freelanceRoutes.js'
+import tutorRoutes from '~/static/tutor/tutorRoutes.js'
+import jobsRoutes from '~/static/jobs/jobsRoutes.js'
+import freelanceRoutes from '~/static/freelance/freelanceRoutes.js'
 export default {
   name: 'CategoryRoutes',
   data () {
@@ -73,6 +73,17 @@ export default {
         route = this.jobsRoutes
       } else if (this.$route.path.includes('/freelancing')) {
         route = this.freelanceRoutes
+      }
+      return route
+    },
+    checkUrl () {
+      let route = ''
+      if (this.$route.path.includes('/tutor')) {
+        route = '/tutor/categories/'
+      } else if (this.$route.path.includes('/jobs')) {
+        route = '/jobs/categories/'
+      } else if (this.$route.path.includes('/freelancing')) {
+        route = '/freelancing/categories/'
       }
       return route
     },
