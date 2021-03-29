@@ -6,9 +6,10 @@ const header = {
   alg: 'HS512'
 }
 
-function generateToken(userId, isAdmin) {
+function generateToken(userId, isVerified, isAdmin) {
   const data = {
     userId,
+    isVerified,
     isAdmin
   }
 
@@ -20,9 +21,10 @@ function decodeToken(token) {
 }
 
 function checkToken(token) {
+  let decodedToken
   try {
-    jwt.verify(token, secret)
-    return true
+    decodeToken = jwt.verify(token, secret)
+    return decodeToken
   } catch (err) {
     return false
   }

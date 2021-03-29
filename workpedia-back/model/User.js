@@ -66,19 +66,35 @@ const UserSchema = new Schema({
   },
   isTutor: {
     type: Boolean,
-    default: false
+    default: false,
+    tutorId: {
+      type: Schema.Types.ObjectId,
+      ref: 'tutors'
+	  }
   },
   isHire: {
     type: Boolean,
-    default: false
+    default: false,
+    hireId: {
+      type: Schema.Types.ObjectId,
+      ref: 'hire'
+	  }
   },
   isApplicant: {
     type: Boolean,
-    default: false
+    default: false,
+    applicantId: {
+      type: Schema.Types.ObjectId,
+      ref: 'applicant'
+	  }
   },
   isFreelancer: {
     type: Boolean,
-    default: false
+    default: false,
+    freelanceId: {
+      type: Schema.Types.ObjectId,
+      ref: 'freelance'
+	  }
   },
   isVerified: {
     type: Boolean,

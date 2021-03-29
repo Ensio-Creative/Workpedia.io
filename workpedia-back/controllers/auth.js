@@ -1,7 +1,8 @@
-// const { validationResult } = require('express-validator/check')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-// const hashPassword = require('../utils/auth')
+
+const { validationResult } = require('express-validator/check')
+
 const { 
   auth: hashPassword,
   jwt: { generateToken }
@@ -38,10 +39,13 @@ exports.signUp = async (req, res, next) => {
 
 exports.login = (req, res, next) => {
   const { email, password } = req.body
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    res.status(422)
+  }
   let loadedUser
   User.findOne({ email })
     .then(user => {
-      console.log('Found user')
       if (!user) {
         const error = new Error('A user with this email could not be found.')
         error.statusCode = 401
@@ -56,27 +60,8 @@ exports.login = (req, res, next) => {
         error.statusCode = 401
         throw error
       }
-      const token = generateToken(loadedUser._id.toString(), loadedUser.email)
-      let payload = {
-        _id: loadedUser._id,
-        firstName: loadedUser.firstName,
-        lastName: loadedUser.lastName,
-        email: loadedUser.email,
-        age: loadedUser.age,
-        phone: loadedUser.phone,
-        state: loadedUser.state,
-        city: loadedUser.city,
-        address: loadedUser.address,
-        country: loadedUser.country,
-        Game: loadedUser.userGame,
-        isAdmin: loadedUser.isAdmin,
-        isTutor: loadedUser.isTutor,
-        isHire: loadedUser.isHire,
-        isApplicant: loadedUser.isApplicant,
-        isFreelancer: loadedUser.isFreelancer,
-        isVerified: loadedUser.isVerified,
-        token
-      }
+      const token = generateToken(loadedUser._id.toString(), loadedUser.isVerified, loadedUser.isAdmin)
+      let payload = { ...loadedUser._doc, token }
       res.status(200).json(payload)
     })
     .catch(err => {

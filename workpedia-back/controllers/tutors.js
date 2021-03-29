@@ -18,7 +18,7 @@ exports.startInfo = async (req, res) => {
 	})
 	return tutor.save()
   .then(result => {
-    res.status(201).json({ message: 'Tutor created!', result })
+    res.status(201).json({ message: 'Tutor created!', user, result })
   })
 	.catch(err => {
     if (!err.statusCode) {
