@@ -1,7 +1,7 @@
 <template>
-  <div class="container header-container">
-    <header class="the-header">
-      <div class="navbar-brand">
+  <div class="header-container">
+    <header class="the-header container">
+      <div class="nav-img">
         <NuxtLink to="/">
           <img src="~/assets/img/Workpedia logo transparent (Blue).png" alt="">
         </NuxtLink>
@@ -46,7 +46,7 @@ export default {
   },
   computed: {
     // Make nested if statements and check for the urls no longer
-    // needed and pop them out of the array
+    // needed when the user is logged in or not and pop them out of the array
     routes () {
       let route = ''
       if (this.$route.path === '/') {
@@ -67,20 +67,13 @@ export default {
 <style scoped>
 .header-container {
   height: 60px;
+  background-color: #fff;
 }
 
 .the-header {
-  width: 90%;
-  position: fixed;
-  height: 60px;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
   color: #0C0573;
-  background-color: #fff;
-  z-index: 100;
-  box-sizing: border-box;
-  padding: 0 20px;
+  padding: 20px 18px;
 }
 
 .logo {
@@ -112,6 +105,7 @@ export default {
 
 .nav-item {
   margin: 0 10px;
+  padding-top: 5px;
 }
 
 .nav-item a {

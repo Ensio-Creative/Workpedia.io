@@ -6,40 +6,37 @@
           <div class="col-12 col-md-12 col-lg-10">
             <div class="row">
               <div
-                v-for="jobs in fliteredJobs"
-                :key="jobs._id"
                 class="col-12 col-md-12 col-lg-12 popular-column"
               >
                 <div class="popular-column-heading">
                   <i class="fas fa-suitcase" />
-                  <h3>{{ jobs.title }}</h3>
-                  <h5>{{ jobs.location }}</h5>
+                  <h3>{{ fliteredJobs.title }}</h3>
+                  <h5>{{ fliteredJobs.location }}</h5>
                 </div>
                 <div class="popular-durations">
                   <span class="gray-background">
-                    <h6>{{ jobs.dayOFPostMade }}</h6>
+                    <h6>{{ fliteredJobs.dayOFPostMade }}</h6>
                   </span>
                   <span class="gray-background">
-                    <h6>{{ jobs.timelineOfJobs }}</h6>
+                    <h6>{{ fliteredJobs.timelineOfJobs }}</h6>
                   </span>
                   <span class="gray-background">
-                    <h6>{{ jobs.experience }}</h6>
+                    <h6>{{ fliteredJobs.experience }}</h6>
                   </span>
                 </div>
                 <div class="popular-text mt-3 mb-4">
                   <h3>Job description</h3>
                   <p>
-                    {{ jobs.description }}
+                    {{ fliteredJobs.description }}
                   </p>
                 </div>
                 <div class="popular-text mb-4">
-                  {{ jobs.totalDescription }}
+                  {{ fliteredJobs.totalDescription }}
                 </div>
                 <button
+                  v-b-modal.modal-lg
                   type="button"
                   class="btn btn-apply text-center"
-                  data-bs-toggle="modal"
-                  data-bs-target="#staticBackdrop"
                 >
                   Apply Now
                 </button>
@@ -55,110 +52,94 @@
     <!-- Footer -->
     <Footer />
     <!-- Model code -->
-    <!-- Button trigger modal -->
-
-    <!-- Modal -->
-    <div
-      id="staticBackdrop"
-      class="modal fade"
-      data-bs-backdrop="static"
-      data-bs-keyboard="false"
-      tabindex="-1"
-      aria-labelledby="staticBackdropLabel"
-      aria-hidden="true"
+    <!-- The modal -->
+    <b-modal
+      id="modal-lg"
+      size="lg"
+      :cancel-disabled="true"
+      :ok-disabled="true"
     >
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5
-              v-for="apply in fliteredJobs"
-              id="staticBackdropLabel"
-              :key="apply._id"
-              class="modal-title"
-            >
-              Application for {{ apply.title }}
-            </h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            />
-          </div>
-          <div class="modal-body">
-            <h5 class="my-4">
-              Contact info
-            </h5>
-            <div class="contact-info">
-              <!-- User img -->
-              <div class="contact-detail">
-                <img src="~/assets/img/avatar@2x.png" alt="">
-              </div>
-              <div class="contact-detail">
-                <!-- User name -->
-                <h5><strong>{{ fullName }}</strong></h5>
-                <!-- User Description -->
-                <p>{{ address }}</p>
-                <!-- User location -->
-                <small class="gray">Nigeria</small>
-              </div>
-            </div>
-            <form
-              @submit.prevent="onSubmit"
-            >
-              <!-- Map the user info from vuex -->
-              <div class="row">
-                <div class="col">
-                  <AppControlInput
-                    v-model.trim="email"
-                    type="text"
-                    required
-                  >
-                    Email
-                  </AppControlInput>
-                  <!-- <small
-                    :class="[city.length < 3 ? 'info-error' : 'info-success']"
-                  >
-                    {{ cityInfo }}
-                  </small> -->
-                </div>
-                <div class="col">
-                  <AppControlInput
-                    v-model.trim="phone"
-                    type="text"
-                    required
-                  >
-                    Phone
-                  </AppControlInput>
-                  <!-- <small
-                    :class="[city.length < 3 ? 'info-error' : 'info-success']"
-                  >
-                    {{ cityInfo }}
-                  </small> -->
-                </div>
-              </div>
-              <div class="row">
-                <div class="mb-3">
-                  <label for="formFile" class="form-label">Upload Cv*</label>
-                  <input
-                    id="formFile"
-                    class="form-control"
-                    type="file"
-                    required
-                  >
-                </div>
-              </div>
-              <AppButton
-                type="submit"
-                class="btn btn-apply"
-              >
-                Submit
-              </AppButton>
-            </form>
-          </div>
+      <template #modal-title>
+        <h5
+          id="staticBackdropLabel"
+          class="modal-title"
+        >
+          Application for {{ fliteredJobs.title }}
+        </h5>
+      </template>
+      <h5 class="my-4">
+        Contact info
+      </h5>
+      <div class="contact-info">
+        <!-- User img -->
+        <div class="contact-detail">
+          <img src="~/assets/img/avatar@2x.png" alt="">
+        </div>
+        <div class="contact-detail">
+          <!-- User name -->
+          <h5><strong>{{ fullName }}</strong></h5>
+          <!-- User Description -->
+          <p>{{ address }}</p>
+          <!-- User location -->
+          <small class="gray">{{ user.address }} Nigeria</small>
         </div>
       </div>
-    </div>
+      <form
+        @submit.prevent="onSubmit"
+      >
+        <!-- Map the user info from vuex -->
+        <div class="row">
+          <div class="col">
+            <AppControlInput
+              v-model.trim="email"
+              type="text"
+              required
+            >
+              Email
+            </AppControlInput>
+            <!-- <small
+              :class="[city.length < 3 ? 'info-error' : 'info-success']"
+            >
+              {{ cityInfo }}
+            </small> -->
+          </div>
+          <div class="col">
+            <AppControlInput
+              v-model.trim="phone"
+              type="text"
+              required
+            >
+              Phone
+            </AppControlInput>
+            <!-- <small
+              :class="[city.length < 3 ? 'info-error' : 'info-success']"
+            >
+              {{ cityInfo }}
+            </small> -->
+          </div>
+        </div>
+        <div class="row">
+          <div class="mb-3">
+            <label for="formFile" class="form-label">Upload Cv*</label>
+            <input
+              id="formFile"
+              class="form-control"
+              type="file"
+              required
+            >
+          </div>
+        </div>
+      </form>
+      <template #modal-footer="{ cancel}">
+        <!-- Emulate built in modal footer ok and cancel button actions -->
+        <b-button size="sm" variant="btn-apply" @click="cancel()">
+          Cancel
+        </b-button>
+        <b-button size="sm" variant="success" @click="onSubmit">
+          Submit
+        </b-button>
+      </template>
+    </b-modal>
   </div>
 </template>
 
@@ -179,14 +160,14 @@ export default {
     ...mapState('auth', ['user']),
     fliteredJobs () {
       const result = this.job.filter(job => job._id === this.routeUrl)
-      return result
+      return result[0]
     },
     fullName () {
       const name = this.user.firstName + ' ' + this.user.lastName
       return name
     },
     address () {
-      const address = `${this.user.address} ${this.user.city} ${this.user.state}`
+      const address = `${this.user.city} ${this.user.state}`
       return address
     }
   },
@@ -199,7 +180,8 @@ export default {
       if (this.user.isApplicant) {
         console.log('Free to apply')
       } else {
-        this.$router.push('/jobs/subscribe')
+        // this.$router.push('/jobs/subscribe')
+        console.log('help')
       }
     }
   }

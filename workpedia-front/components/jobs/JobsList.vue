@@ -36,9 +36,9 @@ export default {
   name: 'JobsList',
   props: {
     id: {
-      type: Number,
+      type: String,
       requried: true,
-      default: 0
+      default: ''
     },
     title: {
       type: String,

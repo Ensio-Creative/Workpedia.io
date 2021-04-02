@@ -52,39 +52,7 @@ export default {
 </script>
 
 <style scoped>
-.tutor-basic-info{
-  box-shadow: 0px 1px 2px 1px #00000029;
-  border-radius: 8px;
-  text-align: center;
-  margin-top: 30px;
-}
-.tab-colum{
-  box-shadow: 0px 1px 2px 1px #00000029;
-  border-radius: 8px;
-  margin-top: 30px;
-}
-.user-img{
-  margin-top: 20px;
-}
-.user-name{
-  padding-top: 20px;
-}
-.tab {
-    padding-top: 20px;
-}
-.tab-items{
-  display: inline;
-  padding: 20px;
-}
-.tab-items:hover{
-  border-bottom: 1px solid #0DB47B;
-}
-.tab-items:focus{
-  border-bottom: 1px solid #0DB47B;
-}
-.tab-items a {
-  color: #0DB47B;
-  text-decoration: none;
-  margin-top: 10px;
+.container, .container-sm, .container-md, .container-lg {
+  max-width: 1050px;
 }
 </style>

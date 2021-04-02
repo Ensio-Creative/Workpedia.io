@@ -48,11 +48,16 @@ export default {
       resize: false
     }
   },
+  mounted () {
+    this.resize = this.$store.state.resized
+  },
   methods: {
     resized () {
-      if (this.resize === false) {
+      if (this.$store.state.resized === false) {
+        this.$store.commit('RESIZE', true)
         this.resize = true
       } else {
+        this.$store.commit('RESIZE', false)
         this.resize = false
       }
     }
@@ -81,7 +86,7 @@ export default {
 }
 .sidenav-resided {
     background-color: #0C0573;
-    width: 54px;
+    width: 100px;
     height: 100vh;
     position: fixed;
     z-index: 10000;

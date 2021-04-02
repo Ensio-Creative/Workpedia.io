@@ -29,6 +29,9 @@ export default {
     return {
       ownAccount: false
     }
+  },
+  mounted () {
+    this.ownAccount = this.$store.state.hasAccount
   }
 }
 </script>

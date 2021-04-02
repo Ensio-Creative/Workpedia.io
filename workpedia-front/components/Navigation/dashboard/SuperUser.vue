@@ -7,13 +7,12 @@
         to="/dashboard"
         data-toggle="LogOut"
         data-placement="right"
+        class="mb-2"
         title="Dashboard"
         :class="[!checkResize ? 'side-nav-item' : 'side-nav-item-resized']"
       >
         <i class="fas fa-clipboard-list" />
-        <span
-          v-if="!checkResize"
-        >
+        <span>
           Dashboard
         </span>
       </NuxtLink>
@@ -21,13 +20,12 @@
         to="/dashboard/messages"
         data-toggle="LogOut"
         data-placement="right"
+        class="mb-2"
         title="Messages"
         :class="[!checkResize ? 'side-nav-item' : 'side-nav-item-resized']"
       >
         <i class="far fa-envelope-open" />
-        <span
-          v-if="!checkResize"
-        >
+        <span>
           Messages
         </span>
       </NuxtLink>
@@ -35,13 +33,12 @@
         to="/dashboard/payments"
         data-toggle="LogOut"
         data-placement="right"
+        class="mb-2"
         title="Payments"
         :class="[!checkResize ? 'side-nav-item' : 'side-nav-item-resized']"
       >
         <i class="fas fa-money-check-alt" />
-        <span
-          v-if="!checkResize"
-        >
+        <span>
           Payments
         </span>
       </NuxtLink>
@@ -50,13 +47,12 @@
         to="/dashboard/tutor"
         data-toggle="LogOut"
         data-placement="right"
+        class="mb-2"
         title="Tutor"
         :class="[!checkResize ? 'side-nav-item' : 'side-nav-item-resized']"
       >
         <i class="fas fa-chalkboard-teacher" />
-        <span
-          v-if="!checkResize"
-        >
+        <span>
           Tutor
         </span>
       </NuxtLink>
@@ -65,13 +61,12 @@
         to="/dashboard/jobs"
         data-toggle="LogOut"
         data-placement="right"
+        class="mb-2"
         title="Jobs"
         :class="[!checkResize ? 'side-nav-item' : 'side-nav-item-resized']"
       >
         <i class="fas fa-suitcase" />
-        <span
-          v-if="!checkResize"
-        >
+        <span>
           Jobs
         </span>
       </NuxtLink>
@@ -81,13 +76,12 @@
         to="/dashboard/hire"
         data-toggle="Hire"
         data-placement="right"
+        class="mb-2"
         title="Jobs"
         :class="[!checkResize ? 'side-nav-item' : 'side-nav-item-resized']"
       >
         <i class="fas fa-suitcase" />
-        <span
-          v-if="!checkResize"
-        >
+        <span>
           Hire
         </span>
       </NuxtLink>
@@ -96,13 +90,12 @@
         to="/dashboard/freelance"
         data-toggle="Freelance"
         data-placement="right"
+        class="mb-2"
         title="Freelance"
         :class="[!checkResize ? 'side-nav-item' : 'side-nav-item-resized']"
       >
         <i class="fas fa-search" />
-        <span
-          v-if="!checkResize"
-        >
+        <span>
           Freelance
         </span>
       </NuxtLink>
@@ -116,9 +109,7 @@
         :class="[!checkResize ? 'side-nav-item' : 'side-nav-item-resized']"
       >
         <i class="fas fa-cog" />
-        <span
-          v-if="!checkResize"
-        >
+        <span>
           Settings
         </span>
       </NuxtLink>
@@ -130,9 +121,7 @@
         :class="[!checkResize ? 'side-nav-item' : 'side-nav-item-resized']"
       >
         <i class="fas fa-sign-out-alt" />
-        <span
-          v-if="!checkResize"
-        >
+        <span>
           Logout
         </span>
       </NuxtLink>
@@ -214,31 +203,35 @@ export default {
   color: #fff;
   letter-spacing: 0px;
   font-size: 14px;
-  width: 131px;
+  width: 140px;
   font-weight: bold;
 }
 
-.side-nav-item:hover {
-  color: #fff;
-}
 .side-nav-item-resized {
   display: block;
   color: #fff;
   font-size: 18px;
-  width: 0px;
+  text-align: center;
+  width: 100px;
+  font-weight: bold;
+  padding: 20px;
+  height: 60px;
 }
-.side-nav-item:hover {
-  border-right: 1px solid #ff9b17;
+.side-nav-item-resized span {
+  font-size: 13px;
 }
-.side-nav-item-resized:hover {
-  border-right: 1px solid #ff9b17;
+.side-nav-item:hover,
+.side-nav-item:active {
+  border-right: 2px solid #ff9b17;
+  color: #ff9b17;
 }
+.side-nav-item-resized:hover,
 .nuxt-link-active {
-  border-right: 1px solid #ff9b17;
+  color: #ff9b17;
 }
 
 .side-nav-item-resized i {
-  padding: 19px;
+  padding: 0px;
 }
 .side-nav-item:hover {
   text-decoration: none;

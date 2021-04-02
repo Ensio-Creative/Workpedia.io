@@ -5,12 +5,20 @@ Vue.use(Vuex)
 
 export const state = () => ({
   isLoading: false,
+  resized: false,
+  hasAccount: false,
   errors: []
 })
 
 export const mutations = {
   ERRORS (state, errors) {
     state.errors = errors
+  },
+  RESIZE (state, resize) {
+    state.resized = resize
+  },
+  HAS_ACCOUNT (state, account) {
+    state.hasAccount = account
   },
   CLEAR_ERRORS (state) {
     state.errors = []

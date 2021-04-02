@@ -4,20 +4,20 @@
       v-if="!authenticated"
       class="user-not-logged-in"
     >
-      <NuxtLink
-        to="/auth"
+      <button
         class="btn"
         :class="changeBtn()"
+        @click="hasAccount(true)"
       >
         Login
-      </NuxtLink>
-      <NuxtLink
-        to="/auth"
+      </button>
+      <button
         class="btn ml-1"
         :class="changeBtn()"
+        @click="hasAccount(false)"
       >
         Get Started
-      </NuxtLink>
+      </button>
     </div>
     <div
       v-else
@@ -91,6 +91,10 @@ export default {
   },
   methods: {
     ...mapActions('auth', ['logOutUser']),
+    hasAccount (value) {
+      this.$store.commit('HAS_ACCOUNT', value)
+      this.$router.push('/auth')
+    },
     checkPath () {
       if (this.$route.path === '/dashboard') {
         this.userOnDashboard = false

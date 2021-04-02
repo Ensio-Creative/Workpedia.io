@@ -12,6 +12,7 @@
               :id="works._id"
               :title="works.title"
               :amount="works.amount"
+              :author="works.author"
             />
           </div>
         </div>

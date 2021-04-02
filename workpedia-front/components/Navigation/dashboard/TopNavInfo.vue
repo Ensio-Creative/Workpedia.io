@@ -30,6 +30,6 @@ export default {
   width: 50px;
 }
 .container, .container-sm, .container-md, .container-lg {
-    max-width: 1095px;
+  max-width: 1050px;
 }
 </style>

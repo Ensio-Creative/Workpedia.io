@@ -1,17 +1,5 @@
 <template>
   <div>
-    <!-- <NuxtLink
-      class="freelance-column text-center"
-      :to="`/freelancing/categories/single-freelancing/${id}`"
-    >
-      <div class="freelance-img-head" />
-      <div class="freelance-text">
-        <h3>{{ title }}</h3>
-      </div>
-      <div class="freelance-amount">
-        <p>${{ amount }}</p>
-      </div>
-    </NuxtLink> -->
     <NuxtLink
       :to="`/freelancing/categories/single-freelancing/${id}`"
       class="col"
@@ -48,6 +36,11 @@ export default {
       type: String,
       requried: true,
       default: 'Tutor Course'
+    },
+    author: {
+      type: String,
+      requried: true,
+      default: 'Author'
     },
     amount: {
       type: String,

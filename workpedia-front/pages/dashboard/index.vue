@@ -38,9 +38,6 @@
 
 <script>
 import { mapState } from 'vuex'
-// import FreelaceActivity from '../../components/dashboard/activty/FreelaceActivity.vue'
-// import JobsActivity from '../../components/dashboard/activty/JobsActivity.vue'
-// import TutorActivity from '../../components/dashboard/activty/TutorActivity.vue'
 export default {
   name: 'Dashboard',
   // components: { FreelaceActivity, TutorActivity, JobsActivity },
@@ -62,7 +59,7 @@ export default {
 
 <style scoped>
 .container, .container-sm, .container-md, .container-lg {
-  max-width: 1095px;
+  max-width: 1050px;
 }
 .top-container{
   background-color: #0C0573;

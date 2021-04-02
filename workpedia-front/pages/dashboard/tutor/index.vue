@@ -105,6 +105,9 @@ export default {
 </script>
 
 <style scoped>
+.container, .container-sm, .container-md, .container-lg {
+  max-width: 1050px;
+}
 .tutor-basic-info{
   box-shadow: 0px 1px 2px 1px #00000029;
   border-radius: 8px;
