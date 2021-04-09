@@ -78,11 +78,8 @@ p {
 }
 
 .image-rap {
-  float: right;
   margin-top: 35px;
-  width: 430px;
-  height: 430px;
-  border-radius: 7%;
+  height: 116%;
   overflow: hidden;
 }
 

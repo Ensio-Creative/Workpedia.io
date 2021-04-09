@@ -9,7 +9,10 @@
           <p>
             Workpedia allows you get everything in once place, freelancing job opportunity, tutors and easily manage all three with ease.
           </p>
-          <div class="bg-buttons">
+          <div
+            v-if="!isLogged"
+            class="bg-buttons"
+          >
             <NuxtLink class="view-btn" to="/auth">
               Start Now
             </NuxtLink>
@@ -17,21 +20,23 @@
         </div>
         <div class="col-12 col-md-12 col-lg-6 order-2 order-sm-6">
           <div class="image-rap text-center">
-            <img src="~/assets/img/pexels-emmy-e-2381069.png">
+            <img src="~/static/img/home.jpg">
           </div>
         </div>
       </div>
     </section>
     <!-- Walk you through -->
     <Walk />
-    <!-- Freelancing gigs -->
-    <Freelancing
-      frelance-gigs="Get your Freelancing gigs"
+    <!-- Private tutors -->
+    <Tutors
+      class="mt-3"
     />
     <!-- Popular jobs -->
-    <!-- <Popular /> -->
-    <!-- Private tutors -->
-    <!-- <Tutors /> -->
+    <Popular />
+    <!-- Freelancing gigs -->
+    <Freelancing
+      frelance-gigs="Get your Freelancing/Handymen gigs"
+    />
     <!-- News Letter -->
     <NewsLetter />
     <!-- Footer -->
@@ -40,16 +45,41 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
-  name: 'Home'
+  name: 'Home',
+  data () {
+    return {
+      isLogged: false
+    }
+  },
+  computed: {
+    ...mapState('auth', ['user']),
+    checkIfLoggedIn () {
+      const result = !this.user.token
+      return result
+    }
+  },
+  mounted () {
+    this.checkUSer()
+  },
+  methods: {
+    checkUSer () {
+      if (!this.user.token) {
+        this.isLogged = false
+      } else {
+        this.isLogged = true
+      }
+    }
+  }
 }
 </script>
 
 <style scoped>
 .bg-hero img{
-  width: 423px;
-  transform: scaleX(-1);
-  margin-bottom: 20px;
+  width: 527px;
+  border-radius: 15px;
+  height: 91%;
 }
 
 @media screen and (max-width: 780px){

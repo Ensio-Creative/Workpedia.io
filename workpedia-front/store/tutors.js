@@ -61,5 +61,20 @@ export const actions = {
     } catch (error) {
       console.log(error)
     }
+  },
+
+  async getTutor ({ commit, state, rootState }) {
+    const userId = rootState.auth.user._id
+    try {
+      if (!state.tutor.description) {
+        const res = await this.$axios.$get(
+          `tutors/get-tutor/${userId}`
+        )
+        console.log(res)
+        commit('UPDATE_TUTOR_STATE', res)
+      }
+    } catch (error) {
+      console.log(error)
+    }
   }
 }

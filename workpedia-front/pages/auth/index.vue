@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid auth-container">
     <div class="row justify-content-center">
-      <div class="col-12 col-lg-9 mb-5">
+      <div class="col-12 col-lg-9 login-column">
         <div class="row inner-auth-row justify-content-center">
           <div class="col-6 col-lg-6 auth-column" />
           <div class="col-10 col-lg-6 auth-column">
@@ -40,6 +40,10 @@ export default {
 .inner-auth-row{
   border-radius: 20px;
   margin-top: 40px;
+}
+.login-column{
+  margin-top: 70px;
+  height: 135vh;
 }
 .auth-column{
   background-image: url('~assets/img/pexels-photo-4497733.jpeg');

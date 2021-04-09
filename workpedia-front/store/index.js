@@ -7,7 +7,8 @@ export const state = () => ({
   isLoading: false,
   resized: false,
   hasAccount: false,
-  errors: []
+  errors: [],
+  requestTutorInfo: {}
 })
 
 export const mutations = {
@@ -31,5 +32,11 @@ export const mutations = {
   },
   UPDATE_LOADING (state, Loading) {
     state.isLoading = Loading
+  },
+  UPDATE_REQUEST_TUTOR (state, payload) {
+    state.requestTutorInfo = {
+      ...state.requestTutorInfo,
+      ...payload
+    }
   }
 }

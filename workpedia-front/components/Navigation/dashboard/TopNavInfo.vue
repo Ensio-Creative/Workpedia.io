@@ -1,12 +1,9 @@
 <template>
-  <div class="container mt-3">
+  <div class="mt-3">
     <div class="row justify-content-between">
-      <NuxtLink
-        class="col-4 top-nav"
-        to="/"
-      >
-        <img src="~/assets/img/Workpedia logo transparent (Blue).png" alt="">
-      </NuxtLink>
+      <div class="col-6">
+        <h2>{{ dashTitle }}</h2>
+      </div>
       <div class="col-6 text-right">
         <UserSign />
       </div>
@@ -17,6 +14,13 @@
 <script>
 export default {
   name: 'TopNavInfo',
+  props: {
+    dashTitle: {
+      type: String,
+      requried: true,
+      default: 'Title'
+    }
+  },
   data () {
     return {
       search: ''

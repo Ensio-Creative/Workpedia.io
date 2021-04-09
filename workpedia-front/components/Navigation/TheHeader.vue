@@ -30,35 +30,74 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import homeNav from '~/static/baseNav/home.js'
 import tutorNav from '~/static/baseNav/tutor.js'
 import jobsNav from '~/static/baseNav/jobs.js'
 import freelanceNav from '~/static/baseNav/freelance.js'
 export default {
   name: 'TheHeader',
+  // Every data been imported has Nav added to it that the inital routes
+  // Then the other ones are the data gotten from filtering the initial data
   data () {
     return {
       homeNav,
       tutorNav,
       jobsNav,
-      freelanceNav
+      freelanceNav,
+      tutor: [],
+      jobs: [],
+      freelance: []
     }
   },
   computed: {
-    // Make nested if statements and check for the urls no longer
-    // needed when the user is logged in or not and pop them out of the array
+    ...mapState('auth', ['user']),
+    // The function here is using the data filtered already when the compnent was mounted
     routes () {
       let route = ''
-      if (this.$route.path === '/') {
+      if (this.$route.path === '/' || this.$route.path === '/about-us') {
         route = this.homeNav
       } else if (this.$route.path.includes('/tutor')) {
-        route = this.tutorNav
+        route = this.tutor
       } else if (this.$route.path.includes('/jobs')) {
-        route = this.jobsNav
+        route = this.jobs
       } else if (this.$route.path.includes('/freelancing')) {
-        route = this.freelanceNav
+        route = this.freelance
       }
       return route
+    }
+  },
+  mounted () {
+    // Mounted the fuctions to filter and send the needed routes to be used
+    this.checkTutorNav()
+    this.checkJobs()
+    this.checkFreelance()
+  },
+  methods: {
+    // Here are the functions used by there names
+    checkTutorNav () {
+      if (this.user.isTutor) {
+        this.tutor = this.tutorNav.filter(tutorRoute => tutorRoute.url !== '/tutor/become-a-tutor')
+        return this.tutor
+      } else {
+        this.tutor = this.tutorNav
+      }
+    },
+    checkJobs () {
+      if (this.user.isApplicant || this.user.isHire) {
+        this.jobs = this.jobsNav.filter(jobsRoute => jobsRoute.url !== '/jobs/hire')
+        return this.jobs
+      } else {
+        this.jobs = this.jobsNav
+      }
+    },
+    checkFreelance () {
+      if (this.user.isFreelancer) {
+        this.freelance = this.freelanceNav.filter(freelanceRoute => freelanceRoute.url !== '/freelancing/become-freelancer')
+        return this.freelance
+      } else {
+        this.freelance = this.freelanceNav
+      }
     }
   }
 }

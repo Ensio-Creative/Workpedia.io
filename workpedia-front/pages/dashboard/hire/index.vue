@@ -1,5 +1,8 @@
 <template>
   <div class="container">
+    <TopNavInfo
+      dash-title="Hire"
+    />
     <HireNav />
     <!-- Companies info -->
     <div class="row justify-content-around">
@@ -10,7 +13,6 @@
             <h4 class="user-name">
               {{ companyName }}
             </h4>
-            <h4>{{ companyWeb }}</h4>
           </div>
           <div class="col-12 tutor-basic-info text-left">
             <h4 class="user-name">
@@ -26,6 +28,8 @@
         />
       </div>
     </div>
+    <!-- Footer -->
+    <FooterDash />
   </div>
 </template>
 

@@ -1,6 +1,9 @@
 <template>
   <div>
-    <form @submit.prevent="onSubmit">
+    <form
+      class="my-5"
+      @submit.prevent="onSubmit"
+    >
       <div class="form-heading">
         <h2>Login</h2>
         <p>Don't have an account? <strong @click="$emit('changeComponent')">Sign Up</strong> </p>
@@ -34,7 +37,7 @@
     <!-- <div class="sign-privacy">
       <p>By signing up for Workepdia, you agree to our <strong>Privacy Policy</strong> & <strong>Terms of Service</strong> </p>
     </div> -->
-    <div class="sign-up-options pt-3 mb-5 text-center">
+    <!-- <div class="sign-up-options pt-3 mb-5 text-center">
       <a href="#" class="btn sign-options-btn">
         <img src="~assets/img/google-hangouts.svg" alt="">
         LOG IN WITH GOOGLE
@@ -42,7 +45,7 @@
       <a href="#" class="btn sign-options-btn">
         <img src="~assets/img/facebook2.svg" alt="">
       </a>
-    </div>
+    </div> -->
   </div>
 </template>
 

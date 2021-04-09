@@ -1,13 +1,54 @@
 <template>
-  <div class="container mt-5">
-    <div class="top-container">
-      <h2 class="welcome-message">
-        Dashboard
-      </h2>
-      <h3 class="welcome-message">
-        <strong>Welcome!!!</strong>
-        {{ fullName }}
-      </h3>
+  <div class="container">
+    <TopNavInfo
+      dash-title="Dashboard"
+    />
+    <h2 class="welcom-text">
+      Welcome {{ fullName }}!
+    </h2>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      <div
+        class="col"
+      >
+        <div class="card info-containers">
+          <div class="card-body">
+            <h5 class="card-title">
+              Hired Tutors
+            </h5>
+            <p class="card-text text-white">
+              0
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="col"
+      >
+        <div class="card info-containers2">
+          <div class="card-body">
+            <h5 class="card-title">
+              Applied Jobs
+            </h5>
+            <p class="card-text text-white">
+              0
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="col"
+      >
+        <div class="card info-containers3">
+          <div class="card-body">
+            <h5 class="card-title">
+              Hired Freelance/Handymen
+            </h5>
+            <p class="card-text text-white">
+              0
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- <div class="activity-row mt-4">
       <div
@@ -33,6 +74,9 @@
       </div>
     </div>
     <component :is="activeTab" /> -->
+    <FooterDash
+      class="fixed-bottom"
+    />
   </div>
 </template>
 
@@ -61,11 +105,33 @@ export default {
 .container, .container-sm, .container-md, .container-lg {
   max-width: 1050px;
 }
-.top-container{
-  background-color: #0C0573;
-  height: 200px;
-  border-radius: 15px;
+.welcom-text{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+.info-containers{
+  background-color: #FF9B17;
   color: #fff;
+  height: 180px;
+}
+
+.info-containers h3 {
+  padding: 20px;
+}
+.info-containers2 {
+  background-color: #0DB47B;
+  color: #fff;
+  height: 180px;
+}
+
+.info-containers3 {
+  background-color: #2B7DC4;
+  color: #fff;
+  height: 180px;
+}
+.info-containers:nth-child(4) {
+  background-color: #0DB47B;
 }
 .welcome-message{
   padding-left: 40px;
@@ -103,6 +169,12 @@ export default {
 
 .activity-column:nth-child(3){
   background-color: #2B7DC4;
+}
+
+.card-text {
+    margin-bottom: 0;
+    font-size: 23px;
+    font-weight: bold;
 }
 
 </style>

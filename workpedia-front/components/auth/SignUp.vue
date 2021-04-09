@@ -169,7 +169,7 @@
     <div class="sign-privacy">
       <p>By signing up for Workepdia, you agree to our <strong @click="routeToTerms">Privacy Policy</strong> & <strong @click="routeToTerms">Terms of Service</strong> </p>
     </div>
-    <div class="sign-up-options pt-3 mb-5 text-center">
+    <!-- <div class="sign-up-options pt-3 mb-5 text-center">
       <a href="#" class="btn sign-options-btn">
         <img src="~assets/img/google-hangouts.svg" alt="">
         SIGN UP WITH GOOGLE
@@ -177,7 +177,7 @@
       <a href="#" class="btn sign-options-btn">
         <img src="~assets/img/facebook2.svg" alt="">
       </a>
-    </div>
+    </div> -->
   </div>
 </template>
 

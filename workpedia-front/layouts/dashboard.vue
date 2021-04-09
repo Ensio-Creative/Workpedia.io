@@ -1,7 +1,5 @@
 <template>
   <div>
-    <!-- Top nav -->
-    <TopNavInfo />
     <!-- Side nav -->
     <div
       :class="[!resize ? 'sidenav-backdrop' : '']"
@@ -10,7 +8,12 @@
         <div :class="[!resize ? 'sidenav' : 'sidenav-resided']">
           <nav class="">
             <div class="hide-icon">
-              <a
+              <NuxtLink
+                to="/"
+              >
+                <img src="~/assets/img/Workpedia logo transparent (White).png" alt="">
+              </NuxtLink>
+              <!-- <a
                 v-if="resize === false"
                 href="#"
                 @click="resized"
@@ -23,10 +26,10 @@
                 @click="resized"
               >
                 <img src="~assets/img/arrow-circle-left (1).svg" alt="">
-              </a>
+              </a> -->
             </div>
             <!-- First Nav items -->
-            <SuperUser
+            <UserDash
               :check-resize="resize"
             />
             <!-- <hr> -->
@@ -47,34 +50,25 @@ export default {
     return {
       resize: false
     }
-  },
-  mounted () {
-    this.resize = this.$store.state.resized
-  },
-  methods: {
-    resized () {
-      if (this.$store.state.resized === false) {
-        this.$store.commit('RESIZE', true)
-        this.resize = true
-      } else {
-        this.$store.commit('RESIZE', false)
-        this.resize = false
-      }
-    }
   }
+  // mounted () {
+  //   this.resize = this.$store.state.resized
+  // },
+  // methods: {
+  //   resized () {
+  //     if (this.$store.state.resized === false) {
+  //       this.$store.commit('RESIZE', true)
+  //       this.resize = true
+  //     } else {
+  //       this.$store.commit('RESIZE', false)
+  //       this.resize = false
+  //     }
+  //   }
+  // }
 }
 </script>
 
 <style scoped>
-/* .sidenav-backdrop {
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 1000;
-  position: fixed;
-  top: 0;
-  left: 0;
-} */
 .sidenav {
   background-color: #0C0573;
   width: 140px;
@@ -98,16 +92,11 @@ export default {
   color: #fff;
   text-decoration: none;
   text-align: center;
-  padding-bottom: 40px;
-  padding-top: 40px;
+  padding-bottom: 55px;
+  padding-top: 17px;
 }
-.slide-side-enter-active,
-.slide-side-leave-active {
-  transition: all 0.3s ease-out;
-}
-.slide-side-enter,
-.slide-side-leave-to {
-  transform: translateX(-100%);
+.hide-icon img {
+  width: 56px;
 }
 
 hr{

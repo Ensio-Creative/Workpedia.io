@@ -1,7 +1,7 @@
 export default [
   {
     title: 'About',
-    url: 'freelancing'
+    url: '/about-us'
   },
   {
     title: 'Categories',

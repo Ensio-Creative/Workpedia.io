@@ -1,8 +1,8 @@
 <template>
   <div class="auth">
-    <video id="videoBG" autoplay muted loop>
+    <!-- <video id="videoBG" autoplay muted loop>
       <source src="~/assets/video/VID-20210221-WA0001.mp4" type="video/mp4">
-    </video>
+    </video> -->
     <Errors />
     <!-- <div class="row">
       <div class="col-lg-6 auth-column">
@@ -27,8 +27,8 @@ export default {
     width:100%;
     height: auto;
 }
-.auth-column:nth-child(1){
-  background-image: url('~assets/img/pexels-julia-m-cameron-4143791.png');
+.auth{
+  background-image: url('~assets/img/bg_forall.svg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

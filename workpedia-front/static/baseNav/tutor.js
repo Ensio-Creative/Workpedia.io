@@ -1,7 +1,7 @@
 export default [
   {
     title: 'About',
-    url: '/tutor'
+    url: '/about-us'
   },
   {
     title: 'Categories',

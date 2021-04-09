@@ -14,6 +14,10 @@
     >
       Posted jobs will be shown here
     </h1>
+    <!-- Footer -->
+    <FooterDash
+      class="fixed-bottom"
+    />
     <b-modal
       id="modal-lg"
       size="lg"

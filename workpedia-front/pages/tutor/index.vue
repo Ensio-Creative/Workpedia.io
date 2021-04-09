@@ -18,7 +18,7 @@
         </div>
         <div class="col-12 col-md-12 col-lg-6 order-2 order-sm-6">
           <div class="image-rap">
-            <img src="~/assets/img/pexels-emmy-e-2381069.png">
+            <img src="~/static/img/tutor-home.jpg">
           </div>
         </div>
       </div>
@@ -30,7 +30,7 @@
       class="mt-5"
     />
     <!-- Find private tutors -->
-    <section class="find-private-tutors">
+    <!-- <section class="find-private-tutors">
       <div class="container">
         <div class="row">
           <div class="col-12 col-md-6 find-private-column">
@@ -70,7 +70,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
     <!-- News Letter -->
     <NewsLetter />
     <!-- Footer -->

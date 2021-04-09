@@ -24,7 +24,7 @@
             type="text"
             placeholder="Optional"
           >
-            Company Webpage
+            Company Website
           </AppControlInput>
         </div>
         <div class="col">

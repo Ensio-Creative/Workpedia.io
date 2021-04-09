@@ -7,7 +7,7 @@
         <NuxtLink
           v-for="links in nav"
           :key="links.url"
-          class="col text-center"
+          class="col text-center hire-nav-item"
           :to="links.url"
         >
           {{ links.title }}
@@ -23,16 +23,12 @@ export default {
     return {
       nav: [
         {
-          title: 'Company Info',
+          title: 'Company Details',
           url: '/dashboard/hire'
         },
         {
           title: 'Post a Job',
           url: '/dashboard/hire/post-a-job'
-        },
-        {
-          title: 'Applications',
-          url: '/dashboard/hire/applications'
         }
       ]
     }
@@ -47,8 +43,10 @@ export default {
 
 a {
   font-size: 18px;
-  border-right: 1px solid #0C0573;
-  color: #0C0573;
+  color: #0DB47B;
+}
+.hire-nav-item:nth-child(1){
+  border-right: 1px solid #0DB47B;
 }
 a.nuxt-link-active{
   color: #000;

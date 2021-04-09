@@ -16,7 +16,7 @@
           Dashboard
         </span>
       </NuxtLink>
-      <NuxtLink
+      <!-- <NuxtLink
         to="/dashboard/messages"
         data-toggle="LogOut"
         data-placement="right"
@@ -28,8 +28,8 @@
         <span>
           Messages
         </span>
-      </NuxtLink>
-      <NuxtLink
+      </NuxtLink> -->
+      <!-- <NuxtLink
         to="/dashboard/payments"
         data-toggle="LogOut"
         data-placement="right"
@@ -41,7 +41,7 @@
         <span>
           Payments
         </span>
-      </NuxtLink>
+      </NuxtLink> -->
       <NuxtLink
         v-if="tutor"
         to="/dashboard/tutor"
@@ -210,15 +210,15 @@ export default {
 .side-nav-item-resized {
   display: block;
   color: #fff;
-  font-size: 18px;
+  font-size: 22px;
   text-align: center;
   width: 100px;
   font-weight: bold;
-  padding: 20px;
+  padding: 17px;
   height: 60px;
 }
 .side-nav-item-resized span {
-  font-size: 13px;
+  font-size: 14px;
 }
 .side-nav-item:hover,
 .side-nav-item:active {
@@ -231,16 +231,13 @@ export default {
 }
 
 .side-nav-item-resized i {
-  padding: 0px;
+  padding: 5px;
 }
 .side-nav-item:hover {
   text-decoration: none;
 }
 .side-nav-item i {
-  padding: 19px;
-}
-.bottom-links{
-  position: absolute;
-  bottom: 2px;
+  padding: 15px;
+  font-size: 18px;
 }
 </style>

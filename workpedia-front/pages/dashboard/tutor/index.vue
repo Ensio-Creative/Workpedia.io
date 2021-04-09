@@ -1,74 +1,68 @@
 <template>
-  <div>
-    <div class="container mt-5">
-      <div class="row justify-content-around">
-        <div class="col-12 col-md-3">
-          <div class="row">
-            <div class="col-12 tutor-basic-info">
-              <img src="~assets/img/avatar_c@2x.png" alt="" class="user-img rounded">
-              <h4 class="user-name">
-                {{ fullName }}
-              </h4>
-              <h5 class="user-name">
-                Age: {{ user.age }}
-              </h5>
-            </div>
-            <div class="col-12 tutor-basic-info text-left">
-              <h4 class="user-name">
-                Description:
-              </h4>
-              <p>{{ tutorDescriptionInfo }}</p>
-            </div>
+  <div class="container">
+    <TopNavInfo
+      dash-title="Tutor"
+    />
+    <div class="row justify-content-around">
+      <div class="col-12 col-md-3">
+        <div class="row">
+          <div class="col-12 tutor-basic-info">
+            <img src="~assets/img/avatar_c@2x.png" alt="" class="user-img rounded">
+            <h4 class="user-name">
+              {{ fullName }}
+            </h4>
+            <h5 class="user-name">
+              Age: {{ user.age }}
+            </h5>
           </div>
-        </div>
-        <div class="col-12 col-md-8 tab-colum">
-          <div class="tab">
-            <div
-              class="tab-items"
-            >
-              <a
-                href="#"
-                @click="activeTab = 'TutorDetails'"
-              >
-                Tutor Details
-              </a>
-            </div>
-            <div
-              class="tab-items"
-            >
-              <a
-                href="#"
-                @click="activeTab = 'TutorQulificatios'"
-              >
-                Qualifications
-              </a>
-            </div>
-            <!-- <div
-              class="tab-items"
-            >
-              <a
-                href="#"
-                @click="changeComponent"
-              >
-                Documents
-              </a>
-            </div> -->
+          <div class="col-12 tutor-basic-info text-left">
+            <h4 class="user-name">
+              Description:
+            </h4>
+            <p>{{ tutorDescriptionInfo }}</p>
           </div>
-          <keep-alive>
-            <component
-              :is="activeTab"
-              class="mt-4"
-              @changeComponent="activeTab = 'TutorQulificatios'"
-            />
-          </keep-alive>
         </div>
       </div>
+      <div class="col-12 col-md-8 tab-colum">
+        <div class="tab">
+          <div
+            class="tab-items"
+          >
+            <a
+              href="#"
+              @click="activeTab = 'TutorDetails'"
+            >
+              Tutor Details
+            </a>
+          </div>
+          <div
+            class="tab-items"
+          >
+            <a
+              href="#"
+              @click="activeTab = 'TutorQulificatios'"
+            >
+              Qualifications
+            </a>
+          </div>
+        </div>
+        <keep-alive>
+          <component
+            :is="activeTab"
+            class="mt-4"
+            @changeComponent="activeTab = 'TutorQulificatios'"
+          />
+        </keep-alive>
+      </div>
     </div>
+    <FooterDash
+      class="fixed-bottom"
+    />
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import TutorDetails from '~/components/dashboard/tutor/TutorDetails.vue'
 import TutorQulificatios from '~/components/dashboard/tutor/TutorQulificatios.vue'
 export default {
@@ -99,7 +93,13 @@ export default {
     }
   },
   mounted () {
-
+    this.fetchTutor()
+  },
+  methods: {
+    ...mapActions('tutors', ['getTutor']),
+    fetchTutor () {
+      this.getTutor()
+    }
   }
 }
 </script>

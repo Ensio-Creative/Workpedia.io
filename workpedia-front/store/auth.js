@@ -30,11 +30,45 @@ export const actions = {
   },
 
   async signUp ({ commit }, payload) {
-    const res = await this.$axios.$put(
-      'auth/signup',
-      payload
-    )
-    console.log(res)
+    try {
+      const res = await this.$axios.$put(
+        'auth/signup',
+        payload
+      )
+      console.log(res)
+    } catch (error) {
+      console.log(error)
+    }
+  },
+
+  async updateUser ({ commit, state }, payload) {
+    const userId = state.user._id
+    const token = state.user.token
+    try {
+      const res = await this.$axios.$put(
+        `user/update/${userId}`,
+        payload
+      )
+      const updatedUser = res.result
+      const storedUser = { ...updatedUser, token }
+      commit('UPDATE_USER', storedUser, { root: true })
+      console.log(res)
+    } catch (error) {
+      console.log(error)
+    }
+  },
+
+  async updatePassword ({ commit, state }, payload) {
+    const _id = state.user._id
+    try {
+      const res = await this.$axios.$post(
+        `user/${_id}/update-password`,
+        payload
+      )
+      console.log(res)
+    } catch (error) {
+      console.log(error)
+    }
   },
 
   logOutUser ({ commit }, payload) {

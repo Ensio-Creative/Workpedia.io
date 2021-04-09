@@ -12,7 +12,11 @@
               class="col"
             >
               <div class="card h-100">
-                <img src="~/assets/img/biology.png" alt="">
+                <!-- <img :src="tutor.image" alt="DID not"> -->
+                <div
+                  class="thumbnail"
+                  :style="{backgroundImage:'url(' + tutor.image + ')'}"
+                />
                 <div class="card-body">
                   <div class="private-tutor-text">
                     <h3>{{ tutor.title }}</h3>
@@ -60,7 +64,7 @@ export default {
         result = math
       } else if (this.routeUrl === 'english') {
         result = english
-      } else if (this.routeUrl === 'science') {
+      } else if (this.routeUrl === 'sciences') {
         result = science
       } else if (this.routeUrl === 'arts') {
         result = art
@@ -76,5 +80,10 @@ export default {
 </script>
 
 <style scoped>
-
+.thumbnail{
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 100px;
+}
 </style>

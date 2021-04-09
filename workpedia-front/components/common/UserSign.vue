@@ -122,7 +122,7 @@ export default {
     },
     changeBtn () {
       let btnClass = ''
-      if (this.$route.path === '/') {
+      if (this.$route.path === '/' || this.$route.path === '/about-us') {
         btnClass = 'landing-outline'
       } else if (this.$route.path.includes('/tutor')) {
         btnClass = 'turor-outline'

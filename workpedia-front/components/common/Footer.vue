@@ -23,7 +23,7 @@
               <div class="footer-nav">
                 <NuxtLink
                   class="footer-nav-item"
-                  to="/"
+                  to="/about-us"
                 >
                   About us
                 </NuxtLink>
@@ -57,19 +57,19 @@
               <div class="footer-nav">
                 <NuxtLink
                   class="footer-nav-item"
-                  to="/"
+                  to="/tutor"
                 >
                   Tutor
                 </NuxtLink>
                 <NuxtLink
                   class="footer-nav-item"
-                  to="/"
+                  to="/jobs"
                 >
                   Jobs
                 </NuxtLink>
                 <NuxtLink
                   class="footer-nav-item"
-                  to="/"
+                  to="/freelancing"
                 >
                   Freelancing / Handymen
                 </NuxtLink>
@@ -96,7 +96,7 @@
       </div>
       <div class="all-rights text-center">
         <p class="rights">
-          &copy; 2021 Workpedia. All rights reserved.
+          &copy; {{ date.getFullYear() }} Workpedia. All rights reserved.
         </p>
       </div>
     </div>
@@ -106,6 +106,11 @@
 <script>
 export default {
   name: 'Footer',
+  data () {
+    return {
+      date: new Date()
+    }
+  },
   methods: {
     showRoute () {
       console.log(this.$route.path)

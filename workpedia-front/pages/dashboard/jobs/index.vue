@@ -1,6 +1,9 @@
 <template>
   <div>
     <div class="container mt-5">
+      <TopNavInfo
+        dash-title="Jobs"
+      />
       <div class="row justify-content-around">
         <div class="col-12 col-md-3">
           <div class="row">
@@ -26,6 +29,8 @@
         </div>
       </div>
     </div>
+    <!-- Footer -->
+    <FooterDash />
   </div>
 </template>
 

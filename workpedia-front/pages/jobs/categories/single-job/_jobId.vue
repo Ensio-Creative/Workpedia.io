@@ -180,8 +180,8 @@ export default {
       if (this.user.isApplicant) {
         console.log('Free to apply')
       } else {
-        // this.$router.push('/jobs/subscribe')
-        console.log('help')
+        this.$router.push('/jobs/subscribe')
+        // console.log('help')
       }
     }
   }

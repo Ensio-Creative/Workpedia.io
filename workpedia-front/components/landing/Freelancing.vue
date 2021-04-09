@@ -45,7 +45,7 @@ export default {
   computed: {
     ...mapState('freelance', ['freelancing']),
     splicedFreelancing () {
-      const listed = this.freelancing.slice(0, 6)
+      const listed = this.freelancing.slice(0, 3)
       return listed
     }
   }
