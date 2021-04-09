@@ -56,6 +56,7 @@ const UserSchema = new Schema({
     minLength: 4,
     maxLength: 200
   },
+  imageUrl: String,
   isAdmin: {
     type: Boolean,
     default: false

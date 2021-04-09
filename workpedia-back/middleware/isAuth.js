@@ -1,9 +1,11 @@
 const { checkToken } = require('../utils/jwt')
 
 function authMiddleware(req, res, next) {
+  const token = req.headers.authorization.split(' ')[1]
+  console.log(token)
+  const isValid = checkToken(token)
+  console.log(isValid)
   try {
-    const token = req.headers.authorization.split(' ')[1]
-    const isValid = checkToken(token)
     if (isValid) {
       req.userId = isValid.userId
       req.isAdmin = isValid.isAdmin

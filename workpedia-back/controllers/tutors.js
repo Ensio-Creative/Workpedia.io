@@ -48,3 +48,17 @@ exports.updateTutor = async (req, res) => {
 	}
 }
 
+exports.getTutor = async (req, res) => {
+	const userId = req.params.userId
+	console.log(userId)
+	try {
+		const tutor = await Tutor.findOne({ userId })
+		if (!tutor) {
+			res.status(400).json({message: 'Tutor Not Found'})
+		}
+		res.status(200).json(tutor)
+	} catch (error) {
+		console.log(error)
+		res.send(error)
+	}
+}

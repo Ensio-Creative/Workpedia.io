@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const Schema = new mongoose.Schema
+const Schema = mongoose.Schema
 
 const ApplicantSchema = new Schema({
   qualifications: {
@@ -22,7 +22,13 @@ const ApplicantSchema = new Schema({
   description: {
     type: String,
     required: true
+  },
+  cvUrl: String,
+  applyChance: Number,
+  userId: {
+    type: Schema.Types.ObjectId,
+		ref: 'users'
   }
 })
-const Applicant = mongoose.model('applicant', ApplicantSchema)
+const Applicant = mongoose.model('applicants', ApplicantSchema)
 module.exports = Applicant
