@@ -145,6 +145,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
   name: 'GetStarted',
   emits: ['nextToContact'],
@@ -195,37 +196,41 @@ export default {
       tellUsAboutChild: ''
     }
   },
+  mounted () {
+    this.subject = this.$route.params.tutorId
+  },
   methods: {
+    ...mapMutations('tutors', ['UPDATE_REQUEST_TUTOR']),
     onSubmit () {
       this.errors = []
-      if (!this.numberStudent) {
+      if (!this.numberStudent.length) {
         this.errors.push('Please Add the Number of students')
-      } else if (!this.selectClass) {
+      } else if (!this.selectClass.length) {
         this.errors.push('Please select class')
-      } else if (!this.typeOfLesson) {
+      } else if (!this.typeOfLesson.length) {
         this.errors.push('Please add the type of lesson')
-      } else if (!this.selectedCurriculum) {
+      } else if (!this.selectedCurriculum.length) {
         this.errors.push('Please select a curriculum')
-      } else if (!this.studentGoal) {
+      } else if (!this.studentGoal.length) {
         this.errors.push('Add students goals')
-      } else if (!this.selectGender) {
+      } else if (!this.selectGender.length) {
         this.errors.push('Select tutor gender')
-      } else if (!this.subject) {
+      } else if (!this.subject.length) {
         this.errors.push('Please fill every field')
-      } else if (!this.tellUsAboutChild) {
+      } else if (!this.tellUsAboutChild.length) {
         this.errors.push('Please fill every field')
       } else if (!this.errors.length) {
         const payload = {
           numberOfStudents: this.numberStudent,
           studentClass: this.selectClass,
-          lesson: this.typeOfLesson,
+          lessonType: this.typeOfLesson,
           curriculum: this.selectedCurriculum,
           studentGoal: this.studentGoal,
           tutorGender: this.selectGender,
           subject: this.subject,
           moreAboutStudent: this.tellUsAboutChild
         }
-        this.$store.commit('UPDATE_REQUEST_TUTOR', payload)
+        this.UPDATE_REQUEST_TUTOR(payload)
         this.$emit('nextToContact')
       }
     }
@@ -260,5 +265,14 @@ form{
   border-color: #ff9b17;
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgb(255 155 23);
+}
+.color-red{
+  background: red;
+  color: #fff;
+  width: 426px;
+  text-align: center;
+  position: fixed;
+  z-index: 10;
+  padding: 10px;
 }
 </style>

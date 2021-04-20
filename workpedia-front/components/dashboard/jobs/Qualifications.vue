@@ -5,6 +5,21 @@
     >
       <div class="row">
         <div class="col">
+          <AppControlInput
+            v-model.trim="title"
+            type="text"
+            required
+            @input="checkTitle"
+          >
+            Title
+          </AppControlInput>
+          <small
+            :class="[title.length < 3 ? 'info-error' : 'info-success']"
+          >
+            {{ titleInfo }}
+          </small>
+        </div>
+        <div class="col">
           <label for="">Qualifications</label>
           <select
             v-model.trim="qualificationSelect"
@@ -86,6 +101,42 @@
       </div>
       <div class="row">
         <div class="col">
+          <label for="">State</label>
+          <select
+            v-model="stateSelect"
+            class="form-select"
+            aria-label="Default select example"
+            required
+          >
+            <option
+              v-for="state in states"
+              :key="state"
+              selected
+              :value="state"
+              required
+            >
+              {{ state }}
+            </option>
+          </select>
+        </div>
+        <div class="col">
+          <AppControlInput
+            v-model.trim="city"
+            type="text"
+            required
+            @input="checkCity"
+          >
+            City
+          </AppControlInput>
+          <small
+            :class="[!city.length ? 'info-error' : 'info-success']"
+          >
+            {{ cityInfo }}
+          </small>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
           <AppTextarea
             v-model.trim="skills"
             type="text"
@@ -116,7 +167,7 @@
         </div>
       </div>
       <small
-        :class="[description.length <= 196 ? 'info-error' : 'info-success']"
+        :class="[!description.length ? 'info-error' : 'info-success']"
       >
         {{ descriptionText }}
       </small>
@@ -142,12 +193,16 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+import states from '~/static/data/states.js'
 import qualificationList from '~/static/data/qualifications.js'
 import categories from '~/static/jobs/jobsRoutes.js'
 export default {
   name: 'TutorDetails',
   data () {
     return {
+      title: '',
+      titleInfo: '',
       qualificationSelect: '',
       qualificationSelectText: '',
       qualificationList,
@@ -162,16 +217,44 @@ export default {
       categorySelect: '',
       categoryText: '',
       categories,
+      stateSelect: '',
+      stateInfo: '',
+      states,
+      city: '',
+      cityInfo: '',
       errors: []
     }
   },
+  computed: {
+    ...mapState('applicant', ['applicant'])
+  },
+  mounted () {
+    this.qualificationSelect = this.applicant.qualifications
+    this.institution = this.applicant.institution
+    this.date = this.applicant.date
+    this.skills = this.applicant.skills
+    this.categorySelect = this.applicant.category
+    this.stateSelect = this.applicant.state
+    this.city = this.applicant.city
+    this.description = this.applicant.description
+  },
   methods: {
+    ...mapActions('applicant', ['updateApplicant']),
     checkQaulifications () {
       if (this.qualificationSelect.length < 3) {
         this.qualificationSelectText = 'Please select a Degree'
         return false
       } else {
         this.qualificationSelectText = ''
+        return true
+      }
+    },
+    checkTitle () {
+      if (this.title.length < 3) {
+        this.titleInfo = 'Please add an institute'
+        return false
+      } else {
+        this.titleInfo = ''
         return true
       }
     },
@@ -202,6 +285,15 @@ export default {
         return true
       }
     },
+    checkCity () {
+      if (!this.city.length) {
+        this.cityInfo = 'Please add your city'
+        return false
+      } else {
+        this.cityInfo = ''
+        return true
+      }
+    },
     checkSkills () {
       if (this.skills.length <= 3) {
         this.skillsText = 'Add your skills'
@@ -212,7 +304,7 @@ export default {
       }
     },
     checkDescription () {
-      if (this.description.length <= 196) {
+      if (!this.description.length) {
         this.descriptionText = 'Please add your description'
         return false
       } else {
@@ -221,7 +313,7 @@ export default {
       }
     },
     onSubmit () {
-      if (!this.checkQaulifications() && !this.checkInstitution()) {
+      if (!this.checkQaulifications() && !this.checkInstitution() && !this.checkTitle()) {
         return this.errors.push('Please fill in every filled')
       }
       if (!this.checkDescription() && !this.checkDate()) {
@@ -230,16 +322,23 @@ export default {
       if (!this.checkCategory() && !this.checkSkills()) {
         return this.errors.push('Please fill in every filled')
       }
+      if (!this.stateSelect.length && !this.checkCity()) {
+        return this.errors.push('Please fill in every filled')
+      }
       if (!this.errors.length) {
         const payload = {
           qualifications: this.qualificationSelect,
           institution: this.institution,
           date: this.date,
           category: this.categorySelect,
+          state: this.stateSelect,
+          city: this.city,
           skills: this.skills,
-          description: this.description
+          description: this.description,
+          cvUrl: 'https://addcv.org'
         }
         console.log(payload)
+        this.updateApplicant(payload)
       }
     }
   }

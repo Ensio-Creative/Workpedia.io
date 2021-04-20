@@ -221,7 +221,7 @@ export default {
   font-size: 14px;
 }
 .side-nav-item:hover,
-.side-nav-item:active {
+.nuxt-link-active {
   border-right: 2px solid #ff9b17;
   color: #ff9b17;
 }

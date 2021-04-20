@@ -43,19 +43,6 @@
         </span>
       </NuxtLink> -->
       <NuxtLink
-        to="/admin/payments"
-        data-toggle="LogOut"
-        data-placement="right"
-        class="mb-2"
-        title="Payments"
-        :class="[!checkResize ? 'side-nav-item' : 'side-nav-item-resized']"
-      >
-        <i class="fas fa-money-check-alt" />
-        <span>
-          Payments
-        </span>
-      </NuxtLink>
-      <NuxtLink
         to="/admin/tutors"
         data-toggle="LogOut"
         data-placement="right"
@@ -92,6 +79,19 @@
         <i class="fas fa-search" />
         <span>
           Freelance
+        </span>
+      </NuxtLink>
+      <NuxtLink
+        to="/admin/payments"
+        data-toggle="LogOut"
+        data-placement="right"
+        class="mb-2"
+        title="Payments"
+        :class="[!checkResize ? 'side-nav-item' : 'side-nav-item-resized']"
+      >
+        <i class="fas fa-money-check-alt" />
+        <span>
+          Payments
         </span>
       </NuxtLink>
     </div>

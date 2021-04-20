@@ -11,17 +11,20 @@
                 <div class="popular-column-heading">
                   <i class="fas fa-suitcase" />
                   <h3>{{ fliteredJobs.title }}</h3>
-                  <h5>{{ fliteredJobs.location }}</h5>
+                  <h5>{{ fliteredJobs.state + ' ' + fliteredJobs.city }}</h5>
                 </div>
                 <div class="popular-durations">
                   <span class="gray-background">
-                    <h6>{{ fliteredJobs.dayOFPostMade }}</h6>
+                    <h6>{{ $moment(fliteredJobs.createdAt).fromNow() }}</h6>
                   </span>
                   <span class="gray-background">
-                    <h6>{{ fliteredJobs.timelineOfJobs }}</h6>
+                    <h6>{{ fliteredJobs.duration }}</h6>
                   </span>
                   <span class="gray-background">
                     <h6>{{ fliteredJobs.experience }}</h6>
+                  </span>
+                  <span class="gray-background">
+                    <h6>NGN {{ fliteredJobs.amount }}</h6>
                   </span>
                 </div>
                 <div class="popular-text mt-3 mb-4">
@@ -29,9 +32,6 @@
                   <p>
                     {{ fliteredJobs.description }}
                   </p>
-                </div>
-                <div class="popular-text mb-4">
-                  {{ fliteredJobs.totalDescription }}
                 </div>
                 <button
                   v-b-modal.modal-lg
@@ -46,7 +46,7 @@
         </div>
       </div>
     </section>
-    <Testimony />
+    <!-- <Testimony /> -->
     <!-- News Letter -->
     <NewsLetter />
     <!-- Footer -->
@@ -119,15 +119,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="mb-3">
-            <label for="formFile" class="form-label">Upload Cv*</label>
-            <input
-              id="formFile"
-              class="form-control"
-              type="file"
-              required
-            >
-          </div>
+          <h6>We added your cv</h6>
         </div>
       </form>
       <template #modal-footer="{ cancel}">
@@ -156,11 +148,11 @@ export default {
   },
   computed: {
     // Change the code to from using fliters
-    ...mapState('jobs', ['job']),
+    ...mapState('jobs', ['jobs']),
     ...mapState('auth', ['user']),
     fliteredJobs () {
-      const result = this.job.filter(job => job._id === this.routeUrl)
-      return result[0]
+      const result = this.jobs.find(job => job._id === this.routeUrl)
+      return result
     },
     fullName () {
       const name = this.user.firstName + ' ' + this.user.lastName
@@ -177,6 +169,8 @@ export default {
   },
   methods: {
     onSubmit () {
+      // && this.user.applicantApply >= 1
+      // Add that
       if (this.user.isApplicant) {
         console.log('Free to apply')
       } else {

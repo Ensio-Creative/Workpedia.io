@@ -2,11 +2,7 @@ export const state = () => ({
   user: {}
 })
 
-export const mutations = {
-  CLEAR_USER (state) {
-    state.user = {}
-  }
-}
+export const mutations = {}
 
 export const actions = {
   async login ({ commit }, payload) {
@@ -69,11 +65,6 @@ export const actions = {
     } catch (error) {
       console.log(error)
     }
-  },
-
-  logOutUser ({ commit }, payload) {
-    commit('CLEAR_USER')
-    this.$router.push('/')
   }
 }
 

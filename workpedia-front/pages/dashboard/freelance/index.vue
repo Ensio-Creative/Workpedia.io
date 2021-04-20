@@ -1,6 +1,9 @@
 <template>
   <div>
     <div class="container mt-5">
+      <TopNavInfo
+        dash-title="Freelance/Handymen"
+      />
       <div class="row justify-content-around">
         <div class="col-12 col-md-3">
           <div class="row">
@@ -15,14 +18,40 @@
               <h4 class="user-name">
                 Description
               </h4>
-              <p>{{ tutorDescription }}</p>
+              <p>{{ freelancerDescription }}</p>
             </div>
           </div>
         </div>
         <div class="col-12 col-md-8 tab-colum">
-          <Qualifications
-            class="mt-4"
-          />
+          <div class="tab">
+            <div
+              class="tab-items"
+            >
+              <a
+                href="#"
+                @click="activeTab = 'FreelanceDetails'"
+              >
+                Freelance Details
+              </a>
+            </div>
+            <div
+              class="tab-items"
+            >
+              <a
+                href="#"
+                @click="activeTab = 'Upload'"
+              >
+                Uploads
+              </a>
+            </div>
+          </div>
+          <keep-alive>
+            <component
+              :is="activeTab"
+              class="mt-4"
+              @changeComponent="activeTab = 'Upload'"
+            />
+          </keep-alive>
         </div>
       </div>
     </div>
@@ -30,27 +59,45 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
+import FreelanceDetails from '~/components/dashboard/freelance/FreelanceDetails.vue'
+import Upload from '~/components/dashboard/freelance/Upload.vue'
 export default {
   name: 'FreelanceDashboard',
+  components: { FreelanceDetails, Upload },
   layout: 'dashboard',
   data () {
     return {
-      userName: 'Great Adams',
-      tutorDescription: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam accusantium ut adipisci'
+      userName: '',
+      freelancerDescription: '',
+      activeTab: 'FreelanceDetails'
     }
   },
   computed: {
     ...mapState('auth', ['user']),
+    ...mapState('freelance', ['freelancer']),
     fullName () {
       const name = this.user.firstName + ' ' + this.user.lastName
       return name
+    }
+  },
+  mounted () {
+    this.fetchFreelancer()
+    this.freelancerDescription = this.freelancer.description
+  },
+  methods: {
+    ...mapActions('freelance', ['getFreelancer']),
+    fetchFreelancer () {
+      this.getFreelancer()
     }
   }
 }
 </script>
 
 <style scoped>
+.container, .container-sm, .container-md, .container-lg {
+  max-width: 1050px;
+}
 .tutor-basic-info{
   box-shadow: 0px 1px 2px 1px #00000029;
   border-radius: 8px;
@@ -82,7 +129,7 @@ export default {
   border-bottom: 1px solid #2B7DC4;
 }
 .tab-items a {
-  color: #0DB47B;
+  color: #2B7DC4;
   text-decoration: none;
   margin-top: 10px;
 }

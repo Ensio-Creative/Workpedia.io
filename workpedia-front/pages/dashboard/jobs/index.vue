@@ -12,44 +12,56 @@
               <h4 class="user-name">
                 {{ fullName }}
               </h4>
-              <h4>Age: {{ user.age }}</h4>
+              <p>Age: {{ user.age }}</p>
             </div>
             <div class="col-12 tutor-basic-info text-left">
               <h4 class="user-name">
                 Description
               </h4>
-              <p>{{ tutorDescription }}</p>
+              <p>{{ applicant.description }}</p>
             </div>
           </div>
         </div>
         <div class="col-12 col-md-8 tab-colum">
           <Qualifications
-            class="mt-4"
+            class="mt-5"
           />
         </div>
       </div>
     </div>
     <!-- Footer -->
-    <FooterDash />
+    <FooterDash
+      class="mt-4"
+    />
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 export default {
   name: 'TutorDashboard',
   layout: 'dashboard',
   data () {
     return {
       userName: 'Great Adams',
-      tutorDescription: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam accusantium ut adipisci'
+      applicantDescription: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam accusantium ut adipisci'
     }
   },
   computed: {
     ...mapState('auth', ['user']),
+    ...mapState('applicant', ['applicant']),
     fullName () {
       const name = this.user.firstName + ' ' + this.user.lastName
       return name
+    }
+  },
+  mounted () {
+    this.fetchApplicant()
+  },
+  methods: {
+    ...mapActions('applicant', ['getApplicant']),
+    fetchApplicant () {
+      this.getApplicant()
     }
   }
 }

@@ -72,7 +72,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState } from 'vuex'
 export default {
   name: 'UserRegister',
   data () {
@@ -90,7 +90,6 @@ export default {
     this.loggedIn()
   },
   methods: {
-    ...mapActions('auth', ['logOutUser']),
     hasAccount (value) {
       this.$store.commit('HAS_ACCOUNT', value)
       this.$router.push('/auth')
@@ -135,7 +134,8 @@ export default {
       return btnClass
     },
     logOut () {
-      this.logOutUser()
+      this.$store.commit('CLEAR_USER')
+      this.$router.push('/')
     }
   }
 }

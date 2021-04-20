@@ -1,39 +1,59 @@
 <template>
-  <div class="container">
-    <TopNavInfo
-      dash-title="Jobs"
-    />
-    <JobsNavAdmin
-      class="mt-5"
-    />
-    <div class="cross-button">
-      <button
-        v-b-modal.modal-lg
-        class="btn btn-outline-rounded"
-      >
-        +
-      </button>
+  <div>
+    <div class="row justify-content-center mt-4">
+      <div class="col-12 col-md-11 col-lg-11">
+        <div class="row">
+          <div
+            v-for="job in foundJobs"
+            :key="job._id"
+            class="col-12 col-md-12 col-lg-12 popular-column"
+          >
+            <div class="popular-column-heading">
+              <i class="fas fa-suitcase" />
+              <span class="job-title">{{ job.title }}</span>
+              <h5>{{ `${job.state}, ${job.city}` }}</h5>
+              <button
+                class="btn btn-outline-danger added-btn"
+                @click="showMsgBoxTwo(job._id)"
+              >
+                Delete
+              </button>
+              <button
+                v-b-modal.modal-job
+                class="btn btn-outline-success added-btn"
+                @click="findById(job._id)"
+              >
+                Edit
+              </button>
+            </div>
+            <div class="popular-durations">
+              <span class="gray-background">
+                <h6>{{ $moment(job.createdAt).fromNow() }}</h6>
+              </span>
+              <span class="gray-background">
+                <h6>{{ job.duration }}</h6>
+              </span>
+              <span class="gray-background">
+                <h6>{{ job.experience }}</h6>
+              </span>
+              <span class="gray-background">
+                <h6> NGN {{ job.amount }}</h6>
+              </span>
+            </div>
+            <div class="popular-text mt-3 mb-4">
+              <h3>Job description</h3>
+              <p
+                class="card-text"
+              >
+                {{ job.description }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <h1
-      v-if="!results.length"
-      class="gray-info"
-    >
-      Posted jobs will be shown here
-    </h1>
-    <PostedJob
-      :found-jobs="results"
-    />
-    <!-- Footer -->
-    <FooterDash
-      v-if="results.length > 1"
-      class="mt-5"
-    />
-    <FooterDash
-      v-if="results.length <= 1"
-      class="fixed-bottom"
-    />
     <b-modal
-      id="modal-lg"
+      id="modal-job"
       size="lg"
       :cancel-disabled="true"
       :ok-disabled="true"
@@ -49,7 +69,7 @@
         @submit.prevent="onSubmit"
       >
         <AppControlInput
-          v-model.trim="jobTitle"
+          v-model.trim="foundJob.title"
           type="text"
           required
           @input="checkTitle"
@@ -57,7 +77,7 @@
           Job title
         </AppControlInput>
         <small
-          :class="[jobTitle ? 'info-error' : 'info-success']"
+          :class="[foundJob.title.length <= 3 ? 'info-error' : 'info-success']"
         >
           {{ titleinfo }}
         </small>
@@ -65,7 +85,7 @@
           <div class="col">
             <label for="">State</label>
             <select
-              v-model="stateSelect"
+              v-model="foundJob.state"
               class="form-select"
               aria-label="Default select example"
               required
@@ -80,14 +100,14 @@
               </option>
             </select>
             <small
-              :class="[!stateSelect.length ? 'info-error' : 'info-success']"
+              :class="[!foundJob.state.length ? 'info-error' : 'info-success']"
             >
               {{ statesInfo }}
             </small>
           </div>
           <div class="col">
             <AppControlInput
-              v-model.trim="city"
+              v-model.trim="foundJob.city"
               type="text"
               required
               @input="checkCity"
@@ -95,7 +115,7 @@
               City
             </AppControlInput>
             <small
-              :class="[!city.length ? 'info-error' : 'info-success']"
+              :class="[!foundJob.city.length ? 'info-error' : 'info-success']"
             >
               {{ cityInfo }}
             </small>
@@ -104,7 +124,7 @@
         <div class="row">
           <div class="col">
             <AppControlInput
-              v-model="phone"
+              v-model="foundJob.phone"
               type="number"
               required
               @input="checkPhone"
@@ -112,22 +132,23 @@
               Phone
             </AppControlInput>
             <small
-              :class="[phone.length < 11 || phone.length > 11 ? 'info-error' : 'info-success']"
+              :class="[foundJob.phone.length < 11 || foundJob.phone.length > 11 ? 'info-error' : 'info-success']"
             >
               {{ phoneInfo }}
             </small>
           </div>
           <div class="col">
             <AppControlInput
-              v-model="amount"
+              v-model="foundJob.amount"
               type="text"
               required
+              placeholder="00,000"
               @input="checkAmount"
             >
               Amount
             </AppControlInput>
             <small
-              :class="[!amount.length ? 'info-error' : 'info-success']"
+              :class="[!foundJob.amount.length ? 'info-error' : 'info-success']"
             >
               {{ amountInfo }}
             </small>
@@ -136,7 +157,7 @@
         <div class="row">
           <div class="col">
             <AppControlInput
-              v-model="duration"
+              v-model="foundJob.duration"
               type="text"
               placeholder="FullTime"
               required
@@ -145,23 +166,23 @@
               Durations
             </AppControlInput>
             <small
-              :class="[duration.length <= 3 ? 'info-error' : 'info-success']"
+              :class="[foundJob.duration.length <= 3 ? 'info-error' : 'info-success']"
             >
               {{ durationInfo }}
             </small>
           </div>
           <div class="col">
             <AppControlInput
-              v-model="experience"
+              v-model="foundJob.experience"
               type="text"
-              placeholder="a year"
+              placeholder="1 year"
               required
               @input="checkExperience"
             >
               Experience
             </AppControlInput>
             <small
-              :class="[ experience.length <= 3 ? 'info-error' : 'info-success']"
+              :class="[ foundJob.experience.length <= 3 ? 'info-error' : 'info-success']"
             >
               {{ expericenceInfo }}
             </small>
@@ -169,7 +190,7 @@
           <div class="col">
             <label for="">Category</label>
             <select
-              v-model="category"
+              v-model="foundJob.category"
               class="form-select"
               aria-label="Default select example"
               required
@@ -184,7 +205,7 @@
               </option>
             </select>
             <small
-              :class="[ !category.length ? 'info-error' : 'info-success']"
+              :class="[ !foundJob.category.length ? 'info-error' : 'info-success']"
             >
               {{ categoryInfo }}
             </small>
@@ -194,7 +215,7 @@
           <div class="col">
             <!-- <label for="">Job Description*</label> -->
             <AppTextarea
-              v-model.trim="description"
+              v-model.trim="foundJob.description"
               type="text"
               class="mb-3"
               placeholder="Describe"
@@ -204,7 +225,7 @@
               Job Description*
             </AppTextarea>
             <small
-              :class="[ !description.length ? 'info-error' : 'info-success']"
+              :class="[ !foundJob.description.length ? 'info-error' : 'info-success']"
             >
               {{ descriptionInfo }}
             </small>
@@ -217,7 +238,7 @@
           Cancel
         </b-button>
         <b-button size="sm" variant="success" @click="onSubmit">
-          Submit
+          Save
         </b-button>
       </template>
     </b-modal>
@@ -229,43 +250,84 @@ import { mapActions } from 'vuex'
 import states from '~/static/data/states.js'
 import categories from '~/static/jobs/jobsRoutes.js'
 export default {
-  name: 'PostJobs',
-  layout: 'admin',
-  async asyncData ({ $axios }) {
-    const { results } = await $axios.$get('jobs/get-jobs')
-    // results.sort({ createdAt: -1 })
-    return { results }
+  name: 'PostedJobsList',
+  props: {
+    foundJobs: {
+      type: Array,
+      requried: true,
+      default: (e) => {
+        e = []
+      }
+    }
   },
   data () {
     return {
-      jobTitle: '',
+      foundJob: {
+        title: '',
+        state: '',
+        city: '',
+        phone: '',
+        amount: '',
+        duration: '',
+        experience: '',
+        category: '',
+        description: ''
+      },
       titleinfo: '',
-      email: '',
-      phone: '',
       phoneInfo: '',
-      stateSelect: '',
       statesInfo: '',
-      city: '',
       cityInfo: '',
-      amount: '',
       amountInfo: '',
-      duration: '',
       durationInfo: '',
-      experience: '',
       expericenceInfo: '',
-      category: '',
       categoryInfo: '',
       categories,
       states,
-      description: '',
       descriptionInfo: '',
       errors: []
     }
   },
   methods: {
-    ...mapActions('admin', ['postJob']),
+    ...mapActions('jobs', ['updateJob']),
+    findById (id) {
+      this.foundJob = this.foundJobs.find(job => job._id === id)
+    },
+    showMsgBoxTwo (id) {
+      this.$bvModal.msgBoxConfirm('Are you sure you want to delete this job?', {
+        title: 'Please Confirm',
+        size: 'sm',
+        buttonSize: 'sm',
+        okVariant: 'danger',
+        okTitle: 'YES',
+        cancelTitle: 'NO',
+        footerClass: 'p-2',
+        hideHeaderClose: false,
+        centered: true
+      })
+        .then((value) => {
+          if (value) {
+            console.log(id)
+            this.deleteJob(id)
+          }
+          this.boxTwo = value
+        })
+        .catch((err) => {
+          // An error occurred
+          console.log(err)
+        })
+    },
+    async deleteJob (id) {
+      const deletedJob = await this.$axios.$delete(
+        `jobs/delete-job/${id}`
+      )
+      if (!deletedJob) {
+        console.log('Job not deleted')
+      }
+      const result = this.foundJobs.filter(job => job._id !== id)
+      this.foundJobs = result
+    },
     checkTitle () {
-      if (this.jobTitle.length <= 3) {
+      if (this.foundJob.title.length <= 3) {
         this.titleinfo = 'Add a specific title'
         return false
       } else {
@@ -274,7 +336,7 @@ export default {
       }
     },
     checkState () {
-      if (!this.stateSelect.length) {
+      if (!this.foundJob.state.length) {
         this.statesInfo = 'Please select a state'
         return false
       } else {
@@ -283,7 +345,7 @@ export default {
       }
     },
     checkCity () {
-      if (!this.city.length) {
+      if (!this.foundJob.city.length) {
         this.cityInfo = 'Please add your city'
         return false
       } else {
@@ -292,7 +354,7 @@ export default {
       }
     },
     checkPhone () {
-      if (this.phone.length < 11 || this.phone.length > 11) {
+      if (this.foundJob.phone.length < 11 || this.foundJob.phone.length > 11) {
         this.phoneInfo = 'Phone should be 11 characters'
         return false
       } else {
@@ -301,7 +363,7 @@ export default {
       }
     },
     checkAmount () {
-      if (!this.amount.length) {
+      if (!this.foundJob.amount.length) {
         this.amountInfo = 'Amount can not be empty'
         return false
       } else {
@@ -310,7 +372,7 @@ export default {
       }
     },
     checkDuration () {
-      if (this.duration.length <= 3) {
+      if (this.foundJob.duration.length <= 3) {
         this.durationInfo = 'Please add duration eg: Part-time'
         return false
       } else {
@@ -319,7 +381,7 @@ export default {
       }
     },
     checkExperience () {
-      if (this.experience.length <= 3) {
+      if (this.foundJob.experience.length <= 3) {
         this.expericenceInfo = 'Please add experience eg: 5 years'
         return false
       } else {
@@ -328,7 +390,7 @@ export default {
       }
     },
     checkCategory () {
-      if (!this.category.length) {
+      if (!this.foundJob.category.length) {
         this.categoryInfo = 'Please Select a category'
         return false
       } else {
@@ -337,7 +399,7 @@ export default {
       }
     },
     checkDescription () {
-      if (!this.description.length) {
+      if (!this.foundJob.description.length) {
         this.descriptionInfo = 'Please add description'
         return false
       } else {
@@ -358,26 +420,19 @@ export default {
       }
       if (!this.errors.length) {
         const payload = {
-          title: this.jobTitle,
-          phone: this.phone,
-          state: this.stateSelect,
-          city: this.city,
-          amount: this.amount,
-          duration: this.duration,
-          experience: this.experience,
-          category: this.category,
-          description: this.description
+          id: this.foundJob._id,
+          title: this.foundJob.title,
+          phone: this.foundJob.phone,
+          state: this.foundJob.state,
+          city: this.foundJob.city,
+          amount: this.foundJob.amount,
+          duration: this.foundJob.duration,
+          experience: this.foundJob.experience,
+          category: this.foundJob.category,
+          description: this.foundJob.description
         }
-        this.postJob(payload)
-        this.jobTitle = ''
-        this.phone = ''
-        this.description = ''
-        this.stateSelect = ''
-        this.city = ''
-        this.amount = ''
-        this.duration = ''
-        this.category = ''
-        this.experience = ''
+        console.log(payload)
+        this.updateJob(payload)
       }
     }
   }
@@ -385,8 +440,13 @@ export default {
 </script>
 
 <style scoped>
-.container, .container-sm, .container-md, .container-lg {
-  max-width: 1050px;
+.added-btn{
+  float: right;
+  margin-right: 10px;
+}
+.job-title {
+  padding-left: 10px;
+  font-size: 1.75rem;
 }
 .gray-info {
   color: #E4E4E4;
@@ -394,23 +454,5 @@ export default {
   position: absolute;
   top: 276px;
   left: 449px;
-}
-form {
-  padding: 5px;
-}
-.job-title {
-  padding-left: 10px;
-  font-size: 1.75rem;
-}
-.btn-outline-rounded {
-  margin-top: 20px;
-  font-size: 32px;
-  color: #fff;
-  background-color: #0DB47B;
-  padding: auto;
-  border-radius: 50px;
-  height: 60px;
-  width: 60px;
-  float: right;
 }
 </style>

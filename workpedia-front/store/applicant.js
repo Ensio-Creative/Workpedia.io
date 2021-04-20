@@ -12,13 +12,30 @@ export const mutations = {
 }
 
 export const actions = {
-  async applyForJobs ({ commit, rootState }, payload) {
+  async getApplicant ({ commit, state, rootState }) {
     const userId = rootState.auth.user._id
-    const token = rootState.auth.user.token
-    payload = { ...payload, userId }
+    try {
+      if (!state.applicant.description) {
+        const res = await this.$axios.$get(
+          `applicant/get-applicant-info/${userId}`
+        )
+        console.log(res)
+        commit('UPDATE_APPLICANT', res.result)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  },
 
+  async subscription ({ commit, rootState }) {
+    const usersId = rootState.auth.user._id
+    const token = rootState.auth.user.token
+    const payload = {
+      userId: usersId
+    }
+    // console.log(userId)
     const res = await this.$axios.$post(
-      'apply-for-jobs/register',
+      'applicant/subscribe',
       payload
     ).catch((err) => {
       if (!err.statusCode) {
@@ -29,5 +46,20 @@ export const actions = {
     const user = { ...res.user, token }
     commit('UPDATE_USER', user, { root: true })
     commit('UPDATE_APPLICANT', res.result)
+    this.$router.push('/dashboard/jobs')
+  },
+
+  async updateApplicant ({ commit, state }, payload) {
+    const applicantId = state.applicant._id
+    try {
+      const res = await this.$axios.$put(
+        `applicant/update-applicant/${applicantId}`,
+        payload
+      )
+      commit('UPDATE_RESPONSES', res.message, { root: true })
+      commit('UPDATE_APPLICANT', res.result)
+    } catch (error) {
+      console.log(error)
+    }
   }
 }

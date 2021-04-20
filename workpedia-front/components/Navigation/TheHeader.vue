@@ -132,6 +132,9 @@ export default {
   .navigation-items {
     display: block;
   }
+  .header-container {
+  background-color: #fff;
+}
 }
 
 .nav-list {

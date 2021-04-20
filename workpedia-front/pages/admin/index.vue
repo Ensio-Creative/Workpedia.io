@@ -10,13 +10,27 @@
       <div
         class="col"
       >
+        <div class="card info-containers-users">
+          <div class="card-body">
+            <h4 class="card-title">
+              Users
+            </h4>
+            <p class="card-text text-white">
+              {{ result.users }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="col"
+      >
         <div class="card info-containers">
           <div class="card-body">
             <h4 class="card-title">
               Tutors
             </h4>
             <p class="card-text text-white">
-              0
+              {{ result.tutors }}
             </p>
           </div>
         </div>
@@ -30,10 +44,10 @@
               Jobs
             </h4>
             <span class="card-text text-white jobs-card-text">
-              Applicants: 0
+              Applicants: {{ result.applicants }}
             </span>
             <span class="card-text text-white jobs-card-text">
-              Hirer: 0
+              Hirer: {{ result.hires }}
             </span>
           </div>
         </div>
@@ -47,7 +61,7 @@
               Freelance/Handymen
             </h4>
             <p class="card-text text-white">
-              0
+              {{ result.freelance }}
             </p>
           </div>
         </div>
@@ -87,6 +101,11 @@
 export default {
   name: 'AdminHome',
   layout: 'admin',
+  async asyncData ({ $axios }) {
+    const calculations = await $axios.get('admin/calculations-users')
+    const result = calculations.data
+    return { result }
+  },
   data () {
     return {
       activeTab: ''
@@ -109,6 +128,15 @@ export default {
   margin-top: 20px;
   margin-bottom: 20px;
   font-size: 22px;
+}
+.info-containers-users{
+  background-color: #0C0573;
+  color: #fff;
+  height: 180px;
+}
+
+.info-containers-users h3 {
+  padding: 20px;
 }
 .info-containers{
   background-color: #FF9B17;

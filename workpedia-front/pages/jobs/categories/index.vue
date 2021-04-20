@@ -40,7 +40,7 @@
         </div>
       </div>
     </section>
-    <Testimony />
+    <!-- <Testimony /> -->
     <!-- News Letter -->
     <NewsLetter />
     <!-- Footer -->

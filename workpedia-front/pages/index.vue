@@ -1,7 +1,7 @@
 <template>
   <div>
     <section class="bg-hero container">
-      <div class="row justify-content-around">
+      <div class="row justify-content-around mt-5">
         <div class="col-12 col-md-12 col-lg-6 bg-texts order-6 order-sm-2">
           <h1>
             Find your dream job, career and tutor all in one place.
@@ -29,7 +29,7 @@
     <Walk />
     <!-- Private tutors -->
     <Tutors
-      class="mt-3"
+      class="mt-5"
     />
     <!-- Popular jobs -->
     <Popular />
@@ -84,12 +84,13 @@ export default {
 
 @media screen and (max-width: 780px){
   .bg-texts {
-    margin-top: 50px;
+    margin-top: 0px;
 }
 .bg-hero img {
-  width: 307px;
-  transform: scaleX(-1);
-  margin-bottom: 20px;
+  width: 366px;
+  margin-bottom: 0px;
+  height: 271px;
+  border-radius: 0px;
 }
 }
 

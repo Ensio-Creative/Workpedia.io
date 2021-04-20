@@ -20,7 +20,7 @@
           >
             Amount
           </AppControlInput>
-          <small>NOTE THIS IS A YEARLY PAYMENT</small>
+          <small>NOTE: YOU ARE GIVEN 5 CHANCES TO APPLY AFTER THIS SUBSCRITION</small>
           <!-- <small
             :class="[password.length <= 6 ? 'info-error' : 'info-success']"
           >
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 export default {
   name: 'SubscribeToJobs',
   layout: 'auth',
@@ -56,8 +56,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions('applicant', ['subscription']),
     onSubmit () {
-      console.log(this.amount)
+      this.subscription()
     }
   }
 }

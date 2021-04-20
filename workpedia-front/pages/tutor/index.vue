@@ -27,7 +27,7 @@
     <About />
     <!-- Popular -->
     <Tutors
-      class="mt-5"
+      class="mt-5 mb-4"
     />
     <!-- Find private tutors -->
     <!-- <section class="find-private-tutors">

@@ -30,5 +30,7 @@
   width: 90%;
   height: 2px;
   background-color: #0C0573;
+  padding: 0px;
+  margin-top: 6px;
 }
 </style>

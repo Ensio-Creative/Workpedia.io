@@ -6,11 +6,11 @@
           @submit.prevent="onSubmit"
         >
           <h4 class="mb-3">
-            Become A Tutor
+            Become a tutor
           </h4>
           <div class="row">
             <div class="col">
-              <label for="">Have you Tutored before</label>
+              <label for="">Have you tutored before</label>
               <div class="row justify-content-around">
                 <div class="col">
                   <div class="form-check">
@@ -66,7 +66,7 @@
                 placeholder="Describe"
                 required
               >
-                Descripe yourself as a Tutor
+                Descripe yourself as a tutor
               </AppTextarea>
             </div>
           </div>
@@ -125,5 +125,8 @@ export default {
 .sign-privacy{
   padding-top: 10px;
   text-align: center;
+}
+.become-a-tutor{
+  height: 100vh;
 }
 </style>

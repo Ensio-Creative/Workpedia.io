@@ -71,7 +71,7 @@ export default {
   layout: 'dashboard',
   data () {
     return {
-      tutorDescription: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam accusantium ut adipisci',
+      tutorDescription: '',
       activeTab: 'TutorDetails'
     }
   },

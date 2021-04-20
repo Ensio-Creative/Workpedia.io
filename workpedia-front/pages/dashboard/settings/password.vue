@@ -3,7 +3,7 @@
     <TopNavInfo
       dash-title="Settings"
     />
-    <div class="settings-nav">
+    <div class="settings-nav mt-5">
       <div
         class="row"
       >
@@ -17,7 +17,7 @@
         </NuxtLink>
       </div>
     </div>
-    <main class="row justify-content-center">
+    <main class="row justify-content-center mt-5">
       <div class="col-5 mt-4">
         <form
           @submit.prevent="onSubmit"

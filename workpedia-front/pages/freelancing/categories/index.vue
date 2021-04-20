@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Different categories -->
-    <section class="categorie mt-5 mb-5">
+    <section class="categorie mt-5">
       <div class="container">
         <div class="row row-cols-1 row-cols-md-3 g-4">
           <div
@@ -24,7 +24,7 @@
         </div>
       </div>
     </section>
-    <Testimony />
+    <!-- <Testimony /> -->
     <!-- News Letter -->
     <NewsLetter />
     <!-- Footer -->
@@ -80,6 +80,9 @@ export default {
 </script>
 
 <style scoped>
+.categorie {
+  margin-bottom: 8rem;
+}
 .categories-nav{
   background-color: #fff;
 }

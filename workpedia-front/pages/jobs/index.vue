@@ -26,10 +26,8 @@
     <!-- About -->
     <About />
     <!-- Popular -->
-    <Popular />
-    <!-- Post a job -->
-    <Find
-      private-title="Find Private Tutors"
+    <Popular
+      class="mb-5"
     />
     <!-- News Letter -->
     <NewsLetter />

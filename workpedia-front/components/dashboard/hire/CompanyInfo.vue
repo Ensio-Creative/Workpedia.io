@@ -112,7 +112,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 export default {
   name: 'PostAJobs',
   layout: 'auth',
@@ -132,8 +132,28 @@ export default {
       errors: []
     }
   },
+  computed: {
+    ...mapState('hire', ['hire'])
+  },
+  mounted () {
+    this.companyName = this.hire.companyName
+    this.companyWeb = this.hire.companyWeb
+    this.companyemail = this.hire.companyEmail
+    this.phone = this.hire.companyPhone
+    // if (!this.hire.social) {
+    //   this.facebook = ''
+    //   this.twitter = ''
+    //   this.linkedIn = ''
+    // }
+    // Look for a way to make this.hire.social not to get data
+    //  since it will be undefined at the first click after logging in.
+    this.facebook = this.hire.social.facebook
+    this.twitter = this.hire.social.twitter
+    this.linkedIn = this.hire.social.linkedIn
+    this.companyDescription = this.hire.companyDescription
+  },
   methods: {
-    ...mapActions('hire', ['registerHire']),
+    ...mapActions('hire', ['updateHire']),
     checkCompanyName () {
       if (this.companyName.length <= 3) {
         this.infoTextname = 'Please add Name'
@@ -181,9 +201,7 @@ export default {
           },
           companyDescription: this.companyDescription
         }
-        // console.log(payload)
-        this.registerHire(payload)
-        return payload
+        this.updateHire(payload)
       } else {
         console.log('Errors everywhere man!!!')
       }

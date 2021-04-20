@@ -1,23 +1,24 @@
 <template>
   <div>
-    <section class="categorie mt-5 mb-5">
+    <section class="categorie mt-5">
       <div class="container">
         <div class="row">
           <div class="col-12 col-md-12 col-lg-10">
             <div class="row">
               <div
-                v-for="jobs in fliteredJobs"
-                :key="jobs.id"
+                v-for="job in fliteredJobs"
+                :key="job.id"
                 class="col-12 col-md-12 col-lg-12 popular-column"
               >
                 <JobsList
-                  :id="jobs._id"
-                  :title="jobs.title"
-                  :location="jobs.location"
-                  :day-of-post-made="jobs.dayOFPostMade"
-                  :timeline-of-jobs="jobs.timelineOfJobs"
-                  :experience="jobs.experience"
-                  :description="jobs.description"
+                  :id="job._id"
+                  :title="job.title"
+                  :location="`${job.state} ${job.city}`"
+                  :day-of-post-made="job.createdAt"
+                  :timeline-of-jobs="job.duration"
+                  :experience="job.experience"
+                  :amount="job.amount"
+                  :description="job.description"
                 />
               </div>
             </div>
@@ -25,7 +26,7 @@
         </div>
       </div>
     </section>
-    <Testimony />
+    <!-- <Testimony /> -->
     <!-- News Letter -->
     <NewsLetter />
     <!-- Footer -->
@@ -43,9 +44,9 @@ export default {
     }
   },
   computed: {
-    ...mapState('jobs', ['job']),
+    ...mapState('jobs', ['jobs']),
     fliteredJobs () {
-      const result = this.job.filter(job => job.jobCategory === this.routeUrl)
+      const result = this.jobs.filter(job => job.category === this.routeUrl)
       return result
     }
   }
@@ -53,5 +54,7 @@ export default {
 </script>
 
 <style scoped>
-
+.categorie {
+  margin-bottom: 8rem;
+}
 </style>

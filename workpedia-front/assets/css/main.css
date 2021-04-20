@@ -132,8 +132,7 @@ p {
 
 .view-more {
   text-align: center;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 80px;
 }
 
 .view-btn {
@@ -151,7 +150,7 @@ p {
 /* Freelance gigs */
 .freelancing-gigs {
   padding-top: 100px;
-  /* padding-bottom: 100px; */
+  padding-bottom: 100px;
 }
 .freelance-heading {
   padding-top: 0px;
@@ -195,8 +194,9 @@ p {
 
 .popular-column {
   background: #ffffff 0% 0% no-repeat padding-box;
-  box-shadow: 0px 0px 5px rgba(37, 30, 140, 0.2902);
-  border-radius: 21px;
+  box-shadow: 0px 0px 1px rgba(37, 30, 140, 0.2902);
+  /* border-radius: 21px; */
+  word-wrap: break-word;
   opacity: 1;
   margin-top: 10px;
 }
@@ -224,8 +224,8 @@ p {
 }
 
 .gray-background {
-  background-color: #efefef;
-  padding: 10px 10px 5px 10px;
+  border: 1px solid #efefef;
+  padding: 9px 6px 4px 4px;
   margin-right: 20px;
   letter-spacing: 0px;
 }
@@ -244,7 +244,7 @@ p {
   padding-bottom: 20px;
 }
 .popular-button a {
-  padding: 10px 80px;
+  padding: 9px 30px;
   letter-spacing: 0px;
   color: #0db47b;
   opacity: 1;
@@ -256,7 +256,7 @@ p {
 /* Private-tutors */
 .private-tutor {
   padding-top: 0px;
-  padding-bottom: 100px;
+  padding-bottom: 30px;
 }
 .private-tutor-column {
   background-color: #fff;
@@ -320,6 +320,11 @@ p {
 }
 @media screen and (max-width: 780px) {
   /* ------ ------ Landing page ------- ------ */
+  .header-container {
+    height: 60px;
+    background-color: #fff;
+    margin-bottom: 10px;
+}
   .bg-hero h1 {
     padding: 0px;
   }
@@ -328,8 +333,8 @@ p {
   }
   .image-rap {
     margin-top: 0px;
-    width: 352px;
-    height: 390px;
+    width: 100%;
+    height: 287px;
   }
   .bg-buttons {
     margin-top: 10px;
@@ -340,10 +345,11 @@ p {
     text-align: center;
   }
   /* Walk you through */
-  .heading {
-    padding-top: 0px;
+  .walk-you-through {
+    background-color: #f1f1ff;
+    padding-top: 42px;
     padding-bottom: 90px;
-  }
+}
   .heading h1 {
     font-size: 26px;
   }
@@ -370,4 +376,17 @@ p {
   padding-bottom: 0px;
 }
 
+}
+
+@media screen and (max-width: 988px) {
+  .bg-texts {
+    text-align: center;
+    margin-top: 30px;
+  }
+  .bg-hero h1 {
+    padding: 0px;
+  }
+  .bg-hero p {
+    padding: 0px;
+  }
 }

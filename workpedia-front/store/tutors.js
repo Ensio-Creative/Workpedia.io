@@ -1,15 +1,7 @@
 export const state = () => ({
   tutor: {},
   startInfo: {},
-  fetchedTutors: [
-    {
-      _id: '1',
-      tutorTitle: 'Web dev',
-      author: 'Great Adams',
-      courseCategory: 'Front-end',
-      tutorCategory: 'computer-sciences'
-    }
-  ]
+  requestTutorInfo: {}
 })
 
 export const mutations = {
@@ -24,6 +16,15 @@ export const mutations = {
       ...state.startInfo,
       ...payload
     }
+  },
+  UPDATE_REQUEST_TUTOR (state, payload) {
+    state.requestTutorInfo = {
+      ...state.requestTutorInfo,
+      ...payload
+    }
+  },
+  CLEAR_REQUEST_TUTOR (state) {
+    state.requestTutorInfo = {}
   }
 }
 
@@ -32,6 +33,7 @@ export const actions = {
     // States from the root
     const userId = rootState.auth.user._id
     const token = rootState.auth.user.token
+    console.log(userId, token)
     payload = { ...payload, userId }
     try {
       const res = await this.$axios.$patch(
@@ -57,9 +59,30 @@ export const actions = {
         `tutors/update-tutor/${state.tutor._id}`,
         payload
       )
+      commit('UPDATE_RESPONSES', res.message, { root: true })
       commit('UPDATE_TUTOR_STATE', res.result)
     } catch (error) {
       console.log(error)
+      commit('UPDATE_RESPONSES', error.message, { root: true })
+    }
+  },
+
+  async sendRequest ({ commit, state, rootState }, payload) {
+    const userId = rootState.auth.user._id
+    const request = state.requestTutorInfo
+    payload = { ...payload, userId }
+    const finalRequest = { ...payload, ...request }
+    try {
+      const res = await this.$axios.$post(
+        `tutors/request-tutor/${userId}`,
+        finalRequest
+      )
+      commit('UPDATE_RESPONSES', res.message, { root: true })
+      commit('CLEAR_REQUEST_TUTOR')
+      this.$router.push('/tutor')
+    } catch (error) {
+      console.log(error)
+      commit('UPDATE_RESPONSES', error.message, { root: true })
     }
   },
 
@@ -71,9 +94,11 @@ export const actions = {
           `tutors/get-tutor/${userId}`
         )
         console.log(res)
+        commit('UPDATE_RESPONSES', res.message, { root: true })
         commit('UPDATE_TUTOR_STATE', res)
       }
     } catch (error) {
+      commit('UPDATE_RESPONSES', error.message, { root: true })
       console.log(error)
     }
   }

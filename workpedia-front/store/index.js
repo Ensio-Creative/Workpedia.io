@@ -7,8 +7,8 @@ export const state = () => ({
   isLoading: false,
   resized: false,
   hasAccount: false,
-  errors: [],
-  requestTutorInfo: {}
+  errors: '',
+  responses: ''
 })
 
 export const mutations = {
@@ -21,6 +21,12 @@ export const mutations = {
   HAS_ACCOUNT (state, account) {
     state.hasAccount = account
   },
+  UPDATE_RESPONSES (state, message) {
+    state.responses = message
+  },
+  UPDATE_ERROR (state, message) {
+    state.errors = message
+  },
   CLEAR_ERRORS (state) {
     state.errors = []
   },
@@ -30,13 +36,33 @@ export const mutations = {
       ...payload
     }
   },
+  CLEAR_USER (state) {
+    state.auth.user = {}
+    state.tutors.tutor = {}
+    state.hire.hire = {}
+    state.applicant.applicant = {}
+    state.freelance.freelancer = {}
+  },
   UPDATE_LOADING (state, Loading) {
     state.isLoading = Loading
   },
-  UPDATE_REQUEST_TUTOR (state, payload) {
-    state.requestTutorInfo = {
-      ...state.requestTutorInfo,
-      ...payload
+  UPDATE_JOBS (state, payload) {
+    state.jobs.jobs = payload
+  }
+}
+
+export const actions = {
+  async nuxtServerInit ({ commit }) {
+    try {
+      const res = await this.$axios.$get(
+        'jobs/get-jobs'
+      )
+      commit('UPDATE_RESPONSES', res.message)
+      console.log(res.results.length)
+      commit('UPDATE_JOBS', res.results)
+      console.log(res.results.length)
+    } catch (error) {
+      console.log(error)
     }
   }
 }

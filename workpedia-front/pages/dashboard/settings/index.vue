@@ -4,7 +4,7 @@
     <TopNavInfo
       dash-title="Settings"
     />
-    <div class="settings-nav">
+    <div class="settings-nav mt-5">
       <div
         class="row"
       >

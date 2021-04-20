@@ -4,35 +4,189 @@
       dash-title="Tutors"
     />
     <TutorNav />
-    <ul class="list-group list-group-flush mt-5">
-      <li class="list-group-item">
-        <span class="name ml-2">FullName</span>  <span class="email ml-5">Email</span>  <span class="phone ml-5">Phone</span> <span class="age ml-5">age</span> <span class="city ml-5">city</span>
-        <button
-          class="btn btn-outline-danger float-right"
-          @click="showMsgBoxTwo"
-        >
-          <i class="fas fa-times" />
-        </button>
-        <button
-          v-b-modal.modal-lg
-          class="btn btn-outline-primary float-right pl-2"
-        >
-          <i class="far fa-eye" />
-        </button>
-      </li>
-      <li class="list-group-item">
-        A second item
-      </li>
-      <li class="list-group-item">
-        A third item
-      </li>
-      <li class="list-group-item">
-        A fourth item
-      </li>
-      <li class="list-group-item">
-        And a fifth one
-      </li>
-    </ul>
+    <div class="row justify-content-center mt-4">
+      <div class="col-12 col-md-11 col-lg-11">
+        <div class="row">
+          <div
+            v-for="request in results"
+            :key="request._id"
+            class="col-12 col-md-12 col-lg-12 popular-column"
+          >
+            <div class="popular-column-heading">
+              <span class="request-title">{{ request.subject }}</span>
+              <h5>{{ `${request.states}, ${request.city}` }}</h5>
+              <button
+                class="btn btn-outline-danger added-btn"
+                @click="showMsgBoxTwo(request._id)"
+              >
+                Delete
+              </button>
+              <button
+                v-b-modal.modal-request
+                class="btn btn-outline-warning added-btn"
+              >
+                Serve request
+              </button>
+            </div>
+            <div class="popular-durations">
+              <span class="gray-background">
+                <h6>{{ $moment(request.createdAt).fromNow() }}</h6>
+              </span>
+            </div>
+            <div class="popular-text mt-3 mb-4">
+              <h3>Students Details</h3>
+              <div class="row">
+                <div class="col">
+                  <span
+                    class="card-text"
+                  >
+                    Number of students: {{ request.numberOfStudents }}
+                  </span>
+                </div>
+                <div class="col">
+                  <span
+                    class="card-text"
+                  >
+                    Students class: {{ request.studentClass }}
+                  </span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <span
+                    class="card-text"
+                  >
+                    Students Goal: {{ request.studentGoal }}
+                  </span>
+                </div>
+                <div class="col">
+                  <span
+                    class="card-text"
+                  >
+                    More about the Student : {{ request.moreAboutStudent }}
+                  </span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <span
+                    class="card-text"
+                  >
+                    Curriculum: {{ request.curriculum }}
+                  </span>
+                </div>
+                <div class="col">
+                  <span
+                    class="card-text"
+                  >
+                    Length of lesson: {{ request.lengthOfLesson }}
+                  </span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <span
+                    class="card-text"
+                  >
+                    Lesson Type: {{ request.lessonType }}
+                  </span>
+                </div>
+                <div class="col">
+                  <span
+                    class="card-text"
+                  >
+                    Tutor gender: {{ request.tutorGender }}
+                  </span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <span
+                    class="card-text"
+                  >
+                    Days of work: {{ request.days }}
+                  </span>
+                </div>
+                <div class="col">
+                  <span
+                    class="card-text"
+                  >
+                    More About Student: {{ request.moreAboutStudent }}
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="popular-text mt-3 mb-4">
+              <h3>Contact Details</h3>
+              <div class="row">
+                <div class="col">
+                  <span
+                    class="card-text"
+                  >
+                    {{ `Name: ${request.firstName} ${request.lastName}` }}
+                  </span>
+                </div>
+                <div class="col">
+                  <span
+                    class="card-text"
+                  >
+                    Phone: {{ request.phone }}
+                  </span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <span
+                    class="card-text"
+                  >
+                    Email {{ request.email }}
+                  </span>
+                </div>
+                <div class="col">
+                  <span
+                    class="card-text"
+                  >
+                    Bustop: {{ request.nearestBustop }}
+                  </span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <span
+                    class="card-text"
+                  >
+                    State: {{ request.states }}
+                  </span>
+                </div>
+                <div class="col">
+                  <span
+                    class="card-text"
+                  >
+                    City: {{ request.city }}
+                  </span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <span
+                    class="card-text"
+                  >
+                    Landmark: {{ request.nearestLandmark }}
+                  </span>
+                </div>
+                <div class="col">
+                  <span
+                    class="card-text"
+                  >
+                    Address: {{ request.address }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <b-modal
       id="modal-lg"
       size="lg"
@@ -44,7 +198,7 @@
           id="staticBackdropLabel"
           class="modal-title"
         >
-          <!-- Application for {{ fliteredJobs.title }} -->
+          <!-- Application for {{ fliteredrequests.title }} -->
         </h5>
       </template>
       <h5 class="my-4">
@@ -78,7 +232,6 @@
       <b-pagination
         v-model="currentPage"
         pills
-        :variant="page-link"
         :total-rows="rows"
       />
     </div>
@@ -92,6 +245,10 @@
 export default {
   name: 'Requests',
   layout: 'admin',
+  async asyncData ({ $axios }) {
+    const { results } = await $axios.$get('admin/all-tutor-request')
+    return { results }
+  },
   data () {
     return {
       boxTwo: '',
@@ -140,20 +297,13 @@ export default {
   justify-content: center;
   color: #0C0573 !important;
 }
-.page-link {
-  position: relative;
-  display: block;
-  padding: 0.5rem 0.75rem;
-  margin-left: -1px;
-  line-height: 1.25;
-  color: #0C0573 !important;
-  background-color: #fff;
-  border: 1px solid #dee2e6;
+.added-btn{
+  float: right;
+  margin-right: 10px;
 }
-.page-item.active .page-link {
-  z-index: 3;
-  color: #fff;
-  background-color: #0C0573 !important;
-  border-color: #0C0573 !important;
+
+.request-title{
+  color: #ff9b17;
+  font-size: 27px;
 }
 </style>

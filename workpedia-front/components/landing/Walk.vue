@@ -5,7 +5,7 @@
         <div class="heading">
           <h1>Let's walk you through</h1>
         </div>
-        <div class="row justify-content-center">
+        <div class="row justify-content-around">
           <div class="col-12 col-md-3 walk-column">
             <div class="img-head">
               <img src="~/assets/img/avatar_d@2x.png">

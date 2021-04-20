@@ -158,6 +158,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 import states from '~/static/data/states.js'
 export default {
   name: 'Contact',
@@ -180,28 +181,29 @@ export default {
     }
   },
   methods: {
+    ...mapMutations('tutors', ['UPDATE_REQUEST_TUTOR']),
     backToStarted () {
       this.$emit('backStarted')
     },
     onSubmit () {
       this.errors = []
-      if (!this.lastName) {
+      if (!this.lastName.length) {
         this.errors.push('Please add your last name')
-      } else if (!this.firstName) {
+      } else if (!this.firstName.length) {
         this.errors.push('Please add your first name')
       } else if (!this.validEmail(this.email)) {
         this.errors.push('Add a valid email')
-      } else if (!this.hearAbout) {
+      } else if (!this.hearAbout.length) {
         this.errors.push('Please tell how you heard of us')
-      } else if (!this.selectedStates) {
+      } else if (!this.selectedStates.length) {
         this.errors.push('Please select a state')
-      } else if (!this.city) {
+      } else if (!this.city.length) {
         this.errors.push('Please add your city')
-      } else if (!this.nearestBustop) {
+      } else if (!this.nearestBustop.length) {
         this.errors.push('Please add nearest bustop')
-      } else if (!this.nearestLandmark) {
+      } else if (!this.nearestLandmark.length) {
         this.errors.push('Please add nearest landmark')
-      } else if (!this.address) {
+      } else if (!this.address.length) {
         this.errors.push('Please add address')
       } else if (!this.errors.length) {
         const payload = {
@@ -216,7 +218,7 @@ export default {
           nearestLandmark: this.nearestLandmark,
           address: this.address
         }
-        this.$store.commit('UPDATE_REQUEST_TUTOR', payload)
+        this.UPDATE_REQUEST_TUTOR(payload)
         this.$emit('nextLeson')
       }
     },

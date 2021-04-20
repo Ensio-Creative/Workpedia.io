@@ -34,19 +34,31 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 export default {
   name: 'Hire',
   layout: 'dashboard',
   data () {
     return {
-      companyName: 'Max limited',
-      companyWeb: 'www.maxlimited.com',
-      companyDescription: 'quidem exercitationem illum commodi atque eum nisi labore consequuntur nulla? Illum, quis dignissimos!'
+      companyName: '',
+      companyWeb: '',
+      companyDescription: ''
     }
   },
   computed: {
     ...mapState('hire', ['hire'])
+  },
+  mounted () {
+    this.fetchCompany()
+    this.companyName = this.hire.companyName
+    this.companyWeb = this.hire.companyWeb
+    this.companyDescription = this.hire.companyDescription
+  },
+  methods: {
+    ...mapActions('hire', ['getHire']),
+    fetchCompany () {
+      this.getHire()
+    }
   }
 }
 </script>

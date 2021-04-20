@@ -23,6 +23,7 @@ export default {
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
+    // '@assets/css/bootstrap.min.css',
     '@assets/css/style.css',
     '@assets/css/main.css',
     '@assets/css/fontawesome-all.css'
@@ -39,9 +40,9 @@ export default {
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
     // https://go.nuxtjs.dev/eslint
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/moment'
   ],
-
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     // https://go.nuxtjs.dev/bootstrap
@@ -50,9 +51,19 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
-    '@nuxt/content'
+    '@nuxt/content',
+    'nuxt-socket-io'
   ],
 
+  io: {
+    sockets: [ // Required
+      { // At least one entry is required
+        name: 'home',
+        url: 'http://localhost:8000',
+        default: true
+      }
+    ]
+  },
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
     common: {

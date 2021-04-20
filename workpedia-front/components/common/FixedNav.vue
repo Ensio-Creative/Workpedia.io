@@ -69,9 +69,36 @@ export default {
   text-decoration: none;
   color: none;
 }
-@media screen and (max-width: 780px){
+@media screen and (max-width: 769px){
   .fixed{
-    visibility: hidden;
+    visibility: visible;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    z-index: 10000;
+    width: 100%;
+  }
+  .nav-fixed {
+    box-shadow: 0px 0px 5px transparent;
+    background: transparent;
+    border-radius: 0px;
+    padding: 7px 10px;
+    display: flex;
+    text-align: center;
+    justify-content: space-evenly;
+}
+.nav-fixed-item:nth-child(2) {
+  box-shadow: 0px 3px 6px #f5c01e26;
+  background-color: #0db47b;
+  color: #fff;
+  padding-left: 13px;
+  padding-right: 13px;
+}
+  .nav-fixed-item:nth-child(3) {
+    background-color: #2b7dc4;
+    color: #fff;
+    padding-left: 13px;
+    padding-right: 13px;
   }
 }
 </style>

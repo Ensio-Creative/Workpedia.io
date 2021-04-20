@@ -7,13 +7,16 @@
     </div>
     <div class="popular-durations">
       <span class="gray-background">
-        <h6>{{ dayOfPostMade }}</h6>
+        <h6>{{ $moment(dayOfPostMade).fromNow() }}</h6>
       </span>
       <span class="gray-background">
         <h6>{{ timelineOfJobs }}</h6>
       </span>
       <span class="gray-background">
         <h6>{{ experience }}</h6>
+      </span>
+      <span class="gray-background">
+        <h6>NGN {{ amount }}</h6>
       </span>
       <NuxtLink
         :to="`/jobs/categories/single-job/${id}`"
@@ -64,6 +67,11 @@ export default {
       type: String,
       requried: true,
       default: 'Job location'
+    },
+    amount: {
+      type: String,
+      requried: true,
+      default: '000,000'
     },
     description: {
       type: String,

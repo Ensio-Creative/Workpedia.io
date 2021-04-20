@@ -87,7 +87,7 @@
         </b-button>
       </template>
     </b-modal>
-    <Testimony />
+    <!-- <Testimony /> -->
     <!-- News Letter -->
     <NewsLetter />
     <!-- Footer -->

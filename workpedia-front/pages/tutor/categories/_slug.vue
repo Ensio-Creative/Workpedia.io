@@ -35,9 +35,11 @@
       </div>
     </section>
 
-    <Testimony />
+    <!-- <Testimony /> -->
     <!-- News Letter -->
-    <NewsLetter />
+    <NewsLetter
+      class="mt-5"
+    />
     <!-- Footer -->
     <Footer />
   </div>
@@ -85,5 +87,8 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   padding: 100px;
+}
+.categorie {
+  margin-bottom: 8rem;
 }
 </style>

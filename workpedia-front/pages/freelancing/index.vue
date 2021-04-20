@@ -29,10 +29,6 @@
     <Freelancing
       frelance-gigs="Popular Gigs"
     />
-    <!-- Find private -->
-    <Find
-      private-title="Best Freelancing Platform"
-    />
     <!-- News Letter -->
     <NewsLetter />
     <!-- Footer -->

@@ -16,12 +16,26 @@
         <div class="col-12 col-md-6">
           <div class="row mt-3">
             <div class="col">
-              <label for="">How long would the lesson hold?</label>
-              <input type="text" class="form-control" placeholder="Number of Students" aria-label="First name">
+              <label for="length-of-lesson">How long would the lesson hold?</label>
+              <input
+                id="length-of-lesson"
+                v-model="lengthOfLesson"
+                type="text"
+                class="form-control"
+                placeholder="4 weeks"
+                required
+              >
             </div>
             <div class="col">
-              <label for="">How many hours per week?</label>
-              <input type="text" class="form-control" placeholder="Number of Students" aria-label="First name">
+              <label for="hours">How many hours per week?</label>
+              <input
+                id="hours"
+                v-model="hours"
+                type="text"
+                class="form-control"
+                placeholder="4hrs"
+                required
+              >
             </div>
           </div>
           <div class="row mt-3">
@@ -31,34 +45,37 @@
             <div class="col">
               <div class="form-check">
                 <input
-                  id="defaultCheck1"
+                  id="mondays"
+                  v-model="daysOfTutor"
                   class="form-check-input"
                   type="checkbox"
-                  value=""
+                  value="Mondays"
                 >
-                <label class="form-check-label" for="defaultCheck1">
+                <label class="form-check-label" for="mondays">
                   Monday
                 </label>
               </div>
               <div class="form-check">
                 <input
-                  id="defaultCheck2"
+                  id="tuesdays"
+                  v-model="daysOfTutor"
                   class="form-check-input"
                   type="checkbox"
-                  value=""
+                  value="Tuesdays"
                 >
-                <label class="form-check-label" for="defaultCheck2">
+                <label class="form-check-label" for="tuesdays">
                   Tuesday
                 </label>
               </div>
               <div class="form-check">
                 <input
-                  id="defaultCheck3"
+                  id="wedsnesday"
+                  v-model="daysOfTutor"
                   class="form-check-input"
                   type="checkbox"
-                  value=""
+                  value="Wedsnesdays"
                 >
-                <label class="form-check-label" for="defaultCheck2">
+                <label class="form-check-label" for="wedsnesday">
                   Wedsnesdays
                 </label>
               </div>
@@ -66,77 +83,52 @@
             <div class="col">
               <div class="form-check">
                 <input
-                  id="defaultCheck1"
+                  id="thursday"
+                  v-model="daysOfTutor"
                   class="form-check-input"
                   type="checkbox"
-                  value=""
+                  value="Thursdays"
                 >
-                <label class="form-check-label" for="defaultCheck1">
+                <label class="form-check-label" for="thursday">
                   Thursday
                 </label>
               </div>
               <div class="form-check">
                 <input
-                  id="defaultCheck2"
+                  id="fridays"
+                  v-model="daysOfTutor"
                   class="form-check-input"
                   type="checkbox"
-                  value=""
+                  value="Fridays"
                 >
-                <label class="form-check-label" for="defaultCheck2">
+                <label class="form-check-label" for="fridays">
                   Friday
                 </label>
               </div>
               <div class="form-check">
                 <input
-                  id="defaultCheck3"
+                  id="sartuday"
+                  v-model="daysOfTutor"
                   class="form-check-input"
                   type="checkbox"
-                  value=""
+                  value="Saturdays"
                 >
-                <label class="form-check-label" for="defaultCheck2">
+                <label class="form-check-label" for="sartuday">
                   Saturdays
                 </label>
               </div>
             </div>
           </div>
-          <div class="row mt-3">
-            <h4>Students Goals</h4>
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Child's Curriculum" aria-label="Child's Curriculum">
-            </div>
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Subjects Offered" aria-label="Subjects Offered">
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col">
-              <input type="text" class="form-control" placeholder="What Gender of Tutor" aria-label="What Gender of Tutor">
-            </div>
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Goal for your child" aria-label="Goal for your child">
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col">
-              <textarea
-                type="text"
-                class="form-control"
-                placeholder="Tell us about your child"
-                aria-label="First n ame"
-                rows="3"
-              />
-            </div>
-          </div>
           <AppButton
             type="submit"
-            class="tutor-btn-back mt-3"
+            class="tutor-btn-back mt-5"
             @click="backToContact"
           >
             Back
           </AppButton>
           <AppButton
             type="submit"
-            class="tutor-btn mt-3"
+            class="tutor-btn mt-5"
           >
             Submit
           </AppButton>
@@ -147,21 +139,46 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'Lesson',
   emits: ['backContact'],
   data () {
     return {
-      date: '',
+      lengthOfLesson: '',
+      hours: '',
+      daysOfTutor: [],
       errors: []
     }
   },
   methods: {
+    ...mapActions('tutors', ['sendRequest']),
     backToContact () {
       this.$emit('backContact')
     },
     onSubmit () {
-      console.log('logged')
+      this.errors = []
+      if (this.lengthOfLesson.length <= 4) {
+        this.errors.push('Please how long will the tutoring go??')
+        console.log(this.lengthOfLesson.length)
+      }
+      if (this.hours.length < 4) {
+        this.errors.push('Please how many hours or minutes??')
+        console.log(this.hours.length)
+      }
+      if (!this.daysOfTutor.length) {
+        this.errors.push('Please on what days is the Lessons to hold??')
+        console.log(this.daysOfTutor.length)
+      }
+      if (!this.errors.length) {
+        const payload = {
+          lengthOfLesson: this.lengthOfLesson,
+          hours: this.hours,
+          days: this.daysOfTutor
+        }
+        // console.log(payload)
+        this.sendRequest(payload)
+      }
     }
   }
 }
@@ -195,5 +212,14 @@ form{
   border-color: #ff9b17;
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgb(255 155 23);
+}
+.color-red{
+  background: red;
+  color: #fff;
+  width: 426px;
+  text-align: center;
+  position: fixed;
+  z-index: 10;
+  padding: 10px;
 }
 </style>

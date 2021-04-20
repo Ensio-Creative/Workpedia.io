@@ -2,7 +2,7 @@
   <div>
     <section class="container private-tutor">
       <div class="heading">
-        <h1>Get your tutors</h1>
+        <h1>Hire a tutor</h1>
       </div>
       <div class="row row-cols-1 row-cols-md-3 g-4">
         <div
@@ -84,5 +84,9 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   padding: 100px;
+}
+.heading {
+  padding-top: 0px;
+  padding-bottom: 7px;
 }
 </style>

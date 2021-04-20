@@ -11,66 +11,6 @@ export const state = () => ({
       authorDescription: 'This i will make a very good product for you Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut'
     },
     {
-      _id: '2',
-      title: 'UI/UX',
-      amount: '25',
-      description: ' Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolor',
-      category: 'design',
-      author: 'Great Adams',
-      authorLocation: 'Location',
-      authorDescription: 'This i will make a very good product for you Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut'
-    },
-    {
-      _id: '3',
-      title: 'Smart contract',
-      amount: '45',
-      description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolor',
-      category: 'programming',
-      author: 'Great Adams',
-      authorLocation: 'Location',
-      authorDescription: 'This i will make a very good product for you Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut'
-    },
-    {
-      _id: '4',
-      title: 'React developer',
-      amount: '450',
-      description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolor',
-      category: 'programming',
-      author: 'Great Adams',
-      authorLocation: 'Location',
-      authorDescription: 'This i will make a very good product for you Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut'
-    },
-    {
-      _id: '5',
-      title: '3d animation',
-      amount: '115',
-      description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolor',
-      category: 'animation',
-      author: 'Great Adams',
-      authorLocation: 'Location',
-      authorDescription: 'This i will make a very good product for you Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut'
-    },
-    {
-      _id: '6',
-      title: 'Character voice over',
-      amount: '4500',
-      description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolor',
-      category: 'music',
-      author: 'Great Adams',
-      authorLocation: 'Location',
-      authorDescription: 'This i will make a very good product for you Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut'
-    },
-    {
-      _id: '8',
-      title: 'School agent',
-      amount: '6665',
-      description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolor',
-      category: 'business',
-      author: 'Great Adams',
-      authorLocation: 'Location',
-      authorDescription: 'This i will make a very good product for you Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut'
-    },
-    {
       _id: '9',
       title: 'Therpist',
       amount: '45',
@@ -80,5 +20,69 @@ export const state = () => ({
       authorLocation: 'Location',
       authorDescription: 'This i will make a very good product for you Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut'
     }
-  ]
+  ],
+  freelancer: {}
 })
+
+export const mutations = {
+  UPDATE_FREELANCER (state, payload) {
+    state.freelancer = {
+      ...state.freelancer,
+      ...payload
+    }
+  }
+}
+
+export const actions = {
+  async registerFreelancerHandymen ({ commit, rootState }, payload) {
+    const userId = rootState.auth.user._id
+    const token = rootState.auth.user.token
+    payload = { ...payload, userId }
+    try {
+      const res = await this.$axios.$post(
+        'freelance/register-freelancer',
+        payload
+      )
+      // Add the token to the new user object
+      const user = { ...res.user, token }
+      commit('UPDATE_USER', user, { root: true })
+      commit('UPDATE_RESPONSES', res.message, { root: true })
+      commit('UPDATE_FREELANCER', res.result)
+      this.$router.push('/dashboard/freelance')
+    } catch (error) {
+      console.log(error)
+    }
+  },
+
+  async updateFreelancerHandymen ({ commit, state }) {
+    const freelancerId = state.freelancer._id
+    try {
+      if (state.freelancer.cvUrl && state.freelancer.thumbnailUrl) {
+        const res = await this.$axios.$put(
+          `freelance/update-freelancer/${freelancerId}`,
+          state.freelancer
+        )
+        commit('UPDATE_RESPONSES', res.message, { root: true })
+        commit('UPDATE_FREELANCER', res.result)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  },
+
+  async getFreelancer ({ commit, state, rootState }) {
+    const userId = rootState.auth.user._id
+    try {
+      if (!state.freelancer.description) {
+        const res = await this.$axios.$get(
+          `freelance/get-freelancer-info/${userId}`
+        )
+        commit('UPDATE_RESPONSES', res.message, { root: true })
+        commit('UPDATE_FREELANCER', res.result)
+      }
+      console.log('Did not work')
+    } catch (error) {
+      console.log(error.msg)
+    }
+  }
+}
