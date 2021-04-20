@@ -9,6 +9,8 @@ router.get('/get-jobs', jobsController.getJobs)
 
 router.get('/get-job/:jobId', jobsController.getJob)
 
+router.get('/get-company-job/:companyId', jobsController.getCompanyJobs)
+
 router.put('/post-job', 
 [
   body('title')
@@ -25,6 +27,9 @@ router.put('/post-job',
     body('phone')
       .trim()
       .isLength({min: 11})
+      .notEmpty(),
+    body('amount')
+      .trim()
       .notEmpty(),
     body('duration')
       .trim()
@@ -44,6 +49,42 @@ router.put('/post-job',
 ],
  jobsController.postJob)
 
-router.delete('/delete-job/:companyId', jobsController.deleteJob)
+router.post('/update-job/:jobId', 
+[
+  body('title')
+    .trim()
+    .isLength({ min: 3 })
+    .not()
+    .isEmpty(),
+    body('state')
+      .trim()
+      .notEmpty(),
+    body('city')
+      .trim()
+      .notEmpty(),
+    body('phone')
+      .trim()
+      .isLength({min: 11})
+      .notEmpty(),
+    body('amount')
+      .trim()
+      .toInt()
+      .notEmpty(),
+    body('duration')
+      .trim()
+      .notEmpty(),
+    body('experience')
+      .trim()
+      .notEmpty(),
+    body('category')
+      .trim()
+      .notEmpty(),
+    body('description')
+      .trim()
+      .notEmpty()
+],
+ jobsController.updatePost)
+
+router.delete('/delete-job/:jobId', jobsController.deleteJob)
 
 module.exports = router

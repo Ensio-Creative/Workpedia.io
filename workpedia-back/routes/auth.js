@@ -13,23 +13,19 @@ router.put('/signup',
     body('firstName')
       .trim()
       .isLength({ min: 3 })
-      .not()
-      .isEmpty(),
+      .notEmpty(),
     body('lastName')
       .trim()
       .isLength({ min: 3 })
-      .not()
-      .isEmpty(),
+      .notEmpty(),
     body('age')
       .trim()
       .toInt()
-      .not()
-      .isEmpty(),
+      .notEmpty(),
     body('phone')
       .trim()
       .isLength({ min: 11 })
-      .not()
-      .isEmpty(),
+      .notEmpty(),
     body('email')
       .trim()
       .custom((value, { req }) => {
@@ -39,25 +35,22 @@ router.put('/signup',
           }
         })
       })
-      .not()
-      .isEmpty(),
+      .isEmail()
+      .normalizeEmail()
+      .notEmpty(),
     body('password')
       .trim()
       .isLength({ min: 6 })
-      .not()
-      .isEmpty(),
+      .notEmpty(),
     body('state')
       .trim()
-      .not()
-      .isEmpty(),
+      .notEmpty(),
     body('city')
       .trim()
-      .not()
-      .isEmpty(),
+      .notEmpty(),
     body('address')
       .trim()
-      .not()
-      .isEmpty(),
+      .notEmpty(),
   ],
     authController.signUp)
 

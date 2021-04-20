@@ -1,9 +1,12 @@
 const express = require('express')
-// const { check } = require('express-validator')
+const { body } = require('express-validator')
 
 const router = express.Router()
 
 const adminController = require('../controllers/admin')
+
+// COUNTS OF USERS, TUTORS, JOBS, HIRES, APPLICANTS FREELANCERS
+router.get('/calculations-users', adminController.calculate)
 
 // USERS ROUTES
 router.get('/all-users', adminController.getAllUsers)
@@ -19,19 +22,74 @@ router.get('/get-tutor/:tutorId', adminController.getSingleTutor)
 
 router.delete('/delete-tutor/:tutorId', adminController.deleteTutor)
 
+// REQUEST TUTOR ROUTES
+router.get('/all-tutor-request', adminController.getTutorsRequests)
+
+router.get('/tutor-request/:requestId', adminController.getSingleTutorRequest)
+
+router.delete('/delete-tutor-request/:requestId', adminController.deleteTutorRequest)
+
+// TUTORS CATEGORY ROUTES
+router.put('/create-category', adminController.createTutorCategory)
+
 // JOBS ROUTES
+router.put('/post-job', 
+[
+  body('title')
+    .trim()
+    .isLength({ min: 3 })
+    .not()
+    .isEmpty(),
+    body('state')
+      .trim()
+      .notEmpty(),
+    body('city')
+      .trim()
+      .notEmpty(),
+    body('phone')
+      .trim()
+      .isLength({min: 11})
+      .notEmpty(),
+    body('amount')
+      .trim()
+      .notEmpty(),
+    body('duration')
+      .trim()
+      .notEmpty(),
+    body('experience')
+      .trim()
+      .notEmpty(),
+    body('category')
+      .trim()
+      .notEmpty(),
+    body('description')
+      .trim()
+      .notEmpty(),
+    body('userId')
+      .trim()
+      .notEmpty(),
+],
+ adminController.postJob)
+
 // APPLICANTS ROUTES
-router.get('/all-apllicants', adminController.getAllApplicant)
+router.get('/all-applicants', adminController.getAllApplicant)
 
-router.get('/get-applicant', adminController.getSingleApplicant)
+router.get('/get-applicant/:applicantId', adminController.getSingleApplicant)
 
-router.delete('/delete-applicant', adminController.deleteApplicant)
+router.delete('/delete-applicant/:applicantId', adminController.deleteApplicant)
 
 // HIRES ROUTES
 router.get('/all-hires', adminController.getAllHires)
 
 router.get('/get-hire', adminController.getHire)
 
-router.delete('/delete-hire', adminController.deleteHire)
+router.delete('/delete-hire/:hireId', adminController.deleteHire)
+
+// FREELANCER/HANDYMEN ROUTES
+router.get('/all-freelancers', adminController.getAllFreelancers)
+
+router.get('/get-freelancer/:freelanceId', adminController.getFreelance)
+
+router.delete('/delete-freelancer/:freelancerId', adminController.deleteFreelancer)
 
 module.exports = router

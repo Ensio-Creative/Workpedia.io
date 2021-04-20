@@ -29,7 +29,7 @@ const UserSchema = new Schema({
   phone: {
     type: String,
     required: true,
-    minLength: 4,
+    minLength: 10,
     maxLength: 200
   },
   password: {
@@ -41,20 +41,14 @@ const UserSchema = new Schema({
   state: {
     type: String,
     required: true,
-    minLength: 4,
-    maxLength: 200
   },
   city: {
     type: String,
     required: true,
-    minLength: 4,
-    maxLength: 200
   },
   address: {
     type: String,
     required: true,
-    minLength: 4,
-    maxLength: 200
   },
   imageUrl: String,
   isAdmin: {
@@ -67,35 +61,27 @@ const UserSchema = new Schema({
   },
   isTutor: {
     type: Boolean,
-    default: false,
-    tutorId: {
-      type: Schema.Types.ObjectId,
-      ref: 'tutors'
-	  }
+    default: false
   },
   isHire: {
     type: Boolean,
-    default: false,
-    hireId: {
-      type: Schema.Types.ObjectId,
-      ref: 'hire'
-	  }
+    default: false
   },
   isApplicant: {
     type: Boolean,
-    default: false,
-    applicantId: {
-      type: Schema.Types.ObjectId,
-      ref: 'applicant'
-	  }
+    default: false
   },
   isFreelancer: {
     type: Boolean,
-    default: false,
-    freelanceId: {
-      type: Schema.Types.ObjectId,
-      ref: 'freelance'
-	  }
+    default: false
+  },
+  applicantApply: {
+    type: Number,
+    default: 0
+  },
+  freelanceHire: {
+    type: Number,
+    default: 0
   },
   isVerified: {
     type: Boolean,

@@ -2,6 +2,10 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const ApplicantSchema = new Schema({
+  title: {
+    type: String,
+    required: true
+  },
   qualifications: {
     type: String,
     required: true
@@ -23,8 +27,20 @@ const ApplicantSchema = new Schema({
     type: String,
     required: true
   },
+  state: {
+    type: String,
+    required: true
+  },
+  city: {
+    type: String,
+    required: true
+  },
   cvUrl: String,
   applyChance: Number,
+  ableToApply: {
+    type: Boolean,
+    default: false
+  },
   userId: {
     type: Schema.Types.ObjectId,
 		ref: 'users'

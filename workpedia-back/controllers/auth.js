@@ -8,7 +8,9 @@ const {
   jwt: { generateToken }
 } = require('../utils')
 
+const io = require('../utils/socket')
 const User = require('../model/User')
+const Verification = require('../model/Verification')
 
 exports.signUp = async (req, res, next) => {
   try {
@@ -38,11 +40,31 @@ exports.signUp = async (req, res, next) => {
       error.statusCode = 500
       throw error
     }
-    res.status(201).json({ message: 'User created!', result })
+    const code = Math.floor(Math.random() * (999999 - 100000) + 100000)
+    const verification = new Verification({
+      userId: savedUser._id,
+      code
+    })
+
+    const verify = await verification.save()
+    if (!verify) {
+      const error = new Error('Verification code could not be saved')
+      error.statusCode = 500
+      throw error
+    }
+    // const payload = {
+    //   code,
+    //   email
+    // }
+    // await sendEmail(payload)
+
+    io.getIO().emit('users', { action: 'create', user: savedUser })
+    res.status(201).json({ message: 'User created!', savedUser })
   } catch (err) {
     if (!err.statusCode) {
       err.statusCode = 500
     }
+    console.log(err)
     next(err)
   }
 }
@@ -71,6 +93,7 @@ exports.login = async (req, res, next) => {
     }
     const token = generateToken(loadedUser._id.toString(), loadedUser.isVerified, loadedUser.isAdmin)
     let payload = {
+      _id: loadedUser._id,
       firstName: loadedUser.firstName,
       lastName: loadedUser.lastName,
       age: loadedUser.age,
@@ -84,7 +107,9 @@ exports.login = async (req, res, next) => {
       isTutor: loadedUser.isTutor,
       isHire: loadedUser.isHire,
       isApplicant: loadedUser.isApplicant,
-      isFreelancer: loadedUser.isFreelancer, 
+      applicantApply: loadedUser.applicantApply,
+      isFreelancer: loadedUser.isFreelancer,
+      freelanceHire: loadedUser.freelanceHire, 
       isVerified: loadedUser.isVerified,
       token
     }
@@ -93,6 +118,102 @@ exports.login = async (req, res, next) => {
     if (!err.statusCode) {
       err.statusCode = 500
     }
+    console.log(err)
+    next(err)
+  }
+}
+
+exports.verify = async (req, res, next) => {
+  const { email, code } = req.body
+
+  try {
+    const user = await User.findOne({ email })
+    const verify = await Verification.findOne({ userId: user._id })
+    if (!user) {
+      const error = new Error('User not found')
+      error.statusCode = 404
+      throw error
+    }
+    if (verify.code === parseInt(code)) {
+      user.isVerified = true
+      await user.save()
+      res.send('Verified')
+      return true
+    } else {
+      const error = new Error('Invalid Code')
+      error.statusCode = 400
+      throw error
+    }
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500
+    }
+    console.log(err)
+    next(err)
+  }
+}
+
+exports.forgottenPassword = async (req, res) => {
+  const { email } = req.body
+
+  try {
+    const user = await User.findOne({ email })
+    if (!user) {
+      const error = new Error('User not found')
+      error.statusCode = 404
+      throw error
+    }
+    const verify = await Verification.findOne({ userId: user._id })
+    if (!verify) {
+      const error = new Error('User will id not found')
+      error.statusCode = 404
+      throw error
+    }
+    const payload = {
+      code: verify.code,
+      email: user.email
+    }
+    console.log(payload)
+    await sendEmail(payload)
+    res.send('Success')
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500
+    }
+    console.log(err)
+    next(err)
+  }
+}
+
+exports.resetPassword = async (req, res) => {
+  const { password, code } = req.body
+
+  try {
+    const verify = await Verification.findOne({ code })
+    if (!verify) {
+      const error = new Error('Code not found')
+      error.statusCode = 404
+      throw error
+    }
+    const _id = verify.userId
+    const user = await User.findOne({ _id })
+    if (!user) {
+      const error = new Error('User not found')
+      error.statusCode = 404
+      throw error
+    }
+    if (password.length >= 6) {
+      const hash = await hashPassword(password)
+      user.password = hash
+      user.save()
+    }
+    res.send('Success')
+  } catch (err) {
+    // console.log((err))
+    if (!err.statusCode) {
+      err.statusCode = 500
+    }
+    console.log(err)
     next(err)
   }
 }

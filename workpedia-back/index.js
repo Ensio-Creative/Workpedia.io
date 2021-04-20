@@ -35,16 +35,20 @@ app.use((error, req, res, next) => {
   const data = error.data
   res.status(status).json({ message: message, data: data })
 })
-
-  mongoose.connect('mongodb://localhost/workpedia', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true
-  })
+// mongodb+srv://GreatAdams:Ifeanyichukwu7@workpedia.sknnk.mongodb.net/workpedia?retryWrites=true&w=majority
+mongoose.connect('mongodb://localhost/workpedia', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true
+})
   .then((req, res) => {
     console.log('Mongodb Connected')
-    app.listen(port, () => console.log(`App listening on port ${port}`))
+    const server = app.listen(port)
+    const io = require('./utils/socket').init(server)
+    io.on('connection', socket => {
+      console.log('client connected')
+    })
   })
   .catch(err => {
     console.log(err)

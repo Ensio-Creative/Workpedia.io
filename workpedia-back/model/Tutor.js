@@ -12,6 +12,14 @@ const TutorSchema = new Schema({
 	haveYouTutoredBefore: Boolean,
 	subjectTutorBefore: String,
 	cvUrl: String,
+	ableToTutor: {
+    type: Boolean,
+    default: false
+  },
+	isTutorLive: {
+		type: Boolean,
+    default: false
+	},
 	userId: {
 		type: Schema.Types.ObjectId,
 		ref: 'users'

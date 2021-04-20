@@ -1,15 +1,36 @@
 const Hire = require('../model/Hire')
 const User = require('../model/User')
 
-exports.register = async (req, res) => {
-  const { companyName, companyWeb, companyEmail, companyPhone, social, companyDescription, userId } = req.body
+const { validationResult } = require('express-validator')
+
+exports.register = async (req, res, next) => {
+  let { companyName, companyWeb, companyEmail, companyPhone, social, companyDescription, userId } = req.body
   try {
-    const user = await User.findById({ _id: userId })
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      const error = new Error('Validation failed.')
+      error.statusCode = 422
+      error.data = errors.array()
+      throw error
+    }
+    const user = await User.findById({ _id: userId }).select('-password')
 		if (!user) {
 			res.status(401).json({ message: 'User not found'})
     }
     user.isHire = true
     user.save()
+    if (!companyWeb.length) {
+      companyWeb = 'Please add a website'
+    }
+    if (!social.facebook.length) {
+      social.facebook = 'Please add add your facebook url'
+    }
+    if (!social.twitter.length) {
+      social.twitter = 'Please add twitter url'
+    }
+    if (!social.linkedIn.length) {
+      social.linkedIn = 'Please your linkedIn url'
+    }
     const newHire = new Hire({
       companyName,
       companyWeb,
@@ -23,11 +44,115 @@ exports.register = async (req, res) => {
     // console.log(res)
     res.status(201).json({ message: 'Hire created!', user, result })
   } catch (error) {
+    if (!error.statusCode) {
+      error.statusCode = 500
+    }
     console.log(error)
-    res.send(error)
+    next(error)
   }
 }
-exports.getHire = async (req, res) => {
-  const userId = req.userId
-  const hireId = req.params.hireId
+
+exports.updateHirer = async (req, res, next) => {
+  try {
+    const { hirerId } = req.params
+    let { companyName, companyWeb, companyEmail, companyPhone, social, companyDescription } = req.body
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      const error = new Error('Validation failed.')
+      error.statusCode = 422
+      error.data = errors.array()
+      throw error
+    }
+    const hirer = await Hire.findById(hirerId)
+    if (!hirer) {
+      const error = new Error('Hirer could no be found')
+      error.statusCode = 401
+      throw error
+    }
+    if (!companyWeb.length) {
+      companyWeb = 'Please add a website'
+    }
+    if (!social.facebook.length) {
+      social.facebook = 'Please add add your facebook url'
+    }
+    if (!social.twitter.length) {
+      social.twitter = 'Please add twitter url'
+    }
+    if (!social.linkedIn.length) {
+      social.linkedIn = 'Please your linkedIn url'
+    }
+    hirer.companyName = companyName,
+    hirer.companyWeb = companyWeb,
+    hirer.companyEmail = companyEmail,
+    hirer.companyPhone = companyPhone,
+    hirer.social = social,
+    hirer.companyDescription =  companyDescription
+    const UpdatedHire = await hirer.save()
+    if (!UpdatedHire) {
+      const error = new Error('Hirer Could not be saved')
+      throw error
+    }
+    res.status(201).json({ message: 'Hire saved', result: UpdatedHire})
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500
+    }
+    console.log(err)
+    next(err)
+  }
+}
+
+exports.getHirer = async (req, res, next) => {
+  try {
+    const { hirerId } = req.params
+    const hirer = await Hire.findById(hirerId).populate('userId', '-password')
+    if (!hirer) {
+      const error = new Error('Hirer could not be found')
+      error.statusCode  = 402
+      throw error
+    }
+    res.status(200).json({mesage: 'Found Hirer', result: hirer})
+  } catch (error) {
+    if (!error.statusCode) {
+      error.statusCode = 500
+    }
+    next(error)
+  }
+}
+
+exports.getHirerInfo = async (req, res, next) => {
+  try {
+    const { userId } = req.params
+    const hirer = await Hire.findOne({ userId }).populate('userId', '-password')
+    if (!hirer) {
+      const error = new Error('Hirer could not be found')
+      error.statusCode  = 402
+      throw error
+    }
+    res.status(200).json({mesage: 'Found Hirer', result: hirer})
+  } catch (error) {
+    if (!error.statusCode) {
+      error.statusCode = 500
+    }
+    console.log(error)
+    next(error)
+  }
+}
+
+exports.deleteHirer = async (req, res, next) => {
+  try {
+    const { hirerId } = req.params
+    const hirer = await Hire.findByIdAndDelete(hirerId)
+    if (!hirer) {
+      const error = new Error('Hirer could not be found')
+      error.statusCode  = 402
+      throw error
+    }
+    res.status(200).json({mesage: 'Hirer deleted'})
+  } catch (error) {
+    if (!error.statusCode) {
+      error.statusCode = 500
+    }
+    next(error)
+  }
 }

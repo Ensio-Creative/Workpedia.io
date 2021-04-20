@@ -10,6 +10,7 @@ const tutor = require('./tutor')
 const jobs = require('./jobs')
 const applicant = require('./applicants');
 const hire = require('./hire')
+const freelance = require('./freelance')
 
 
 router.use('/admin', admin)
@@ -19,5 +20,6 @@ router.use('/tutors', tutor)
 router.use('/jobs', jobs)
 router.use('/applicant', applicant)
 router.use('/hire', hire)
+router.use('/freelance', freelance)
 
 module.exports = router
