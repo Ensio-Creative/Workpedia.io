@@ -4,51 +4,92 @@
     <div
       :class="[!resize ? 'sidenav-backdrop' : '']"
     >
-      <transition name="slide-side">
-        <div :class="[!resize ? 'sidenav' : 'sidenav-resided']">
-          <nav class="">
-            <div class="hide-icon">
-              <NuxtLink
-                to="/"
-              >
-                <img src="~/assets/img/Workpedia logo transparent (White).png" alt="">
-              </NuxtLink>
-              <!-- <a
-                v-if="resize === false"
-                href="#"
-                @click="resized"
-              >
-                <img src="~assets/img/arrow-circle-left.svg" alt="">
-              </a>
-              <a
-                v-if="resize === true"
-                href="#"
-                @click="resized"
-              >
-                <img src="~assets/img/arrow-circle-left (1).svg" alt="">
-              </a> -->
-            </div>
-            <!-- First Nav items -->
-            <UserDash
-              :check-resize="resize"
-            />
-            <!-- <hr> -->
-            <!-- Remaining nav items -->
-          </nav>
-        </div>
-      </transition>
+      <div :class="[!resize ? 'sidenav' : 'sidenav-resided']">
+        <nav class="">
+          <div class="hide-icon">
+            <NuxtLink
+              to="/"
+            >
+              <img src="~/assets/img/Workpedia logo transparent (White).png" alt="">
+            </NuxtLink>
+            <!-- <a
+              v-if="resize === false"
+              href="#"
+              @click="resized"
+            >
+              <img src="~assets/img/arrow-circle-left.svg" alt="">
+            </a>
+            <a
+              v-if="resize === true"
+              href="#"
+              @click="resized"
+            >
+              <img src="~assets/img/arrow-circle-left (1).svg" alt="">
+            </a> -->
+          </div>
+          <!-- First Nav items -->
+          <UserDash
+            :check-resize="resize"
+          />
+          <!-- <hr> -->
+          <!-- Remaining nav items -->
+        </nav>
+      </div>
+      <div
+        v-if="showMobile"
+        :class="[!resize ? 'sidenav' : 'sidenav-resided']"
+      >
+        <nav class="">
+          <div class="hide-icon">
+            <NuxtLink
+              to="/"
+            >
+              <img src="~/assets/img/Workpedia logo transparent (White).png" alt="">
+            </NuxtLink>
+            <!-- <a
+              v-if="resize === false"
+              href="#"
+              @click="resized"
+            >
+              <img src="~assets/img/arrow-circle-left.svg" alt="">
+            </a>
+            <a
+              v-if="resize === true"
+              href="#"
+              @click="resized"
+            >
+              <img src="~assets/img/arrow-circle-left (1).svg" alt="">
+            </a> -->
+          </div>
+          <!-- First Nav items -->
+          <Mobile
+            :check-resize="resize"
+          />
+          <!-- <hr> -->
+          <!-- Remaining nav items -->
+        </nav>
+      </div>
     </div>
+    <!-- <Responses /> -->
     <Nuxt />
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'DashBoardLayout',
   middleware: 'auth',
   data () {
     return {
       resize: false
+    }
+  },
+  computed: {
+    ...mapState(['mobileDash']),
+    showMobile () {
+      const result = this.mobileDash
+      return result
     }
   }
   // mounted () {
@@ -87,7 +128,9 @@ export default {
     top: 0;
     left: 0;
 }
-
+.sidenav:nth-child(2) {
+  display: none;
+}
 .hide-icon{
   color: #fff;
   text-decoration: none;
@@ -98,8 +141,34 @@ export default {
 .hide-icon img {
   width: 56px;
 }
-
-hr{
-  background-color: #fff;
+@media screen and (max-width: 780px) {
+  .show-bar {
+    visibility: visible;
+    float: right;
+  }
+  .desktop {
+    display: none;
+  }
+  .sidenav{
+    display: none;
+  }
+  .sidenav:nth-child(2) {
+    display: block;
+  }
+  /* .sidenav-backdrop {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+} */
+  /* .sidenav-resided{
+    display: block;
+  } */
+  .side-mobile{
+  display: block;
+}
 }
 </style>

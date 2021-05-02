@@ -11,10 +11,10 @@
             <h1>Workpedia</h1>
           </div>
           <p class="footer-text">
-            20 Okeke Street, Port Harcourt, Nigeria.
+            1 Ogbugo Close, Off Okporo Road, Rumuodara, Port Harcourt, Nigeria.
           </p>
           <p class="footer-text">
-            +234-801-666-1320
+            +234 901 601 6563
           </p>
         </div>
         <div class="col-12 col-md-7">
@@ -29,13 +29,13 @@
                 </NuxtLink>
                 <NuxtLink
                   class="footer-nav-item"
-                  to="/"
+                  to="/faq"
                 >
                   FAQ
                 </NuxtLink>
                 <NuxtLink
                   class="footer-nav-item"
-                  to="/"
+                  to="privacy"
                 >
                   Privacy Policy
                 </NuxtLink>
@@ -45,12 +45,12 @@
                 >
                   Terms of Service
                 </NuxtLink>
-                <NuxtLink
+                <!-- <NuxtLink
                   class="footer-nav-item"
                   to="/"
                 >
                   Help and Support
-                </NuxtLink>
+                </NuxtLink> -->
               </div>
             </div>
             <div class="col-6 col-sm-6 col-md-6 col-lg-4">

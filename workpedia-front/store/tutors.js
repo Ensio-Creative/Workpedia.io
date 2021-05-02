@@ -33,7 +33,7 @@ export const actions = {
     // States from the root
     const userId = rootState.auth.user._id
     const token = rootState.auth.user.token
-    console.log(userId, token)
+    // console.log(userId, token)
     payload = { ...payload, userId }
     try {
       const res = await this.$axios.$patch(
@@ -43,11 +43,22 @@ export const actions = {
       // update the the user and add the token from the state
       const user = { ...res.user, token }
       commit('UPDATE_USER', user, { root: true })
+      this.$toast.success(res.message)
       // commit the start info
       commit('UPDATE_START_INFO', res.result)
       this.$router.push('/dashboard/tutor')
     } catch (error) {
-      console.log(error)
+      if (error.response.status === 422) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 404) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 401) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 400) {
+        this.$toast.error(error.response.data.message)
+      } else {
+        this.$toast.error('Something went wrong')
+      }
     }
   },
 
@@ -59,11 +70,18 @@ export const actions = {
         `tutors/update-tutor/${state.tutor._id}`,
         payload
       )
-      commit('UPDATE_RESPONSES', res.message, { root: true })
+      this.$toast.success(res.message)
       commit('UPDATE_TUTOR_STATE', res.result)
     } catch (error) {
-      console.log(error)
-      commit('UPDATE_RESPONSES', error.message, { root: true })
+      if (error.response.status === 422) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 404) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 400) {
+        this.$toast.error(error.response.data.message)
+      } else {
+        this.$toast.error('Something went wrong')
+      }
     }
   },
 
@@ -77,12 +95,20 @@ export const actions = {
         `tutors/request-tutor/${userId}`,
         finalRequest
       )
-      commit('UPDATE_RESPONSES', res.message, { root: true })
       commit('CLEAR_REQUEST_TUTOR')
       this.$router.push('/tutor')
+      this.$toast.success(res.message)
     } catch (error) {
-      console.log(error)
-      commit('UPDATE_RESPONSES', error.message, { root: true })
+      // console.log(error)
+      if (error.response.status === 422) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 404) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 400) {
+        this.$toast.error(error.response.data.message)
+      } else {
+        this.$toast.error('Something went wrong')
+      }
     }
   },
 
@@ -93,13 +119,22 @@ export const actions = {
         const res = await this.$axios.$get(
           `tutors/get-tutor/${userId}`
         )
-        console.log(res)
-        commit('UPDATE_RESPONSES', res.message, { root: true })
-        commit('UPDATE_TUTOR_STATE', res)
+        // console.log(res)
+
+        commit('UPDATE_TUTOR_STATE', res.tutor)
+        this.$toast.success(res.message)
       }
     } catch (error) {
-      commit('UPDATE_RESPONSES', error.message, { root: true })
-      console.log(error)
+      // console.log(error)
+      if (error.response.status === 422) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 404) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 400) {
+        this.$toast.error(error.response.data.message)
+      } else {
+        this.$toast.error('Something went wrong')
+      }
     }
   }
 }

@@ -76,7 +76,7 @@ export default {
   methods: {
     // Here are the functions used by there names
     checkTutorNav () {
-      if (this.user.isTutor) {
+      if (this.user.isApplicant || this.user.isHire || this.user.isTutor || this.user.isFreelancer) {
         this.tutor = this.tutorNav.filter(tutorRoute => tutorRoute.url !== '/tutor/become-a-tutor')
         return this.tutor
       } else {
@@ -84,7 +84,7 @@ export default {
       }
     },
     checkJobs () {
-      if (this.user.isApplicant || this.user.isHire) {
+      if (this.user.isApplicant || this.user.isHire || this.user.isTutor || this.user.isFreelancer) {
         this.jobs = this.jobsNav.filter(jobsRoute => jobsRoute.url !== '/jobs/hire')
         return this.jobs
       } else {
@@ -92,7 +92,7 @@ export default {
       }
     },
     checkFreelance () {
-      if (this.user.isFreelancer) {
+      if (this.user.isApplicant || this.user.isHire || this.user.isTutor || this.user.isFreelancer) {
         this.freelance = this.freelanceNav.filter(freelanceRoute => freelanceRoute.url !== '/freelancing/become-freelancer')
         return this.freelance
       } else {

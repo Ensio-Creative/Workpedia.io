@@ -17,6 +17,7 @@
             placeholder="Enter Your Email Address"
           >
           <button
+            :disabled="!validEmail(email)"
             class="news-btn"
             @click="sendEmail"
           >
@@ -37,13 +38,26 @@ export default {
     }
   },
   methods: {
-    sendEmail () {
-      if (this.email === '') {
-        console.log('Fill in your email')
-      } else if (!this.validEmail(this.email)) {
-        console.log('Enter a valid email')
-      } else {
-        console.log(this.email)
+    async sendEmail () {
+      try {
+        const res = await this.$axios.$post('public/subcribe-newsletter',
+          { email: this.email }
+        )
+        this.$toast.success(res.message)
+      } catch (error) {
+        if (error.response.status === 422) {
+          this.$toast.error(error.response.data.message)
+        } else if (error.response.status === 404) {
+          this.$toast.error(error.response.data.message)
+        } else if (error.response.status === 401) {
+          this.$toast.error(error.response.data.message)
+        } else if (error.response.status === 402) {
+          this.$toast.error(error.response.data.message)
+        } else if (error.response.status === 400) {
+          this.$toast.error(error.response.data.message)
+        } else {
+          this.$toast.error('Something went wrong')
+        }
       }
     },
     validEmail (email) {

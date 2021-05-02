@@ -3,6 +3,20 @@
     class="side-nav-container"
   >
     <div class="side-nav-links">
+      <a
+        href="#"
+        data-toggle="LogOut"
+        data-placement="right"
+        class="mb-2"
+        title="home"
+        :class="[!checkResize ? 'side-nav-item' : 'side-nav-item-resized']"
+        @click="$router.push('/')"
+      >
+        <i class="fas fa-home" />
+        <span>
+          Home
+        </span>
+      </a>
       <NuxtLink
         to="/admin"
         data-toggle="LogOut"

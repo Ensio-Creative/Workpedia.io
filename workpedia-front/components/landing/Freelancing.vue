@@ -17,7 +17,7 @@
                 <h3>{{ freelance.title }}</h3>
               </div>
               <div class="freelance-amount">
-                <p>${{ freelance.amount }}</p>
+                <p>NGN{{ 20000 }}</p>
               </div>
             </div>
           </div>
@@ -45,7 +45,7 @@ export default {
   computed: {
     ...mapState('freelance', ['freelancing']),
     splicedFreelancing () {
-      const listed = this.freelancing.slice(0, 3)
+      const listed = this.freelancing
       return listed
     }
   }

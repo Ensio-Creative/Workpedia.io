@@ -41,7 +41,9 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
-    '@nuxtjs/moment'
+    '@nuxtjs/moment',
+    '@nuxtjs/dotenv'
+    // '@nuxtjs/ngrok'
   ],
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
@@ -52,17 +54,22 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     '@nuxt/content',
-    'nuxt-socket-io'
+    'nuxt-socket-io',
+    'vue-toastification/nuxt'
   ],
 
   io: {
     sockets: [ // Required
       { // At least one entry is required
         name: 'home',
-        url: 'http://localhost:8000',
+        url: process.env.BASE_URL,
         default: true
       }
     ]
+  },
+  toast: {
+    timeout: 6000,
+    position: 'top-right'
   },
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {

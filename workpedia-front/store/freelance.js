@@ -1,26 +1,5 @@
 export const state = () => ({
-  freelancing: [
-    {
-      _id: '1',
-      title: 'Copy Writer',
-      amount: '45',
-      description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolor',
-      category: 'writing',
-      author: 'Great Adams',
-      authorLocation: 'Location',
-      authorDescription: 'This i will make a very good product for you Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut'
-    },
-    {
-      _id: '9',
-      title: 'Therpist',
-      amount: '45',
-      description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolor',
-      category: 'lifestyle',
-      author: 'Great Adams',
-      authorLocation: 'Location',
-      authorDescription: 'This i will make a very good product for you Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut'
-    }
-  ],
+  freelancing: [],
   freelancer: {}
 })
 
@@ -30,10 +9,49 @@ export const mutations = {
       ...state.freelancer,
       ...payload
     }
+  },
+  UPDATE_FREELANCING (state, payload) {
+    state.freelancing = payload
   }
 }
 
 export const actions = {
+  async subscription ({ commit, rootState, state }, amount) {
+    try {
+      const userId = state.auth.user._id
+      const email = rootState.auth.user.email
+      const payload = {
+        email,
+        callback_url: `${process.env.BASE_URL}/api/pay/freelance-callback`,
+        amount,
+        purpose: 'Hire Subscription',
+        category: 'Freelance',
+        userId
+      }
+      const res = await this.$axios.$post(
+        'pay/init-pay',
+        payload
+      )
+      // const { data } = res
+      // console.log(res)
+      // this.$router.redirect(res.url)
+      window.location.href = res.url
+    } catch (error) {
+      if (error.response.status === 422) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 404) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 401) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 402) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 400) {
+        this.$toast.error(error.response.data.message)
+      } else {
+        this.$toast.error('Something went wrong')
+      }
+    }
+  },
   async registerFreelancerHandymen ({ commit, rootState }, payload) {
     const userId = rootState.auth.user._id
     const token = rootState.auth.user.token
@@ -46,11 +64,23 @@ export const actions = {
       // Add the token to the new user object
       const user = { ...res.user, token }
       commit('UPDATE_USER', user, { root: true })
-      commit('UPDATE_RESPONSES', res.message, { root: true })
+      this.$toast.success(res.message)
       commit('UPDATE_FREELANCER', res.result)
       this.$router.push('/dashboard/freelance')
     } catch (error) {
-      console.log(error)
+      if (error.response.status === 422) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 404) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 401) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 402) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 400) {
+        this.$toast.error(error.response.data.message)
+      } else {
+        this.$toast.error('Something went wrong')
+      }
     }
   },
 
@@ -62,11 +92,24 @@ export const actions = {
           `freelance/update-freelancer/${freelancerId}`,
           state.freelancer
         )
-        commit('UPDATE_RESPONSES', res.message, { root: true })
+        // commit('UPDATE_RESPONSES', res.message, { root: true })
+        this.$toast.success(res.message)
         commit('UPDATE_FREELANCER', res.result)
       }
     } catch (error) {
-      console.log(error)
+      if (error.response.status === 422) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 404) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 401) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 402) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 400) {
+        this.$toast.error(error.response.data.message)
+      } else {
+        this.$toast.error('Something went wrong')
+      }
     }
   },
 
@@ -77,12 +120,24 @@ export const actions = {
         const res = await this.$axios.$get(
           `freelance/get-freelancer-info/${userId}`
         )
-        commit('UPDATE_RESPONSES', res.message, { root: true })
+        this.$toast.success(res.message)
         commit('UPDATE_FREELANCER', res.result)
       }
       console.log('Did not work')
     } catch (error) {
-      console.log(error.msg)
+      if (error.response.status === 422) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 404) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 401) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 402) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 400) {
+        this.$toast.error(error.response.data.message)
+      } else {
+        this.$toast.error('Something went wrong')
+      }
     }
   }
 }

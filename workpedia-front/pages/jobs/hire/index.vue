@@ -3,7 +3,7 @@
     class="container-fluid post-a-job"
   >
     <div class="row justify-content-center">
-      <div class="col-5 bg-white my-5 px-4 sub-container">
+      <div class="col-11 col-md-5 bg-white my-5 px-4 sub-container">
         <form @submit.prevent="onSubmit">
           <div class="form-heading">
             <h2 class="my-4">

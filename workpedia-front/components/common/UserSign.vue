@@ -23,48 +23,68 @@
       v-else
       class="user-is-logged-in"
     >
-      <div class="list-of-users-action">
+      <div class="dropdown">
         <a
           href="#"
-          @click="showUserDrop"
+          class="dropbtn"
         >
-          <img class="rounded" src="~assets/img/avatar_c@2x.png" alt="">
+          <!-- <img class="rounded" :src="" alt="user-image"> -->
+          <div
+            class="user-img"
+            :style="{backgroundImage: 'url('+ `http://localhost:8000/${user.imageUrl}` +')'}"
+          />
+          <i class="fas fa-angle-down" />
         </a>
-        <ul
-          v-if="showUserDroped"
-          class="list-group postions text-center"
+        <div
+          class="dropdown-content text-center"
         >
           <NuxtLink
-            v-if="userOnDashboard"
+            v-if="user.token && !user.isAdmin && !user.isOperator"
             to="/dashboard"
-            class="list-group-item postions-items"
           >
             Dashboard
           </NuxtLink>
           <NuxtLink
-            v-else
+            v-if="user.isAdmin || user.isOperator"
+            to="/admin"
+          >
+            Admin
+          </NuxtLink>
+          <NuxtLink
+            v-if="!userOnDashboard"
             to="/"
-            class="list-group-item postions-items"
           >
             Home
           </NuxtLink>
           <NuxtLink
             to="dashboard/settings"
-            class="list-group-item postions-items"
           >
             Settings
           </NuxtLink>
-          <li
-            class="list-group-item postions-items"
+          <a
+            href="#"
             @click="logOut"
           >
-            LogOut
-          </li>
-        </ul>
+            Log Out
+          </a>
+        </div>
       </div>
-      <div class="list-of-users-action">
+      <div
+        v-if="showCross"
+        class="list-of-users-action show-bar"
+        @click="$store.commit('MOBILE_DASH', true)"
+      >
         <a href="#">
-          <i class="far fa-bell" />
+          <i class="fas fa-bars" />
+        </a>
+      </div>
+      <div
+        v-else
+        class="list-of-users-action show-bar"
+        @click="$store.commit('MOBILE_DASH', false)"
+      >
+        <a href="#">
+          <i class="fas fa-bars" />
         </a>
       </div>
     </div>
@@ -83,24 +103,29 @@ export default {
     }
   },
   computed: {
-    ...mapState('auth', ['user'])
+    ...mapState('auth', ['user']),
+    showCross () {
+      const result = !this.$store.state.mobileDash
+      return result
+    }
   },
   mounted () {
     this.checkPath()
     this.loggedIn()
   },
   methods: {
+    // fetchImage()
     hasAccount (value) {
       this.$store.commit('HAS_ACCOUNT', value)
       this.$router.push('/auth')
     },
     checkPath () {
-      if (this.$route.path === '/dashboard') {
+      if (this.$route.path.includes('/dashboard')) {
         this.userOnDashboard = false
-        console.log('I fired!!!!')
+        // console.log('I fired!!!!')
       } else {
         this.userOnDashboard = true
-        console.log(this.$route.params.name)
+        // console.log(this.$route.params.name)
       }
     },
     loggedIn () {
@@ -113,10 +138,10 @@ export default {
     showUserDrop () {
       if (this.showUserDroped === true) {
         this.showUserDroped = false
-        console.log('Work na!!!!!')
+        // console.log('Work na!!!!!')
       } else {
         this.showUserDroped = true
-        console.log('Work no!!!!!')
+        // console.log('Work no!!!!!')
       }
     },
     changeBtn () {
@@ -134,14 +159,21 @@ export default {
       return btnClass
     },
     logOut () {
-      this.$store.commit('CLEAR_USER')
       this.$router.push('/')
+      this.$store.commit('CLEAR_USER')
     }
   }
 }
 </script>
 
 <style scoped>
+.user-img {
+  margin-top: 0px;
+  padding: 20px;
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: contain;
+}
 .list-of-users-action {
   display: inline;
   padding: 10px;
@@ -204,5 +236,59 @@ export default {
 .freelance-outline:nth-child(3) {
   background-color: #2b7dc4;
   color: #fff;
+}
+.show-bar{
+  visibility: hidden;
+}
+.dropbtn {
+  color: white;
+  padding: 0px;
+  font-size: 16px;
+  border: none;
+}
+.dropbtn img{
+  width: 42px;
+}
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  right: -20px;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-content button {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+@media screen and (max-width: 780px) {
+  .show-bar {
+    visibility: visible;
+    float: right;
+  }
 }
 </style>

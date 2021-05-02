@@ -17,8 +17,8 @@
         </NuxtLink>
       </div>
     </div>
-    <main class="row justify-content-center mt-5">
-      <div class="col-5 mt-4">
+    <main class="row justify-content-center my-5">
+      <div class="col-12 col-md-5 mt-4">
         <form
           @submit.prevent="onSubmit"
         >
@@ -33,7 +33,7 @@
                 Old password
               </AppControlInput>
               <small
-                :class="[oldPassword.length <= 5 ? 'info-error' : 'info-success']"
+                :class="[oldPassword.length <= 6 ? 'info-error' : 'info-success']"
               >
                 {{ oldPasswordInfo }}
               </small>
@@ -80,6 +80,8 @@
         </form>
       </div>
     </main>
+    <!-- Footer -->
+    <FooterDash />
   </div>
 </template>
 
@@ -111,7 +113,7 @@ export default {
   methods: {
     ...mapActions('auth', ['updatePassword']),
     checkOldPassword () {
-      if (this.oldPassword.length <= 5) {
+      if (this.oldPassword.length <= 6) {
         this.oldPasswordInfo = 'Please add your old password'
         return false
       } else {

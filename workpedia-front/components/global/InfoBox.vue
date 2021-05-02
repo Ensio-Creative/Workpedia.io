@@ -1,10 +1,10 @@
 <template>
-  <div class="bg-blue-500 text-white p-4 mb-4">
-    <p>
+  <div class="about-background">
+    <h2 class="container text-white">
       <slot name="info-box">
         default
       </slot>
-    </p>
+    </h2>
   </div>
 </template>
 
@@ -14,6 +14,13 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+.about-background{
+  background-color: #251E8C;
+  padding: 102px;
+  margin-top: 21px;
+}
+.about-background h1 {
+  font-weight: bold;
+}
 </style>

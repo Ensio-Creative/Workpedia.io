@@ -25,6 +25,56 @@
               {{ links.title }}
             </NuxtLink>
           </li>
+          <li
+            v-if="user.isAdmin || user.isOperator"
+            class="nav-item"
+          >
+            <NuxtLink
+              to="/admin"
+            >
+              Admin
+            </NuxtLink>
+          </li>
+          <li
+            v-if="user.token && !user.isAdmin && !user.isOperator"
+            class="nav-item"
+          >
+            <NuxtLink
+              to="/dashboard"
+            >
+              Dashboard
+            </NuxtLink>
+          </li>
+          <li
+            v-if="user.token"
+            class="nav-item"
+          >
+            <a
+              href="#"
+              @click="logOut"
+            >
+              LogOut
+            </a>
+          </li>
+          <li
+            v-if="!user.token"
+            class="nav-item"
+          >
+            <button
+              class="btn"
+              :class="changeBtn()"
+              @click="hasAccount(true)"
+            >
+              Login
+            </button>
+            <button
+              class="btn ml-1"
+              :class="changeBtn()"
+              @click="hasAccount(false)"
+            >
+              Get Started
+            </button>
+          </li>
         </ul>
       </div>
     </transition>
@@ -32,6 +82,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import homeNav from '~/static/baseNav/home.js'
 import tutorNav from '~/static/baseNav/tutor.js'
 import jobsNav from '~/static/baseNav/jobs.js'
@@ -49,22 +100,81 @@ export default {
       homeNav,
       tutorNav,
       jobsNav,
-      freelanceNav
+      freelanceNav,
+      tutor: [],
+      jobs: [],
+      freelance: []
     }
   },
   computed: {
+    ...mapState('auth', ['user']),
     routes () {
       let route = ''
-      if (this.$route.path === '/') {
+      if (this.$route.path === '/' || this.$route.path === '/about-us') {
         route = this.homeNav
       } else if (this.$route.path.includes('/tutor')) {
-        route = this.tutorNav
+        route = this.tutor
       } else if (this.$route.path.includes('/jobs')) {
-        route = this.jobsNav
+        route = this.jobs
       } else if (this.$route.path.includes('/freelancing')) {
-        route = this.freelanceNav
+        route = this.freelance
       }
       return route
+    }
+  },
+  mounted () {
+    // Mounted the fuctions to filter and send the needed routes to be used
+    this.checkTutorNav()
+    this.checkJobs()
+    this.checkFreelance()
+  },
+  methods: {
+    // Here are the functions used by there names
+    checkTutorNav () {
+      if (this.user.isApplicant || this.user.isHire || this.user.isTutor || this.user.isFreelancer) {
+        this.tutor = this.tutorNav.filter(tutorRoute => tutorRoute.url !== '/tutor/become-a-tutor')
+        return this.tutor
+      } else {
+        this.tutor = this.tutorNav
+      }
+    },
+    checkJobs () {
+      if (this.user.isApplicant || this.user.isHire || this.user.isTutor || this.user.isFreelancer) {
+        this.jobs = this.jobsNav.filter(jobsRoute => jobsRoute.url !== '/jobs/hire')
+        return this.jobs
+      } else {
+        this.jobs = this.jobsNav
+      }
+    },
+    checkFreelance () {
+      if (this.user.isApplicant || this.user.isHire || this.user.isTutor || this.user.isFreelancer) {
+        this.freelance = this.freelanceNav.filter(freelanceRoute => freelanceRoute.url !== '/freelancing/become-freelancer')
+        return this.freelance
+      } else {
+        this.freelance = this.freelanceNav
+      }
+    },
+    logOut () {
+      this.$router.push('/')
+      this.$store.commit('CLEAR_USER')
+    },
+    hasAccount (value) {
+      this.$store.commit('HAS_ACCOUNT', value)
+      this.$router.push('/auth')
+    },
+    changeBtn () {
+      let btnClass = ''
+      if (this.$route.path === '/' || this.$route.path === '/about-us') {
+        btnClass = 'landing-outline'
+      } else if (this.$route.path.includes('/tutor')) {
+        btnClass = 'turor-outline'
+      } else if (this.$route.path.includes('/jobs')) {
+        btnClass = 'jobs-outline'
+      } else if (this.$route.path.includes('/freelancing')) {
+        btnClass = 'freelance-outline'
+      }
+
+      return btnClass
     }
   }
 }
@@ -126,5 +236,37 @@ export default {
 .nav-item a:hover,
 .nav-item a:active {
   color: #0C0573;
+}
+.landing-outline {
+  border: 2px solid #251e8c;
+  border-radius: 6px;
+}
+.landing-outline:nth-child(3) {
+  background-color: #251e8c;
+  color: #fff;
+}
+.turor-outline {
+  border: 2px solid #ff9b17;
+  border-radius: 6px;
+}
+.tutor-outline:nth-child(3) {
+  background-color: #ff9b17;
+  color: #fff;
+}
+.jobs-outline {
+  border: 2px solid #0db47b;
+  border-radius: 6px;
+}
+.jobs-outline:nth-child(3) {
+  background-color: #0db47b;
+  color: #fff;
+}
+.freelance-outline {
+  border: 2px solid #2b7dc4;
+  border-radius: 6px;
+}
+.freelance-outline:nth-child(3) {
+  background-color: #2b7dc4;
+  color: #fff;
 }
 </style>

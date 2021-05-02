@@ -62,9 +62,11 @@
         </div>
         <div class="contact-detail">
           <!-- Freelancer name -->
-          <h5><strong>{{ fliteredFreelance.author }}</strong></h5>
+          <!-- <h5><strong>{{ `${user.firstName} ${user.lastName}` }}</strong></h5> -->
+          <h5><strong>Mark David</strong></h5>
           <!-- Freelancer Description -->
-          <p>{{ fliteredFreelance.authorLocation }}</p>
+          <!-- <p>{{ fliteredFreelance.authorLocation }}</p> -->
+          <p>Rivers State, Port Harcourt</p>
           <!-- Freelancer location -->
           <small class="gray">Nigeria</small>
         </div>
@@ -119,7 +121,11 @@ export default {
   },
   methods: {
     onSubmit () {
-      console.log('res')
+      if (!this.user.freelanceHire) {
+        this.$router.push('/freelancing/subscribe')
+        return
+      }
+      this.$toast.success('Message sent')
     }
   }
 }

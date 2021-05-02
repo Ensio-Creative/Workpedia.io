@@ -127,7 +127,7 @@
         <b-button size="sm" variant="btn-apply" @click="cancel()">
           Cancel
         </b-button>
-        <b-button size="sm" variant="success" @click="onSubmit">
+        <b-button size="sm" variant="success" @click="onSubmit(fliteredJobs._id, fliteredJobs.companyId, fliteredJobs.userId)">
           Submit
         </b-button>
       </template>
@@ -136,20 +136,22 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 export default {
   name: 'SingleJob',
   data () {
     return {
       routeUrl: this.$route.params.jobId,
       email: '',
-      phone: ''
+      phone: '',
+      amount: 1000000 // in kobo
     }
   },
   computed: {
     // Change the code to from using fliters
     ...mapState('jobs', ['jobs']),
     ...mapState('auth', ['user']),
+    ...mapState('applicant', ['applicant']),
     fliteredJobs () {
       const result = this.jobs.find(job => job._id === this.routeUrl)
       return result
@@ -168,15 +170,26 @@ export default {
     this.phone = this.user.phone
   },
   methods: {
-    onSubmit () {
+    ...mapActions('applicant', ['sendApplication']),
+    onSubmit (jobID, companyID, userID) {
       // && this.user.applicantApply >= 1
       // Add that
-      if (this.user.isApplicant) {
-        console.log('Free to apply')
-      } else {
-        this.$router.push('/jobs/subscribe')
-        // console.log('help')
+      if (this.user.isApplicant && this.applicant.applyChance > 0) {
+        // console.log({ job: jobId, Company: companyId, USer: userId })
+        const payload = {
+          jobId: jobID,
+          companyId: companyID,
+          userId: userID
+        }
+        this.sendApplication(payload)
       }
+      if (this.user.isApplicant && !this.applicant.applyChance > 0) {
+        this.$router.push('/jobs/subscribe')
+      }
+      if (!this.user.isApplicant) {
+        this.$router.push('/jobs/register-applicant')
+      }
+      // everythingwork@ensio21
     }
   }
 }

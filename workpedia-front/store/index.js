@@ -8,7 +8,8 @@ export const state = () => ({
   resized: false,
   hasAccount: false,
   errors: '',
-  responses: ''
+  responses: '',
+  mobileDash: false
 })
 
 export const mutations = {
@@ -17,6 +18,9 @@ export const mutations = {
   },
   RESIZE (state, resize) {
     state.resized = resize
+  },
+  MOBILE_DASH (state, value) {
+    state.mobileDash = value
   },
   HAS_ACCOUNT (state, account) {
     state.hasAccount = account
@@ -45,24 +49,5 @@ export const mutations = {
   },
   UPDATE_LOADING (state, Loading) {
     state.isLoading = Loading
-  },
-  UPDATE_JOBS (state, payload) {
-    state.jobs.jobs = payload
-  }
-}
-
-export const actions = {
-  async nuxtServerInit ({ commit }) {
-    try {
-      const res = await this.$axios.$get(
-        'jobs/get-jobs'
-      )
-      commit('UPDATE_RESPONSES', res.message)
-      console.log(res.results.length)
-      commit('UPDATE_JOBS', res.results)
-      console.log(res.results.length)
-    } catch (error) {
-      console.log(error)
-    }
   }
 }

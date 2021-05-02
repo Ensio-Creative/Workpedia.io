@@ -4,7 +4,7 @@
       @submit.prevent="onSubmit"
     >
       <div class="row">
-        <div class="col">
+        <div class="col-12 col-md-6">
           <AppControlInput
             v-model.trim="title"
             type="text"
@@ -19,7 +19,7 @@
             {{ titleInfo }}
           </small>
         </div>
-        <div class="col">
+        <div class="col-12 col-md-6">
           <AppControlInput
             v-model.trim="qualifications"
             type="text"
@@ -36,7 +36,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col">
+        <div class="col-12 col-md-6">
           <AppControlInput
             v-model.trim="institution"
             type="text"
@@ -51,7 +51,7 @@
             {{ institutionInfo }}
           </small>
         </div>
-        <div class="col">
+        <div class="col-12 col-md-6">
           <AppControlInput
             v-model.trim="date"
             type="date"
@@ -66,7 +66,7 @@
             {{ dateInfo }}
           </small>
         </div>
-        <div class="col">
+        <div class="col-12 col-md-6">
           <label for="">Category</label>
           <select
             v-model="category"
@@ -87,7 +87,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col">
+        <div class="col-12 col-md-6">
           <AppControlInput
             v-model.trim="skills"
             type="text"
@@ -104,7 +104,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col">
+        <div class="col-12 col-md-6">
           <label for="">State</label>
           <select
             v-model="stateSelect"
@@ -123,7 +123,7 @@
             </option>
           </select>
         </div>
-        <div class="col">
+        <div class="col-12 col-md-6">
           <AppControlInput
             v-model.trim="city"
             type="text"

@@ -8,7 +8,7 @@
     />
     <main>
       <div class="row justify-content-center">
-        <div class="col-6 mt-4">
+        <div class="col-12 col-md-5 mt-4">
           <form
             class="mb-5"
             @submit.prevent="onSubmit"
@@ -148,7 +148,7 @@
       Change Password
     </h5>
     <main class="row justify-content-center">
-      <div class="col-5 mt-4">
+      <div class="col-12 col-md-5 mt-4">
         <form
           @submit.prevent="onUpdatePassword"
         >
@@ -163,7 +163,7 @@
                 Old password
               </AppControlInput>
               <small
-                :class="[oldPassword.length <= 5 ? 'info-error' : 'info-success']"
+                :class="[oldPassword.length <= 6 ? 'info-error' : 'info-success']"
               >
                 {{ oldPasswordInfo }}
               </small>
@@ -178,7 +178,7 @@
                 New password
               </AppControlInput>
               <small
-                :class="[newPassword.length <= 5 || newPassword === oldPassword ? 'info-error' : 'info-success']"
+                :class="[newPassword.length <= 6 || newPassword === oldPassword ? 'info-error' : 'info-success']"
               >
                 {{ newPasswordInfo }}
               </small>
@@ -317,7 +317,7 @@ export default {
       }
     },
     checkNewPassword () {
-      if (this.newPassword.length <= 5) {
+      if (this.newPassword.length <= 6) {
         this.newPasswordInfo = 'Please password should be 5 or more charcters'
         return false
       } else if (this.newPassword === this.oldPassword) {

@@ -7,7 +7,7 @@
             Find your dream job, career and tutor all in one place.
           </h1>
           <p>
-            Workpedia allows you get everything in once place, freelancing job opportunity, tutors and easily manage all three with ease.
+            Workpedia allows you get everything in one place, freelancing job opportunity, tutors and easily manage all three with ease.
           </p>
           <div class="search">
             <input class="search-input" type="email" placeholder="Search Your Courses">

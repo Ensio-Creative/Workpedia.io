@@ -14,12 +14,12 @@
         +
       </button>
     </div>
-    <h1
+    <!-- <h1
       v-if="!results.length"
       class="gray-info"
     >
       Posted jobs will be shown here
-    </h1>
+    </h1> -->
     <PostedJob
       :found-jobs="results"
     />

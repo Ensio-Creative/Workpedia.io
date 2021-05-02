@@ -1,10 +1,35 @@
 <template>
   <div>
     <div
-      :class="[!resize ? 'sidenav-backdrop' : '']"
+      class="sidenav-backdrop"
     >
-      <transition name="slide-side">
-        <div :class="[!resize ? 'sidenav' : 'sidenav-resided']">
+      <div
+        class="sidenav"
+      >
+        <nav class="">
+          <div class="hide-icon">
+            <NuxtLink
+              to="/"
+            >
+              <img src="~/assets/img/Workpedia logo transparent (White).png" alt="">
+            </NuxtLink>
+          </div>
+          <!-- First Nav items -->
+          <AdminDash
+            :check-resize="resize"
+            class="desktop"
+          />
+          <!-- <hr> -->
+          <!-- Remaining nav items -->
+        </nav>
+      </div>
+      <!-- Mobile -->
+      <client-only>
+        <div
+          v-if="showMobile"
+          class="sidenav"
+          :style="[showMobile ? 'transition: 6s' : '']"
+        >
           <nav class="">
             <div class="hide-icon">
               <NuxtLink
@@ -28,41 +53,65 @@
               </a> -->
             </div>
             <!-- First Nav items -->
-            <AdminDash
+            <AdminMobile
               :check-resize="resize"
             />
             <!-- <hr> -->
             <!-- Remaining nav items -->
           </nav>
         </div>
-      </transition>
+      </client-only>
+      <!-- <div
+        class="show-bar"
+        @click="checkShow"
+      >
+        <i class="fas fa-bars" />
+      </div> -->
     </div>
+    <!-- <Responses /> -->
     <Nuxt />
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'AdminLayout',
   data () {
     return {
-      resize: false
+      resize: false,
+      show: false
+    }
+  },
+  computed: {
+    ...mapState(['mobileDash', 'responses', 'errors']),
+    showMobile () {
+      const result = this.mobileDash
+      return result
+    }
+  },
+  mounted () {
+    // this.resize = this.$store.state.resized
+    this.show = this.mobileDash
+  },
+  methods: {
+    // resized () {
+    //   if (this.$store.state.resized === false) {
+    //     this.$store.commit('RESIZE', true)
+    //     this.resize = true
+    //   } else {
+    //     this.$store.commit('RESIZE', false)
+    //     this.resize = false
+    //   }
+    // }
+    checkShow (value) {
+      if (!this.show) {
+        this.show = true
+      } else {
+        this.show = false
+      }
     }
   }
-  // mounted () {
-  //   this.resize = this.$store.state.resized
-  // },
-  // methods: {
-  //   resized () {
-  //     if (this.$store.state.resized === false) {
-  //       this.$store.commit('RESIZE', true)
-  //       this.resize = true
-  //     } else {
-  //       this.$store.commit('RESIZE', false)
-  //       this.resize = false
-  //     }
-  //   }
-  // }
 }
 </script>
 
@@ -76,14 +125,18 @@ export default {
   top: 0px;
   left: 0;
 }
+.sidenav:nth-child(2) {
+  display: none;
+}
 .sidenav-resided {
-    background-color: #0C0573;
-    width: 100px;
-    height: 100vh;
-    position: fixed;
-    z-index: 10000;
-    top: 0;
-    left: 0;
+  display: none;
+  background-color: #0C0573;
+  width: 100px;
+  height: 100vh;
+  position: fixed;
+  z-index: 10000;
+  top: 0;
+  left: 0;
 }
 
 .hide-icon{
@@ -95,5 +148,41 @@ export default {
 }
 .hide-icon img {
   width: 56px;
+}
+.show-bar{
+  visibility: hidden;
+}
+.side-mobile{
+  display: none;
+}
+@media screen and (max-width: 780px) {
+  .show-bar {
+    visibility: visible;
+    float: right;
+  }
+  .desktop {
+    display: none;
+  }
+  .sidenav{
+    display: none;
+  }
+  .sidenav:nth-child(2) {
+    display: block;
+  }
+  /* .sidenav-backdrop {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+} */
+  /* .sidenav-resided{
+    display: block;
+  } */
+  .side-mobile{
+  display: block;
+}
 }
 </style>

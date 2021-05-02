@@ -2,9 +2,7 @@
   <div class="container">
     <TopNavInfo
       dash-title="Freelance"
-    />
-    <FreelanceNavAdmin
-      class="mt-5"
+      class="mb-5"
     />
     <div class="input-area my-3">
       <input

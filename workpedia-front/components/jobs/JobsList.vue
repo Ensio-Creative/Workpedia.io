@@ -22,7 +22,7 @@
         :to="`/jobs/categories/single-job/${id}`"
         class="btn-apply text-center"
       >
-        VIEW NOW
+        View
       </NuxtLink>
     </div>
     <div class="popular-text mt-3 mb-4">
@@ -85,13 +85,19 @@ export default {
 <style scoped>
 .btn-apply{
   background-color: #0DB47B;
-  padding: 10px;
-  border-radius: 8px;
+  padding: 10px 28px;
+  border-radius: 5px;
   color: #fff;
   margin-left: 250px;
 }
 
 .btn-apply:hover{
   text-decoration: none;
+}
+@media screen and (max-width: 780px) {
+  .btn-apply{
+    padding: 18px 10px;
+    margin-left: 0px;
+  }
 }
 </style>

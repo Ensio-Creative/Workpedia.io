@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid become-a-tutor">
     <div class="row justify-content-center">
-      <div class="col-5 tutor-form mt-5">
+      <div class="col-10 col-md-5 tutor-form mt-5">
         <form
           @submit.prevent="onSubmit"
         >
@@ -102,7 +102,7 @@ export default {
     onSubmit () {
       const payload = {
         haveYouTutoredBefore: this.haveYouTutoredBefore,
-        subjectTutorBefore: this.subjectTutorBefore,
+        subject: this.subjectTutorBefore,
         description: this.description
       }
       this.startTutor(payload)

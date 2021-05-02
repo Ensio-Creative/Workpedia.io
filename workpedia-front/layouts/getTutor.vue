@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- <Responses /> -->
     <Nuxt />
   </div>
 </template>

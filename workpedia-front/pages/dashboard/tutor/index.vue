@@ -5,8 +5,8 @@
     />
     <div class="row justify-content-around">
       <div class="col-12 col-md-3">
-        <div class="row">
-          <div class="col-12 tutor-basic-info">
+        <div class="row justify-content-center">
+          <div class="col-8 col-md-12 tutor-basic-info">
             <img src="~assets/img/avatar_c@2x.png" alt="" class="user-img rounded">
             <h4 class="user-name">
               {{ fullName }}
@@ -15,7 +15,7 @@
               Age: {{ user.age }}
             </h5>
           </div>
-          <div class="col-12 tutor-basic-info text-left">
+          <div class="col-8 col-md-12 tutor-basic-info text-left">
             <h4 class="user-name">
               Description:
             </h4>
@@ -23,7 +23,7 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-8 tab-colum">
+      <div class="col-12 col-md-12 col-md-8 tab-colum">
         <div class="tab">
           <div
             class="tab-items"
@@ -56,7 +56,7 @@
       </div>
     </div>
     <FooterDash
-      class="fixed-bottom"
+      class="mt-5"
     />
   </div>
 </template>
@@ -109,13 +109,13 @@ export default {
   max-width: 1050px;
 }
 .tutor-basic-info{
-  box-shadow: 0px 1px 2px 1px #00000029;
+  box-shadow: 0px 0px 1px 0px #00000029;
   border-radius: 8px;
   text-align: center;
   margin-top: 30px;
 }
 .tab-colum{
-  box-shadow: 0px 1px 2px 1px #00000029;
+  box-shadow: 0px 0px 1px 0px #00000029;
   border-radius: 8px;
   margin-top: 30px;
 }

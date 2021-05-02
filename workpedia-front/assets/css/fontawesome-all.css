@@ -2026,7 +2026,6 @@ readers do not read off random characters that represent icons */
 
 .fa-home:before {
   content: "\f015";
-  color: #0b7cc2;
 }
 
 .fa-hooli:before {

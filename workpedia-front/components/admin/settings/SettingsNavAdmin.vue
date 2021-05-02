@@ -41,7 +41,7 @@ export default {
         },
         {
           title: 'Freelance/Handymen',
-          url: '/admin/settings/frelancer'
+          url: '/admin/settings/freelance'
         }
       ]
     }
@@ -68,5 +68,14 @@ a {
 }
 a.nuxt-link-active{
   color: #000;
+}
+@media screen and (max-width: 780px) {
+  .hire-nav-item:nth-child(4){
+  border-right: 0px solid #000;
+}
+.hire-nav-item:nth-child(5){
+  border-right: 1px solid #000;
+  margin-top: 20px;
+}
 }
 </style>

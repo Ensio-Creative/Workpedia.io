@@ -8,13 +8,13 @@
     <div class="row justify-content-around">
       <div class="col-12 col-md-3">
         <div class="row">
-          <div class="col-12 tutor-basic-info">
+          <div class="col-8 col-md-12 tutor-basic-info">
             <img src="~assets/img/avatar_c@2x.png" alt="" class="user-img rounded">
             <h4 class="user-name">
               {{ companyName }}
             </h4>
           </div>
-          <div class="col-12 tutor-basic-info text-left">
+          <div class="col-8 col-md-12 tutor-basic-info text-left">
             <h4 class="user-name">
               Description
             </h4>

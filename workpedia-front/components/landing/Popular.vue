@@ -2,7 +2,7 @@
   <div>
     <section class="popular-jobs container">
       <div class="heading">
-        <h1>Our Featured Jobs</h1>
+        <h1>Our featured jobs</h1>
       </div>
       <div class="row row-cols-1 row-cols-md-3 g-4">
         <div

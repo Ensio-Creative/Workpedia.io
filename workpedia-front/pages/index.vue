@@ -7,16 +7,18 @@
             Find your dream job, career and tutor all in one place.
           </h1>
           <p>
-            Workpedia allows you get everything in once place, freelancing job opportunity, tutors and easily manage all three with ease.
+            Workpedia allows you get everything in one place, freelancing job opportunity, tutors and easily manage all three with ease.
           </p>
-          <div
-            v-if="!isLogged"
-            class="bg-buttons"
-          >
-            <NuxtLink class="view-btn" to="/auth">
-              Start Now
-            </NuxtLink>
-          </div>
+          <client-only>
+            <div
+              v-if="!user.token"
+              class="bg-buttons"
+            >
+              <NuxtLink class="view-btn" to="/auth">
+                Start Now
+              </NuxtLink>
+            </div>
+          </client-only>
         </div>
         <div class="col-12 col-md-12 col-lg-6 order-2 order-sm-6">
           <div class="image-rap text-center">
@@ -32,10 +34,12 @@
       class="mt-5"
     />
     <!-- Popular jobs -->
-    <Popular />
+    <client-only>
+      <Popular />
+    </client-only>
     <!-- Freelancing gigs -->
     <Freelancing
-      frelance-gigs="Get your Freelancing/Handymen gigs"
+      frelance-gigs="Get your gigs"
     />
     <!-- News Letter -->
     <NewsLetter />
@@ -45,7 +49,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 export default {
   name: 'Home',
   data () {
@@ -61,15 +65,22 @@ export default {
     }
   },
   mounted () {
-    this.checkUSer()
+    this.fetchData()
   },
   methods: {
+    ...mapMutations('jobs', ['UPDATE_JOBS']),
+    ...mapMutations('freelance', ['UPDATE_FREELANCING']),
     checkUSer () {
       if (!this.user.token) {
         this.isLogged = false
       } else {
         this.isLogged = true
       }
+    },
+    async fetchData () {
+      const res = await this.$axios.$get('public/get-data')
+      this.UPDATE_FREELANCING(res.freelancers)
+      this.UPDATE_JOBS(res.jobs)
     }
   }
 }

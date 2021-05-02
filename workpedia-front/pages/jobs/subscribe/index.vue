@@ -1,38 +1,40 @@
 <template>
-  <div
-    class="container-fluid post-a-job"
-  >
+  <div class="container-fluid auth-container">
     <div class="row justify-content-center">
-      <div class="col-5 bg-white mt-5 sub-container">
-        <form
-          @submit.prevent="onSubmit"
-        >
-          <div class="form-heading">
-            <h2 class="my-4">
-              Subscribe to apply for a job
-            </h2>
+      <div class="col-12 col-lg-9 login-column">
+        <div class="row inner-auth-row justify-content-center">
+          <div class="col-10 col-lg-6 auth-column">
+            <form
+              @submit.prevent="onSubmit"
+            >
+              <div class="form-heading">
+                <h2 class="my-4">
+                  Subscribe to apply for jobs
+                </h2>
+              </div>
+              <h4><strong>{{ fullName }}</strong></h4>
+              <AppControlInput
+                v-model="amount"
+                type="number"
+                disabled
+              >
+                Amount
+              </AppControlInput>
+              <small>NOTE: You are given 5 chances to apply for jobs with this subscription.</small>
+              <!-- <small
+                :class="[password.length <= 6 ? 'info-error' : 'info-success']"
+              >
+                {{ infoTextPassword }}
+              </small> -->
+              <AppButton
+                type="submit"
+                class="btn-apply my-4"
+              >
+                Proceed to make payment
+              </AppButton>
+            </form>
           </div>
-          <h4>Subscription for <strong>{{ fullName }}</strong></h4>
-          <AppControlInput
-            v-model="amount"
-            type="text"
-            disabled
-          >
-            Amount
-          </AppControlInput>
-          <small>NOTE: YOU ARE GIVEN 5 CHANCES TO APPLY AFTER THIS SUBSCRITION</small>
-          <!-- <small
-            :class="[password.length <= 6 ? 'info-error' : 'info-success']"
-          >
-            {{ infoTextPassword }}
-          </small> -->
-          <AppButton
-            type="submit"
-            class="btn-apply my-4"
-          >
-            Proceed to make payment
-          </AppButton>
-        </form>
+        </div>
       </div>
     </div>
   </div>
@@ -43,6 +45,11 @@ import { mapState, mapActions } from 'vuex'
 export default {
   name: 'SubscribeToJobs',
   layout: 'auth',
+  async asyncData ({ $axios }) {
+    const res = await $axios.$get('jobs/get-settings')
+    const { result } = res
+    return { result }
+  },
   data () {
     return {
       amount: '5000'
@@ -55,16 +62,44 @@ export default {
       return name
     }
   },
+  mounted () {
+    this.amount = this.result.applyAmount
+  },
   methods: {
     ...mapActions('applicant', ['subscription']),
     onSubmit () {
-      this.subscription()
+      this.subscription(this.amount)
     }
   }
 }
 </script>
 
 <style scoped>
+.inner-auth-row{
+  border-radius: 20px;
+  margin-top: 40px;
+}
+.login-column{
+  margin-top: 70px;
+  height: 89vh;
+}
+.auth-column{
+  background-color: #fff;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 30px;
+  /* border-radius: 20px 0px 0px 20px; */
+}
+.auth-columnl{
+  background: #fff;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 35px;
+  border-radius: 20px;
+}
+
 .sub-container{
   border-radius: 8px;
 }

@@ -150,12 +150,12 @@
         v-model.trim="address"
         type="text"
         required
-        @input="checkPassword"
+        @input="checkAddress"
       >
         Address
       </AppControlInput>
       <small
-        :class="[password.length <= 6 ? 'info-error' : 'info-success']"
+        :class="[address.length <= 6 ? 'info-error' : 'info-success']"
       >
         {{ addressInfo }}
       </small>
@@ -206,7 +206,8 @@ export default {
       addressInfo: '',
       cityInfo: '',
       phoneInfo: '',
-      states
+      states,
+      error: ''
     }
   },
   methods: {
@@ -258,10 +259,10 @@ export default {
     },
     checkPasswordRepeat () {
       if (!this.passwordRepeat.includes(this.password)) {
-        this.infoTextPasswordRepeat = 'Password Must march'
+        this.infoTextPasswordRepeat = 'Password Must match'
         return false
       } else {
-        this.infoTextPasswordRepeat = 'Marched'
+        this.infoTextPasswordRepeat = 'Match'
         return true
       }
     },
@@ -270,12 +271,34 @@ export default {
         this.cityInfo = 'Put a Valid city'
         return false
       } else {
-        this.infoTextPassword = ''
+        this.cityInfo = ''
+        return true
+      }
+    },
+    checkAddress () {
+      if (this.address.length <= 6) {
+        this.addressInfo = 'Add your address'
+        return false
+      } else {
+        this.addressInfo = ''
         return true
       }
     },
     onSubmit () {
-      if (this.checkPassword() && this.checkEmail) {
+      this.error = ''
+      if (!this.checkFirstName() && !this.checklastName() && !this.checkPhone()) {
+        this.error = 'Please fill all fields'
+        this.$toast.error('Please fill all fields')
+      }
+      if (!this.checkPassword() && !this.checkEmail() && !this.checkPasswordRepeat()) {
+        this.error = 'Please fill all fields'
+        this.$toast.error('Please fill all fields')
+      }
+      if (!this.checkCity() && !this.checkAddress()) {
+        this.error = 'Please fill all fields'
+        this.$toast.error('Please fill all fields')
+      }
+      if (!this.error.length) {
         const result =
         {
           firstName: this.firstName,
@@ -289,11 +312,9 @@ export default {
           address: this.address
         }
         this.signUp(result)
-        this.$emit('changeComponent')
+        // this.$emit('changeComponent')
         // console.log(result)
-        return
       }
-      console.log('Wrong pass')
     },
     validEmail (email) {
       const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/

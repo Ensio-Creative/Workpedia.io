@@ -10,6 +10,7 @@
       </div>
       <div class="col-lg-6 auth-column" />
     </div> -->
+    <!-- <Responses /> -->
     <Nuxt />
   </div>
 </template>

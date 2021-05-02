@@ -16,7 +16,7 @@ export const actions = {
     const userId = rootState.auth.user._id
     const token = rootState.auth.user.token
     payload = { ...payload, userId }
-    console.log(payload, token)
+    // console.log(payload, token)
     try {
       const res = await this.$axios.$post(
         'hire/register-hire',
@@ -26,10 +26,22 @@ export const actions = {
       const user = { ...res.user, token }
       commit('UPDATE_USER', user, { root: true })
       commit('UPDATE_HIRE', res.result)
-      console.log(res)
       this.$router.push('/dashboard/hire')
+      this.$toast.success(res.message)
     } catch (error) {
-      console.log(error)
+      if (error.response.status === 422) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 404) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 401) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 402) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 400) {
+        this.$toast.error(error.response.data.message)
+      } else {
+        this.$toast.error('Something went wrong')
+      }
     }
   },
 
@@ -40,10 +52,22 @@ export const actions = {
         `hire/update-hire/${hireId}`,
         payload
       )
-      commit('UPDATE_RESPONSES', res.message, { root: true })
       commit('UPDATE_HIRE', res.result)
+      this.$toast.success(res.message)
     } catch (error) {
-      console.log(error)
+      if (error.response.status === 422) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 404) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 401) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 402) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 400) {
+        this.$toast.error(error.response.data.message)
+      } else {
+        this.$toast.error('Something went wrong')
+      }
     }
   },
 
@@ -54,12 +78,23 @@ export const actions = {
         const res = await this.$axios.$get(
           `hire/get-hirer-info/${userId}`
         )
-        commit('UPDATE_RESPONSES', res.message, { root: true })
         commit('UPDATE_HIRE', res.result)
+        this.$toast.success(res.message)
       }
-      console.log('Did not work')
     } catch (error) {
-      console.log(error.msg)
+      if (error.response.status === 422) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 404) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 401) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 402) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 400) {
+        this.$toast.error(error.response.data.message)
+      } else {
+        this.$toast.error('Something went wrong')
+      }
     }
   }
 }

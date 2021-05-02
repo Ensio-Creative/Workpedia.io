@@ -20,6 +20,23 @@
           </small>
         </div>
         <div class="col">
+          <AppControlInput
+            v-model.trim="institution"
+            type="text"
+            required
+            @input="checkInstitution"
+          >
+            Institution
+          </AppControlInput>
+          <small
+            :class="[institution.length < 3 ? 'info-error' : 'info-success']"
+          >
+            {{ institutionText }}
+          </small>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
           <label for="">Qualifications</label>
           <select
             v-model.trim="qualificationSelect"
@@ -40,21 +57,6 @@
             :class="[qualificationSelect.length < 3 ? 'info-error' : 'info-success']"
           >
             {{ qualificationSelectText }}
-          </small>
-        </div>
-        <div class="col">
-          <AppControlInput
-            v-model.trim="institution"
-            type="text"
-            required
-            @input="checkInstitution"
-          >
-            Institution
-          </AppControlInput>
-          <small
-            :class="[institution.length < 3 ? 'info-error' : 'info-success']"
-          >
-            {{ institutionText }}
           </small>
         </div>
       </div>
@@ -229,6 +231,7 @@ export default {
     ...mapState('applicant', ['applicant'])
   },
   mounted () {
+    this.title = this.applicant.title
     this.qualificationSelect = this.applicant.qualifications
     this.institution = this.applicant.institution
     this.date = this.applicant.date
@@ -327,6 +330,7 @@ export default {
       }
       if (!this.errors.length) {
         const payload = {
+          title: this.title,
           qualifications: this.qualificationSelect,
           institution: this.institution,
           date: this.date,

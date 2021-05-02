@@ -27,6 +27,12 @@
       >
         Password
       </AppControlInput>
+      <NuxtLink
+        to="/auth/forgot-password"
+        class="text-center"
+      >
+        <p>Forgotten password?</p>
+      </NuxtLink>
       <AppButton
         type="submit"
         class="signin-btn mt-3"
@@ -82,7 +88,7 @@ export default {
       }
     },
     onSubmit () {
-      if (this.checkPassword() && this.checkEmail) {
+      if (this.checkPassword() && this.checkEmail()) {
         const result = {
           email: this.email,
           password: this.password

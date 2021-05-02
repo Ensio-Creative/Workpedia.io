@@ -7,6 +7,7 @@
       :show="displaySidenav"
       @close="displaySidenav = false"
     />
+    <!-- <Responses /> -->
     <FixedNav />
     <Nuxt />
   </div>
