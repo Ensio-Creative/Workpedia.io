@@ -1,12 +1,20 @@
 const User = require('../model/User')
 
 const bcrypt = require('bcryptjs')
+const { validationResult } = require('express-validator')
 const hashPassword  = require('../utils/auth')
 
-exports.updateUser = async (req, res) => {
+exports.updateUser = async (req, res, next) => {
   const _id = req.params.userId
   const { firstName, lastName, age, email, phone, state, city, address } = req.body
   try {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      const error = new Error('Validation failed.')
+      error.statusCode = 422
+      error.data = errors.array()
+      throw error
+    }
     const user = await User.findById(_id)
     user.firstName = firstName
     user.lastName = lastName
@@ -17,21 +25,28 @@ exports.updateUser = async (req, res) => {
     user.city = city
     user.address = address
     const updatedUser = await user.save()
-    console.log(user)
-    res.status(203).json({message: 'Update successful', result: updatedUser})
+    // console.log(user)
+    res.status(203).json({ message: 'Update successful', result: updatedUser })
   } catch (error) {
+    if (!error.statusCode) {
+      error.statusCode = 500
+    }
     console.log(error)
-    res.status(422)
+    next(error)
   }
 
 }
 
-exports.updatePassword = async (req, res) => {
+exports.updatePassword = async (req, res, next) => {
   try {
     const { oldPassword, newPassword } = req.body
-
-    if (!newPassword.length >= 6) {
-      res.status(400).json({message: 'Passwords should be at least 6 characters'})
+    let error
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      error = new Error('Validation failed.')
+      error.statusCode = 422
+      error.data = errors.array()
+      throw error
     }
     
     const _id = req.params.id
@@ -39,7 +54,9 @@ exports.updatePassword = async (req, res) => {
 
     const isValid = await bcrypt.compare(oldPassword, user.password)
     if (!isValid) {
-      res.status(400).send('Invalid Password')
+      error = new Error('Wrong password')
+      error.statusCode = 400
+      throw error
     }
 
     user.password =  await hashPassword(newPassword)
@@ -47,7 +64,10 @@ exports.updatePassword = async (req, res) => {
     res.status(203).json({message: 'Password updated'})
   } catch (error) {
     console.log(error)
-    res.send(error)
+    if (!error.statusCode) {
+      error.statusCode = 500
+    }
+    next(error)
   }
 
 }

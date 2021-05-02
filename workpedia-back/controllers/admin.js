@@ -7,9 +7,79 @@ const Tutors = require('../model/Tutor')
 const RequestTutor = require('../model/TutorRequest')
 const TutorCategory = require('../model/TutorCategory')
 const Freelance = require('../model/Freelancer')
+const Payments = require('../model/Payments')
+const Verification = require('../model/Verification')
+const BgImages = require('../model/BgImages')
 
+const io = require('../utils/socket')
 const { validationResult } = require('express-validator')
 
+const { 
+  auth: hashPassword,
+  mailgun: { sendEmail }
+} = require('../utils')
+
+
+exports.registerOPerator = async (req, res, next) => {
+  try {
+    const { firstName, lastName, age, email, phone, password, state, city, address } = req.body
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      const error = new Error('Validation failed.')
+      error.statusCode = 422
+      error.data = errors.array()
+      throw error
+    }
+    const hash = await hashPassword(password)
+    const user = new User({
+      imageUrl: 'images/avatar@2x.png',
+      firstName,
+      lastName,
+      age,
+      phone,
+      email,
+      password: hash,
+      state,
+      city,
+      address,
+      isOperator: true,
+      isVerified: true
+    })
+    const savedUser = await user.save()
+    if (!savedUser) {
+      const error = new Error('User could not be saved')
+      error.statusCode = 500
+      throw error
+    }
+    const code = Math.floor(Math.random() * (999999 - 100000) + 100000)
+    const verification = new Verification({
+      userId: savedUser._id,
+      code
+    })
+
+    const verify = await verification.save()
+    if (!verify) {
+      const error = new Error('Verification code could not be saved')
+      error.statusCode = 500
+      throw error
+    }
+    const payload = {
+      code,
+      email
+    }
+    console.log(payload)
+    await sendEmail(payload)
+
+    io.getIO().emit('users', { action: 'create', user: savedUser })
+    res.status(201).json({ message: 'User created!', savedUser })
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500
+    }
+    console.log(err)
+    next(err)
+  }
+}
 // CALCULATIONS OF USER IN DB
 exports.calculate = async (req, res, next) => {
   try {
@@ -32,7 +102,7 @@ exports.calculate = async (req, res, next) => {
 // USERS EXPORTS
 exports.getAllUsers = async (req, res, next) => {
   try {
-    const users = await User.find().select('-password')
+    const users = await User.find().select('-password').sort({ createdAt: -1 })
     if (!users) {
       const error = new Error('Sorry We could not get users')
       error.statusCode = 500
@@ -381,6 +451,72 @@ exports.deleteFreelancer = async (req, res, next) => {
       err.statusCode = 500
     }
     console.log(err)
+    next(err)
+  }
+}
+
+
+// PAYMENTS EXPORTS
+
+exports.getAllPayments = async (req, res, next) => {
+  try {
+    const payment = await Payments.find()
+    .sort({ createdAt: -1 })
+    if (!payment) {
+      const error = new Error('Payments could not be found')
+      error.statusCode = 500
+      throw error
+    }
+    res.status(200).json({ message: 'Payments found', results: payment })
+  } catch (err) {
+    if (!err) {
+      err.statusCode = 500
+    }
+    console.log(err)
+    next(err)
+  }
+}
+
+exports.deletePayment = async (req, res, next) => {
+  try {
+    const { paymentId } = req.params
+    const payment = await Payments.findByIdAndDelete(paymentId)
+    res.status(200).json({message: 'Payment deleted'})
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500
+    }
+    console.log(err)
+    next(err)
+  }
+}
+
+
+exports.bgImages = async (req, res, next) => {
+  try {
+    const { landingBgUrl, tutorBgUrl, tutorCategoryBgUrl, jobsBgUrl, jobsCategoryBgUrl, freelanceBgUrl, freelanceCategoryBgUrl } = req.body
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      const error = new Error('Validation failed.')
+      error.statusCode = 422
+      error.data = errors.array()
+      throw error
+    }
+    const images = new ({
+      landingBgUrl: 'image/home.jpg',
+      tutorBgUrl: 'image/tutor-home.jpg',
+      tutorCategoryBgUrl:'image/tutor-categories.jpg',
+      jobsBgUrl: 'image/jobs-home.jpg',
+      jobsCategoryBgUrl: 'image/jobs-categories.jpg',
+      freelanceBgUrl: 'image/freelance-handymen-home.jpg',
+      freelanceCategoryBgUrl: 'image/freelance-handymen-categories.jpg'
+    })
+    const result = await images.save()
+    res.status(201).json({ message: 'Images Created', result })
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500
+    }
     next(err)
   }
 }

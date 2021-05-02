@@ -5,12 +5,39 @@ const router = express.Router()
 
 const applicantController = require('../controllers/applicant')
 
-router.post('/subscribe', 
+router.post('/register-applicant', 
 [
+  body('title')
+    .trim()
+    .notEmpty(),
+  body('qualifications')
+    .trim()
+    .notEmpty(),
+  body('institution')
+    .trim()
+    .notEmpty(),
+  body('date')
+    .trim()
+    .notEmpty(),
+  body('category')
+    .trim()
+    .notEmpty(),
+  body('skills')
+    .trim()
+    .notEmpty(),
+  body('state')
+    .trim()
+    .notEmpty(),
+  body('city')
+    .trim()
+    .notEmpty(),
+  body('description')
+    .trim()
+    .notEmpty(),
   body('userId')
     .trim()
     .notEmpty()
-], applicantController.confirmApplicantSubscription)
+], applicantController.registerApplicant)
 
 router.put('/update-applicant/:applicantId',
 [

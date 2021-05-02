@@ -14,9 +14,27 @@ exports.register = async (req, res, next) => {
       throw error
     }
     const user = await User.findById({ _id: userId }).select('-password')
+    let error
 		if (!user) {
-			res.status(401).json({ message: 'User not found'})
+			error = new Error('User not found')
+			error.statusCode = 404
+			throw error
     }
+    if (!user.isVerified) {
+			error = new Error('Please verify your email')
+			error.statusCode = 401
+			throw error
+		}
+		if (user.isFreelancer || user.isApplicant || user.isTutor) {
+			error = new Error('You can\'t be more than the user you requested')
+			error.statusCode = 400
+			throw error
+		}
+    if (user.isAdmin || user.isOperator) {
+			error = new Error('You are already an admin!!')
+			error.statusCode = 401
+			throw error
+		}
     user.isHire = true
     user.save()
     if (!companyWeb.length) {

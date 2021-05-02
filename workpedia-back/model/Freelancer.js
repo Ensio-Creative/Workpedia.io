@@ -52,7 +52,7 @@ const FreelanceSchema = new Schema({
     type: Schema.Types.ObjectId,
 		ref: 'users'
   }
-})
+}, { timestamps: true })
 
 const freelanceHandymen = mongoose.model('freelance/handymen', FreelanceSchema)
 module.exports = freelanceHandymen

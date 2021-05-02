@@ -2,6 +2,11 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const UserSchema = new Schema({
+  imageUrl: {
+    type: String,
+    required: true,
+    default: 'images/avatar@2x.png'
+  },
   firstName:{
     type: String,
     required: true,
@@ -74,10 +79,6 @@ const UserSchema = new Schema({
   isFreelancer: {
     type: Boolean,
     default: false
-  },
-  applicantApply: {
-    type: Number,
-    default: 0
   },
   freelanceHire: {
     type: Number,

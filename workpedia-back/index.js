@@ -1,15 +1,19 @@
 const express = require('express')
+require('dotenv').config()
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const helmet = require('helmet')
 const cors = require('cors')
 const morgan = require('morgan')
-
+const multer = require('multer')
+const path = require('path')
 const routes = require('./routes')
 
 const app = express()
 
 app.use(bodyParser.json()) // application/json
+// app.use(multer({dest: }).single('cv'))
+app.use('/images', express.static(path.join(__dirname, 'images')))
 app.use(morgan('dev'))
 app.use(helmet())
 app.use(cors())

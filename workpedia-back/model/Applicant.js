@@ -36,15 +36,14 @@ const ApplicantSchema = new Schema({
     required: true
   },
   cvUrl: String,
-  applyChance: Number,
-  ableToApply: {
-    type: Boolean,
-    default: false
+  applyChance: {
+    type: Number,
+    default: 0
   },
   userId: {
     type: Schema.Types.ObjectId,
 		ref: 'users'
   }
-})
+}, { timestamps: true })
 const Applicant = mongoose.model('applicants', ApplicantSchema)
 module.exports = Applicant

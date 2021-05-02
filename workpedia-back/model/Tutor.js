@@ -24,7 +24,7 @@ const TutorSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'users'
 	}
-})
+}, { timestamps: true })
 
 const Tutor = mongoose.model('tutors', TutorSchema)
 module.exports = Tutor

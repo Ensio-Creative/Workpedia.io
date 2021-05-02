@@ -11,6 +11,16 @@ router.get('/get-job/:jobId', jobsController.getJob)
 
 router.get('/get-company-job/:companyId', jobsController.getCompanyJobs)
 
+router.post('/create-settings', jobsController.createSettings)
+
+router.get('/get-settings', jobsController.getJobsSettings)
+
+router.post('/amount-settings/:settingId', jobsController.amountJobsSettings)
+
+router.post('/category-settings/:settingId', jobsController.categorySetting)
+
+router.delete('/delete-category/:settingId', jobsController.deleteCategory)
+
 router.put('/post-job', 
 [
   body('title')

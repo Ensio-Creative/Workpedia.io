@@ -3,10 +3,10 @@ const User = require('../model/User')
 
 const { validationResult } = require('express-validator')
 
-exports.confirmApplicantSubscription = async (req, res, next) => {
+exports.registerApplicant = async (req, res, next) => {
   // It checks the payment if successfull gets your id and create an appicant
   try {
-    const { userId } = req.body
+    const { title, qualifications, institution, date, category, skills, state, city, description, userId } = req.body
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
       const error = new Error('Validation failed.')
@@ -14,12 +14,28 @@ exports.confirmApplicantSubscription = async (req, res, next) => {
       error.data = errors.array()
       throw error
     }
+    let error
     const user = await User.findById(userId).select('-password')
     if (!user) {
-      const error = new Error('User not found')
+      error = new Error('User not found')
       error.statusCode = 401
       throw error
     }
+    if (!user.isVerified) {
+			error = new Error('Please verify your email')
+			error.statusCode = 401
+			throw error
+		}
+		if (user.isFreelancer || user.isTutor || user.isHire) {
+			error = new Error('You can\'t be more than user you requested')
+			error.statusCode = 400
+			throw error
+		}
+		if (user.isAdmin || user.isOperator) {
+			error = new Error('You are already an admin')
+			error.statusCode = 401
+			throw error
+		}
     // console.log(user)
     user.isApplicant = true
     const result = await user.save()
@@ -29,16 +45,16 @@ exports.confirmApplicantSubscription = async (req, res, next) => {
       throw error
     }
     const applicant = new Applicant({
-      title: 'Add title',
-      qualifications: 'Add qualification',
-      institution: 'Add institution',
-      date: 'Add date of qualification',
-      category: 'Add category',
-      skills: 'Add skill',
-      state: 'Add state',
-      city: 'Add city',
-      description: 'Add your description',
-      cvUrl: 'Add cv',
+      title,
+      qualifications,
+      institution,
+      date,
+      category,
+      skills,
+      state,
+      city,
+      description,
+      cvUrl: 'Please add Cv',
       userId
     })
     const savedApplicant = await applicant.save()
@@ -118,7 +134,7 @@ exports.getApplicant = async (req, res, next) => {
 
 exports.getApplicantInfo = async (req, res, next) => {
   try {
-    const { userId } = req.params
+    const userId = req.params.userId
     const ApplicantHandymen = await Applicant.findOne({ userId }).populate('userId', '-password')
     if (!ApplicantHandymen) {
       const error = new Error('Applicant could not be found')

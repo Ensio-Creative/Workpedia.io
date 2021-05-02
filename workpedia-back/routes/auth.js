@@ -59,7 +59,8 @@ router.post('/login',
   body('email')
     .isEmail()
     .withMessage('Please enter a valid email')
-    .normalizeEmail(),
+    .normalizeEmail()
+    .notEmpty(),
   body('password')
     .trim()
     .not()
@@ -67,5 +68,41 @@ router.post('/login',
     .withMessage('Password cannot be empty!')
 ], 
   authController.login)
+
+router.post('/verify-user', 
+[
+  body('email')
+    .trim()
+    .isEmail()
+    .withMessage('Please enter a valid email')
+    .normalizeEmail()
+    .notEmpty(),
+  body('code')
+    .trim()
+    .notEmpty()
+], 
+  authController.verify)
+
+router.post('/forgot-password', 
+[
+  body('email')
+    .trim()
+    .isEmail()
+    .withMessage('Please enter a valid email')
+    .normalizeEmail()
+    .notEmpty()
+], 
+  authController.forgottenPassword)
+
+router.post('/reset-password', 
+[
+  body('code')
+    .trim()
+    .notEmpty(),
+  body('password')
+    .trim()
+    .notEmpty()
+], 
+  authController.resetPassword)
 
 module.exports = router

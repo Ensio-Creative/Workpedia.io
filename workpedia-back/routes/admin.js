@@ -5,6 +5,53 @@ const router = express.Router()
 
 const adminController = require('../controllers/admin')
 
+router.put('/registerOperator', 
+  [
+    body('firstName')
+      .trim()
+      .isLength({ min: 3 })
+      .notEmpty(),
+    body('lastName')
+      .trim()
+      .isLength({ min: 3 })
+      .notEmpty(),
+    body('age')
+      .trim()
+      .toInt()
+      .notEmpty(),
+    body('phone')
+      .trim()
+      .isLength({ min: 11 })
+      .notEmpty(),
+    body('email')
+      .trim()
+      .custom((value, { req }) => {
+        return User.findOne({email: value}).then(userDoc => {
+          if (userDoc) {
+            return Promise.reject('E-mail adress already exits')
+          }
+        })
+      })
+      .isEmail()
+      .normalizeEmail()
+      .notEmpty(),
+    body('password')
+      .trim()
+      .isLength({ min: 6 })
+      .notEmpty(),
+    body('state')
+      .trim()
+      .notEmpty(),
+    body('city')
+      .trim()
+      .notEmpty(),
+    body('address')
+      .trim()
+      .notEmpty(),
+  ],
+    adminController.registerOPerator)
+
+
 // COUNTS OF USERS, TUTORS, JOBS, HIRES, APPLICANTS FREELANCERS
 router.get('/calculations-users', adminController.calculate)
 
@@ -92,4 +139,8 @@ router.get('/get-freelancer/:freelanceId', adminController.getFreelance)
 
 router.delete('/delete-freelancer/:freelancerId', adminController.deleteFreelancer)
 
+// FREELANCER/HANDYMEN ROUTES
+router.get('/all-payments', adminController.getAllPayments)
+
+// router.get('/get-freelancer/:freelanceId', adminController.getFreelance)
 module.exports = router

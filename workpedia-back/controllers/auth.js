@@ -5,7 +5,8 @@ const { validationResult } = require('express-validator')
 
 const { 
   auth: hashPassword,
-  jwt: { generateToken }
+  jwt: { generateToken },
+  mailgun: { sendEmail }
 } = require('../utils')
 
 const io = require('../utils/socket')
@@ -24,6 +25,7 @@ exports.signUp = async (req, res, next) => {
     }
     const hash = await hashPassword(password)
     const user = new User({
+      imageUrl: 'images/avatar@2x.png',
       firstName,
       lastName,
       age,
@@ -52,11 +54,12 @@ exports.signUp = async (req, res, next) => {
       error.statusCode = 500
       throw error
     }
-    // const payload = {
-    //   code,
-    //   email
-    // }
-    // await sendEmail(payload)
+    const payload = {
+      code,
+      email
+    }
+    console.log(payload)
+    await sendEmail(payload)
 
     io.getIO().emit('users', { action: 'create', user: savedUser })
     res.status(201).json({ message: 'User created!', savedUser })
@@ -94,6 +97,7 @@ exports.login = async (req, res, next) => {
     const token = generateToken(loadedUser._id.toString(), loadedUser.isVerified, loadedUser.isAdmin)
     let payload = {
       _id: loadedUser._id,
+      imageUrl: loadedUser.imageUrl,
       firstName: loadedUser.firstName,
       lastName: loadedUser.lastName,
       age: loadedUser.age,
@@ -113,6 +117,7 @@ exports.login = async (req, res, next) => {
       isVerified: loadedUser.isVerified,
       token
     }
+    console.log(payload)
     res.status(200).json(payload)
   } catch (err) {
     if (!err.statusCode) {
@@ -127,6 +132,13 @@ exports.verify = async (req, res, next) => {
   const { email, code } = req.body
 
   try {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      const error = new Error('Validation failed.')
+      error.statusCode = 422
+      error.data = errors.array()
+      throw error
+    }
     const user = await User.findOne({ email })
     const verify = await Verification.findOne({ userId: user._id })
     if (!user) {
@@ -137,7 +149,7 @@ exports.verify = async (req, res, next) => {
     if (verify.code === parseInt(code)) {
       user.isVerified = true
       await user.save()
-      res.send('Verified')
+      res.status(200).json({ message: 'Email verified you can login' })
       return true
     } else {
       const error = new Error('Invalid Code')
@@ -157,6 +169,13 @@ exports.forgottenPassword = async (req, res) => {
   const { email } = req.body
 
   try {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      const error = new Error('Validation failed.')
+      error.statusCode = 422
+      error.data = errors.array()
+      throw error
+    }
     const user = await User.findOne({ email })
     if (!user) {
       const error = new Error('User not found')
@@ -185,10 +204,17 @@ exports.forgottenPassword = async (req, res) => {
   }
 }
 
-exports.resetPassword = async (req, res) => {
+exports.resetPassword = async (req, res, next) => {
   const { password, code } = req.body
 
   try {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      const error = new Error('Validation failed.')
+      error.statusCode = 422
+      error.data = errors.array()
+      throw error
+    }
     const verify = await Verification.findOne({ code })
     if (!verify) {
       const error = new Error('Code not found')
@@ -207,7 +233,7 @@ exports.resetPassword = async (req, res) => {
       user.password = hash
       user.save()
     }
-    res.send('Success')
+    res.status(201).json({ message: 'Password reset successful!' })
   } catch (err) {
     // console.log((err))
     if (!err.statusCode) {

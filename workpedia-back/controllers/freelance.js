@@ -1,6 +1,6 @@
 const Freelance = require('../model/Freelancer')
 const User = require('../model/User')
-
+const FreelanceSettings = require('../model/FreelanceSettings')
 const { validationResult } = require('express-validator')
 
 exports.registerFreelance = async (req, res, next) => {
@@ -13,12 +13,28 @@ exports.registerFreelance = async (req, res, next) => {
       error.data = errors.array()
       throw error
     }
+    let error
     const user = await User.findById(userId).select('-password')
     if (!user) {
-      const error = new Error('User not found')
+      error = new Error('User not found')
       error.statusCode = 401
       throw error
     }
+    if (!user.isVerified) {
+			error = new Error('Please verify your email')
+			error.statusCode = 401
+			throw error
+		}
+		if (user.isTutor || user.isApplicant || user.isHire) {
+			error = new Error('You can\'t be more than user you requested')
+			error.statusCode = 400
+			throw error
+		}
+		if (user.isAdmin || user.isOperator) {
+			error = new Error('You are already an admin!!')
+			error.statusCode = 401
+			throw error
+		}
     // console.log(user)
     user.isFreelancer = true
     const result = await user.save()
@@ -150,6 +166,92 @@ exports.deleteFreelaner = async (req, res, next) => {
     if (!error.statusCode) {
       error.statusCode = 500
     }
+    next(error)
+  }
+}
+
+exports.createSettings = async (req, res, next) => {
+  try {
+    const setting = new FreelanceSettings({
+      hireAmount: 5000
+    })
+     const result = await setting.save()
+    res.status(201).json({ message: 'Setting created', result })
+  } catch (error) {
+    if (!error.statusCode) {
+      error.statusCode = 500
+    }
+    console.log(error)
+    next(error)
+  }
+}
+
+exports.getFreelanceSettingss = async (req, res, next) => {
+  try {
+    const result = await FreelanceSettings.find()
+    res.status(200).json({ message: 'Setting found', result: result[0] })
+  } catch (error) {
+    if (!error.statusCode) {
+      error.statusCode = 500
+    }
+    // console.log(erro)
+    next(error)
+  }
+}
+
+exports.categorySetting = async (req, res, next) => {
+  try {
+    const settingId = req.params.settingId
+    const { title, url } = req.body
+    const result = await FreelanceSettings.findById(settingId)
+    const payload = {
+      title,
+      url
+    }
+    result.addCategory(payload)
+    const responsCategory = result.categories.find(item => {
+      return item.title === payload.title
+    })
+    res.status(200).json({ message: 'Category added', category: responsCategory})
+  } catch (error) {
+    if (!error.statusCode) {
+      error.statusCode = 500
+    }
+    console.log(error)
+    next(error)
+  }
+}
+
+exports.deleteCategory = async (req, res, next) => {
+  try {
+    const settingId = req.params.settingId
+    const categoryId = req.body.id
+    const result = await FreelanceSettings.findById(settingId)
+    result.deleteCategory(categoryId)
+    res.status(200).json({ message: 'Category removed'})
+  } catch (error) {
+    if (!error.statusCode) {
+      error.statusCode = 500
+    }
+    console.log(error)
+    next(error)
+  }
+}
+
+exports.amountFreelanceSettings = async (req, res, next) => {
+  try {
+    const settingId = req.params.settingId
+    const result = await FreelanceSettings.findById(settingId)
+    result.hireChance = req.body.hireChance
+    result.hireAmount = req.body.hireAmount
+    const saved = await result.save()
+    // console.log(req.body.hireAmount + '00')
+    res.status(200).json({ message: 'Amount and chances to hire updated', saved})
+  } catch (error) {
+    if (!error.statusCode) {
+      error.statusCode = 500
+    }
+    console.log(error)
     next(error)
   }
 }

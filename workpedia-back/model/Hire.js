@@ -32,7 +32,7 @@ const HireSchema = new Schema({
     type: Schema.Types.ObjectId,
 		ref: 'users'
   }
-})
+}, { timestamps: true })
 
 const Hire = mongoose.model('hire', HireSchema)
 module.exports = Hire

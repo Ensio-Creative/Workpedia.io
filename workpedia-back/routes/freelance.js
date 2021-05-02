@@ -84,4 +84,14 @@ router.get('/get-freelancer-info/:userId', freelanceContorller.getFreelanerInfo)
 
 router.delete('/delete-freelancer-handymen/:freelancerId', freelanceContorller.deleteFreelaner)
 
+router.post('/create-settings', freelanceContorller.createSettings)
+
+router.get('/get-settings', freelanceContorller.getFreelanceSettingss)
+
+router.post('/amount-settings/:settingId', freelanceContorller.amountFreelanceSettings)
+
+router.post('/category-settings/:settingId', freelanceContorller.categorySetting)
+
+router.delete('/delete-category/:settingId', freelanceContorller.deleteCategory)
+
 module.exports = router
