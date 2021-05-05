@@ -26,9 +26,9 @@ exports.startInfo = async (req, res, next) => {
 			error.statusCode = 401
 			throw error
 		}
-		if (user.isFreelancer || user.isApplicant || user.isHire) {
-			error = new Error('You can\'t be more than user you requested')
-			error.statusCode = 400
+		if (user.isTutor) {
+			error = new Error('Your already a tutor!')
+			error.statusCode = 401
 			throw error
 		}
 		if (user.isAdmin || user.isOperator) {

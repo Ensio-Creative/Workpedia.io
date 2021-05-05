@@ -81,8 +81,8 @@ const UserSchema = new Schema({
     default: false
   },
   freelanceHire: {
-    type: Number,
-    default: 0
+    type: Boolean,
+    default: false
   },
   isVerified: {
     type: Boolean,

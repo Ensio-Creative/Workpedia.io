@@ -15,7 +15,7 @@ const Verification = require('../model/Verification')
 
 exports.signUp = async (req, res, next) => {
   try {
-    const { firstName, lastName, age, email, phone, password, state, city, address } = req.body
+    const { firstName, lastName, age, email, phone, password } = req.body
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
       const error = new Error('Validation failed.')
@@ -28,13 +28,13 @@ exports.signUp = async (req, res, next) => {
       imageUrl: 'images/avatar@2x.png',
       firstName,
       lastName,
-      age,
+      age: 18,
       phone,
       email,
       password: hash,
-      state,
-      city,
-      address
+      state: 'Select a city',
+      city: 'Please add a city',
+      address: 'Please add an address'
     })
     const savedUser = await user.save()
     if (!savedUser) {
@@ -59,7 +59,7 @@ exports.signUp = async (req, res, next) => {
       email
     }
     console.log(payload)
-    await sendEmail(payload)
+    // await sendEmail(payload)
 
     io.getIO().emit('users', { action: 'create', user: savedUser })
     res.status(201).json({ message: 'User created!', savedUser })
@@ -117,7 +117,7 @@ exports.login = async (req, res, next) => {
       isVerified: loadedUser.isVerified,
       token
     }
-    console.log(payload)
+    // console.log(payload)
     res.status(200).json(payload)
   } catch (err) {
     if (!err.statusCode) {
@@ -188,12 +188,15 @@ exports.forgottenPassword = async (req, res) => {
       error.statusCode = 404
       throw error
     }
+    const code = Math.floor(Math.random() * (999999 - 100000) + 100000)
+    verify.code = code
+    await verify.save()
     const payload = {
       code: verify.code,
       email: user.email
     }
     console.log(payload)
-    await sendEmail(payload)
+    // await sendEmail(payload)
     res.send('Success')
   } catch (err) {
     if (!err.statusCode) {

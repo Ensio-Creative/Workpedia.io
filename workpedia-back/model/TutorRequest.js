@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const requestSchema = new mongoose.Schema({
   studentClass: {
-    type: String,
+    type: Array,
     required: true
   },
   studentGoal: {
@@ -11,7 +11,7 @@ const requestSchema = new mongoose.Schema({
     required: true
   },
   subject: {
-    type: String,
+    type: Array,
     required: true
   },
   address: {

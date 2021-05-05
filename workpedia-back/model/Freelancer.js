@@ -6,32 +6,15 @@ const FreelanceSchema = new Schema({
     type: String,
     required: true
   },
-  qualifications: {
-    type: String,
-    required: true
-  },
-  institution: {
-    type: String,
-    requried: true
-  },
-  qualificationsDate: {
-    type: String,
-    required: true
-  },
   category: {
-    type: String,
+    type: Array,
     required: true
   },
-  skills: String,
+  skills: {
+    type: Array,
+    required: true
+  },
   description: {
-    type: String,
-    required: true
-  },
-  state: {
-    type: String,
-    required: true
-  },
-  city: {
     type: String,
     required: true
   },
@@ -42,8 +25,11 @@ const FreelanceSchema = new Schema({
   thumbnailUrl: {
     type: String
   },
-  cvUrl: String,
-  applyChance: Number,
+  resume: String,
+  serviceCharge: {
+    type: Number,
+    default: 0
+  },
   ableToFreelance: {
     type: Boolean,
     default: false

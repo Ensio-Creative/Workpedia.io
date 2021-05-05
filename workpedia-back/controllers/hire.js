@@ -25,8 +25,13 @@ exports.register = async (req, res, next) => {
 			error.statusCode = 401
 			throw error
 		}
-		if (user.isFreelancer || user.isApplicant || user.isTutor) {
-			error = new Error('You can\'t be more than the user you requested')
+    if (user.isHire) {
+			error = new Error('Your already  hirer!')
+			error.statusCode = 401
+			throw error
+		}
+		if (user.isApplicant) {
+			error = new Error('You can\'t be an employer and an employee at once')
 			error.statusCode = 400
 			throw error
 		}

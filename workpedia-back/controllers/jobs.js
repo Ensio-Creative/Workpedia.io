@@ -137,7 +137,7 @@ exports.getJob = async (req, res, next) => {
 exports.getCompanyJobs = async (req, res, next) => {
   try {
     const { companyId } = req.params
-    const job = Jobs.find(companyId).populate('companyId')
+    const job = await Jobs.find({ companyId }).populate('companyId')
     if (!job) {
       const error = new Error('Job not found')
       error.statusCode = 422

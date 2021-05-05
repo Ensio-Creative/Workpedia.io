@@ -10,25 +10,14 @@ router.post('/register-freelancer',
   body('title')
     .trim()
     .notEmpty(),
-  body('qualifications')
+  body('serviceCharge')
     .trim()
-    .notEmpty(),
-  body('institution')
-    .trim()
-    .notEmpty(),
-  body('qualificationsDate')
-    .trim()
+    .toInt()
     .notEmpty(),
   body('category')
     .trim()
     .notEmpty(),
   body('skills')
-    .trim()
-    .notEmpty(),
-  body('state')
-    .trim()
-    .notEmpty(),
-  body('city')
     .trim()
     .notEmpty(),
   body('description')
@@ -44,25 +33,13 @@ router.put('/update-freelancer/:freelancerId',
   body('title')
     .trim()
     .notEmpty(),
-  body('qualifications')
-    .trim()
-    .notEmpty(),
-  body('institution')
-    .trim()
-    .notEmpty(),
-  body('qualificationsDate')
+  body('serviceCharge')
     .trim()
     .notEmpty(),
   body('category')
     .trim()
     .notEmpty(),
   body('skills')
-    .trim()
-    .notEmpty(),
-  body('state')
-    .trim()
-    .notEmpty(),
-  body('city')
     .trim()
     .notEmpty(),
   body('description')
@@ -72,9 +49,8 @@ router.put('/update-freelancer/:freelancerId',
     .trim()
     .isURL()
     .notEmpty(),
-  body('cvUrl')
+  body('resume')
     .trim()
-    .isURL()
     .notEmpty()
 ], freelanceContorller.updateFreelancerHandymen)
 

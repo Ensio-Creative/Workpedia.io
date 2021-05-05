@@ -18,10 +18,6 @@ router.put('/signup',
       .trim()
       .isLength({ min: 3 })
       .notEmpty(),
-    body('age')
-      .trim()
-      .toInt()
-      .notEmpty(),
     body('phone')
       .trim()
       .isLength({ min: 11 })
@@ -41,16 +37,7 @@ router.put('/signup',
     body('password')
       .trim()
       .isLength({ min: 6 })
-      .notEmpty(),
-    body('state')
-      .trim()
-      .notEmpty(),
-    body('city')
-      .trim()
-      .notEmpty(),
-    body('address')
-      .trim()
-      .notEmpty(),
+      .notEmpty()
   ],
     authController.signUp)
 

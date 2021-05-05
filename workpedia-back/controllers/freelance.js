@@ -5,7 +5,7 @@ const { validationResult } = require('express-validator')
 
 exports.registerFreelance = async (req, res, next) => {
   try {
-    const { title, qualifications, institution, qualificationsDate, category, skills, state, city, description, userId } = req.body
+    const { title, serviceCharge, category, skills, state, city, description, userId } = req.body
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
       const error = new Error('Validation failed.')
@@ -25,9 +25,9 @@ exports.registerFreelance = async (req, res, next) => {
 			error.statusCode = 401
 			throw error
 		}
-		if (user.isTutor || user.isApplicant || user.isHire) {
-			error = new Error('You can\'t be more than user you requested')
-			error.statusCode = 400
+    if (user.isFreelancer) {
+			error = new Error('You are already a freelancer')
+			error.statusCode = 401
 			throw error
 		}
 		if (user.isAdmin || user.isOperator) {
@@ -45,16 +45,14 @@ exports.registerFreelance = async (req, res, next) => {
     }
     const freelanceHandymen = new Freelance({
       title,
-      qualifications,
-      institution,
-      qualificationsDate,
+      serviceCharge,
       category,
       skills,
       state,
       city,
       description,
       thumbnailUrl: 'Add thumbnail',
-      cvUrl: 'Add cv',
+      resume: 'Add resume',
       userId
     })
     const savedFreelanceHandymen = await freelanceHandymen.save()
@@ -75,7 +73,7 @@ exports.registerFreelance = async (req, res, next) => {
 exports.updateFreelancerHandymen = async (req, res, next) => {
   try {
     const { freelancerId } = req.params
-    const { title, qualifications, institution, qualificationsDate, category, skills, state, city, thumbnailUrl, cvUrl, description } = req.body
+    const { title, category, serviceCharge, skills, state, city, thumbnailUrl, resume, description } = req.body
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
       const error = new Error('Validation failed.')
@@ -90,15 +88,11 @@ exports.updateFreelancerHandymen = async (req, res, next) => {
       throw error
     }
     freelancer.title = title,
-    freelancer.qualifications = qualifications,
-    freelancer.institution = institution,
-    freelancer.qualificationsDate = qualificationsDate,
+    freelancer.serviceCharge = serviceCharge
     freelancer.category = category,
     freelancer.skills =  skills,
-    freelancer.state = state,
-    freelancer.city = city,
     freelancer.thumbnailUrl = thumbnailUrl,
-    freelancer.cvUrl = cvUrl,
+    freelancer.resume = resume,
     freelancer.description = description
     const UpdatedFreelanceHandymen = await freelancer.save()
     if (!UpdatedFreelanceHandymen) {
