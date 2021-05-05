@@ -13,7 +13,7 @@
                 <JobsList
                   :id="job._id"
                   :title="job.title"
-                  :location="`${job.state} ${job.city}`"
+                  :location="`${job.city}, ${job.state}`"
                   :day-of-post-made="job.createdAt"
                   :timeline-of-jobs="job.duration"
                   :experience="job.experience"

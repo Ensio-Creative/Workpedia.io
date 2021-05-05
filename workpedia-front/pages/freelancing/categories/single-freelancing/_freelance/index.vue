@@ -1,6 +1,9 @@
 <template>
   <div>
-    <section class="categorie mt-5 mb-5">
+    <section
+      v-if="fliteredFreelance"
+      class="categorie mt-5 mb-5"
+    >
       <div class="container">
         <div class="row justify-content-center">
           <div
@@ -15,13 +18,13 @@
                   </div>
                 </div>
                 <div class="freelance-amount">
-                  <p>${{ fliteredFreelance.amount }}</p>
-                </div>
-                <div class="freelance-description">
-                  <p>{{ fliteredFreelance.description }}</p>
+                  <p>NGN {{ fliteredFreelance.serviceCharge }}</p>
                 </div>
                 <div class="author-info">
-                  <img class="rounded" src="~assets/img/avatar_c@2x.png" alt="">
+                  <div
+                    class="user-img"
+                    :style="{backgroundImage: 'url('+ `http://localhost:8000/${fliteredFreelance.userId.imageUrl}` +')'}"
+                  />
                   <div class="author-description">
                     {{ fliteredFreelance.authorDescription }}
                   </div>
@@ -39,6 +42,7 @@
       </div>
     </section>
     <b-modal
+      v-if="fliteredFreelance"
       id="modal-lg"
       size="lg"
       :cancel-disabled="true"
@@ -49,7 +53,7 @@
           id="staticBackdropLabel"
           class="modal-title"
         >
-          Get {{ fliteredFreelance.author }}
+          Get {{ `${fliteredFreelance.userId.firstName} ${fliteredFreelance.userId.lastName}` }}
         </h5>
       </template>
       <h5 class="my-4">
@@ -58,15 +62,16 @@
       <div class="contact-info">
         <!-- Freelancer img -->
         <div class="contact-detail">
-          <img src="~/assets/img/avatar@2x.png" alt="">
+          <div
+            class="user-img"
+            :style="{backgroundImage: 'url('+ `http://localhost:8000/${user.imageUrl}` +')'}"
+          />
         </div>
         <div class="contact-detail">
           <!-- Freelancer name -->
-          <!-- <h5><strong>{{ `${user.firstName} ${user.lastName}` }}</strong></h5> -->
-          <h5><strong>Mark David</strong></h5>
+          <h5><strong>{{ `${user.firstName} ${user.lastName}` }}</strong></h5>
           <!-- Freelancer Description -->
-          <!-- <p>{{ fliteredFreelance.authorLocation }}</p> -->
-          <p>Rivers State, Port Harcourt</p>
+          <p>{{ `${user.state} ${user.city}` }}</p>
           <!-- Freelancer location -->
           <small class="gray">Nigeria</small>
         </div>
@@ -111,8 +116,8 @@ export default {
     ...mapState('freelance', ['freelancing']),
     ...mapState('auth', ['user']),
     fliteredFreelance () {
-      const result = this.freelancing.filter(freelance => freelance._id === this.routeUrl)
-      return result[0]
+      const result = this.freelancing.find(freelance => freelance._id === this.routeUrl)
+      return result
     },
     address () {
       const address = this.user.address
@@ -135,7 +140,13 @@ export default {
 .author-info {
   display: flex;
 }
-
+.user-img {
+  margin-top: 0px;
+  padding: 35px;
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: contain;
+}
 .author-info img {
   width: 85px;
 }

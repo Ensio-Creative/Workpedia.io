@@ -4,7 +4,7 @@
       @submit.prevent="onSubmit"
     >
       <div class="row">
-        <div class="col-12 col-md-6">
+        <div class="col">
           <AppControlInput
             v-model.trim="title"
             type="text"
@@ -19,54 +19,25 @@
             {{ titleInfo }}
           </small>
         </div>
-        <div class="col-12 col-md-6">
+        <div class="col">
           <AppControlInput
-            v-model.trim="qualifications"
+            v-model.trim="serviceCharge"
             type="text"
             required
-            @input="checkQualifications"
+            placeholder="NGN"
+            @input="checkserviceCharge"
           >
-            Qualifications
+            Service charge
           </AppControlInput>
           <small
-            :class="[qualifications.length < 3 ? 'info-error' : 'info-success']"
+            :class="[serviceCharge.length < 3 ? 'info-error' : 'info-success']"
           >
-            {{ qualificationsInfo }}
+            {{ serviceChargeInfo }}
           </small>
         </div>
       </div>
       <div class="row">
-        <div class="col-12 col-md-6">
-          <AppControlInput
-            v-model.trim="institution"
-            type="text"
-            required
-            @input="checkInstitution"
-          >
-            Institution
-          </AppControlInput>
-          <small
-            :class="[institution.length < 3 ? 'info-error' : 'info-success']"
-          >
-            {{ institutionInfo }}
-          </small>
-        </div>
-        <div class="col-12 col-md-6">
-          <AppControlInput
-            v-model.trim="date"
-            type="date"
-            required
-            @input="checkDate"
-          >
-            Date
-          </AppControlInput>
-          <small
-            :class="[date.length < 3 ? 'info-error' : 'info-success']"
-          >
-            {{ dateInfo }}
-          </small>
-        </div>
-        <div class="col-12 col-md-6">
+        <div class="col">
           <label for="">Category</label>
           <select
             v-model="category"
@@ -87,7 +58,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-12 col-md-6">
+        <div class="col">
           <AppControlInput
             v-model.trim="skills"
             type="text"
@@ -104,7 +75,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-12 col-md-6">
+        <div class="col">
           <label for="">State</label>
           <select
             v-model="stateSelect"
@@ -123,7 +94,7 @@
             </option>
           </select>
         </div>
-        <div class="col-12 col-md-6">
+        <div class="col">
           <AppControlInput
             v-model.trim="city"
             type="text"
@@ -152,7 +123,7 @@
             Description
           </AppTextarea>
           <small
-            :class="[!description.length ? 'info-error' : 'info-success']"
+            :class="[!description.length ? 'info-error' : 'info-info']"
           >
             {{ descriptionInfo }}
           </small>
@@ -162,7 +133,7 @@
         class="btn btn-freelance"
         type="submit"
       >
-        Save
+        Become
       </button>
     </form>
   </div>
@@ -179,12 +150,8 @@ export default {
     return {
       title: '',
       titleInfo: '',
-      qualifications: '',
-      qualificationsInfo: '',
-      institution: '',
-      institutionInfo: '',
-      date: '',
-      dateInfo: '',
+      serviceCharge: '',
+      serviceChargeInfo: '',
       category: '',
       categories,
       categoryInfo: '',
@@ -205,9 +172,7 @@ export default {
   },
   mounted () {
     this.title = this.freelancer.title
-    this.qualifications = this.freelancer.qualifications
-    this.institution = this.freelancer.institution
-    this.date = this.freelancer.qualificationsDate
+    this.serviceCharge = this.freelancer.serviceCharge
     this.stateSelect = this.freelancer.state
     this.city = this.freelancer.city
     this.category = this.freelancer.category
@@ -226,30 +191,12 @@ export default {
         return true
       }
     },
-    checkQualifications () {
-      if (this.qualifications.length < 3) {
-        this.qualificationsInfo = 'Please add qualification'
+    checkserviceCharge () {
+      if (!this.serviceCharge) {
+        this.serviceChargeInfo = 'Please add your service charge'
         return false
       } else {
-        this.qualificationsInfo = ''
-        return true
-      }
-    },
-    checkInstitution () {
-      if (this.institution.length < 3) {
-        this.institutionInfo = 'Please add an Institution'
-        return false
-      } else {
-        this.institutionInfo = ''
-        return true
-      }
-    },
-    checkDate () {
-      if (this.date.length < 3) {
-        this.dateInfo = 'Please a date'
-        return false
-      } else {
-        this.dateInfo = ''
+        this.serviceChargeInfo = ''
         return true
       }
     },
@@ -282,21 +229,19 @@ export default {
     },
     onSubmit () {
       this.errors = []
-      if (!this.checkTitle() && !this.checkQualifications() && !this.checkInstitution()) {
+      if (!this.checkTitle() && !this.checkserviceCharge()) {
         return this.errors.push('Invalid inputs')
       }
       if (!this.checkSkills() && !this.checkCity() && !this.checkDescription()) {
         return this.errors.push('Invalid inputs')
       }
-      if (!this.stateSelect.length && this.checkDate()) {
+      if (!this.stateSelect.length) {
         return this.errors.push('Invalid inputs')
       }
       if (!this.errors.length) {
         const payload = {
           title: this.title,
-          qualifications: this.qualifications,
-          institution: this.institution,
-          qualificationsDate: this.date,
+          serviceCharge: this.serviceCharge,
           category: this.category,
           skills: this.skills,
           state: this.stateSelect,
@@ -304,8 +249,8 @@ export default {
           description: this.description
         }
         // this.updateFreelancerHandymen(payload)
-        // console.log(payload)
-        this.UPDATE_FREELANCER(payload)
+        console.log(payload)
+        // this.UPDATE_FREELANCER(payload)
         this.$emit('changeComponent')
       }
     }

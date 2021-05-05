@@ -5,18 +5,16 @@
       class="user-not-logged-in"
     >
       <button
-        class="btn"
-        :class="changeBtn()"
-        @click="hasAccount(true)"
-      >
-        Login
-      </button>
-      <button
-        class="btn ml-1"
-        :class="changeBtn()"
+        class="btn landing-outline ml-1"
         @click="hasAccount(false)"
       >
         Get Started
+      </button>
+      <button
+        class="btn landing-outline ml-3"
+        @click="hasAccount(true)"
+      >
+        Login
       </button>
     </div>
     <div
@@ -28,12 +26,11 @@
           href="#"
           class="dropbtn"
         >
-          <!-- <img class="rounded" :src="" alt="user-image"> -->
           <div
             class="user-img"
             :style="{backgroundImage: 'url('+ `http://localhost:8000/${user.imageUrl}` +')'}"
           />
-          <i class="fas fa-angle-down" />
+          <!-- <i class="fa fa-angle-down" /> -->
         </a>
         <div
           class="dropdown-content text-center"
@@ -144,20 +141,6 @@ export default {
         // console.log('Work no!!!!!')
       }
     },
-    changeBtn () {
-      let btnClass = ''
-      if (this.$route.path === '/' || this.$route.path === '/about-us') {
-        btnClass = 'landing-outline'
-      } else if (this.$route.path.includes('/tutor')) {
-        btnClass = 'turor-outline'
-      } else if (this.$route.path.includes('/jobs')) {
-        btnClass = 'jobs-outline'
-      } else if (this.$route.path.includes('/freelancing')) {
-        btnClass = 'freelance-outline'
-      }
-
-      return btnClass
-    },
     logOut () {
       this.$router.push('/')
       this.$store.commit('CLEAR_USER')
@@ -173,6 +156,7 @@ export default {
   background-repeat: no-repeat;
   background-position: right;
   background-size: contain;
+  width: 30px;
 }
 .list-of-users-action {
   display: inline;
@@ -208,6 +192,7 @@ export default {
 .landing-outline {
   border: 2px solid #251e8c;
   border-radius: 6px;
+  color: #251e8c;
 }
 .landing-outline:nth-child(3) {
   background-color: #251e8c;
@@ -241,18 +226,18 @@ export default {
   visibility: hidden;
 }
 .dropbtn {
+  display: block;
+  width: 131px;
   color: white;
   padding: 0px;
   font-size: 16px;
   border: none;
 }
-.dropbtn img{
-  width: 42px;
-}
+
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
   position: relative;
-  display: inline-block;
+  display: block;
 }
 
 /* Dropdown Content (Hidden by Default) */

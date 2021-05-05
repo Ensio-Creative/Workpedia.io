@@ -8,7 +8,7 @@ export default [
     url: 'jobs'
   },
   {
-    title: 'Freelancing / Handymen',
+    title: 'Freelance',
     url: 'freelancing'
   }
 ]

@@ -7,14 +7,13 @@
       <div class="row justify-content-around">
         <div class="col-12 col-md-3">
           <div class="row justify-content-center">
-            <div class="col-8 tutor-basic-info">
+            <div class="col-10 col-md-10 tutor-basic-info">
               <img src="~assets/img/avatar_c@2x.png" alt="" class="user-img rounded">
               <h4 class="user-name">
                 {{ fullName }}
               </h4>
-              <h4>Age: {{ user.age }}</h4>
             </div>
-            <div class="col-8 tutor-basic-info text-left">
+            <div class="col-10 col-md-10 tutor-basic-info text-left">
               <h4 class="user-name">
                 Description
               </h4>

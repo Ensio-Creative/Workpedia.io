@@ -1,11 +1,5 @@
 <template>
   <div>
-    <div
-      v-if="errors.length"
-      class="container color-red"
-    >
-      <h4>{{ errors[0] }}</h4>
-    </div>
     <form
       @submit.prevent="onSubmit"
     >
@@ -13,7 +7,7 @@
         Lesson Schedule
       </h2>
       <div class="row justify-content-center">
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-7">
           <div class="row mt-3">
             <div class="col">
               <label for="length-of-lesson">How long would the lesson hold?</label>
@@ -159,16 +153,19 @@ export default {
     onSubmit () {
       this.errors = []
       if (this.lengthOfLesson.length <= 4) {
-        this.errors.push('Please how long will the tutoring go??')
-        console.log(this.lengthOfLesson.length)
+        this.errors.push('Please how long will the lesson go??')
+        this.$toast.error(this.errors[0])
+        // console.log(this.lengthOfLesson.length)
       }
       if (this.hours.length < 4) {
         this.errors.push('Please how many hours or minutes??')
-        console.log(this.hours.length)
+        this.$toast.error(this.errors[0])
+        // console.log(this.hours.length)
       }
       if (!this.daysOfTutor.length) {
         this.errors.push('Please on what days is the Lessons to hold??')
-        console.log(this.daysOfTutor.length)
+        this.$toast.error(this.errors[0])
+        // console.log(this.daysOfTutor.length)
       }
       if (!this.errors.length) {
         const payload = {
@@ -195,8 +192,8 @@ form{
   width: 350px;
 }
 .tutor-btn{
-  background-color: #FF9B17;
-  color: #000;
+  background-color: #251E8C;
+  color: #fff;
     width: 155px;
     float: right;
 }
@@ -209,17 +206,8 @@ form{
 .form-control:focus {
   color: #495057;
   background-color: #fff;
-  border-color: #ff9b17;
+  border-color: #251E8C;
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgb(255 155 23);
-}
-.color-red{
-  background: red;
-  color: #fff;
-  width: 426px;
-  text-align: center;
-  position: fixed;
-  z-index: 10;
-  padding: 10px;
+  box-shadow: 0 0 0 0.2rem #251E8C;
 }
 </style>

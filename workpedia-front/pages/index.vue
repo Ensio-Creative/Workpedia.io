@@ -39,7 +39,7 @@
     </client-only>
     <!-- Freelancing gigs -->
     <Freelancing
-      frelance-gigs="Get your gigs"
+      frelance-gigs="Connect with freelancers"
     />
     <!-- News Letter -->
     <NewsLetter />

@@ -19,13 +19,16 @@
 }
 
 p {
-  color: #00000080;;
+  color: #00000080;
 }
+/* :root {
+  #251E8C: #251E8C;
+} */
 
 /* ------ ------ Landing page ------- ------ */
 
 .bg-hero {
-  height: 95vh;
+  height: 91vh;
 }
 
 .bg-hero h1 {
@@ -51,8 +54,8 @@ p {
   margin-right: 10px;
 }
 .bg-buttons-item:nth-child(1) {
-  background-color: #2b7dc4;
-  border: 2px solid #2b7dc4;
+  background-color: #251E8C;
+  border: 2px solid #251E8C;
   padding: 10px;
   color: #fff;
   font-size: 12px;
@@ -60,18 +63,18 @@ p {
 
 .bg-buttons-item:nth-child(2) {
   box-shadow: 0px 3px 6px #f5c01e26;
-  border: 2px solid #0db47b;
+  border: 2px solid #251E8C;
   border-radius: 2px;
   padding: 10px;
-  color: #0db47b;
+  color: #251E8C;
   font-size: 12px;
 }
 
 .bg-buttons-item:nth-child(3) {
-  background: #ff9b17 0% 0% no-repeat padding-box;
+  background: #251E8C 0% 0% no-repeat padding-box;
   box-shadow: 0px 3px 6px #f5c01e26;
   border-radius: 2px;
-  border: 2px solid #ff9b17;
+  border: 2px solid #251E8C;
   padding: 10px;
   color: #000;
   font-size: 12px;
@@ -190,6 +193,7 @@ p {
 
 .popular-jobs {
   padding-top: 50px;
+  padding-bottom: 40px;
 }
 
 .popular-column {
@@ -201,7 +205,7 @@ p {
   margin-top: 10px;
 }
 .popular-column-heading {
-  color: #0db47b;
+  color: #251E8C;
 }
 
 .popular-column-heading i {
@@ -224,20 +228,19 @@ p {
 }
 
 .gray-background {
-  border: 1px solid #efefef;
   padding: 9px 6px 4px 4px;
   margin-right: 20px;
   letter-spacing: 0px;
 }
 
 .gray-background:nth-child(1) {
-  color: #be9310;
+  color: #07C1DB;
 }
 .gray-background:nth-child(2) {
-  color: #0db47b;
+  color: #251E8C;
 }
 .gray-background:nth-child(3) {
-  color: #b40d0d;
+  color: #07C1DB;
 }
 .popular-button {
   padding-top: 20px;
@@ -246,9 +249,9 @@ p {
 .popular-button a {
   padding: 9px 30px;
   letter-spacing: 0px;
-  color: #0db47b;
+  color: #251E8C;
   opacity: 1;
-  border: 2px solid #0db47b;
+  border: 2px solid #251E8C;
   border-radius: 2px;
   opacity: 1;
 }

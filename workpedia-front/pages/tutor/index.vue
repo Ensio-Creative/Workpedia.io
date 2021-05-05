@@ -9,68 +9,91 @@
           <p>
             Workpedia allows you get everything in once place, freelancing job opportunity, tutors and easily manage all three with ease.
           </p>
-          <div class="search">
+          <!-- <div class="search">
             <input class="search-input" type="email" placeholder="Search Your Courses">
             <button class="search-btn">
               Search
             </button>
-          </div>
+          </div> -->
         </div>
         <div class="col-12 col-md-12 col-lg-6 order-2 order-sm-6">
           <div class="image-rap">
-            <img src="~/static/img/tutor-home.jpg">
+            <img src="~/static/img/workpedia-tutor.svg">
           </div>
         </div>
       </div>
     </section>
     <!-- About -->
-    <About />
-    <!-- Popular -->
-    <Tutors
-      class="mt-5 mb-4"
-    />
-    <!-- Find private tutors -->
-    <!-- <section class="find-private-tutors">
+    <section class="private-tutor">
       <div class="container">
-        <div class="row">
-          <div class="col-12 col-md-6 find-private-column">
-            <img src="~assets/img/pexels-roman-odintsov-4925916@2x.png" alt="">
+        <div class="heading-private">
+          <h1 class="text-white text-center mb-5">
+            How it works
+          </h1>
+        </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div
+            class="col"
+          >
+            <div class="card h-100">
+              <div class="private-img-icon">
+                <img src="~static/img/workpedia-tutor-how-it-works.svg" alt="">
+              </div>
+              <div class="card-body">
+                <div class="private-tutor-text">
+                  <h4>Place a request</h4>
+                </div>
+                <div class="private-tutor-info">
+                  <p>
+                    Fill out the tutor request form and select a lesson schedule that matches your desired learning goals.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="col-12 col-md-6">
-            <div class="workpedia-text-div">
-              <p class="workpedia-text">
-                workpedia
-              </p>
+          <div
+            class="col"
+          >
+            <div class="card h-100">
+              <div class="private-img-icon">
+                <img src="~static/img/workpedia-tutor-how-it-works.svg" alt="">
+              </div>
+              <div class="card-body">
+                <div class="private-tutor-text">
+                  <h4>Tutor selected</h4>
+                </div>
+                <div class="private-tutor-info">
+                  <p>
+                    A tutor is selected with a notification sent to you via email based on your request.
+                  </p>
+                </div>
+              </div>
             </div>
-            <div class="find-private-title">
-              <h3>Find private tutors</h3>
+          </div>
+          <div
+            class="col"
+          >
+            <div class="card h-100">
+              <div class="private-img-icon">
+                <img src="~static/img/workpedia-tutor-how-it-works.svg" alt="">
+              </div>
+              <div class="card-body">
+                <div class="private-tutor-text">
+                  <h4>Lesson begins</h4>
+                </div>
+                <div class="private-tutor-info">
+                  <p>
+                    Lesson begins immediately payment is made which covers for the duration of the class.
+                  </p>
+                </div>
+              </div>
             </div>
-            <div class="find-private-texts">
-              <p>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                justo duo dolores et ea rebum. . Stet clita kasd gubergren,
-                no sea takimata sanctus est
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet. Lorem
-                ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-                rebum. Stet clita kasd gubergren, no sea takimata sanctus .
-              </p>
-            </div>
-            <NuxtLink
-              class="find-private-button"
-              to="/"
-            >
-              Search
-            </NuxtLink>
           </div>
         </div>
       </div>
-    </section> -->
+    </section>
+    <!-- Popular -->
+    <Tutors />
     <!-- News Letter -->
     <NewsLetter />
     <!-- Footer -->
@@ -88,71 +111,45 @@ export default {
 
 <style scoped>
 .bg-hero{
-  /* background-image: linear-gradient(to right, rgba(232, 232, 232, 1), rgba(209, 206, 206, 0)),
-    url('~assets/img/pexels-julia-m-cameron-4143791@2x.png'); */
   background-color: #fff;
   background-position: top;
   background-size: cover;
   background-repeat: no-repeat;
 }
+.image-rap {
+  margin-top: 48px;
+  height: 116%;
+  overflow: hidden;
+}
 .bg-hero img {
-  width: 423px;
+  width: 623px;
   transform: scaleX(-1);
   margin-bottom: 20px;
 }
-.search-input{
-  padding: 10px 40px;
-  background-color: transparent;
-  border: 1px solid #FF9B17;
+.private-tutor {
+  background-color: #251E8C;
+  padding: 90px;
 }
-.search-btn{
-  padding: 10px 40px;
-  background-color: #FF9B17;
-  border: 1px solid #FF9B17;
-  margin-left: -4px;
+.private-img-icon {
+  padding: 20px;
 }
-.find-private-tutors{
-  background-color: #F1F1FF;
-  padding: 100px 0px;
+.private-tutor img {
+  width: 56px;
 }
-.workpedia-text-div{
-  background-color: #f2e8e8;
-  padding: 0px;
-  width: 105px;
-  margin-top: 40px;
+.private-tutor-text {
+    color: #fff;
+    letter-spacing: 0px;
 }
-.workpedia-text{
-  color: #FF9B17;
-  padding: 11px 11px;
-  font-size: 18px;
+.card {
+  background-color: #251E8C !important;
+  border: 0px !important;
 }
-.find-private-title{
-  padding-top: 30px;
-}
-.find-private-column img{
-  width: 518px;
-}
-.find-private-text{
-  padding-top: 40px;
-  padding-bottom: 54px;
-}
-.find-private-button{
-  color: #fff;
-  background-color: #FF9B17;
-  padding: 15px 42px;
-  margin-top: 30px;
+.card p {
+  color: #fff !important;
+  padding-top: 10px;
 }
 
-.find-private-button:hover{
-  text-decoration: none;
-}
 @media screen and (max-width: 780px) {
-  .find-private-column img {
-    width: 304px;
-}
-.search-btn {
-  margin-left: 0px;
-}
 .bg-hero img {
   width: 358px;
 }

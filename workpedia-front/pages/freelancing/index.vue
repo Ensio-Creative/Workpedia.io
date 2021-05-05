@@ -9,25 +9,92 @@
           <p>
             Workpedia allows you get everything in once place, freelancing job opportunity, tutors and easily manage all three with ease.
           </p>
-          <div class="search">
+          <!-- <div class="search">
             <input class="search-input" type="email" placeholder="Search Your Courses">
             <button class="search-btn">
               Search
             </button>
-          </div>
+          </div> -->
         </div>
         <div class="col-12 col-md-12 col-lg-6 order-2 order-sm-6">
           <div class="image-rap">
-            <img src="~/assets/img/pexels-emmy-e-2381069.png">
+            <img src="~static/img/workpedia-freelancer.svg">
           </div>
         </div>
       </div>
     </section>
     <!-- About -->
-    <About />
+    <section class="private-tutor">
+      <div class="container">
+        <div class="heading-private">
+          <h1 class="text-white text-center mb-5">
+            How it works
+          </h1>
+        </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div
+            class="col"
+          >
+            <div class="card h-100">
+              <div class="private-img-icon">
+                <img src="~static/img/workpedia-tutor-how-it-works.svg" alt="">
+              </div>
+              <div class="card-body">
+                <div class="private-tutor-text">
+                  <h4>Sign up</h4>
+                </div>
+                <div class="private-tutor-info">
+                  <p>
+                    Create your account to have access to freelancers.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="col"
+          >
+            <div class="card h-100">
+              <div class="private-img-icon">
+                <img src="~static/img/workpedia-tutor-how-it-works.svg" alt="">
+              </div>
+              <div class="card-body">
+                <div class="private-tutor-text">
+                  <h4>Find freelancers</h4>
+                </div>
+                <div class="private-tutor-info">
+                  <p>
+                    Find freelancers that best suits your projects.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="col"
+          >
+            <div class="card h-100">
+              <div class="private-img-icon">
+                <img src="~static/img/workpedia-tutor-how-it-works.svg" alt="">
+              </div>
+              <div class="card-body">
+                <div class="private-tutor-text">
+                  <h4>Connect with freelancers</h4>
+                </div>
+                <div class="private-tutor-info">
+                  <p>
+                    Get in touch with the freelancers to further enquire on their skills, charge and avalibility.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <!-- Freelancing gigs -->
     <Freelancing
-      frelance-gigs="Popular Gigs"
+      frelance-gigs="Connect with freelancers"
     />
     <!-- News Letter -->
     <NewsLetter />
@@ -50,22 +117,36 @@ export default {
 .bg-hero{
   background-color: #fff;
 }
+.image-rap {
+  margin-top: 48px;
+  height: 116%;
+  overflow: hidden;
+}
 .bg-hero img{
-  width: 423px;
-  transform: scaleX(-1);
+  width: 623px;
   margin-bottom: 20px;
 }
-.search-input{
-  background-color: #E2E2E2;
-  padding: 10px 70px;
-  border: #fff;
+.private-tutor {
+  background-color: #251E8C;
+  padding: 90px;
 }
-.search-btn{
-  background-color: #2B7DC4;
-  color: #fff;
-  border: #2B7DC4;
-  padding: 10px 60px;
-  margin-left: -3px;
+.private-img-icon {
+  padding: 20px;
+}
+.private-tutor img {
+  width: 56px;
+}
+.private-tutor-text {
+    color: #fff;
+    letter-spacing: 0px;
+}
+.card {
+  background-color: #251E8C !important;
+  border: 0px !important;
+}
+.card p {
+  color: #fff !important;
+  padding-top: 10px;
 }
 @media screen and (max-width: 780px){
   .bg-texts {

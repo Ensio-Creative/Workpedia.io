@@ -5,33 +5,31 @@
     >
       <div class="form-heading">
         <h2>Create account</h2>
-        <p>Have an account? <strong @click="$emit('changeComponent')">Login</strong> </p>
+        <p>Have an account ? <strong @click="$emit('changeComponent')">Login</strong> </p>
       </div>
       <div class="row">
-        <div class="col">
+        <div class="col-12">
           <AppControlInput
             v-model.trim="firstName"
             type="text"
             required
+            placeholder="First name"
             @input="checkFirstName"
-          >
-            First Name
-          </AppControlInput>
+          />
           <small
             :class="[firstName.length < 3 ? 'info-error' : 'info-success']"
           >
             {{ firstNameInfo }}
           </small>
         </div>
-        <div class="col">
+        <div class="col-12">
           <AppControlInput
             v-model.trim="lastName"
             type="text"
             required
+            placeholder="Last name"
             @input="checklastName"
-          >
-            Last Name
-          </AppControlInput>
+          />
           <small
             :class="[lastName.length <= 3 ? 'info-error' : 'info-success']"
           >
@@ -40,22 +38,35 @@
         </div>
       </div>
       <div class="row">
-        <div class="col">
+        <div class="col-12">
+          <AppControlInput
+            v-model.trim="email"
+            type="email"
+            required
+            placeholder="Email"
+            @input="checkEmail"
+          />
+          <small
+            :class="[validEmail(email) ? 'info-success' : 'info-error']"
+          >
+            {{ infoTextEmail }}
+          </small>
+        </div>
+        <div class="col-12">
           <AppControlInput
             v-model="phone"
             type="number"
             required
+            placeholder="Phone"
             @input="checkPhone"
-          >
-            Phone
-          </AppControlInput>
+          />
           <small
             :class="[phone.length === 11 ? 'info-success' : 'info-error']"
           >
             {{ phoneInfo }}
           </small>
         </div>
-        <div class="col">
+        <!-- <div class="col">
           <AppControlInput
             v-model="age"
             type="number"
@@ -63,54 +74,62 @@
           >
             Age
           </AppControlInput>
-        </div>
+        </div> -->
       </div>
-      <AppControlInput
-        v-model.trim="email"
-        type="email"
-        required
-        @input="checkEmail"
-      >
-        Enter Email
-      </AppControlInput>
-      <small
-        :class="[validEmail(email) ? 'info-success' : 'info-error']"
-      >
-        {{ infoTextEmail }}
-      </small>
       <div class="row">
-        <div class="col">
-          <AppControlInput
-            v-model.trim="password"
-            type="password"
+        <div class="col-12 password">
+          <input
+            id="password"
+            v-model="password"
+            class="input-password"
+            :type="passwordField"
             required
+            placeholder="Password"
             @input="checkPassword"
           >
-            Password
-          </AppControlInput>
+          <i
+            v-if="passwordField === 'password'"
+            class="far fa-eye"
+            @click="switchVisibility"
+          />
+          <i
+            v-else
+            class="far fa-eye-slash"
+            @click="switchVisibility"
+          />
           <small
             :class="[password.length <= 6 ? 'info-error' : 'info-success']"
           >
             {{ infoTextPassword }}
           </small>
         </div>
-        <div class="col">
-          <AppControlInput
-            v-model.trim="passwordRepeat"
-            type="password"
+        <div class="col-12 password">
+          <input
+            v-model="passwordRepeat"
+            class="input-password"
+            :type="passwordField"
             required
+            placeholder="Confirm password"
             @input="checkPasswordRepeat"
           >
-            Repeat password
-          </AppControlInput>
+          <i
+            v-if="passwordField === 'password'"
+            class="far fa-eye"
+            @click="switchVisibility"
+          />
+          <i
+            v-else
+            class="far fa-eye-slash"
+            @click="switchVisibility"
+          />
           <small
-            :class="[!passwordRepeat.includes(password) ? 'info-error' : 'info-success']"
+            :class="[passwordRepeat !== password ? 'info-error' : 'info-success']"
           >
             {{ infoTextPasswordRepeat }}
           </small>
         </div>
       </div>
-      <div class="row">
+      <!-- <div class="row">
         <div class="col">
           <label for="">State</label>
           <select
@@ -145,20 +164,19 @@
             {{ cityInfo }}
           </small>
         </div>
-      </div>
-      <AppControlInput
+      </div> -->
+      <!-- <AppControlInput
         v-model.trim="address"
         type="text"
         required
+        placeholder="Address"
         @input="checkAddress"
-      >
-        Address
-      </AppControlInput>
+      />
       <small
         :class="[address.length <= 6 ? 'info-error' : 'info-success']"
       >
         {{ addressInfo }}
-      </small>
+      </small> -->
       <AppButton
         type="submit"
         class="signin-btn mt-3"
@@ -167,7 +185,7 @@
       </AppButton>
     </form>
     <div class="sign-privacy">
-      <p>By signing up for Workepdia, you agree to our <strong @click="routeToTerms">Privacy Policy</strong> & <strong @click="routeToTerms">Terms of Service</strong> </p>
+      <p>By signing up for Workepdia, you agree to our <strong @click="$router.push('/privacy')">Privacy Policy</strong> & <strong>Terms of Service</strong> </p>
     </div>
     <!-- <div class="sign-up-options pt-3 mb-5 text-center">
       <a href="#" class="btn sign-options-btn">
@@ -195,6 +213,7 @@ export default {
       email: '',
       password: '',
       passwordRepeat: '',
+      passwordField: 'password',
       address: '',
       stateSelect: '',
       city: '',
@@ -208,6 +227,12 @@ export default {
       phoneInfo: '',
       states,
       error: ''
+    }
+  },
+  computed: {
+    changePasswordIcon () {
+      const result = this.passwordField === 'password' ? 'far fa-eye' : 'far fa-eye-slash'
+      return result
     }
   },
   methods: {
@@ -258,13 +283,16 @@ export default {
       }
     },
     checkPasswordRepeat () {
-      if (!this.passwordRepeat.includes(this.password)) {
+      if (this.passwordRepeat !== this.password) {
         this.infoTextPasswordRepeat = 'Password Must match'
         return false
       } else {
         this.infoTextPasswordRepeat = 'Match'
         return true
       }
+    },
+    switchVisibility () {
+      this.passwordField = this.passwordField === 'password' ? 'text' : 'password'
     },
     checkCity () {
       if (this.city.length < 3) {
@@ -294,22 +322,18 @@ export default {
         this.error = 'Please fill all fields'
         this.$toast.error('Please fill all fields')
       }
-      if (!this.checkCity() && !this.checkAddress()) {
-        this.error = 'Please fill all fields'
-        this.$toast.error('Please fill all fields')
-      }
+      // if (!this.checkCity() && !this.checkAddress()) {
+      //   this.error = 'Please fill all fields'
+      //   this.$toast.error('Please fill all fields')
+      // }
       if (!this.error.length) {
         const result =
         {
           firstName: this.firstName,
           lastName: this.lastName,
           phone: this.phone,
-          age: this.age,
           email: this.email,
-          password: this.password,
-          state: this.stateSelect,
-          city: this.city,
-          address: this.address
+          password: this.password
         }
         this.signUp(result)
         // this.$emit('changeComponent')
@@ -335,6 +359,22 @@ export default {
   color: #251E8C;
   cursor: pointer;
 }
+.input-password {
+  margin: 10px 0;
+  /* display: block; */
+  background-color: #E9E9E9;
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+  padding: 10px;
+  border: 0px;
+  border-radius: 8px;
+}
+.input-password:focus {
+  background-color: #E9E9E9;
+  outline: none;
+  border: 0px;
+}
 .input-error{
   display: block;
   background-color: #E9E9E9;
@@ -343,6 +383,11 @@ export default {
   font: inherit;
   border: 1px solid red;
   border-radius: 8px;
+}
+
+.password i {
+  margin-left: -30px;
+  cursor: pointer;
 }
 
 .signin-btn{

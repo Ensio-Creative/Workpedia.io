@@ -3,7 +3,6 @@
     <div class="row justify-content-center">
       <div class="col-12 col-lg-9 login-column">
         <div class="row inner-auth-row justify-content-center">
-          <div class="col-6 col-lg-6 auth-column" />
           <div class="col-10 col-lg-6 auth-column">
             <SignUp
               v-if="!ownAccount"
@@ -39,26 +38,25 @@ export default {
 <style scoped>
 .inner-auth-row{
   border-radius: 20px;
-  margin-top: 40px;
+  margin-top: 0px;
 }
 .login-column{
   margin-top: 70px;
-  height: 135vh;
 }
-.auth-column{
+/* .auth-column{
   background-image: url('~assets/img/pexels-photo-4497733.jpeg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   padding: 45px;
-  /* border-radius: 20px 0px 0px 20px; */
-}
-.auth-column:nth-child(2){
+} */
+.auth-column{
   background: #fff;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  /* border-radius: 0px 20px 20px 0px; */
+  /* border: 1px solid #251E8C;
+  border-radius: 20px; */
 }
 .auth-columnl{
   background: #fff;
@@ -69,7 +67,7 @@ export default {
   border-radius: 20px;
 }
 
-@media screen and (max-width: 780px) {
+/* @media screen and (max-width: 780px) {
   .auth-column{
   display: none;
   background-image: url('~assets/img/pexels-photo-4497733.jpeg');
@@ -88,8 +86,8 @@ export default {
   background-size: cover;
   border-radius: 20px 20px 20px 20px;
 }
-}
-@media screen and (max-width: 980px) {
+} */
+/* @media screen and (max-width: 980px) {
   .auth-column{
   display: none;
   background-image: url('~assets/img/pexels-photo-4497733.jpeg');
@@ -99,6 +97,6 @@ export default {
   padding: 45px;
   border-radius: 20px 0px 0px 20px;
 }
-}
+} */
 
 </style>

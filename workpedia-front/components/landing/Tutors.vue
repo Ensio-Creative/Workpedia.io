@@ -34,11 +34,11 @@
           </NuxtLink>
         </div>
       </div>
-      <div class="view-more">
+      <!-- <div class="view-more">
         <NuxtLink class="view-btn" to="/tutor/categories">
           View More <img src="~/assets/img/arrow.svg">
         </NuxtLink>
-      </div>
+      </div> -->
     </section>
   </div>
 </template>
@@ -79,6 +79,10 @@ export default {
 </script>
 
 <style scoped>
+.private-tutor{
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
 .thumbnail{
   background-position: center;
   background-repeat: no-repeat;
@@ -88,5 +92,6 @@ export default {
 .heading {
   padding-top: 0px;
   padding-bottom: 7px;
+  color: #251E8C;
 }
 </style>

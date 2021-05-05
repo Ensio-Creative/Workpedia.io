@@ -1,11 +1,5 @@
 <template>
   <div>
-    <div
-      v-if="errors.length"
-      class="container color-red"
-    >
-      <h4>{{ errors[0] }}</h4>
-    </div>
     <form @submit.prevent="onSubmit">
       <h2 class="text-center mb-4">
         Contact Information
@@ -189,22 +183,31 @@ export default {
       this.errors = []
       if (!this.lastName.length) {
         this.errors.push('Please add your last name')
+        this.$toast.error(this.errors[0])
       } else if (!this.firstName.length) {
         this.errors.push('Please add your first name')
+        this.$toast.error(this.errors[0])
       } else if (!this.validEmail(this.email)) {
         this.errors.push('Add a valid email')
+        this.$toast.error(this.errors[0])
       } else if (!this.hearAbout.length) {
         this.errors.push('Please tell how you heard of us')
+        this.$toast.error(this.errors[0])
       } else if (!this.selectedStates.length) {
         this.errors.push('Please select a state')
+        this.$toast.error(this.errors[0])
       } else if (!this.city.length) {
         this.errors.push('Please add your city')
+        this.$toast.error(this.errors[0])
       } else if (!this.nearestBustop.length) {
         this.errors.push('Please add nearest bustop')
+        this.$toast.error(this.errors[0])
       } else if (!this.nearestLandmark.length) {
         this.errors.push('Please add nearest landmark')
+        this.$toast.error(this.errors[0])
       } else if (!this.address.length) {
         this.errors.push('Please add address')
+        this.$toast.error(this.errors[0])
       } else if (!this.errors.length) {
         const payload = {
           lastName: this.lastName,
@@ -241,8 +244,8 @@ form{
   width: 350px;
 }
 .tutor-btn{
-  background-color: #FF9B17;
-  color: #000;
+  background-color: #251E8C;
+  color: #fff;
     width: 155px;
     float: right;
 }
@@ -255,17 +258,16 @@ form{
 .form-control:focus {
   color: #495057;
   background-color: #fff;
-  border-color: #ff9b17;
+  border-color: #251E8C;
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgb(255 155 23);
+  box-shadow: 0 0 0 0.2rem #251E8C;
 }
-.color-red{
-  background: red;
-  color: #fff;
-  width: 426px;
-  text-align: center;
-  position: fixed;
-  z-index: 10;
-  padding: 10px;
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
 }
 </style>

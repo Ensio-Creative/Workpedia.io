@@ -9,7 +9,7 @@
             >
               <div class="form-heading">
                 <h2 class="my-4">
-                  Register as an applicant to apply for jobs
+                  Register to apply for jobs
                 </h2>
               </div>
               <div class="row">
@@ -344,12 +344,12 @@ export default {
 <style scoped>
 .inner-auth-row{
   border-radius: 20px;
-  margin-top: 40px;
+  margin-top: 0px;
 }
-.login-column{
+/* .login-column{
   margin-top: 70px;
   height: 134vh;
-}
+} */
 .auth-column{
   background-color: #fff;
   background-position: center;
@@ -371,7 +371,7 @@ export default {
   border-radius: 8px;
 }
 .btn-apply{
-  background-color: #0DB47B !important;
+  background-color: #251E8C !important;
   border-radius: 8px;
   color: #fff;
 }

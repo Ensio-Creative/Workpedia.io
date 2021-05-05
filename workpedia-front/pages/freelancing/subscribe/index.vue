@@ -20,7 +20,7 @@
               >
                 Amount
               </AppControlInput>
-              <small>NOTE: You are given 5 chances to apply for jobs with this subscription.</small>
+              <small>NOTE: This is a full time subscription to connect to freelancers.</small>
               <!-- <small
                 :class="[password.length <= 6 ? 'info-error' : 'info-success']"
               >
@@ -104,7 +104,7 @@ export default {
   border-radius: 8px;
 }
 .btn-apply{
-  background-color: #2B7DC4 !important;
+  background-color: #251E8C !important;
   border-radius: 8px;
   color: #fff;
 }

@@ -4,41 +4,54 @@
       class="my-5"
       @submit.prevent="onSubmit"
     >
-      <div class="form-heading">
-        <h2>Login</h2>
-        <p>Don't have an account? <strong @click="$emit('changeComponent')">Sign Up</strong> </p>
+      <div class="form-heading mb-5">
+        <img src="~/assets/img/Workpedia logo transparent (Blue).png" alt="">
       </div>
       <AppControlInput
         v-model.trim="email"
         type="email"
+        placeholder="Email"
         @input="checkEmail"
-      >
-        Enter Email
-      </AppControlInput>
+      />
       <small
         :class="[validEmail(email) ? 'info-success' : 'info-error']"
       >
         {{ infoTextEmail }}
       </small>
-      <AppControlInput
-        v-model.trim="password"
-        type="password"
-        @input="checkPassword"
-      >
-        Password
-      </AppControlInput>
+      <div class="password">
+        <input
+          v-model.trim="password"
+          :type="passwordField"
+          class="input-password"
+          placeholder="Password"
+          @input="checkPassword"
+        >
+        <i
+          v-if="passwordField === 'password'"
+          class="far fa-eye"
+          @click="switchVisibility"
+        />
+        <i
+          v-else
+          class="far fa-eye-slash"
+          @click="switchVisibility"
+        />
+      </div>
       <NuxtLink
         to="/auth/forgot-password"
         class="text-center"
       >
-        <p>Forgotten password?</p>
+        <p>Forgotten password ?</p>
       </NuxtLink>
       <AppButton
         type="submit"
-        class="signin-btn mt-3"
+        class="signin-btn mt-1"
       >
         Login
       </AppButton>
+      <p class="text-center mt-4">
+        Don't have an account ? <strong @click="$emit('changeComponent')">Sign up</strong>
+      </p>
     </form>
     <!-- <div class="sign-privacy">
       <p>By signing up for Workepdia, you agree to our <strong>Privacy Policy</strong> & <strong>Terms of Service</strong> </p>
@@ -63,6 +76,7 @@ export default {
     return {
       email: '',
       password: '',
+      passwordField: 'password',
       infoTextPassword: '',
       infoTextEmail: ''
     }
@@ -86,6 +100,9 @@ export default {
         this.infoTextPassword = 'Strong'
         return true
       }
+    },
+    switchVisibility () {
+      this.passwordField = this.passwordField === 'password' ? 'text' : 'password'
     },
     onSubmit () {
       if (this.checkPassword() && this.checkEmail()) {
@@ -111,13 +128,16 @@ export default {
 .form-heading{
   text-align: center;
 }
-.form-heading strong{
-  color: #251E8C;
-  cursor: pointer;
+.form-heading img{
+  width: 83px;
 }
-
+p strong {
+  cursor: pointer;
+  color: #251E8C;
+}
 .signin-btn{
   background-color: #251E8C;
+  padding: 1px;
 }
 .sign-privacy{
   padding-top: 10px;
@@ -142,5 +162,25 @@ export default {
   background: #FBFBFB;
   border-radius: 5px !important;
   font-family: 'Roboto' !important;
+}
+.input-password {
+  margin: 10px 0;
+  /* display: block; */
+  background-color: #E9E9E9;
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+  padding: 10px;
+  border: 0px;
+  border-radius: 8px;
+}
+.input-password:focus {
+  background-color: #E9E9E9;
+  outline: none;
+  border: 0px;
+}
+.password i {
+  margin-left: -30px;
+  cursor: pointer;
 }
 </style>

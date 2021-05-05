@@ -1,6 +1,9 @@
 <template>
   <div>
-    <section class="categorie mt-5 mb-5">
+    <section
+      v-if="fliteredJobs"
+      class="categorie mt-5 mb-5"
+    >
       <div class="container">
         <div class="row">
           <div class="col-12 col-md-12 col-lg-10">
@@ -11,24 +14,21 @@
                 <div class="popular-column-heading">
                   <i class="fas fa-suitcase" />
                   <h3>{{ fliteredJobs.title }}</h3>
-                  <h5>{{ fliteredJobs.state + ' ' + fliteredJobs.city }}</h5>
+                  <p>{{ `${fliteredJobs.city}, ${fliteredJobs.state} ` }}</p>
                 </div>
                 <div class="popular-durations">
                   <span class="gray-background">
-                    <h6>{{ $moment(fliteredJobs.createdAt).fromNow() }}</h6>
+                    <h6>{{ $moment(fliteredJobs.createdAt).format('LL') }}</h6>
                   </span>
                   <span class="gray-background">
                     <h6>{{ fliteredJobs.duration }}</h6>
-                  </span>
-                  <span class="gray-background">
-                    <h6>{{ fliteredJobs.experience }}</h6>
                   </span>
                   <span class="gray-background">
                     <h6>NGN {{ fliteredJobs.amount }}</h6>
                   </span>
                 </div>
                 <div class="popular-text mt-3 mb-4">
-                  <h3>Job description</h3>
+                  <h4>Job Description</h4>
                   <p>
                     {{ fliteredJobs.description }}
                   </p>
@@ -54,6 +54,7 @@
     <!-- Model code -->
     <!-- The modal -->
     <b-modal
+      v-if="fliteredJobs"
       id="modal-lg"
       size="lg"
       :cancel-disabled="true"
@@ -67,13 +68,13 @@
           Application for {{ fliteredJobs.title }}
         </h5>
       </template>
-      <h5 class="my-4">
-        Contact info
-      </h5>
       <div class="contact-info">
         <!-- User img -->
         <div class="contact-detail">
-          <img src="~/assets/img/avatar@2x.png" alt="">
+          <div
+            class="user-img"
+            :style="{backgroundImage: 'url('+ `http://localhost:8000/${user.imageUrl}` +')'}"
+          />
         </div>
         <div class="contact-detail">
           <!-- User name -->
@@ -119,7 +120,7 @@
           </div>
         </div>
         <div class="row">
-          <h6>We added your cv</h6>
+          <p>NOTE: We added your CV</p>
         </div>
       </form>
       <template #modal-footer="{ cancel}">
@@ -197,11 +198,19 @@ export default {
 
 <style scoped>
 .btn-apply{
-  background-color: #0DB47B;
+  background-color: #251E8C;
   padding: 10px;
   border-radius: 8px;
   color: #fff;
   margin-bottom: 40px;
+}
+
+.user-img {
+  margin-top: 0px;
+  padding: 35px;
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: contain;
 }
 
 .btn-apply:hover{

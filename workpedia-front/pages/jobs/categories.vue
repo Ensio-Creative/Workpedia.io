@@ -1,7 +1,64 @@
 <template>
   <div>
     <!-- Categories Nav -->
-    <CategoryRoutes />
+    <div
+      class="container bg-jobs-categories my-3"
+    />
+    <header class="container heading-search">
+      <div class="row">
+        <div class="col">
+          <AppControlInput
+            v-model="location"
+            type="text"
+            placeholder="Enter a location"
+          />
+        </div>
+        <div class="col select-control">
+          <select
+            name="choose job type"
+          >
+            <option
+              selected
+              required
+            >
+              Choose a job type
+            </option>
+            <option
+              required
+            >
+              Full Time
+            </option>
+            <option
+              required
+            >
+              Part Time
+            </option>
+            <option
+              required
+            >
+              Remote
+            </option>
+            <option
+              required
+            >
+              Intern
+            </option>
+            <option
+              required
+            >
+              Contract
+            </option>
+          </select>
+        </div>
+        <div class="col">
+          <AppControlInput
+            v-model="title"
+            type="text"
+            placeholder="Enter a title"
+          />
+        </div>
+      </div>
+    </header>
     <NuxtChild />
   </div>
 </template>
@@ -12,36 +69,8 @@ export default {
   data () {
     return {
       displaySidenav: false,
-      routes: [
-        {
-          title: 'Design',
-          url: 'design'
-        },
-        {
-          title: 'Web Dev',
-          url: 'web-dev'
-        },
-        {
-          title: 'Writing',
-          url: 'writing'
-        },
-        {
-          title: 'Marketing',
-          url: 'marketing'
-        },
-        {
-          title: 'Accounting',
-          url: 'accounting'
-        },
-        {
-          title: 'Business',
-          url: 'business'
-        },
-        {
-          title: 'Customer Service',
-          url: 'customer-service'
-        }
-      ]
+      title: '',
+      location: ''
     }
   }
 }
@@ -57,6 +86,41 @@ export default {
 .categories-nav a:hover,
 .categories-nav a:active,
 .categories-nav a.nuxt-link-active {
-  color: #0DB47B;
+  color: #251E8C;
 }
+.bg-jobs-categories {
+  background-image: url('~static/img/workpedia-jobs-header.svg');
+  height: 80vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.heading-search{
+  margin-top: 60px;
+}
+.select-control {
+  display: flex;
+}
+.select-control select{
+  display: block;
+  background-color: #E9E9E9;
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+  padding: 10px;
+  border: 0px;
+  height: 47px;
+  align-self: center;
+  border-radius: 8px;
+}
+
+.select-control select:focus {
+  background-color: #E9E9E9;
+  outline: none;
+  border: 0px;
+}
+
+/* .select-control option {
+  padding: 40px;
+} */
 </style>

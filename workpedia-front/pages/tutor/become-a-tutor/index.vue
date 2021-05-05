@@ -77,7 +77,7 @@
             Become
           </AppButton>
           <div class="sign-privacy">
-            <p>By becoming a Tutor for Workepdia, you agree to our <strong>Privacy Policy</strong> & <strong>Terms of Service</strong> </p>
+            <p>By becoming a Tutor for Workepdia, you agree to our <strong @click="$router.push('/privacy')">Privacy Policy</strong> & <strong @click="$router.push('/terms')">Terms of Service</strong> </p>
           </div>
         </form>
       </div>
@@ -86,7 +86,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 export default {
   name: 'BecomeATutor',
   layout: 'auth',
@@ -97,6 +97,9 @@ export default {
       description: ''
     }
   },
+  computed: {
+    ...mapState('auth', ['user'])
+  },
   methods: {
     ...mapActions('tutors', ['startTutor']),
     onSubmit () {
@@ -104,6 +107,11 @@ export default {
         haveYouTutoredBefore: this.haveYouTutoredBefore,
         subject: this.subjectTutorBefore,
         description: this.description
+      }
+      if (!this.user.token) {
+        this.$store.commit('HAS_ACCOUNT', false)
+        this.$toast.info('Please sign up')
+        return this.$router.push('/auth')
       }
       this.startTutor(payload)
       // this.$router.push('/dashboard/tutor')
@@ -119,12 +127,15 @@ export default {
   padding: 20px;
 }
 .tutor-btn{
-  background-color: #FF9B17;
-  color: #000;
+  background-color: #251E8C;
+  color: #fff;
 }
 .sign-privacy{
   padding-top: 10px;
   text-align: center;
+}
+strong {
+  cursor: pointer;
 }
 .become-a-tutor{
   height: 100vh;

@@ -44,9 +44,18 @@ export default {
   width: 100%;
   box-sizing: border-box;
   font: inherit;
-  padding: 5px;
+  padding: 10px;
   border: 0px;
   border-radius: 8px;
+}
+
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
 .input-control input:focus,

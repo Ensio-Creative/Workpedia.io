@@ -43,7 +43,7 @@
             >
               {{ route.title }}
             </NuxtLink>
-            <input type="email" class="form-control gray" placeholder="Search">
+            <!-- <input type="email" class="form-control gray" placeholder="Search"> -->
           </ul>
         </div>
       </div>
@@ -127,14 +127,14 @@ export default {
 <style scoped>
 .bg-categories {
   background-image: url('~assets/img/pexels-photo-1194420.jpeg');
-  height: 60vh;
+  height: 80vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 .bg-jobs-categories {
-  background-image: url('~assets/img/Macbook.jpeg');
-  height: 60vh;
+  background-image: url('~static/img/workpedia-jobs-header.svg');
+  height: 80vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -155,7 +155,7 @@ export default {
 .categories-nav a:hover,
 .categories-nav a:active,
 .categories-nav a.nuxt-link-active {
-  color: #FF9B17;
+  color: #251E8C;
 }
 .jobscategories-nav{
   background-color: #fff;
@@ -166,7 +166,7 @@ export default {
 .jobscategories-nav a:hover,
 .jobscategories-nav a:active,
 .jobscategories-nav a.nuxt-link-active {
-  color: #0DB47B;
+  color: #251E8C;
 }
 
 .freelancecategories-nav{
@@ -178,6 +178,6 @@ export default {
 .freelancecategories-nav a:hover,
 .freelancecategories-nav a:active,
 .freelancecategories-nav a.nuxt-link-active {
-  color: #2b7dc4;
+  color: #251E8C;
 }
 </style>

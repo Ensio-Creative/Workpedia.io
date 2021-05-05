@@ -210,7 +210,7 @@ export default {
   border-radius: 8px;
 }
 .btn-apply{
-  background-color: #0DB47B !important;
+  background-color: #251E8C !important;
   border-radius: 8px;
   color: #fff;
 }

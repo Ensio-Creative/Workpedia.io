@@ -43,12 +43,12 @@ export default {
 
 a {
   font-size: 18px;
-  color: #0DB47B;
+  color: #251E8C;
 }
 .hire-nav-item:nth-child(1){
-  border-right: 1px solid #0DB47B;
+  border-right: 1px solid #251E8C;
 }
 a.nuxt-link-active{
-  color: #000;
+  color: #251E8C;
 }
 </style>

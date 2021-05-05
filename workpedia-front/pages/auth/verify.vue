@@ -3,7 +3,6 @@
     <div class="row justify-content-center">
       <div class="col-12 col-lg-9 login-column">
         <div class="row inner-auth-row justify-content-center">
-          <div class="col-6 col-lg-6 auth-column" />
           <div class="col-10 col-lg-6 auth-column">
             <form
               class="my-5"
@@ -16,10 +15,9 @@
               <AppControlInput
                 v-model.trim="email"
                 type="email"
+                placeholder="Email"
                 @input="checkEmail"
-              >
-                Enter email
-              </AppControlInput>
+              />
               <small
                 :class="[validemail(email) ? 'info-success' : 'info-error']"
               >
@@ -28,10 +26,9 @@
               <AppControlInput
                 v-model.trim="code"
                 type="number"
+                placeholder="Code"
                 @input="checkCode"
-              >
-                Code
-              </AppControlInput>
+              />
               <small
                 :class="[code.length <= 3 ? 'info-error' : 'info-success']"
               >
@@ -92,6 +89,8 @@ export default {
           code: this.code
         }
         // console.log(result)
+
+        this.$store.commit('HAS_ACCOUNT', true)
         this.verify(result)
         return
       }
@@ -114,31 +113,14 @@ export default {
   margin-top: 70px;
   height: 89vh;
 }
-.auth-column{
-  background-image: url('~assets/img/pexels-photo-4497733.jpeg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding: 30px;
-  /* border-radius: 20px 0px 0px 20px; */
-}
-.auth-column:nth-child(2){
-  background: #fff;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  /* border-radius: 0px 20px 20px 0px; */
-}
+
 .auth-columnl{
   background: #fff;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding: 35px;
+  padding: 30px;
   border-radius: 20px;
 }
 
-@media screen and (max-width: 780px) {
+/* @media screen and (max-width: 780px) {
   .auth-column{
   display: none;
   background-image: url('~assets/img/pexels-photo-4497733.jpeg');
@@ -157,8 +139,8 @@ export default {
   background-size: cover;
   border-radius: 20px 20px 20px 20px;
 }
-}
-@media screen and (max-width: 980px) {
+} */
+/* @media screen and (max-width: 980px) {
   .auth-column{
   display: none;
   background-image: url('~assets/img/pexels-photo-4497733.jpeg');
@@ -168,7 +150,7 @@ export default {
   padding: 30px;
   border-radius: 20px 0px 0px 20px;
 }
-}
+} */
 .form-heading{
   text-align: center;
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <form>
+    <form @submit.prevent="onSubmit">
       <div class="row">
         <div class="mb-3">
           <label for="formFile" class="form-label">Upload Cv*</label>
@@ -15,7 +15,7 @@
         type="submit"
         class="tutor-btn mb-3"
       >
-        GO LIVE
+        Save
       </AppButton>
     </form>
   </div>
@@ -23,13 +23,18 @@
 
 <script>
 export default {
-  name: 'TutorQulifications'
+  name: 'TutorQulifications',
+  methods: {
+    onSubmit () {
+      console.log('Good')
+    }
+  }
 }
 </script>
 
 <style scoped>
 .tutor-btn{
-  background-color: #FF9B17;
+  background-color: #251E8C;
   color: #fff;
   width: 155px;
   margin-top: 20px;

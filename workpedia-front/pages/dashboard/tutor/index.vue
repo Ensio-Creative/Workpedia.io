@@ -7,13 +7,16 @@
       <div class="col-12 col-md-3">
         <div class="row justify-content-center">
           <div class="col-8 col-md-12 tutor-basic-info">
-            <img src="~assets/img/avatar_c@2x.png" alt="" class="user-img rounded">
+            <div
+              class="user-img"
+              :style="{backgroundImage: 'url('+ `http://localhost:8000/${user.imageUrl}` +')'}"
+            />
             <h4 class="user-name">
               {{ fullName }}
             </h4>
-            <h5 class="user-name">
+            <!-- <h5 class="user-name">
               Age: {{ user.age }}
-            </h5>
+            </h5> -->
           </div>
           <div class="col-8 col-md-12 tutor-basic-info text-left">
             <h4 class="user-name">
@@ -23,7 +26,7 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-12 col-md-8 tab-colum">
+      <div class="col-12 col-md-8 tab-colum mb-4">
         <div class="tab">
           <div
             class="tab-items"
@@ -108,6 +111,14 @@ export default {
 .container, .container-sm, .container-md, .container-lg {
   max-width: 1050px;
 }
+.user-img {
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: contain;
+  padding: 41px;
+  width: 30px;
+  margin: auto;
+}
 .tutor-basic-info{
   box-shadow: 0px 0px 1px 0px #00000029;
   border-radius: 8px;
@@ -134,13 +145,13 @@ export default {
   padding: 20px;
 }
 .tab-items:hover{
-  border-bottom: 1px solid #FF9B17;
+  border-bottom: 1px solid #251E8C;
 }
 .tab-items:focus{
-  border-bottom: 1px solid #FF9B17;
+  border-bottom: 1px solid #251E8C;
 }
 .tab-items a {
-  color: #FF9B17;
+  color: #251E8C;
   text-decoration: none;
   margin-top: 10px;
 }

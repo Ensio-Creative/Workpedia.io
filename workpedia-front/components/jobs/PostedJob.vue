@@ -11,7 +11,7 @@
             <div class="popular-column-heading">
               <i class="fas fa-suitcase" />
               <span class="job-title">{{ job.title }}</span>
-              <h5>{{ `${job.state}, ${job.city}` }}</h5>
+              <p>{{ `${job.city}, ${job.state}` }}</p>
               <button
                 class="btn btn-outline-danger added-btn"
                 @click="showMsgBoxTwo(job._id)"
@@ -28,20 +28,17 @@
             </div>
             <div class="popular-durations">
               <span class="gray-background">
-                <h6>{{ $moment(job.createdAt).fromNow() }}</h6>
+                <h6>{{ $moment(job.createdAt).format('LL') }}</h6>
               </span>
               <span class="gray-background">
                 <h6>{{ job.duration }}</h6>
-              </span>
-              <span class="gray-background">
-                <h6>{{ job.experience }}</h6>
               </span>
               <span class="gray-background">
                 <h6> NGN {{ job.amount }}</h6>
               </span>
             </div>
             <div class="popular-text mt-3 mb-4">
-              <h3>Job description</h3>
+              <h4>Job description</h4>
               <p
                 class="card-text"
               >

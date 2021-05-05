@@ -3,52 +3,80 @@
     <div class="row justify-content-center">
       <div class="col-12 col-lg-9 login-column">
         <div class="row inner-auth-row justify-content-center">
-          <div class="col-6 col-lg-6 auth-column" />
           <div class="col-10 col-lg-6 auth-column">
             <form
               class="my-5"
               @submit.prevent="onSubmit"
             >
-              <div class="form-heading">
+              <div class="form-heading mb-5">
+                <!-- <img src="~/assets/img/Workpedia logo transparent (Blue).png" alt=""> -->
                 <h2>Reset Password</h2>
                 <p>Enter the code Sent to your email</p>
               </div>
               <AppControlInput
                 v-model.trim="code"
                 type="number"
+                placeholder="Enter Code"
                 @input="checkCode"
-              >
-                Enter Code
-              </AppControlInput>
+              />
               <small
                 :class="[code.length <= 3 ? 'info-error' : 'info-success']"
               >
                 {{ infoTextCode }}
               </small>
-              <AppControlInput
-                v-model.trim="password"
-                type="password"
-                @input="checkPassword"
-              >
-                Password
-              </AppControlInput>
-              <small
-                :class="[password.length <=6 ? 'info-error' : 'info-success']"
-              >
-                {{ infoTextPassword }}
-              </small>
-              <AppControlInput
-                v-model.trim="passwordRepeat"
-                type="password"
-                @input="checkPasswordRepeat"
-              >
-                Confirm password
-              </AppControlInput>
-              <small
-                :class="[passwordRepeat !== password ? 'info-error' : 'info-success']"
-              >
-                {{ infoTextRepeat }}
-              </small>
+              <div class="row">
+                <div class="col-12 password">
+                  <input
+                    id="password"
+                    v-model="password"
+                    class="input-password"
+                    :type="passwordField"
+                    required
+                    placeholder="Password"
+                    @input="checkPassword"
+                  >
+                  <i
+                    v-if="passwordField === 'password'"
+                    class="far fa-eye"
+                    @click="switchVisibility"
+                  />
+                  <i
+                    v-else
+                    class="far fa-eye-slash"
+                    @click="switchVisibility"
+                  />
+                  <small
+                    :class="[password.length <= 6 ? 'info-error' : 'info-success']"
+                  >
+                    {{ infoTextPassword }}
+                  </small>
+                </div>
+                <div class="col-12 password">
+                  <input
+                    v-model="passwordRepeat"
+                    class="input-password"
+                    :type="passwordField"
+                    required
+                    placeholder="Confirm password"
+                    @input="checkPasswordRepeat"
+                  >
+                  <i
+                    v-if="passwordField === 'password'"
+                    class="far fa-eye"
+                    @click="switchVisibility"
+                  />
+                  <i
+                    v-else
+                    class="far fa-eye-slash"
+                    @click="switchVisibility"
+                  />
+                  <small
+                    :class="[passwordRepeat !== password ? 'info-error' : 'info-success']"
+                  >
+                    {{ infoTextRepeat }}
+                  </small>
+                </div>
+              </div>
               <AppButton
                 type="submit"
                 class="signin-btn mt-3"
@@ -74,6 +102,7 @@ export default {
       code: '',
       password: '',
       passwordRepeat: '',
+      passwordField: 'password',
       infoTextPassword: '',
       infoTextCode: '',
       infoTextRepeat: ''
@@ -108,6 +137,9 @@ export default {
         return true
       }
     },
+    switchVisibility () {
+      this.passwordField = this.passwordField === 'password' ? 'text' : 'password'
+    },
     onSubmit () {
       if (this.checkPassword() && this.checkCode()) {
         const result = {
@@ -116,6 +148,7 @@ export default {
           confirmPassword: this.passwordRepeat
         }
         // console.log(result)
+        this.$store.commit('HAS_ACCOUNT', true)
         this.resetPassword(result)
         return
       }
@@ -130,39 +163,46 @@ export default {
 </script>
 
 <style scoped>
-.inner-auth-row{
+/* .inner-auth-row{
   border-radius: 20px;
   margin-top: 40px;
 }
 .login-column{
-  margin-top: 70px;
+  margin-top: 0px;
   height: 97vh;
-}
+} */
+
 .auth-column{
-  background-image: url('~assets/img/pexels-photo-4497733.jpeg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: #fff;
   padding: 30px;
-  /* border-radius: 20px 0px 0px 20px; */
-}
-.auth-column:nth-child(2){
-  background: #fff;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  /* border-radius: 0px 20px 20px 0px; */
-}
-.auth-columnl{
-  background: #fff;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding: 35px;
   border-radius: 20px;
 }
+.form-heading img{
+  width: 83px;
+  margin-bottom: 30px;
+}
+.input-password {
+  margin: 10px 0;
+  /* display: block; */
+  background-color: #E9E9E9;
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+  padding: 10px;
+  border: 0px;
+  border-radius: 8px;
+}
+.input-password:focus {
+  background-color: #E9E9E9;
+  outline: none;
+  border: 0px;
+}
 
-@media screen and (max-width: 780px) {
+.password i {
+  margin-left: -30px;
+  cursor: pointer;
+}
+/* @media screen and (max-width: 780px) {
   .auth-column{
   display: none;
   background-image: url('~assets/img/pexels-photo-4497733.jpeg');
@@ -192,7 +232,7 @@ export default {
   padding: 30px;
   border-radius: 20px 0px 0px 20px;
 }
-}
+} */
 .form-heading{
   text-align: center;
 }

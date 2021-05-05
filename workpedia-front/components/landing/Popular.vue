@@ -2,7 +2,7 @@
   <div>
     <section class="popular-jobs container">
       <div class="heading">
-        <h1>Our featured jobs</h1>
+        <h1>Featured Jobs</h1>
       </div>
       <div class="row row-cols-1 row-cols-md-3 g-4">
         <div
@@ -15,22 +15,14 @@
               <div class="popular-column-heading">
                 <i class="fas fa-suitcase" />
                 <h3>{{ job.title }}</h3>
-                <h5>{{ `${job.state} ${job.city}` }}</h5>
-              </div>
-              <div class="popular-text">
-                <p>
-                  {{ job.description }}
-                </p>
+                <p>{{ `${job.city}, ${job.state} ` }}</p>
               </div>
               <div class="popular-durations">
                 <span class="gray-background">
-                  <h6>{{ $moment(job.createdAt).fromNow() }}</h6>
+                  <h6>{{ $moment(job.createdAt).format('LL') }}</h6>
                 </span>
                 <span class="gray-background">
                   <h6>{{ job.duration }}</h6>
-                </span>
-                <span class="gray-background">
-                  <h6>{{ job.experience }}</h6>
                 </span>
               </div>
               <div class="popular-button text-center">
@@ -46,7 +38,7 @@
       </div>
       <div class="view-more">
         <NuxtLink class="view-btn" to="/jobs/categories">
-          View More <img src="~/assets/img/arrow.svg">
+          View All <img src="~/assets/img/arrow.svg">
         </NuxtLink>
       </div>
     </section>
@@ -72,10 +64,13 @@ export default {
 </script>
 
 <style scoped>
+.heading {
+  color: #251E8C;
+}
 .popular-text {
   letter-spacing: 0px;
   color: #606060;
-  height: 53px;
+  height: 22px;
   overflow: hidden;
 }
 </style>

@@ -2,24 +2,23 @@
   <div class="footer">
     <div class="container">
       <div class="row justify-content-between">
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-3">
           <div
             class="footer-title"
             @click="showRoute"
           >
             <img src="~/assets/img/Workpedia logo transparent (White).png" alt="">
-            <h1>Workpedia</h1>
           </div>
           <p class="footer-text">
-            1 Ogbugo Close, Off Okporo Road, Rumuodara, Port Harcourt, Nigeria.
-          </p>
-          <p class="footer-text">
-            +234 901 601 6563
+            African's one-stop tutor, jobs and freelance platform.
           </p>
         </div>
-        <div class="col-12 col-md-7">
-          <div class="row justify-content-center">
+        <div class="col-12 col-md-8">
+          <div class="row">
             <div class="col-6 col-sm-6 col-md-6 col-lg-4">
+              <h4 class="footer-head">
+                COMPANY
+              </h4>
               <div class="footer-nav">
                 <NuxtLink
                   class="footer-nav-item"
@@ -32,6 +31,12 @@
                   to="/faq"
                 >
                   FAQ
+                </NuxtLink>
+                <NuxtLink
+                  class="footer-nav-item"
+                  to="/contact"
+                >
+                  Contact
                 </NuxtLink>
                 <NuxtLink
                   class="footer-nav-item"
@@ -54,50 +59,65 @@
               </div>
             </div>
             <div class="col-6 col-sm-6 col-md-6 col-lg-4">
+              <h4 class="footer-head">
+                EXPLORE
+              </h4>
               <div class="footer-nav">
                 <NuxtLink
                   class="footer-nav-item"
                   to="/tutor"
                 >
-                  Tutor
+                  Hire a tutor
                 </NuxtLink>
                 <NuxtLink
                   class="footer-nav-item"
                   to="/jobs"
                 >
-                  Jobs
+                  Find a job
                 </NuxtLink>
                 <NuxtLink
                   class="footer-nav-item"
                   to="/freelancing"
                 >
-                  Freelancing / Handymen
+                  Connect with freelancer
                 </NuxtLink>
               </div>
             </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-4">
-              <div class="footer-social">
-                <a href="#">
-                  <i class="fab fa-facebook-f" />
-                </a>
-                <a href="#">
-                  <i class="fab fa-twitter" />
-                </a>
-                <a href="#">
-                  <i class="fab fa-dribbble" />
-                </a>
-                <a href="#">
-                  <i class="fab fa-linkedin-in" />
-                </a>
-              </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-4">
+              <h4 class="footer-head">
+                CONTACT
+              </h4>
+              <p class="footer-email">
+                info@workpedia.io
+              </p>
+              <p class="footer-phone">
+                +234 901 601 6563
+              </p>
             </div>
           </div>
         </div>
       </div>
-      <div class="all-rights text-center">
+      <hr>
+      <div class="all-rights">
         <p class="rights">
-          &copy; {{ date.getFullYear() }} Workpedia. All rights reserved.
+          &copy; {{ date.getFullYear() }} Workpedia - All rights reserved.
         </p>
+        <div class="">
+          <div class="footer-social">
+            <a href="#">
+              <i class="fab fa-facebook-f" />
+            </a>
+            <a href="#">
+              <i class="fab fa-twitter" />
+            </a>
+            <a href="#">
+              <i class="fab fa-dribbble" />
+            </a>
+            <a href="#">
+              <i class="fab fa-linkedin-in" />
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -131,8 +151,12 @@ export default {
 .footer-title{
   display: flex;
 }
+.footer-head {
+  font-weight: bold;
+  color: #ffd200 !important;
+}
 .footer-title img{
-  width: 85px;
+  width: 63px;
 }
 .footer-title h1{
   padding-top: 10px;
@@ -145,9 +169,9 @@ export default {
 .footer-text:nth-child(3) {
   padding-top: 0px;
 }
-.footer-social{
+/* .footer-social{
   padding-top: 20px;
-}
+} */
 .footer-social a i{
   font-size: 18px;
   color: #fff;
@@ -173,15 +197,29 @@ export default {
   padding-top: 20px;
   padding-bottom: 30px;
 } */
-.rights {
-  margin-top: 78px;
+hr {
+  background: #fff;
+  margin-top: 50px;
+  margin-bottom: 45px;
 }
+.all-rights {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+/* .rights {
+  margin-top: 78px;
+} */
 @media screen and (max-width: 780px) {
   .footer-title{
     display: block;
   }
   .footer-text {
   padding-top: 30px;
+}
+.all-rights {
+    display: block;
+    margin-bottom: 49px;
 }
 }
 </style>

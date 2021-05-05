@@ -12,7 +12,7 @@
           </div>
           <div class="private-tutor-info">
             <p>{{ author }}</p>
-            <p>${{ amount }}</p>
+            <p>NGN {{ amount }}</p>
           </div>
         </div>
         <!-- <div class="card-footer">
@@ -43,9 +43,9 @@ export default {
       default: 'Author'
     },
     amount: {
-      type: String,
+      type: Number,
       requried: true,
-      default: '$$$'
+      default: 0
     }
   }
 }

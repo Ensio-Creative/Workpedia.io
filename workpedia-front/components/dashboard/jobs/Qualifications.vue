@@ -351,7 +351,7 @@ export default {
 
 <style scoped>
 .tutor-btn{
-  background-color: #0DB47B;
+  background-color: #251E8C;
   color: #000;
     width: 155px;
     float: right;

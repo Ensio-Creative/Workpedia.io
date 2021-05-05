@@ -1,7 +1,7 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid py-5">
     <div class="row justify-content-center">
-      <div class="col-12 col-md-5 bg-white my-3 px-4 sub-container">
+      <div class="col-12 col-md-5 bg-white my-5 px-4 sub-container">
         <form
           @submit.prevent="onSubmit"
         >
@@ -28,58 +28,30 @@
             </div>
             <div class="col">
               <AppControlInput
-                v-model.trim="qualifications"
+                v-model.trim="serviceCharge"
                 type="text"
                 required
-                @input="checkQualifications"
+                placeholder="NGN"
+                @input="checkserviceCharge"
               >
-                Qualifications
+                Service charge
               </AppControlInput>
               <small
-                :class="[qualifications.length < 3 ? 'info-error' : 'info-success']"
+                :class="[serviceCharge.length < 3 ? 'info-error' : 'info-success']"
               >
-                {{ qualificationsInfo }}
+                {{ serviceChargeInfo }}
               </small>
             </div>
           </div>
           <div class="row">
             <div class="col">
-              <AppControlInput
-                v-model.trim="institution"
-                type="text"
-                required
-                @input="checkInstitution"
-              >
-                Institution
-              </AppControlInput>
-              <small
-                :class="[institution.length < 3 ? 'info-error' : 'info-success']"
-              >
-                {{ institutionInfo }}
-              </small>
-            </div>
-            <div class="col">
-              <AppControlInput
-                v-model.trim="date"
-                type="date"
-                required
-                @input="checkDate"
-              >
-                Date
-              </AppControlInput>
-              <small
-                :class="[date.length < 3 ? 'info-error' : 'info-success']"
-              >
-                {{ dateInfo }}
-              </small>
-            </div>
-            <div class="col">
               <label for="">Category</label>
               <select
-                v-model="category"
+                v-model="categoryItem"
                 class="form-select"
                 aria-label="Default select example"
                 required
+                @change="pushValue"
               >
                 <option
                   v-for="categorySelect in categories"
@@ -91,6 +63,11 @@
                   {{ categorySelect.title }}
                 </option>
               </select>
+              <small
+                :class="[!category.length < 3 ? 'info-error' : 'info-success']"
+              >
+                {{ category }}
+              </small>
             </div>
           </div>
           <div class="row">
@@ -112,42 +89,6 @@
           </div>
           <div class="row">
             <div class="col">
-              <label for="">State</label>
-              <select
-                v-model="stateSelect"
-                class="form-select"
-                aria-label="Default select example"
-                required
-              >
-                <option
-                  v-for="state in states"
-                  :key="state"
-                  selected
-                  :value="state"
-                  required
-                >
-                  {{ state }}
-                </option>
-              </select>
-            </div>
-            <div class="col">
-              <AppControlInput
-                v-model.trim="city"
-                type="text"
-                required
-                @input="checkCity"
-              >
-                City
-              </AppControlInput>
-              <small
-                :class="[!city.length ? 'info-error' : 'info-success']"
-              >
-                {{ cityInfo }}
-              </small>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
               <AppTextarea
                 v-model.trim="description"
                 type="text"
@@ -159,7 +100,7 @@
                 Description
               </AppTextarea>
               <small
-                :class="[!description.length ? 'info-error' : 'info-success']"
+                :class="[!description.length ? 'info-error' : 'info-info']"
               >
                 {{ descriptionInfo }}
               </small>
@@ -188,13 +129,10 @@ export default {
     return {
       title: '',
       titleInfo: '',
-      qualifications: '',
-      qualificationsInfo: '',
-      institution: '',
-      institutionInfo: '',
-      date: '',
-      dateInfo: '',
-      category: '',
+      serviceCharge: '',
+      serviceChargeInfo: '',
+      category: [],
+      categoryItem: '',
       categories,
       categoryInfo: '',
       skills: '',
@@ -220,39 +158,24 @@ export default {
         return true
       }
     },
-    checkQualifications () {
-      if (this.qualifications.length < 3) {
-        this.qualificationsInfo = 'Please add qualification'
+    checkserviceCharge () {
+      if (!this.serviceCharge) {
+        this.serviceChargeInfo = 'Please add your service charge'
         return false
       } else {
-        this.qualificationsInfo = ''
+        this.serviceChargeInfo = ''
         return true
       }
     },
-    checkInstitution () {
-      if (this.institution.length < 3) {
-        this.institutionInfo = 'Please add an Institution'
-        return false
-      } else {
-        this.institutionInfo = ''
-        return true
-      }
-    },
-    checkDate () {
-      if (this.date.length < 3) {
-        this.dateInfo = 'Please a date'
-        return false
-      } else {
-        this.dateInfo = ''
-        return true
-      }
+    pushValue () {
+      this.category.push(this.categoryItem)
     },
     checkSkills () {
       if (this.skills.length < 3) {
         this.skillsInfo = 'Please add a skill'
         return false
       } else {
-        this.skillsInfo = ''
+        this.skillsInfo = 'Separate skills with a comma'
         return true
       }
     },
@@ -276,28 +199,22 @@ export default {
     },
     onSubmit () {
       this.errors = []
-      if (!this.checkTitle() && !this.checkQualifications() && !this.checkInstitution()) {
+      if (!this.checkTitle() && !this.checkserviceCharge()) {
         return this.errors.push('Invalid inputs')
       }
-      if (!this.checkSkills() && !this.checkCity() && !this.checkDescription()) {
-        return this.errors.push('Invalid inputs')
-      }
-      if (!this.stateSelect.length && this.checkDate()) {
+      if (!this.checkSkills() && !this.category.length && !this.checkDescription()) {
         return this.errors.push('Invalid inputs')
       }
       if (!this.errors.length) {
         const payload = {
           title: this.title,
-          qualifications: this.qualifications,
-          institution: this.institution,
-          qualificationsDate: this.date,
+          serviceCharge: this.serviceCharge,
           category: this.category,
-          skills: this.skills,
-          state: this.stateSelect,
-          city: this.city,
+          skills: this.skills.split(','),
           description: this.description
         }
-        this.registerFreelancerHandymen(payload)
+        console.log(payload)
+        // this.registerFreelancerHandymen(payload)
       }
     }
   }
@@ -306,18 +223,21 @@ export default {
 
 <style scoped>
 .container-fluid{
-  height: 102vh;
+  height: 108vh;
 }
 .sub-container{
   border-radius: 8px;
 }
 .btn-freelance{
-  background-color: #2B7DC4;
+  background-color: #251E8C;
   text-align: center;
   width: 100%;
   padding: 10px;
   color: #fff;
   margin-top: 20px;
   margin-bottom: 20px;
+}
+.info-info {
+  color: #000;
 }
 </style>

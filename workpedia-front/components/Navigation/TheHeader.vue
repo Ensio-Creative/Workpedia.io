@@ -22,8 +22,8 @@
               {{ links.title }}
             </NuxtLink>
           </li>
-          <UserSign />
         </ul>
+        <UserSign />
       </div>
     </header>
   </div>
@@ -55,7 +55,7 @@ export default {
     // The function here is using the data filtered already when the compnent was mounted
     routes () {
       let route = ''
-      if (this.$route.path === '/' || this.$route.path === '/about-us') {
+      if (this.$route.path === '/' || this.$route.path === '/about-us' || this.$route.path === '/contact' || this.$route.path === '/faq') {
         route = this.homeNav
       } else if (this.$route.path.includes('/tutor')) {
         route = this.tutor
@@ -76,7 +76,7 @@ export default {
   methods: {
     // Here are the functions used by there names
     checkTutorNav () {
-      if (this.user.isApplicant || this.user.isHire || this.user.isTutor || this.user.isFreelancer) {
+      if (this.user.isTutor) {
         this.tutor = this.tutorNav.filter(tutorRoute => tutorRoute.url !== '/tutor/become-a-tutor')
         return this.tutor
       } else {
@@ -84,7 +84,7 @@ export default {
       }
     },
     checkJobs () {
-      if (this.user.isApplicant || this.user.isHire || this.user.isTutor || this.user.isFreelancer) {
+      if (this.user.isApplicant || this.user.isHire) {
         this.jobs = this.jobsNav.filter(jobsRoute => jobsRoute.url !== '/jobs/hire')
         return this.jobs
       } else {
@@ -92,7 +92,7 @@ export default {
       }
     },
     checkFreelance () {
-      if (this.user.isApplicant || this.user.isHire || this.user.isTutor || this.user.isFreelancer) {
+      if (this.user.isFreelancer) {
         this.freelance = this.freelanceNav.filter(freelanceRoute => freelanceRoute.url !== '/freelancing/become-freelancer')
         return this.freelance
       } else {
@@ -121,7 +121,8 @@ export default {
 }
 
 .spacer {
-  flex: 1;
+  /* flex: 1; */
+  width: 529px;
 }
 
 .navigation-items {
@@ -130,7 +131,9 @@ export default {
 
 @media (min-width: 768px) {
   .navigation-items {
-    display: block;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
   }
   .header-container {
   background-color: #fff;
@@ -148,6 +151,7 @@ export default {
 .nav-item {
   margin: 0 10px;
   padding-top: 5px;
+  padding-left: 45px;
 }
 
 .nav-item a {

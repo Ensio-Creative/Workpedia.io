@@ -1,42 +1,46 @@
 <template>
   <div>
-    <section class="categorie mt-5 mb-5">
+    <section class="categorie mt-5">
       <div class="container">
-        <div
-          class="row row-cols-1 row-cols-md-3 g-4"
-        >
+        <div class="row row-cols-1 row-cols-md-3 g-4">
           <div
-            v-for="route in routes"
-            :key="route.url"
-            class="col mt-3"
+            v-for="job in jobs"
+            :key="job._id"
+            class="col mt-4"
           >
-            <NuxtLink
-              :to="`/jobs/categories/${route.url}`"
-            >
-              <div class="card h-100">
-                <div class="card-body">
-                  <div class="private-tutor-text">
-                    <h3>{{ route.title }}</h3>
-                  </div>
+            <div class="card">
+              <div class="card-body">
+                <div class="popular-column-heading">
+                  <i class="fas fa-suitcase" />
+                  <h3>{{ job.title }}</h3>
+                  <p>{{ `${job.city}, ${job.state} ` }}</p>
                 </div>
-                <!-- <div class="card-footer">
-                  <small class="text-muted">Last updated 3 mins ago</small>
-                </div> -->
-              </div>
-            </NuxtLink>
-            <!-- <div class="col">
-              <div class="card h-100">
-                <img src="~/assets/img/biology.png" alt="">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                <div class="popular-durations">
+                  <span class="gray-background">
+                    <h6>{{ $moment(job.createdAt).format('LL') }}</h6>
+                  </span>
+                  <span class="gray-background">
+                    <h6>{{ job.duration }}</h6>
+                  </span>
                 </div>
-                <div class="card-footer">
-                  <small class="text-muted">Last updated 3 mins ago</small>
+                <div class="popular-button text-center">
+                  <NuxtLink
+                    :to="`/jobs/categories/single-job/${job._id}`"
+                  >
+                    View Now
+                  </NuxtLink>
                 </div>
               </div>
-            </div> -->
+            </div>
           </div>
+        </div>
+        <div class="text-center mt-5">
+          <b-pagination
+            v-model="currentPage"
+            pills
+            per-page="2"
+            :total-rows="jobs"
+          />
         </div>
       </div>
     </section>
@@ -49,44 +53,21 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   data () {
     return {
-      routes: [
-        {
-          title: 'Design',
-          url: 'design'
-        },
-        {
-          title: 'Web Dev',
-          url: 'web-dev'
-        },
-        {
-          title: 'Writing',
-          url: 'writing'
-        },
-        {
-          title: 'Marketing',
-          url: 'marketing'
-        },
-        {
-          title: 'Accounting',
-          url: 'accounting'
-        },
-        {
-          title: 'Business',
-          url: 'business'
-        },
-        {
-          title: 'Customer Service',
-          url: 'customer-service'
-        }
-      ]
+      currentPage: 1
     }
+  },
+  computed: {
+    ...mapState('jobs', ['jobs'])
   }
 }
 </script>
 
 <style scoped>
-
+.categorie {
+  margin-bottom: 8rem;
+}
 </style>

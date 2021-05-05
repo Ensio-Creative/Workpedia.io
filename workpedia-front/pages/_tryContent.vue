@@ -15,12 +15,19 @@
         </li>
       </ul>
     </nav>
-    <div class="about-background">
-      <h1
-        class="container text-white"
-      >
-        {{ texts.title }}
-      </h1>
+    <div class="bg-hero container">
+      <div class="row justify-content-around">
+        <div class="col-12 col-md-12 col-lg-6 bg-texts order-6 order-sm-2">
+          <h1>
+            {{ texts.title }}
+          </h1>
+        </div>
+        <div class="col-12 col-md-12 col-lg-6 order-2 order-sm-6">
+          <div class="image-rap">
+            <img src="~static/img/workpedia-privacy-policy.svg">
+          </div>
+        </div>
+      </div>
     </div>
     <article class="container content-container">
       <!-- <h1>{{ texts.title }}</h1>
@@ -46,6 +53,22 @@ export default {
 </script>
 
 <style scoped>
+.bg-hero{
+  background-color: #fff;
+}
+.image-rap {
+  margin-top: 48px;
+  height: 116%;
+  overflow: hidden;
+}
+.bg-hero h1 {
+  padding: 10px 107px 5px 0px;
+  margin-top: 109px;
+}
+.bg-hero img{
+  width: 623px;
+  margin-bottom: 20px;
+}
 .about-background{
   background-color: #251E8C;
   padding: 102px;

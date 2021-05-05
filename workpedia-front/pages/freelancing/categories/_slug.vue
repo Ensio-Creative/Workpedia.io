@@ -4,15 +4,15 @@
       <div class="container">
         <div class="row row-cols-1 row-cols-md-3 g-4">
           <div
-            v-for="works in fliteredFreelance"
-            :key="works._id"
+            v-for="freelancer in fliteredFreelance"
+            :key="freelancer._id"
             class="col"
           >
             <FreelanceList
-              :id="works._id"
-              :title="works.title"
-              :amount="works.amount"
-              :author="works.author"
+              :id="freelancer._id"
+              :title="freelancer.title"
+              :amount="freelancer.serviceCharge"
+              :author="`${freelancer.userId.firstName} ${freelancer.userId.lastName}`"
             />
           </div>
         </div>
@@ -38,8 +38,11 @@ export default {
   computed: {
     ...mapState('freelance', ['freelancing']),
     fliteredFreelance () {
-      const result = this.freelancing.filter(freelance => freelance.category === this.routeUrl)
-      return result
+      const filter = this.routeUrl
+      const filteredResult = this.freelancing.filter((item) => {
+        return (item.category.includes(filter) >= 0)
+      })
+      return filteredResult
     }
   }
 }

@@ -6,15 +6,14 @@
         <p
           class="news-paragraph"
         >
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
-          magna aliquyam erat, sed diam voluptua. At vero eos et a et ea rebum. Stet clita kasd gubergren, no \
+          For latest news & insights
         </p>
         <div class="input-area mt-5">
           <input
             v-model="email"
             class="news-input"
             type="email"
-            placeholder="Enter Your Email Address"
+            placeholder="Enter Your Email"
           >
           <button
             :disabled="!validEmail(email)"
@@ -43,6 +42,7 @@ export default {
         const res = await this.$axios.$post('public/subcribe-newsletter',
           { email: this.email }
         )
+        this.email = ''
         this.$toast.success(res.message)
       } catch (error) {
         if (error.response.status === 422) {

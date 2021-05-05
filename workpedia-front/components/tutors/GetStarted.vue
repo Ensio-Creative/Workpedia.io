@@ -1,11 +1,5 @@
 <template>
   <div>
-    <div
-      v-if="errors.length"
-      class="container color-red"
-    >
-      <h4>{{ errors[0] }}</h4>
-    </div>
     <form @submit.prevent="onSubmit">
       <h2 class="text-center mb-4">
         Let's Get started
@@ -28,8 +22,9 @@
               <label for="">Student Class</label>
               <select
                 v-model="selectClass"
-                class="form-select"
+                class="form-select mb-2"
                 required
+                @change="pushClassValue"
               >
                 <option
                   v-for="classes in sudentClass"
@@ -41,6 +36,16 @@
                   {{ classes }}
                 </option>
               </select>
+              <div class="spans">
+                <span
+                  v-for="(students, index) in studentClasses"
+                  :key="index"
+                  class="mt-5 mr-3"
+                  @click="popClass(index)"
+                >
+                  {{ students }}
+                </span>
+              </div>
             </div>
           </div>
           <div class="row mt-3">
@@ -116,11 +121,12 @@
                 placeholder="Subject"
                 required
               >
+              <small>Separate student subject with a comma ,</small>
             </div>
           </div>
           <div class="row mt-3">
             <div class="col">
-              <label for="">Tell us about your child</label>
+              <label for="">Tell us about your student(s)</label>
               <textarea
                 v-model="tellUsAboutChild"
                 type="text"
@@ -145,7 +151,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 export default {
   name: 'GetStarted',
   emits: ['nextToContact'],
@@ -156,23 +162,14 @@ export default {
       started: true,
       contact: false,
       lesson: false,
+      studentClasses: [],
       sudentClass: [
         'Pre-nursery',
-        'Nursery 1',
-        'Nursery 2',
-        'Nursery 3',
-        'Primary 1',
-        'Primary 2',
-        'Primary 3',
-        'Primary 4',
-        'Primary 5',
-        'Primary 6',
-        'JSS 1',
-        'JSS 2',
-        'JSS 3',
-        'SSS 1',
-        'SSS 2',
-        'SSS 3'
+        'Nursery 1 - 3',
+        'Primary 1 - 6',
+        'JSS 1 - 3',
+        'SSS 1 - 3',
+        'Others'
       ],
       curriculum: [
         'Nigerian',
@@ -196,41 +193,68 @@ export default {
       tellUsAboutChild: ''
     }
   },
+  computed: {
+    ...mapState('auth', ['user'])
+  },
   mounted () {
     this.subject = this.$route.params.tutorId
   },
   methods: {
     ...mapMutations('tutors', ['UPDATE_REQUEST_TUTOR']),
+    pushClassValue () {
+      this.studentClasses.push(this.selectClass)
+    },
+    popClass (index) {
+      if (index === 0) {
+        console.log(index)
+        return this.studentClasses.pop()
+      }
+      this.studentClasses.splice(1, index)
+    },
     onSubmit () {
       this.errors = []
       if (!this.numberStudent.length) {
         this.errors.push('Please Add the Number of students')
-      } else if (!this.selectClass.length) {
+        this.$toast.error(this.errors[0])
+      } else if (!this.studentClasses.length) {
         this.errors.push('Please select class')
+        this.$toast.error(this.errors[0])
       } else if (!this.typeOfLesson.length) {
         this.errors.push('Please add the type of lesson')
+        this.$toast.error(this.errors[0])
       } else if (!this.selectedCurriculum.length) {
         this.errors.push('Please select a curriculum')
+        this.$toast.error(this.errors[0])
       } else if (!this.studentGoal.length) {
         this.errors.push('Add students goals')
+        this.$toast.error(this.errors[0])
       } else if (!this.selectGender.length) {
         this.errors.push('Select tutor gender')
+        this.$toast.error(this.errors[0])
       } else if (!this.subject.length) {
         this.errors.push('Please fill every field')
+        this.$toast.error(this.errors[0])
       } else if (!this.tellUsAboutChild.length) {
         this.errors.push('Please fill every field')
+        this.$toast.error(this.errors[0])
       } else if (!this.errors.length) {
         const payload = {
           numberOfStudents: this.numberStudent,
-          studentClass: this.selectClass,
+          studentClass: this.studentClasses,
           lessonType: this.typeOfLesson,
           curriculum: this.selectedCurriculum,
           studentGoal: this.studentGoal,
           tutorGender: this.selectGender,
-          subject: this.subject,
+          subject: this.subject.split(','),
           moreAboutStudent: this.tellUsAboutChild
         }
+        if (!this.user.token) {
+          this.$store.commit('HAS_ACCOUNT', false)
+          this.$toast.info('Please sign up to make a tutor request')
+          return this.$router.push('/auth')
+        }
         this.UPDATE_REQUEST_TUTOR(payload)
+        // console.log(payload)
         this.$emit('nextToContact')
       }
     }
@@ -249,8 +273,8 @@ form{
   width: 350px;
 }
 .tutor-btn{
-  background-color: #FF9B17;
-  color: #000;
+  background-color: #251E8C;
+  color: #fff;
     width: 155px;
     float: right;
 }
@@ -262,17 +286,19 @@ form{
 .form-control:focus {
   color: #495057;
   background-color: #fff;
-  border-color: #ff9b17;
+  border-color: #251E8C;
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgb(255 155 23);
+  box-shadow: 0 0 0 0.2rem #251E8C;
 }
-.color-red{
-  background: red;
-  color: #fff;
-  width: 426px;
-  text-align: center;
-  position: fixed;
-  z-index: 10;
-  padding: 10px;
+span {
+  color: #251E8C;
+  padding: 7px;
+  background: #f1f1f1;
+}
+.spans {
+  display: flex;
+  justify-content: space-between;
+  width: 0px;
+  margin-top: 8px;
 }
 </style>

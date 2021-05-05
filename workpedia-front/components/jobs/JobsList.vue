@@ -7,13 +7,10 @@
     </div>
     <div class="popular-durations">
       <span class="gray-background">
-        <h6>{{ $moment(dayOfPostMade).fromNow() }}</h6>
+        <h6>{{ $moment(dayOfPostMade).format('LL') }}</h6>
       </span>
       <span class="gray-background">
         <h6>{{ timelineOfJobs }}</h6>
-      </span>
-      <span class="gray-background">
-        <h6>{{ experience }}</h6>
       </span>
       <span class="gray-background">
         <h6>NGN {{ amount }}</h6>
@@ -26,7 +23,7 @@
       </NuxtLink>
     </div>
     <div class="popular-text mt-3 mb-4">
-      <h3>Job description</h3>
+      <h4>Job description</h4>
       <p>
         {{ description }}
       </p>
@@ -84,7 +81,7 @@ export default {
 
 <style scoped>
 .btn-apply{
-  background-color: #0DB47B;
+  background-color: #251E8C;
   padding: 10px 28px;
   border-radius: 5px;
   color: #fff;

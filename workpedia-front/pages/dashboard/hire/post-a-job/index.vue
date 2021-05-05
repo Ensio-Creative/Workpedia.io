@@ -25,12 +25,7 @@
     />
     <!-- Footer -->
     <FooterDash
-      v-if="results.length > 1"
       class="mt-5"
-    />
-    <FooterDash
-      v-if="results.length <= 1"
-      class="fixed-bottom"
     />
     <b-modal
       id="modal-lg"
@@ -225,25 +220,26 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import states from '~/static/data/states.js'
 import categories from '~/static/jobs/jobsRoutes.js'
 export default {
   name: 'PostJobs',
   layout: 'dashboard',
-  async asyncData ({ $axios, store }) {
-    const { results } = await $axios.$get(
-      'jobs/get-jobs'
-    )
-    console.log(store.state.hire)
-    return { results }
-  },
+  // async asyncData ({ $axios, store }) {
+  //   const { results } = await $axios.$get(
+  //     'jobs/get-jobs'
+  //   )
+  //   console.log(store.state.hire)
+  //   return { results }
+  // },
   data () {
     return {
       socket: '',
       jobTitle: '',
       titleinfo: '',
       email: '',
+      results: [],
       phone: '',
       phoneInfo: '',
       stateSelect: '',
@@ -265,6 +261,9 @@ export default {
       errors: []
     }
   },
+  computed: {
+    ...mapState('hire', ['hire'])
+  },
   mounted () {
     this.socket = this.$nuxtSocket({
       name: 'home'
@@ -275,9 +274,14 @@ export default {
         this.results.push(data.job)
       }
     })
+    this.fetchData()
   },
   methods: {
     ...mapActions('jobs', ['postJob']),
+    async fetchData () {
+      const res = await this.$axios.$get(`jobs/get-company-job/${this.hire._id}`)
+      this.results = res.results
+    },
     checkTitle () {
       if (this.jobTitle.length <= 3) {
         this.titleinfo = 'Add a specific title'
@@ -411,7 +415,7 @@ form {
   margin-top: 20px;
   font-size: 32px;
   color: #fff;
-  background-color: #0DB47B;
+  background-color: #251E8C;
   padding: auto;
   border-radius: 50px;
   height: 60px;

@@ -25,7 +25,8 @@ export default {
 .button {
   font: inherit;
   color: white;
-  padding: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .button:hover,
