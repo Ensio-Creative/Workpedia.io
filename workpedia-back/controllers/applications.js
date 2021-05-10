@@ -27,8 +27,6 @@ exports.sendApplications = async  (req, res, next) => {
       error.data = errors.array()
       throw error
     }
-    applicant.applyChance - 1
-     const updateApplicant = await applicant.save()
     // Find job with id
     const job = await Jobs.findById(jobId)
     if (!job) {

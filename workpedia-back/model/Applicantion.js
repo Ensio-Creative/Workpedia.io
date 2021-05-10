@@ -2,9 +2,9 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const ApplicationSchema = new Schema({
-  applicantCvUrl:{
-    type: String,
-    required: true
+  adminApprove: {
+    type: Boolean,
+    default: false
   },
   applicantId: {
     type: Schema.Types.ObjectId,

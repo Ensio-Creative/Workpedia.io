@@ -25,7 +25,7 @@ exports.signUp = async (req, res, next) => {
     }
     const hash = await hashPassword(password)
     const user = new User({
-      imageUrl: 'images/avatar@2x.png',
+      imageUrl: 'images/workpedia-avatar.svg',
       firstName,
       lastName,
       age: 18,
@@ -35,6 +35,7 @@ exports.signUp = async (req, res, next) => {
       state: 'Select a city',
       city: 'Please add a city',
       address: 'Please add an address'
+      // isOperator: true
     })
     const savedUser = await user.save()
     if (!savedUser) {
@@ -115,6 +116,7 @@ exports.login = async (req, res, next) => {
       isFreelancer: loadedUser.isFreelancer,
       freelanceHire: loadedUser.freelanceHire, 
       isVerified: loadedUser.isVerified,
+      createdAt: loadedUser.createdAt,
       token
     }
     // console.log(payload)
