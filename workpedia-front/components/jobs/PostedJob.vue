@@ -184,29 +184,6 @@
               {{ expericenceInfo }}
             </small>
           </div>
-          <div class="col">
-            <label for="">Category</label>
-            <select
-              v-model="foundJob.category"
-              class="form-select"
-              aria-label="Default select example"
-              required
-            >
-              <option
-                v-for="categorySelect in categories"
-                :key="categorySelect.url"
-                :value="categorySelect.url"
-                required
-              >
-                {{ categorySelect.title }}
-              </option>
-            </select>
-            <small
-              :class="[ !foundJob.category.length ? 'info-error' : 'info-success']"
-            >
-              {{ categoryInfo }}
-            </small>
-          </div>
         </div>
         <div class="row">
           <div class="col">
@@ -245,7 +222,6 @@
 <script>
 import { mapActions } from 'vuex'
 import states from '~/static/data/states.js'
-import categories from '~/static/jobs/jobsRoutes.js'
 export default {
   name: 'PostedJobsList',
   props: {
@@ -277,8 +253,6 @@ export default {
       amountInfo: '',
       durationInfo: '',
       expericenceInfo: '',
-      categoryInfo: '',
-      categories,
       states,
       descriptionInfo: '',
       errors: []
@@ -386,15 +360,6 @@ export default {
         return true
       }
     },
-    checkCategory () {
-      if (!this.foundJob.category.length) {
-        this.categoryInfo = 'Please Select a category'
-        return false
-      } else {
-        this.categoryInfo = ''
-        return true
-      }
-    },
     checkDescription () {
       if (!this.foundJob.description.length) {
         this.descriptionInfo = 'Please add description'
@@ -425,7 +390,6 @@ export default {
           amount: this.foundJob.amount,
           duration: this.foundJob.duration,
           experience: this.foundJob.experience,
-          category: this.foundJob.category,
           description: this.foundJob.description
         }
         console.log(payload)

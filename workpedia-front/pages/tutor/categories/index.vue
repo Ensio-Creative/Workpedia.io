@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="categorie mt-5 mb-5">
+    <section class="categorie mt-5">
       <div class="container">
         <div
           class="row row-cols-1 row-cols-md-3 g-4"
@@ -14,6 +14,10 @@
               :to="`/tutor/categories/${route.url}`"
             >
               <div class="card h-100">
+                <div
+                  class="thumbnail"
+                  :style="{backgroundImage:'url(' + route.image + ')'}"
+                />
                 <div class="card-body">
                   <div class="private-tutor-text">
                     <h3>{{ route.title }}</h3>
@@ -53,6 +57,15 @@ export default {
 <style scoped>
 .categories-btn{
   margin: auto;
+}
+.categorie {
+  margin-bottom: 8rem;
+}
+.thumbnail{
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 100px;
 }
 .private-tutor-column{
   border-radius: 10px;

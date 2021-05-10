@@ -161,29 +161,6 @@
               {{ expericenceInfo }}
             </small>
           </div>
-          <div class="col">
-            <label for="">Category</label>
-            <select
-              v-model="category"
-              class="form-select"
-              aria-label="Default select example"
-              required
-            >
-              <option
-                v-for="categorySelect in categories"
-                :key="categorySelect.url"
-                :value="categorySelect.url"
-                required
-              >
-                {{ categorySelect.title }}
-              </option>
-            </select>
-            <small
-              :class="[ !category.length ? 'info-error' : 'info-success']"
-            >
-              {{ categoryInfo }}
-            </small>
-          </div>
         </div>
         <div class="row">
           <div class="col">
@@ -222,7 +199,6 @@
 <script>
 import { mapActions, mapState } from 'vuex'
 import states from '~/static/data/states.js'
-import categories from '~/static/jobs/jobsRoutes.js'
 export default {
   name: 'PostJobs',
   layout: 'dashboard',
@@ -252,9 +228,6 @@ export default {
       durationInfo: '',
       experience: '',
       expericenceInfo: '',
-      category: '',
-      categoryInfo: '',
-      categories,
       states,
       description: '',
       descriptionInfo: '',
@@ -345,15 +318,6 @@ export default {
         return true
       }
     },
-    checkCategory () {
-      if (!this.category.length) {
-        this.categoryInfo = 'Please Select a category'
-        return false
-      } else {
-        this.categoryInfo = ''
-        return true
-      }
-    },
     checkDescription () {
       if (!this.description.length) {
         this.descriptionInfo = 'Please add description'
@@ -371,7 +335,7 @@ export default {
       if (!this.checkPhone() && !this.checkAmount() && !this.checkDuration()) {
         this.errors.push('Please fill every field')
       }
-      if (!this.checkExperience() && !this.checkCategory() && !this.checkDescription()) {
+      if (!this.checkExperience() && !this.checkDescription()) {
         this.errors.push('Please fill every field')
       }
       if (!this.errors.length) {
@@ -383,7 +347,6 @@ export default {
           amount: this.amount,
           duration: this.duration,
           experience: this.experience,
-          category: this.category,
           description: this.description
         }
         this.postJob(payload)

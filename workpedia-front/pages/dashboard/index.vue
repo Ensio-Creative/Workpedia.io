@@ -13,14 +13,11 @@
         <div class="card info-containers">
           <div class="card-body">
             <h5 class="card-title">
-              Hired Tutors
+              You joined us {{ $moment(user.createdAt).fromNow() }} we are glad your here!!!
             </h5>
-            <p class="card-text text-white">
-              0
-            </p>
           </div>
         </div>
-      </div>
+      <!-- </div>
       <div
         class="col"
       >
@@ -47,7 +44,7 @@
               0
             </p>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <!-- <div class="activity-row mt-4">
@@ -75,7 +72,7 @@
     </div>
     <component :is="activeTab" /> -->
     <FooterDash
-      class="fixed-bottom"
+      class="mt-5"
     />
   </div>
 </template>
@@ -111,7 +108,7 @@ export default {
   font-size: 22px;
 }
 .info-containers{
-  background-color: #FF9B17;
+  background-color: #251E8C;
   color: #fff;
   height: 180px;
 }

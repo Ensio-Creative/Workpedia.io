@@ -14,11 +14,12 @@ export const actions = {
       if (res.isAdmin || res.isOperator) {
         commit('UPDATE_USER', res, { root: true })
         this.$router.push('/admin')
+        // console.log(res, 'admin')
+      } else {
+        commit('UPDATE_USER', res, { root: true })
+        this.$router.push('/dashboard')
+        // console.log(res, 'dashboard')
       }
-      commit('UPDATE_USER', res, { root: true })
-      // console.log(res)
-      // commit('updateAlert', alert, { root: true })
-      this.$router.push('/dashboard')
     } catch (error) {
       if (error.response.status === 422) {
         this.$toast.error(error.response.data.message)

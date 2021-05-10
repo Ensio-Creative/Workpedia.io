@@ -26,6 +26,7 @@ export default {
     // '@assets/css/bootstrap.min.css',
     '@assets/css/style.css',
     '@assets/css/main.css',
+    // '@assets/scss/main.scss',
     '@assets/css/fontawesome-all.css'
   ],
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)

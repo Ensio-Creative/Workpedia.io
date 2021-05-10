@@ -28,7 +28,7 @@
           id="navbarNav"
           class="collapse navbar-collapse"
         >
-          <ul class="navbar-nav">
+          <ul class="navbar-nav mt-5">
             <NuxtLink
               class="nav-link active"
               :to="`/${allCategories}/categories`"
@@ -53,14 +53,12 @@
 
 <script>
 import tutorRoutes from '~/static/tutor/tutorRoutes.js'
-import jobsRoutes from '~/static/jobs/jobsRoutes.js'
 import freelanceRoutes from '~/static/freelance/freelanceRoutes.js'
 export default {
   name: 'CategoryRoutes',
   data () {
     return {
       tutorRoutes,
-      jobsRoutes,
       freelanceRoutes
     }
   },
@@ -80,8 +78,6 @@ export default {
       let route = ''
       if (this.$route.path.includes('/tutor')) {
         route = '/tutor/categories/'
-      } else if (this.$route.path.includes('/jobs')) {
-        route = '/jobs/categories/'
       } else if (this.$route.path.includes('/freelancing')) {
         route = '/freelancing/categories/'
       }
@@ -91,8 +87,6 @@ export default {
       let route = ''
       if (this.$route.path.includes('/tutor')) {
         route = 'tutor'
-      } else if (this.$route.path.includes('/jobs')) {
-        route = 'jobs'
       } else if (this.$route.path.includes('/freelancing')) {
         route = 'freelancing'
       }
@@ -102,8 +96,6 @@ export default {
       let color = ''
       if (this.$route.path.includes('/tutor')) {
         color = 'categories-nav'
-      } else if (this.$route.path.includes('/jobs')) {
-        color = 'jobscategories-nav'
       } else if (this.$route.path.includes('/freelancing')) {
         color = 'freelancecategories-nav'
       }
@@ -126,7 +118,7 @@ export default {
 
 <style scoped>
 .bg-categories {
-  background-image: url('~assets/img/pexels-photo-1194420.jpeg');
+  background-image: url('~static/img/workpedia-tutor-header.svg');
   height: 80vh;
   background-position: center;
   background-repeat: no-repeat;

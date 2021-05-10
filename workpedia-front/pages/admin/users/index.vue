@@ -28,6 +28,9 @@
       sort-icon-left
       responsive="sm"
     >
+      <template #cell(name)="data">
+        {{ data.item.firstName }} {{ data.item.lastName }}
+      </template>
       <template #cell(actions)="row">
         <!-- <b-button size="sm" @click="findById(row.item._id)">
           Info modal
@@ -127,11 +130,10 @@ export default {
       foundUser: {},
       rows: 100,
       currentPage: 1,
-      perPage: 5,
+      perPage: 4,
       socket: {},
       fields: [
-        { key: 'lastName', sortable: true },
-        { key: 'firstName', sortable: true },
+        { key: 'name', label: 'Full name', sortable: true },
         { key: 'email', sortable: true },
         { key: 'phone', sortable: true },
         { key: 'age', sortable: true },

@@ -3,11 +3,13 @@
     <TopNavInfo
       dash-title="Hire"
     />
-    <HireNav />
+    <HireNav
+      class="mt-5"
+    />
     <!-- Companies info -->
     <div class="row justify-content-around">
       <div class="col-12 col-md-3">
-        <div class="row">
+        <div class="row justify-content-center">
           <div class="col-8 col-md-12 tutor-basic-info">
             <img src="~assets/img/avatar_c@2x.png" alt="" class="user-img rounded">
             <h4 class="user-name">

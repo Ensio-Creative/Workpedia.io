@@ -76,30 +76,6 @@
             {{ dateText }}
           </small>
         </div>
-        <div class="col">
-          <label for="">Category</label>
-          <select
-            v-model.trim="categorySelect"
-            class="form-select"
-            aria-label="Default select example"
-            @change="checkCategory"
-          >
-            <option
-              v-for="category in categories"
-              :key="category.url"
-              selected
-              :value="category.url"
-              required
-            >
-              {{ category.title }}
-            </option>
-          </select>
-          <small
-            :class="[categorySelect.length < 3 ? 'info-error' : 'info-success']"
-          >
-            {{ categoryText }}
-          </small>
-        </div>
       </div>
       <div class="row">
         <div class="col">
@@ -198,7 +174,6 @@
 import { mapState, mapActions } from 'vuex'
 import states from '~/static/data/states.js'
 import qualificationList from '~/static/data/qualifications.js'
-import categories from '~/static/jobs/jobsRoutes.js'
 export default {
   name: 'TutorDetails',
   data () {
@@ -216,9 +191,6 @@ export default {
       skillsText: '',
       description: '',
       descriptionText: '',
-      categorySelect: '',
-      categoryText: '',
-      categories,
       stateSelect: '',
       stateInfo: '',
       states,
@@ -279,15 +251,6 @@ export default {
         return true
       }
     },
-    checkCategory () {
-      if (this.categorySelect.length < 3) {
-        this.categoryText = 'Please select a category'
-        return false
-      } else {
-        this.categoryText = ''
-        return true
-      }
-    },
     checkCity () {
       if (!this.city.length) {
         this.cityInfo = 'Please add your city'
@@ -322,7 +285,7 @@ export default {
       if (!this.checkDescription() && !this.checkDate()) {
         return this.errors.push('Please fill in every filled')
       }
-      if (!this.checkCategory() && !this.checkSkills()) {
+      if (!this.checkSkills()) {
         return this.errors.push('Please fill in every filled')
       }
       if (!this.stateSelect.length && !this.checkCity()) {
@@ -334,7 +297,6 @@ export default {
           qualifications: this.qualificationSelect,
           institution: this.institution,
           date: this.date,
-          category: this.categorySelect,
           state: this.stateSelect,
           city: this.city,
           skills: this.skills,

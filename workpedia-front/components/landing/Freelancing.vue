@@ -11,8 +11,8 @@
           class="col mt-4"
         >
           <div class="card">
+            <div class="freelance-img-head" />
             <div class="card-body">
-              <div class="freelance-img-head" />
               <div class="freelance-text mt-2">
                 <h3>{{ freelance.title }}</h3>
               </div>

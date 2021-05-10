@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="categorie mt-5 mb-5">
+    <section class="categorie mt-5">
       <div class="container">
         <div class="row row-cols-1 row-cols-md-3 g-4">
           <div
@@ -46,36 +46,20 @@
 </template>
 
 <script>
-import art from '~/static/tutor/art.js'
-import english from '~/static/tutor/english.js'
-import math from '~/static/tutor/math.js'
-import science from '~/static/tutor/science.js'
-import religion from '~/static/tutor/religion.js'
-import busines from '~/static/tutor/business.js'
+import category from '~/static/tutor/tutorRoutes.js'
 export default {
   name: 'SingleTutor',
   data () {
     return {
-      routeUrl: this.$route.params.slug
+      routeUrl: this.$route.params.slug,
+      category
     }
   },
   computed: {
     fliteredTutors () {
-      let result
-      if (this.routeUrl === 'mathematics') {
-        result = math
-      } else if (this.routeUrl === 'english') {
-        result = english
-      } else if (this.routeUrl === 'sciences') {
-        result = science
-      } else if (this.routeUrl === 'arts') {
-        result = art
-      } else if (this.routeUrl === 'religion') {
-        result = religion
-      } else if (this.routeUrl === 'business') {
-        result = busines
-      }
-      return result
+      const result = this.category.find(category => category.url === this.routeUrl)
+      const categorie = result.categories
+      return categorie
     }
   }
 }

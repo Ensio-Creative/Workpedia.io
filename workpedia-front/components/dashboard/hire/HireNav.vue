@@ -29,6 +29,10 @@ export default {
         {
           title: 'Post a Job',
           url: '/dashboard/hire/post-a-job'
+        },
+        {
+          title: 'Applications',
+          url: '/dashboard/hire/applications'
         }
       ]
     }
@@ -48,7 +52,10 @@ a {
 .hire-nav-item:nth-child(1){
   border-right: 1px solid #251E8C;
 }
+.hire-nav-item:nth-child(2){
+  border-right: 1px solid #251E8C;
+}
 a.nuxt-link-active{
-  color: #251E8C;
+  color: #000;
 }
 </style>

@@ -30,7 +30,7 @@
             class="user-img"
             :style="{backgroundImage: 'url('+ `http://localhost:8000/${user.imageUrl}` +')'}"
           />
-          <!-- <i class="fa fa-angle-down" /> -->
+          <i class="fas fa-chevron-down" />
         </a>
         <div
           class="dropdown-content text-center"
@@ -52,11 +52,6 @@
             to="/"
           >
             Home
-          </NuxtLink>
-          <NuxtLink
-            to="dashboard/settings"
-          >
-            Settings
           </NuxtLink>
           <a
             href="#"
@@ -117,7 +112,7 @@ export default {
       this.$router.push('/auth')
     },
     checkPath () {
-      if (this.$route.path.includes('/dashboard')) {
+      if (this.$route.path.includes('/dashboard') || this.$route.path.includes('/admin')) {
         this.userOnDashboard = false
         // console.log('I fired!!!!')
       } else {
@@ -142,8 +137,8 @@ export default {
       }
     },
     logOut () {
-      this.$router.push('/')
       this.$store.commit('CLEAR_USER')
+      this.$router.push('/')
     }
   }
 }
@@ -194,40 +189,14 @@ export default {
   border-radius: 6px;
   color: #251e8c;
 }
-.landing-outline:nth-child(3) {
-  background-color: #251e8c;
-  color: #fff;
-}
-.turor-outline {
-  border: 2px solid #ff9b17;
-  border-radius: 6px;
-}
-.tutor-outline:nth-child(3) {
-  background-color: #ff9b17;
-  color: #fff;
-}
-.jobs-outline {
-  border: 2px solid #0db47b;
-  border-radius: 6px;
-}
-.jobs-outline:nth-child(3) {
-  background-color: #0db47b;
-  color: #fff;
-}
-.freelance-outline {
-  border: 2px solid #2b7dc4;
-  border-radius: 6px;
-}
-.freelance-outline:nth-child(3) {
-  background-color: #2b7dc4;
-  color: #fff;
-}
+
 .show-bar{
   visibility: hidden;
 }
 .dropbtn {
-  display: block;
-  width: 131px;
+  display: flex;
+  /* width: 60px; */
+  justify-content: space-evenly;
   color: white;
   padding: 0px;
   font-size: 16px;
@@ -238,6 +207,7 @@ export default {
 .dropdown {
   position: relative;
   display: block;
+  width: 105px;
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -248,7 +218,7 @@ export default {
   min-width: 100px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
-  right: -20px;
+  right: -3px;
 }
 
 /* Links inside the dropdown */
@@ -264,7 +234,10 @@ export default {
   text-decoration: none;
   display: block;
 }
-
+i {
+  color: #000;
+  align-self: center;
+}
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {background-color: #ddd;}
 

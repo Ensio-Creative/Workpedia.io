@@ -303,7 +303,7 @@ export default {
 }
 
 .request-title{
-  color: #ff9b17;
+  color: #251E8C;
   font-size: 27px;
 }
 </style>

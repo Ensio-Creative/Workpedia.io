@@ -2,7 +2,7 @@
   <div>
     <section class="container private-tutor">
       <div class="heading">
-        <h1>Hire a tutor</h1>
+        <h1>Subject categories</h1>
       </div>
       <div class="row row-cols-1 row-cols-md-3 g-4">
         <div
@@ -10,10 +10,10 @@
           :key="tutor.title"
         >
           <NuxtLink
-            :to="`/tutor/${tutor.title}/get-tutor`"
+            :to="`/tutor/categories/${tutor.url}`"
             class="col"
           >
-            <div class="card h-100">
+            <div class="card h-80">
               <!-- <img :src="tutor.image" alt="DID not"> -->
               <div
                 class="thumbnail"
@@ -34,38 +34,23 @@
           </NuxtLink>
         </div>
       </div>
-      <!-- <div class="view-more">
+      <div class="view-more">
         <NuxtLink class="view-btn" to="/tutor/categories">
           View More <img src="~/assets/img/arrow.svg">
         </NuxtLink>
-      </div> -->
+      </div>
     </section>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import listedCourse from '~/static/tutor/tutorRoutes.js'
 export default {
   name: 'Tutors',
   data () {
     return {
-      listedCourse: [
-        {
-          image: '../../img/tutor-basic-mathematics.jpg',
-          title: 'Basic Mathematics',
-          description: 'Let\'s help take away the frustration and build confidence in Basic Mathematics'
-        },
-        {
-          image: '../../img/tutor-music.jpg',
-          title: 'Music',
-          description: 'Hire a qualified tutor for History to help you improve understanding and achieve your goals.'
-        },
-        {
-          image: '../../img/tutor-economics.jpg',
-          title: 'Business Studies',
-          description: 'Hire a qualified tutor for Business Studies to help you improve understanding and achieve your goals.'
-        }
-      ]
+      listedCourse
     }
   },
   computed: {
