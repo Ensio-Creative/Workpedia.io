@@ -1,4 +1,11 @@
 const User = require('../model/User')
+const Verification = require('../model/Verification')
+const Jobs = require('../model/Jobs')
+const TutorRequest = require('../model/TutorRequest')
+const FreelanceMessage = require('../model/FreelanceMessage')
+const { 
+  mailgun: { sendEmail }
+} = require('../utils')
 
 const bcrypt = require('bcryptjs')
 const { validationResult } = require('express-validator')
@@ -71,3 +78,35 @@ exports.updatePassword = async (req, res, next) => {
   }
 
 }
+
+exports.resendCode = async (req, res, next) => {
+  try {
+    const userId = req.params.userId
+    const verify = await Verification.findOne({ userId })
+    if (!verify) {
+      const error = new Error('User doesn\'t exist and code can\'t be sent')
+      error.statusCode = 400
+      throw error
+    }
+    const code = Math.floor(Math.random() * (999999 - 100000) + 100000)
+    verify.code = code
+    await verify.save()
+    const payload = {
+      code: verify.code
+    }
+    console.log(payload)
+    // await sendEmail(payload)
+    res.status(203).json({ message: 'Code sent to user\'s email' })
+  } catch (err) {
+    next(err)
+  }
+}
+
+// exports.userActivities = async (req, res, next) => {
+//   try {
+//     const userId = req.params.userId
+//     const 
+//   } catch (err) {
+    
+//   }
+// }

@@ -5,19 +5,19 @@
         class="nav-fixed-item tutor"
         to="/tutor"
       >
-        <i class="fas fa-chalkboard-teacher" />
+        <img src="~/static/img/workpedia-vetted-tutors.svg" alt="">
       </NuxtLink>
       <NuxtLink
         class="nav-fixed-item jobs"
         to="/jobs"
       >
-        <i class="fas fa-suitcase" />
+        <img src="~/static/img/workpedia-jobs-career.svg" alt="">
       </NuxtLink>
       <NuxtLink
         class="nav-fixed-item freelance"
         to="/freelancing"
       >
-        <i class="fas fa-search" />
+        <img src="~/static/img/workpedia-freelance-marketplace.svg" alt="">
       </NuxtLink>
     </div>
   </div>
@@ -48,8 +48,26 @@ export default {
   border-radius: 100px;
   padding: 10px;
   font-size: 15px;
-  color: #251E8C;
-  background-color: #07C1DB;
+  background-color: var(--bg-dark-blue);
+}
+.nav-fixed-item img {
+  width: 23px;
+}
+.nav-fixed-item:nth-child(2){
+  display: block;
+  margin-top: 10px;
+  border-radius: 100px;
+  padding: 10px;
+  font-size: 15px;
+  background-color: var(--bg-yellow);
+}
+.nav-fixed-item:nth-child(3){
+  display: block;
+  margin-top: 10px;
+  border-radius: 100px;
+  padding: 10px;
+  font-size: 15px;
+  background-color: var(--bg-light-blue);
 }
 
 .nav-fixed-item a{

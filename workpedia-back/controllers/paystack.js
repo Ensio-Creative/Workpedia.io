@@ -2,7 +2,7 @@ const crypto = require('crypto')
 const axios = require('axios')
 const { validationResult } = require('express-validator')
 const io = require('../utils/socket')
-
+const client = process.env.SOCKET_ORIGIN
 const Payments = require('../model/Payments')
 const Applicant = require('../model/Applicant')
 const JobsSettings = require('../model/JobsSettings')
@@ -69,7 +69,7 @@ exports.applicationSubscription = async (req, res, next) => {
       const result = await applicant.save()
       io.getIO().emit('applicatSubscription', { action: 'update', applicant: result })
       console.log(result, jobsSettings)
-      res.status(201).redirect('http://localhost:3000/jobs/update-applicant')
+      res.status(201).redirect(`${client}/jobs/update-applicant`)
     }
   } catch (err) {
     if (!err.statusCode) {
@@ -103,18 +103,18 @@ exports.callBack_FreelanceSubcription = async (req, res, next) => {
     await payment.save()
 
     const user = await User.findById(payment.userId).select('-password')
-    if (!userId) {
+    if (!user) {
       error = new Error('User Could not be Found')
       error.statusCode = 404
       throw error
     }
     const freelanceSettings = await FreelanceSettings.find()
     if (result.data.data.status === 'success') {
-      user.freelanceHire = freelanceSettings[0].hireChance
+      user.freelanceHire = true
       const result = await user.save()
       io.getIO().emit('applicatSubscription', { action: 'update', freelancer: result })
       console.log(result, freelanceSettings)
-      res.status(201).redirect('http://localhost:3000/freelancing/update-freelancer')
+      res.status(201).redirect(`${client}/freelancing/update-freelancer`)
     }
   } catch (err) {
     if (!err.statusCode) {
@@ -158,7 +158,7 @@ exports.initPaystack = async (req, res, next) => {
       freelancerId
     })
     const savedPay = await payment.save()
-    // console.log(savedPay)
+    console.log(savedPay)
     res.status(201).json({ message: 'Payment Created', url: data.data.authorization_url})
   } catch (error) {
     console.log(error)
@@ -184,4 +184,15 @@ exports.initPaystack = async (req, res, next) => {
 //     //we return the result of the transaction
 //        res.status(200).send("Payment was successfully verified");
 // }
-  
+
+exports.getUserTransactions = async (req, res, next) => {
+  try {
+    const email = req.params.email
+    const transaction = await Payments.find({ email: email })
+      .sort({ createdAt: -1 })
+    res.status(200).json({ message: 'Transctions found', transactions: transaction })
+  } catch (err) {
+    console.log(err)
+    next(err)
+  }
+}

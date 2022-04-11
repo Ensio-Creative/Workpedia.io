@@ -24,9 +24,9 @@ export default {
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
     // '@assets/css/bootstrap.min.css',
+    '@assets/scss/main.scss',
     '@assets/css/style.css',
     '@assets/css/main.css',
-    // '@assets/scss/main.scss',
     '@assets/css/fontawesome-all.css'
   ],
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
@@ -44,7 +44,6 @@ export default {
     '@nuxtjs/eslint-module',
     '@nuxtjs/moment',
     '@nuxtjs/dotenv'
-    // '@nuxtjs/ngrok'
   ],
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
@@ -56,7 +55,8 @@ export default {
     '@nuxtjs/pwa',
     '@nuxt/content',
     'nuxt-socket-io',
-    'vue-toastification/nuxt'
+    'vue-toastification/nuxt',
+    '@nuxtjs/cloudinary'
   ],
 
   io: {
@@ -78,6 +78,12 @@ export default {
       Accept: 'application/json, text/plain, */*'
     }
     // baseURL: process.env.BASE_URL || 'http://localhost:8000/'
+  },
+
+  cloudinary: {
+    cloudName: process.env.COULDINARY_COULD_NAME,
+    apiKey: process.env.COULDINARY_API_KEY,
+    apiSecret: process.env.COULDINARY_API_SECRET_KEY
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)

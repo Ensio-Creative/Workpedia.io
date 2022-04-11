@@ -1,5 +1,4 @@
 const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
 
 const { validationResult } = require('express-validator')
 
@@ -59,8 +58,8 @@ exports.signUp = async (req, res, next) => {
       code,
       email
     }
-    console.log(payload)
-    // await sendEmail(payload)
+    // console.log(payload)
+    await sendEmail(payload)
 
     io.getIO().emit('users', { action: 'create', user: savedUser })
     res.status(201).json({ message: 'User created!', savedUser })
@@ -68,7 +67,7 @@ exports.signUp = async (req, res, next) => {
     if (!err.statusCode) {
       err.statusCode = 500
     }
-    console.log(err)
+    // console.log(err)
     next(err)
   }
 }
@@ -85,13 +84,13 @@ exports.login = async (req, res, next) => {
     }
     let loadedUser = await User.findOne({ email })
     if (!loadedUser) {
-      const error = new Error('A user with this email could not be found.')
+      const error = new Error('User with such email could not be found.')
       error.statusCode = 401
       throw error
     }
     const isEqual = await bcrypt.compare(password, loadedUser.password)
     if (!isEqual) {
-      const error = new Error('Wrong password!')
+      const error = new Error('Wrong password')
       error.statusCode = 401
       throw error
     }
@@ -162,12 +161,12 @@ exports.verify = async (req, res, next) => {
     if (!err.statusCode) {
       err.statusCode = 500
     }
-    console.log(err)
+    // console.log(err)
     next(err)
   }
 }
 
-exports.forgottenPassword = async (req, res) => {
+exports.forgottenPassword = async (req, res, next) => {
   const { email } = req.body
 
   try {
@@ -180,13 +179,13 @@ exports.forgottenPassword = async (req, res) => {
     }
     const user = await User.findOne({ email })
     if (!user) {
-      const error = new Error('User not found')
+      const error = new Error('User with such email not found')
       error.statusCode = 404
       throw error
     }
     const verify = await Verification.findOne({ userId: user._id })
     if (!verify) {
-      const error = new Error('User will id not found')
+      const error = new Error('User with id not found')
       error.statusCode = 404
       throw error
     }
@@ -194,17 +193,16 @@ exports.forgottenPassword = async (req, res) => {
     verify.code = code
     await verify.save()
     const payload = {
-      code: verify.code,
-      email: user.email
+      code: verify.code
     }
-    console.log(payload)
-    // await sendEmail(payload)
+    // console.log(payload)
+    await sendEmail(payload)
     res.send('Success')
   } catch (err) {
     if (!err.statusCode) {
       err.statusCode = 500
     }
-    console.log(err)
+    // console.log(err)
     next(err)
   }
 }
@@ -244,7 +242,7 @@ exports.resetPassword = async (req, res, next) => {
     if (!err.statusCode) {
       err.statusCode = 500
     }
-    console.log(err)
+    // console.log(err)
     next(err)
   }
 }

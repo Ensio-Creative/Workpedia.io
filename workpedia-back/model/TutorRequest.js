@@ -6,27 +6,19 @@ const requestSchema = new mongoose.Schema({
     type: Array,
     required: true
   },
-  studentGoal: {
+  goals: {
     type: String,
     required: true
   },
-  subject: {
+  exam: {
+    type: String,
+    required: true
+  },
+  subjects: {
     type: Array,
     required: true
   },
   address: {
-    type: String,
-    required: true
-  },
-  moreAboutStudent: {
-    type: String,
-    required: true
-  },
-  numberOfStudents: {
-    type: String,
-    required: true
-  },
-  lessonType: {
     type: String,
     required: true
   },
@@ -43,6 +35,18 @@ const requestSchema = new mongoose.Schema({
     required: true
   },
   hours: {
+    type: String,
+    required: true
+  },
+  whenToStart: {
+    type: String,
+    required: true
+  },
+  timeToStart: {
+    type: String,
+    required: true
+  },
+  budget: {
     type: String,
     required: true
   },
@@ -85,6 +89,14 @@ const requestSchema = new mongoose.Schema({
   tutorGender: {
     type: String,
     required: true
+  },
+  tutorSent: {
+    type: Boolean,
+    default: false
+  },
+  userPayed: {
+    type: Boolean,
+    default: false
   },
   userId: {
     type: Schema.Types.ObjectId,

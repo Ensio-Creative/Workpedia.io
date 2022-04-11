@@ -1,6 +1,6 @@
 var jwt = require('jsonwebtoken')
 
-const secret = 'workpedia'
+const secret = process.env.JWT_SECRETKET
 const header = {
   typ: 'JWT',
   alg: 'HS512'
@@ -13,7 +13,7 @@ function generateToken(userId, isVerified, isAdmin) {
     isAdmin
   }
 
-  return jwt.sign({ data }, secret, { expiresIn: '30d' })
+  return jwt.sign({ data }, secret, { expiresIn: '2h' })
 }
 
 function decodeToken(token) {

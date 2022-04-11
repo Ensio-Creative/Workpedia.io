@@ -67,9 +67,10 @@
       </template>
       <div class="contact-info">
         <!-- User img -->
-        <div class="contact-detail">
-          <img src="~/assets/img/avatar@2x.png" alt="">
-        </div>
+        <div
+          class="user-img"
+          :style="{backgroundImage: 'url('+ `${envVarable}/${foundUser.imageUrl}` +')'}"
+        />
         <div class="contact-detail row mt-4">
           <span class="col-6">Id: {{ foundUser._id }}</span>
           <span class="col-6">Email: {{ foundUser.email }}</span>
@@ -102,35 +103,32 @@
       />
     </div>
     <FooterDash
-      class="fixed-bottom"
+      class="mt-5"
     />
   </div>
 </template>
 
 <script>
-// import openSocket from 'socket.io-client'
+import FooterDash from '~/components/dashboard/FooterDash.vue'
+import TopNavInfo from '~/components/Navigation/dashboard/TopNavInfo.vue'
+const vars = process.env.BASE_URL
 export default {
   name: 'Users',
   layout: 'admin',
+  components: { FooterDash, TopNavInfo },
   async asyncData ({ $axios }) {
     const { data } = await $axios.get('admin/all-users')
     const { results } = data
-    // const socket = openSocket('http://localhost:8000')
-    // socket.on('users', (data) => {
-    //   console.log(data)
-    //   if (data.action === 'create') {
-    //     console.log(data)
-    //   }
-    // })
     return { results }
   },
   data () {
     return {
+      envVarable: vars,
       boxTwo: '',
       foundUser: {},
       rows: 100,
       currentPage: 1,
-      perPage: 4,
+      perPage: 10,
       socket: {},
       fields: [
         { key: 'name', label: 'Full name', sortable: true },
@@ -194,6 +192,7 @@ export default {
       if (!deletedUser) {
         console.log('User not deleted')
       }
+      this.$toast.success(deletedUser.message)
       const result = this.results.filter(user => user._id !== id)
       this.results = result
     }

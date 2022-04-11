@@ -17,7 +17,7 @@
           <div class="row">
             <div class="col-6 col-sm-6 col-md-6 col-lg-4">
               <h4 class="footer-head">
-                COMPANY
+                Company
               </h4>
               <div class="footer-nav">
                 <NuxtLink
@@ -60,7 +60,7 @@
             </div>
             <div class="col-6 col-sm-6 col-md-6 col-lg-4">
               <h4 class="footer-head">
-                EXPLORE
+                Explore
               </h4>
               <div class="footer-nav">
                 <NuxtLink
@@ -85,7 +85,7 @@
             </div>
             <div class="col-6 col-sm-6 col-md-6 col-lg-4">
               <h4 class="footer-head">
-                CONTACT
+                Get in touch
               </h4>
               <p class="footer-email">
                 info@workpedia.io
@@ -141,7 +141,7 @@ export default {
 
 <style scoped>
 .footer{
-  background-color: #251E8C;
+  background-color: var(--bg-dark-blue);
   padding: 100px 0px 20px 0px;
   color: #fff;
 }
@@ -153,7 +153,7 @@ export default {
 }
 .footer-head {
   font-weight: bold;
-  color: #ffd200 !important;
+  color: var(--bg-yellow) !important;
 }
 .footer-title img{
   width: 63px;

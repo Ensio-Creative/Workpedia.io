@@ -152,7 +152,7 @@ exports.getHirerInfo = async (req, res, next) => {
       error.statusCode  = 402
       throw error
     }
-    res.status(200).json({mesage: 'Found Hirer', result: hirer})
+    res.status(200).json({message: 'Found Hirer', result: hirer})
   } catch (error) {
     if (!error.statusCode) {
       error.statusCode = 500

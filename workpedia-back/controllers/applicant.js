@@ -6,7 +6,8 @@ const { validationResult } = require('express-validator')
 exports.registerApplicant = async (req, res, next) => {
   // It checks the payment if successfull gets your id and create an appicant
   try {
-    const { title, qualifications, institution, date, category, skills, state, city, description, userId } = req.body
+    const { title, skills, description, userId, isAdmin } = req.body
+    console.log(isAdmin)
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
       const error = new Error('Validation failed.')
@@ -31,11 +32,11 @@ exports.registerApplicant = async (req, res, next) => {
 			error.statusCode = 400
 			throw error
 		}
-		if (user.isApplicant) {
-			error = new Error('You are already an applicant!')
-			error.statusCode = 400
-			throw error
-		}
+    if (user.isApplicant) {
+      error = new Error('You are already an applicant!')
+      error.statusCode = 400
+      throw error
+    }
 		if (user.isAdmin || user.isOperator) {
 			error = new Error('You are already an admin')
 			error.statusCode = 401
@@ -51,13 +52,7 @@ exports.registerApplicant = async (req, res, next) => {
     }
     const applicant = new Applicant({
       title,
-      qualifications,
-      institution,
-      date,
-      category,
       skills,
-      state,
-      city,
       description,
       cvUrl: 'Please add Cv',
       userId
@@ -146,7 +141,7 @@ exports.getApplicantInfo = async (req, res, next) => {
       error.statusCode  = 402
       throw error
     }
-    res.status(200).json({mesage: 'Found Applicant', result: ApplicantHandymen})
+    res.status(200).json({message: 'Found Applicant', result: ApplicantHandymen})
   } catch (error) {
     if (!error.statusCode) {
       error.statusCode = 500

@@ -82,9 +82,13 @@
 <script>
 
 import { mapState, mapActions } from 'vuex'
+import AppButton from '~/components/auth/UI-Components/AppButton.vue'
+import AppControlInput from '~/components/auth/UI-Components/AppControlInput.vue'
+import AppTextarea from '~/components/auth/UI-Components/AppTextarea.vue'
 import states from '~/static/data/states.js'
 export default {
   name: 'RegisterApplicant',
+  components: { AppControlInput, AppButton, AppTextarea },
   layout: 'auth',
   data () {
     return {
@@ -163,10 +167,10 @@ export default {
   border-radius: 20px;
   margin-top: 0px;
 }
-/* .login-column{
+.login-column{
   margin-top: 70px;
-  height: 134vh;
-} */
+  height: 90vh;
+}
 .auth-column{
   background-color: #fff;
   background-position: center;

@@ -1,10 +1,10 @@
 <template>
   <div class="container">
     <TopNavInfo
-      dash-title="Dashboard"
+      dash-title="Admin"
     />
     <h2 class="welcom-text">
-      Welcome!
+      Welcome back Admin {{ user.lastName }}
     </h2>
     <div class="row row-cols-1 row-cols-md-2 g-4">
       <div
@@ -98,8 +98,12 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import FooterDash from '~/components/dashboard/FooterDash.vue'
+import TopNavInfo from '~/components/Navigation/dashboard/TopNavInfo.vue'
 export default {
   name: 'AdminHome',
+  components: { FooterDash, TopNavInfo },
   layout: 'admin',
   async asyncData ({ $axios }) {
     const calculations = await $axios.get('admin/calculations-users')
@@ -112,10 +116,7 @@ export default {
     }
   },
   computed: {
-    fullName () {
-      const userName = `${this.user.firstName} ${this.user.lastName}`
-      return userName
-    }
+    ...mapState('auth', ['user'])
   }
 }
 </script>
@@ -130,7 +131,7 @@ export default {
   font-size: 22px;
 }
 .info-containers-users{
-  background-color: #0C0573;
+  background-color: var(--bg-dark-blue);
   color: #fff;
   height: 180px;
 }
@@ -139,7 +140,7 @@ export default {
   padding: 20px;
 }
 .info-containers{
-  background-color: #FF9B17;
+  background-color: var(--bg-dark-blue);
   color: #fff;
   height: 180px;
 }
@@ -148,13 +149,13 @@ export default {
   padding: 20px;
 }
 .info-containers2 {
-  background-color: #0DB47B;
+  background-color: var(--bg-yellow);
   color: #fff;
   height: 180px;
 }
 
 .info-containers3 {
-  background-color: #2B7DC4;
+  background-color: var(--bg-light-blue);
   color: #fff;
   height: 180px;
 }

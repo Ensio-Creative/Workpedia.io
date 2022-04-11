@@ -48,7 +48,7 @@ export default {
 <style scoped>
 a {
   font-size: 18px;
-  color: #0DB47B;
+  color: var(--bg-dark-blue);
 }
 .hire-nav-item:nth-child(1){
   border-right: 1px solid #000;

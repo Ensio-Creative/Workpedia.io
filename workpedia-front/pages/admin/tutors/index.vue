@@ -56,32 +56,6 @@
         </button>
       </template>
     </b-table>
-    <!-- <ul class="list-group list-group-flush mt-5">
-      <li
-        v-for="tutor in tutors"
-        :key="tutor._id"
-        class="list-group-items"
-      >
-        <span class="name">{{ `${tutor.userId.firstName} ${tutor.userId.lastName}` }}</span>
-        <span class="email ml-3">{{ tutor.userId.email }}</span>
-        <span class="phone ml-3">{{ tutor.phone }}</span>
-        <span class="age ml-3"> {{ tutor.tutorSubject }}</span>
-        <span class="age ml-3"> {{ tutor.tutoredClass }}</span>
-        <button
-          class="btn btn-outline-danger float-right"
-          @click="showMsgBoxTwo(tutor._id)"
-        >
-          <i class="fas fa-times" />
-        </button>
-        <button
-          v-b-modal.modal-lg
-          class="btn btn-outline-primary float-right pl-2"
-          @click="findById(tutor._id)"
-        >
-          <i class="far fa-eye" />
-        </button>
-      </li>
-    </ul> -->
     <b-modal
       id="modal-lg"
       size="lg"
@@ -98,9 +72,10 @@
       </template>
       <div class="contact-info">
         <!-- User img -->
-        <div class="contact-detail">
-          <img src="~/assets/img/avatar@2x.png" alt="">
-        </div>
+        <div
+          class="user-img"
+          :style="{backgroundImage: 'url('+ `${envVarable}/${foundTutor.imageUrl}` +')'}"
+        />
         <div class="contact-detail row mt-4">
           <span class="col-6">Id: {{ foundTutor._id }}</span>
           <span class="col-6">Subject: {{ foundTutor.tutorSubject }}</span>
@@ -130,27 +105,33 @@
       />
     </div>
     <FooterDash
-      class="fixed-bottom"
+      class="mt-5"
     />
   </div>
 </template>
 
 <script>
+import FooterDash from '~/components/dashboard/FooterDash.vue'
+import TopNavInfo from '~/components/Navigation/dashboard/TopNavInfo.vue'
+import TutorNav from '~/components/admin/tutors/TutorNav.vue'
+const vars = process.env.BASE_URL
 export default {
   name: 'Tutors',
   layout: 'admin',
+  components: { FooterDash, TopNavInfo, TutorNav },
   async asyncData ({ $axios }) {
     const { tutors } = await $axios.$get('admin/all-tutors')
     return { tutors }
   },
   data () {
     return {
+      envVarable: vars,
       boxTwo: '',
       rows: 100,
       foundTutor: {},
       user: {},
       currentPage: 1,
-      perPage: 4,
+      perPage: 10,
       fields: [
         { key: 'name', label: 'Tutor Name', sortable: true },
         { key: 'email', label: 'Tutor Email', sortable: true },
@@ -186,7 +167,7 @@ export default {
       })
         .then((value) => {
           if (value) {
-            this.deleteTutor(id)
+            this.deleteTutorRequest(id)
           }
           this.boxTwo = value
         })
@@ -195,7 +176,7 @@ export default {
           console.log(err)
         })
     },
-    async deleteTutor (id) {
+    async deleteTutorRequest (id) {
       const deletedTutor = await this.$axios.$delete(
         `admin/delete-tutor/${id}`
       )
@@ -224,11 +205,11 @@ export default {
   padding: 4px 33px;
 }
 .news-btn {
-  background-color: #FF9B17;
+  background-color: var(--bg-dark-blue);
   padding: 5px 45px;
   color: #FFFFFF;
-  box-shadow: 0px 0px 1px #FF9B17;
-  border: #FF9B17;
+  box-shadow: 0px 0px 1px var(--bg-dark-blue);
+  border: var(--bg-dark-blue);
   margin-left: -4px;
 }
 .pagination {
@@ -237,12 +218,12 @@ export default {
   list-style: none;
   border-radius: 0.25rem;
   justify-content: center;
-  color: #0C0573 !important;
+  color: (--bg-dark-blue) !important;
 }
 .page-items.active .page-link {
   z-index: 3;
   color: #fff;
-  background-color: #0C0573 !important;
-  border-color: #0C0573 !important;
+  background-color: (--bg-dark-blue) !important;
+  border-color: (--bg-dark-blue) !important;
 }
 </style>

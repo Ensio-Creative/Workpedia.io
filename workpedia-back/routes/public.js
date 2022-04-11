@@ -27,4 +27,6 @@ router.post('/subcribe-newsletter',[
       .notEmpty()
 ], publicController.newsLetter)
 
+router.get('/freelance/get-settings', publicController.getFreelanceSettings)
+
 module.exports = router

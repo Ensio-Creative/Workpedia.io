@@ -10,25 +10,7 @@ router.post('/register-applicant',
   body('title')
     .trim()
     .notEmpty(),
-  body('qualifications')
-    .trim()
-    .notEmpty(),
-  body('institution')
-    .trim()
-    .notEmpty(),
-  body('date')
-    .trim()
-    .notEmpty(),
-  body('category')
-    .trim()
-    .notEmpty(),
   body('skills')
-    .trim()
-    .notEmpty(),
-  body('state')
-    .trim()
-    .notEmpty(),
-  body('city')
     .trim()
     .notEmpty(),
   body('description')
@@ -44,25 +26,7 @@ router.put('/update-applicant/:applicantId',
   body('title')
     .trim()
     .notEmpty(),
-  body('qualifications')
-    .trim()
-    .notEmpty(),
-  body('institution')
-    .trim()
-    .notEmpty(),
-  body('date')
-    .trim()
-    .notEmpty(),
-  body('category')
-    .trim()
-    .notEmpty(),
   body('skills')
-    .trim()
-    .notEmpty(),
-  body('state')
-    .trim()
-    .notEmpty(),
-  body('city')
     .trim()
     .notEmpty(),
   body('description')

@@ -6,8 +6,10 @@
 </template>
 
 <script>
+import CategoryRoutes from '~/components/common/CategoryRoutes.vue'
 export default {
   name: 'Categories',
+  components: { CategoryRoutes },
   data () {
     return {}
   }

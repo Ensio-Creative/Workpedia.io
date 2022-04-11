@@ -135,9 +135,12 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
+import AppButton from '../auth/UI-Components/AppButton.vue'
+import AppControlInput from '../auth/UI-Components/AppControlInput.vue'
 import states from '~/static/data/states.js'
 export default {
   name: 'UpdateUser',
+  components: { AppButton, AppControlInput },
   data () {
     return {
       firstName: '',

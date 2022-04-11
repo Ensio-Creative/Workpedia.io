@@ -48,30 +48,6 @@
         </button>
       </template>
     </b-table>
-    <!-- <ul class="list-group list-group-flush mt-5">
-      <li
-        v-for="freelancer in results"
-        :key="freelancer._id"
-        class="list-group-item"
-      >
-        <span class="name">{{ freelancer.title }}</span>
-        <span class="email ml-3">{{ freelancer.qualifications }}</span>
-        <span class="phone ml-3">{{ freelancer.institution }}</span>
-        <button
-          class="btn btn-outline-danger float-right"
-          @click="showMsgBoxTwo(freelancer._id)"
-        >
-          <i class="fas fa-times" />
-        </button>
-        <button
-          v-b-modal.modal-lg
-          class="btn btn-outline-primary float-right pl-2"
-          @click="findById(freelancer._id)"
-        >
-          <i class="far fa-eye" />
-        </button>
-      </li>
-    </ul> -->
     <b-modal
       id="modal-lg"
       size="lg"
@@ -149,15 +125,18 @@
       </h4>
     </div>
     <FooterDash
-      class="fixed-bottom"
+      class="mt-5"
     />
   </div>
 </template>
 
 <script>
+import FooterDash from '~/components/dashboard/FooterDash.vue'
+import TopNavInfo from '~/components/Navigation/dashboard/TopNavInfo.vue'
 export default {
   name: 'Freelance',
   layout: 'admin',
+  components: { FooterDash, TopNavInfo },
   async asyncData ({ $axios }) {
     const { results } = await $axios.$get('admin/all-freelancers')
     return { results }
@@ -169,7 +148,7 @@ export default {
       foundFreelancer: {},
       user: {},
       currentPage: 1,
-      perPage: 4,
+      perPage: 10,
       fields: [
         { key: 'title', label: 'Title', sortable: true },
         { key: 'qualifications', label: 'Qualification', sortable: true },
@@ -243,35 +222,11 @@ export default {
   padding: 4px 33px;
 }
 .news-btn {
-  background-color: #2B7DC4;
+  background-color: var(--bg-dark-blue);
   padding: 5px 45px;
   color: #FFFFFF;
-  box-shadow: 0px 0px 1px #2B7DC4;
-  border: #2B7DC4;
+  box-shadow: 0px 0px 1px var(--bg-dark-blue);
+  border: var(--bg-dark-blue);
   margin-left: -4px;
-}
-.pagination {
-  display: flex;
-  padding-left: 0;
-  list-style: none;
-  border-radius: 0.25rem;
-  justify-content: center;
-  color: #0C0573 !important;
-}
-.page-link {
-  position: relative;
-  display: block;
-  padding: 0.5rem 0.75rem;
-  margin-left: -1px;
-  line-height: 1.25;
-  color: #0C0573 !important;
-  background-color: #fff;
-  border: 1px solid #dee2e6;
-}
-.page-item.active .page-link {
-  z-index: 3;
-  color: #fff;
-  background-color: #0C0573 !important;
-  border-color: #0C0573 !important;
 }
 </style>

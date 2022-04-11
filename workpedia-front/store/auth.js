@@ -2,10 +2,14 @@ export const state = () => ({
   user: {}
 })
 
-export const mutations = {}
+export const mutations = {
+  UPDATE_VERIFY (state) {
+    state.user.isVerified = true
+  }
+}
 
 export const actions = {
-  async login ({ commit }, payload) {
+  async login ({ commit, state }, payload) {
     try {
       const res = await this.$axios.$post(
         'auth/login',
@@ -13,10 +17,14 @@ export const actions = {
       )
       if (res.isAdmin || res.isOperator) {
         commit('UPDATE_USER', res, { root: true })
+        const token = state.user.token
         this.$router.push('/admin')
         // console.log(res, 'admin')
+        this.$axios.setHeader('Authorization', `Bearer ${token}`)
       } else {
         commit('UPDATE_USER', res, { root: true })
+        const token = state.user.token
+        this.$axios.setHeader('Authorization', `Bearer ${token}`)
         this.$router.push('/dashboard')
         // console.log(res, 'dashboard')
       }
@@ -47,6 +55,39 @@ export const actions = {
       this.$toast.success(res.message)
     } catch (error) {
       if (error.response.status === 422) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 404) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 401) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 402) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 400) {
+        this.$toast.error(error.response.data.message)
+      } else {
+        this.$toast.error('Something went wrong')
+      }
+    }
+  },
+
+  async addAdmin ({ commit }, payload) {
+    try {
+      const res = await this.$axios.$put(
+        'admin/registerOperator',
+        payload
+      )
+      this.$toast.success(res.message)
+      this.$toast.info('Admin can now log in')
+    } catch (error) {
+      if (error.response.status === 422) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 404) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 401) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 402) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 400) {
         this.$toast.error(error.response.data.message)
       } else {
         this.$toast.error('Something went wrong')
@@ -111,8 +152,12 @@ export const actions = {
         'auth/verify-user',
         payload
       )
-      // console.log(res)
-      // commit('UPDATE_RESPONSES', res.message, { root: true })
+      if (state.user.token) {
+        commit('UPDATE_VERIFY')
+        this.$router.push('/dashboard')
+        this.$toast.success('Verification successful')
+        return
+      }
       this.$router.push('/auth')
       this.$toast.success(res.message)
     } catch (error) {
@@ -157,8 +202,6 @@ export const actions = {
         'auth/reset-password',
         payload
       )
-      // console.log(res)
-      // commit('UPDATE_RESPONSES', res.message, { root: true })
       this.$router.push('/auth')
       this.$toast.success('Password reset successful, now login!')
     } catch (error) {
@@ -169,8 +212,28 @@ export const actions = {
       } else {
         this.$toast.error(error.response.data.message)
       }
-      // console.log(error.response.status)
-      // console.log(error.response.data.message)
+    }
+  },
+
+  async resendCode ({ state }) {
+    try {
+      const userId = state.user._id
+      const res = await this.$axios.$post(`user/resend-code/${userId}`)
+      this.$toast.success(res.message)
+    } catch (error) {
+      if (error.response.status === 422) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 404) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 401) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 402) {
+        this.$toast.error(error.response.data.message)
+      } else if (error.response.status === 400) {
+        this.$toast.error(error.response.data.message)
+      } else {
+        this.$toast.error('Something went wrong')
+      }
     }
   }
 }

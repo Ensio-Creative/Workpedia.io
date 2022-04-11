@@ -1,14 +1,15 @@
-export default function ({ $axios, store, $toast }, inject) {
+export default function ({ $axios }, inject) {
+  // const token = store
+
   // $axios.onError((error) => {
-  //   // console.log(error)
+  //   console.log(error, token)
   // })
-  $axios.onResponse((res) => {
-    // $toast.success(res)
-    // console.log(res.data.message)
-  })
+
+  // $axios.onResponse((res) => {
+  //   // $toast.success(res)
+  //   // console.log(res.data.message)
+  // })
   $axios.setBaseURL(`${process.env.BASE_URL}/api/`)
-  // $axios.setBaseURL('http://localhost:8000/api/')
-  const token = store.state.auth.user.token
-  $axios.setHeader('Authorization', token)
-  $axios.setToken(token, 'Bearer')
+  // $axios.defaults.headers.common.authorization = token ? `Bearer ${token}` : ''
+  // $axios.setToken(token, 'Bearer')
 }

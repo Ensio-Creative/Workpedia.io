@@ -39,9 +39,12 @@
 
 <script>
 import { mapActions } from 'vuex'
+import AppButton from '~/components/auth/UI-Components/AppButton.vue'
+import AppControlInput from '~/components/auth/UI-Components/AppControlInput.vue'
 export default {
   name: 'ForgottenPassword',
   layout: 'auth',
+  components: { AppControlInput, AppButton },
   emits: ['changeComponent'],
   data () {
     return {
@@ -88,7 +91,7 @@ export default {
 }
 .login-column{
   margin-top: 70px;
-  /* height: 89vh; */
+  height: 89vh;
 }
 
 .auth-column{

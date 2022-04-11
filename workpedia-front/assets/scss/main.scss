@@ -1,28 +1,27 @@
-$blue: #5A42DE !default;
-$indigo: #6610f2 !default;
-$purple: #6f42c1 !default;
-$pink: #e83e8c !default;
-$red: #dc3545 !default;
-$orange: #fd7e14 !default;
-$yellow: #ffc107 !default;
-$green: #58D68D !default;
-$teal: #20c997 !default;
-$cyan: #17a2b8 !default;
+// Your variable overrides
+$primary: #251E8C;
 
-.card {
-  border: 0px;
-  border-radius: 0px !important;
-  box-shadow: 5px 5px 12px 0px rgba(0, 0, 0, 0.08);
+// Bootstrap and its default variables
+@import '@/node_modules/bootstrap/scss/bootstrap';
+// BootstrapVue and its default variables
+@import '@/node_modules/bootstrap-vue/src/index.scss';
+
+.network {
+  position: fixed;
+  padding: 20px;
+  background: #fff;
+  bottom: 24px;
+  left: 20px;
+  border-radius: 30px;
+  z-index: 100000;
+  border: 1px solid var(--bg-yellow);
+  i {
+    color: var(--bg-yellow);
+  }
 }
-
-.navbar {
-  border-bottom: 4px solid $green;
-}
-
-@import '../../../node_modules/bootstrap/scss/bootstrap.scss';
 
 body {
-  background-color: #E0E6E9 !important;
+  background-color: #fff !important;
 }
 
 .multiple-upload {

@@ -21,16 +21,21 @@
       Posted jobs will be shown here
     </h1>
     <PostedJob
-      :found-jobs="results"
+      :found-jobs="paginatedResults"
     />
+    <div class="page mt-5">
+      <b-pagination
+        v-if="results.length"
+        v-model="currentPage"
+        pills
+        :per-page="perPage"
+        :total-rows="totalRow"
+        @change="onPageChanged"
+      />
+    </div>
     <!-- Footer -->
     <FooterDash
-      v-if="results.length > 1"
       class="mt-5"
-    />
-    <FooterDash
-      v-if="results.length <= 1"
-      class="fixed-bottom"
     />
     <b-modal
       id="modal-lg"
@@ -203,14 +208,22 @@
 
 <script>
 import { mapActions } from 'vuex'
+import TopNavInfo from '~/components/Navigation/dashboard/TopNavInfo.vue'
+import FooterDash from '~/components/dashboard/FooterDash.vue'
 import states from '~/static/data/states.js'
+import AppControlInput from '~/components/auth/UI-Components/AppControlInput.vue'
+import AppTextarea from '~/components/auth/UI-Components/AppTextarea.vue'
+import JobsNavAdmin from '~/components/admin/jobs/JobsNavAdmin.vue'
+import PostedJob from '~/components/jobs/PostedJob.vue'
 export default {
   name: 'PostJobs',
   layout: 'admin',
+  components: { FooterDash, TopNavInfo, AppTextarea, AppControlInput, JobsNavAdmin, PostedJob },
   async asyncData ({ $axios }) {
     const { results } = await $axios.$get('jobs/get-jobs')
-    // results.sort({ createdAt: -1 })
-    return { results }
+    const totalRow = results.length
+    const paginatedResults = results
+    return { results, totalRow, paginatedResults }
   },
   data () {
     return {
@@ -233,11 +246,26 @@ export default {
       states,
       description: '',
       descriptionInfo: '',
-      errors: []
+      errors: [],
+      perPage: 5,
+      currentPage: 1
     }
+  },
+  mounted () {
+    this.paginate(this.perPage, 0)
   },
   methods: {
     ...mapActions('admin', ['postJob']),
+    paginate (pageSize, pageNumber) {
+      const itemsToParse = this.results
+      this.paginatedResults = itemsToParse.slice(
+        pageNumber * pageSize,
+        (pageNumber + 1) * pageSize
+      )
+    },
+    onPageChanged (page) {
+      this.paginate(this.perPage, page - 1)
+    },
     checkTitle () {
       if (this.jobTitle.length <= 3) {
         this.titleinfo = 'Add a specific title'
@@ -370,7 +398,7 @@ form {
   margin-top: 20px;
   font-size: 32px;
   color: #fff;
-  background-color: #0DB47B;
+  background-color: var(--bg-dark-blue);
   padding: auto;
   border-radius: 50px;
   height: 60px;

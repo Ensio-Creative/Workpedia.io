@@ -15,5 +15,21 @@ async function sendEmail(payload) {
   console.log('message sent')
   return true
 }
+async function mailTutorUrl(payload) {
+  const { email, url } = payload
+  var data = {
+    from: 'Workpedia <ifeanyichukwuadams@outlook.com>',
+    to: email,
+    subject: `Tutor sent from your request`,
+    text: `
+    Please do well to login before visting the link...
+    Enter the link below to view tutor and pay for lessons: ${url}
+    `
+  }
 
-module.exports = { sendEmail }
+  await mailgun.messages().send(data)
+  console.log('message sent')
+  return true
+}
+
+module.exports = { sendEmail, mailTutorUrl }

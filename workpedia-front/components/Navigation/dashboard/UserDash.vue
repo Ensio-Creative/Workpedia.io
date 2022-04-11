@@ -218,7 +218,6 @@ export default {
   letter-spacing: 0px;
   font-size: 14px;
   width: 140px;
-  font-weight: bold;
 }
 
 .side-nav-item-resized {
@@ -227,7 +226,6 @@ export default {
   font-size: 22px;
   text-align: center;
   width: 100px;
-  font-weight: bold;
   padding: 17px;
   height: 60px;
 }
@@ -236,12 +234,12 @@ export default {
 }
 .side-nav-item:hover,
 .nuxt-link-active {
-  border-right: 2px solid #ff9b17;
-  color: #ff9b17;
+  border-right: 2px solid var(--bg-yellow);
+  color: var(--bg-yellow);
 }
 .side-nav-item-resized:hover,
 .nuxt-link-active {
-  color: #ff9b17;
+  color: var(--bg-yellow);
 }
 
 .side-nav-item-resized i {

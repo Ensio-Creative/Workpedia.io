@@ -1,6 +1,6 @@
 const express = require('express')
 const { body } = require('express-validator')
-
+const User = require('../model/User')
 const router = express.Router()
 
 const adminController = require('../controllers/admin')
@@ -14,10 +14,6 @@ router.put('/registerOperator',
     body('lastName')
       .trim()
       .isLength({ min: 3 })
-      .notEmpty(),
-    body('age')
-      .trim()
-      .toInt()
       .notEmpty(),
     body('phone')
       .trim()
@@ -38,16 +34,7 @@ router.put('/registerOperator',
     body('password')
       .trim()
       .isLength({ min: 6 })
-      .notEmpty(),
-    body('state')
-      .trim()
-      .notEmpty(),
-    body('city')
-      .trim()
-      .notEmpty(),
-    body('address')
-      .trim()
-      .notEmpty(),
+      .notEmpty()
   ],
     adminController.registerOPerator)
 
@@ -139,8 +126,11 @@ router.get('/get-freelancer/:freelanceId', adminController.getFreelance)
 
 router.delete('/delete-freelancer/:freelancerId', adminController.deleteFreelancer)
 
-// FREELANCER/HANDYMEN ROUTES
+// PAYMENTS ROUTES
 router.get('/all-payments', adminController.getAllPayments)
 
 // router.get('/get-freelancer/:freelanceId', adminController.getFreelance)
+
+router.delete('/delete-pay/:paymentId', adminController.deletePayment)
+
 module.exports = router

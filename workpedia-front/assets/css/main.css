@@ -29,19 +29,26 @@ p {
 
 .bg-hero {
   height: 91vh;
+  background-color: #f1f1ff;
 }
 
 .bg-hero h1 {
-  padding: 10px 107px 5px 0px;
+  padding: 0px;
+  color: var(--bg-dark-blue);
 }
 
 .bg-texts {
   margin-top: 100px;
+  display: grid;
+  justify-content: center;
 }
 .bg-hero p {
   font-size: 18px;
-  padding: 10px 169px 10px 0px;
+  padding: 0px;
 }
+/* .bg-content {
+  width: 339px;
+} */
 
 .bg-buttons {
   margin-top: 25px;
@@ -53,32 +60,7 @@ p {
 .bg-buttons-item {
   margin-right: 10px;
 }
-.bg-buttons-item:nth-child(1) {
-  background-color: #251E8C;
-  border: 2px solid #251E8C;
-  padding: 10px;
-  color: #fff;
-  font-size: 12px;
-}
 
-.bg-buttons-item:nth-child(2) {
-  box-shadow: 0px 3px 6px #f5c01e26;
-  border: 2px solid #251E8C;
-  border-radius: 2px;
-  padding: 10px;
-  color: #251E8C;
-  font-size: 12px;
-}
-
-.bg-buttons-item:nth-child(3) {
-  background: #251E8C 0% 0% no-repeat padding-box;
-  box-shadow: 0px 3px 6px #f5c01e26;
-  border-radius: 2px;
-  border: 2px solid #251E8C;
-  padding: 10px;
-  color: #000;
-  font-size: 12px;
-}
 
 .image-rap {
   margin-top: 35px;
@@ -88,7 +70,7 @@ p {
 
 /* Let's walk you through */
 .walk-you-through {
-  background-color: #f1f1ff;
+  background-color: #fff;
   padding-top: 100px;
   padding-bottom: 100px;
 }
@@ -140,10 +122,11 @@ p {
 
 .view-btn {
   background: #251e8c 0% 0% no-repeat padding-box;
-  border-radius: 2px;
   opacity: 1;
-  padding: 15px;
   color: #fff;
+  padding: 15px 30px;
+  color: #fff;
+  border-radius: 50px;
 }
 .view-btn:hover {
   color: #fff;
@@ -349,13 +332,10 @@ p {
   }
   /* Walk you through */
   .walk-you-through {
-    background-color: #f1f1ff;
+    background-color: #fff !important;
     padding-top: 42px;
     padding-bottom: 90px;
 }
-  .heading h1 {
-    font-size: 26px;
-  }
 
   .walk-column {
     background-color: #fff;
@@ -378,6 +358,9 @@ p {
   display: block;
   padding-bottom: 0px;
 }
+  .private-tutor {
+    padding: 0px;
+  }
 
 }
 

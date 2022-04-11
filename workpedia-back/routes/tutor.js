@@ -45,24 +45,22 @@ router.put('/update-tutor/:_id',
 router.post('/request-tutor/:userId',
 [
   body('studentClass')
+    .notEmpty(),
+  body('goals')
     .trim()
     .notEmpty(),
-  body('studentGoal')
-    .trim()
-    .notEmpty(),
-  body('subject')
-    .trim()
+  body('subjects')
     .notEmpty(),
   body('address')
     .trim()
     .notEmpty(),
-  body('moreAboutStudent')
+  body('exam')
     .trim()
     .notEmpty(),
-  body('numberOfStudents')
+  body('whenToStart')
     .trim()
     .notEmpty(),
-  body('lessonType')
+  body('timeToStart')
     .trim()
     .notEmpty(),
   body('lengthOfLesson')
@@ -72,7 +70,6 @@ router.post('/request-tutor/:userId',
     .trim()
     .notEmpty(),
   body('days')
-    .trim()
     .notEmpty(),
   body('hours')
     .trim()
@@ -110,5 +107,25 @@ router.post('/request-tutor/:userId',
     .trim()
     .notEmpty()
 ], tutorController.requestTutor)
+
+router.post('/send-tutor',
+[
+  body('tutorRequestId')
+    .trim()
+    .notEmpty(),
+  body('tutorId')
+    .trim()
+    .notEmpty(),
+  body('pay')
+    .trim()
+    .toInt()
+    .notEmpty(),
+  body('extraInfo')
+    .trim()
+    .notEmpty()
+]
+, tutorController.sendTutor)
+
+router.get('/sent-tutor/:sentTutorId', tutorController.getSentTutor)
 
 module.exports = router

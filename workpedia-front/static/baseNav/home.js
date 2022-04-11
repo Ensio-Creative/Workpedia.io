@@ -1,6 +1,6 @@
 export default [
   {
-    title: 'Tutor',
+    title: 'Private Tutors',
     url: 'tutor'
   },
   {
@@ -8,7 +8,7 @@ export default [
     url: 'jobs'
   },
   {
-    title: 'Freelance',
+    title: 'Freelancers',
     url: 'freelancing'
   }
 ]

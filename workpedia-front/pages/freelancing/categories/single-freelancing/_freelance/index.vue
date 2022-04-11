@@ -64,7 +64,7 @@
         <div class="contact-detail">
           <div
             class="user-img"
-            :style="{backgroundImage: 'url('+ `http://localhost:8000/${user.imageUrl}` +')'}"
+            :style="{backgroundImage: 'url('+ `${envVarable}/${user.imageUrl}` +')'}"
           />
         </div>
         <div class="contact-detail">
@@ -104,11 +104,13 @@
 
 <script>
 import { mapState } from 'vuex'
+const vars = process.env.BASE_URL
 export default {
   name: 'SingleFreelance',
   data () {
     return {
       routeUrl: this.$route.params.freelance,
+      envVarables: vars,
       message: ''
     }
   },

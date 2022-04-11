@@ -49,13 +49,19 @@
         </div>
       </div>
     </div> -->
+    <FooterDash />
   </div>
 </template>
 
 <script>
+import FooterDash from '~/components/dashboard/FooterDash.vue'
+// import CompanyInfo from '~/components/dashboard/hire/CompanyInfo.vue'
+import HireNav from '~/components/dashboard/hire/HireNav.vue'
+import TopNavInfo from '~/components/Navigation/dashboard/TopNavInfo.vue'
 export default {
   name: 'Applications',
   layout: 'dashboard',
+  components: { FooterDash, TopNavInfo, HireNav },
   methods: {
     showMsgBoxTwo (id) {
       this.$bvModal.msgBoxConfirm('Are you sure you want to delete this application?', {

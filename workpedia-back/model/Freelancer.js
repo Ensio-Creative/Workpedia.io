@@ -11,10 +11,6 @@ const FreelanceSchema = new Schema({
     required: true
   },
   skills: {
-    type: Array,
-    required: true
-  },
-  description: {
     type: String,
     required: true
   },
@@ -22,13 +18,9 @@ const FreelanceSchema = new Schema({
     type: String,
     required: true
   },
-  thumbnailUrl: {
-    type: String
-  },
-  resume: String,
   serviceCharge: {
-    type: Number,
-    default: 0
+    type: String,
+    required: true
   },
   ableToFreelance: {
     type: Boolean,

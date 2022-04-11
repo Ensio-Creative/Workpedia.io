@@ -221,9 +221,12 @@
 
 <script>
 import { mapActions } from 'vuex'
+import AppControlInput from '~/components/auth/UI-Components/AppControlInput.vue'
+import AppTextarea from '~/components/auth/UI-Components/AppTextarea.vue'
 import states from '~/static/data/states.js'
 export default {
   name: 'PostedJobsList',
+  components: { AppTextarea, AppControlInput },
   props: {
     foundJobs: {
       type: Array,

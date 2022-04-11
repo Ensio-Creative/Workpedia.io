@@ -24,11 +24,16 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-8 tab-colum mb-4">
-        <CompanyInfo
-          class="mt-4"
-        />
-      </div>
+      <client-only>
+        <div
+          v-if="hire.companyDescription"
+          class="col-12 col-md-8 tab-colum mb-4"
+        >
+          <CompanyInfo
+            class="mt-4"
+          />
+        </div>
+      </client-only>
     </div>
     <!-- Footer -->
     <FooterDash />
@@ -37,9 +42,14 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import FooterDash from '~/components/dashboard/FooterDash.vue'
+import CompanyInfo from '~/components/dashboard/hire/CompanyInfo.vue'
+import HireNav from '~/components/dashboard/hire/HireNav.vue'
+import TopNavInfo from '~/components/Navigation/dashboard/TopNavInfo.vue'
 export default {
   name: 'Hire',
   layout: 'dashboard',
+  components: { FooterDash, TopNavInfo, CompanyInfo, HireNav },
   data () {
     return {
       companyName: '',

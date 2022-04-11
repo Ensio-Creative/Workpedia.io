@@ -36,8 +36,11 @@
 
 <script>
 import { mapState } from 'vuex'
+import Footer from '~/components/common/Footer.vue'
+import NewsLetter from '~/components/common/NewsLetter.vue'
 export default {
   name: 'JobsRoutes',
+  components: { NewsLetter, Footer },
   data () {
     return {
       routeUrl: this.$route.params.slug

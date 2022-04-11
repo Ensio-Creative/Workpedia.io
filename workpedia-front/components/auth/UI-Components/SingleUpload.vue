@@ -3,11 +3,10 @@
     <div class="d-flex justify-content-around">
       <div class="upload-container d-flex justify-content-center align-items-center">
         <input
-          :id="id"
-          ref="imageUploader"
           type="file"
+          accept=".jpeg,.jpg,.png,image/jpeg,image/png"
           class="input-uploader"
-          @change="imageInserted"
+          @change="selectFile"
         >
         <img class="uploader-icon" src="@/assets/img/upload.png">
       </div>
@@ -29,13 +28,8 @@
 </template>
 
 <script>
-const API = 'dfdf'
 export default {
   props: {
-    apiUrl: {
-      type: String,
-      required: true
-    },
     id: {
       type: String,
       required: true
@@ -51,26 +45,32 @@ export default {
     }
   },
   methods: {
-    imageInserted () {
-      this.file = this.$refs.imageUploader.files[0]
-      this.$refs.imageUploader.value = null
-      this.uploadImageMethod()
-    },
-    async uploadImageMethod () {
-      const formData = new FormData()
-      formData.append('file', this.file)
-      this.isUploading = true
-      const { data } = await API.post(this.apiUrl, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        },
-        onUploadProgress: ({ total, loaded }) => {
-          this.value = (loaded / total).toFixed(2) * 100
-        }
+    async selectFile (e) {
+      const file = e.target.files[0]
+
+      /* Make sure file exists */
+      if (!file) {
+        return
+      }
+
+      /* create a reader */
+      const readData = f => new Promise((resolve) => {
+        const reader = new FileReader()
+        reader.onloadend = () => resolve(reader.result)
+        reader.readAsDataURL(f)
       })
-      this.uploadedImage = data.imagePath
-      this.file = null
-      this.isUploading = false
+
+      /* Read data */
+      const data = await readData(file)
+      console.log(data)
+      /* upload the converted data */
+      const instance = this.$cloudinary.upload(data, {
+        uploadPreset: 'workpedia-preset'
+      })
+
+      this.$axios.$post('https://api.cloudinary.com/v1_1/www-ensiocreative-com/image/upload', instance)
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
     }
   }
 }

@@ -1,19 +1,25 @@
 const { checkToken } = require('../utils/jwt')
 
 function authMiddleware(req, res, next) {
-  const token = req.headers.authorization.split(' ')[1]
-  console.log(token)
-  const isValid = checkToken(token)
-  console.log(isValid)
+  // console.log(req.headers)
   try {
+    const token = req.headers.authorization.split(' ')[1]
+    if (!token) {
+      const error = new Error('No token')
+      error.statusCode = 400
+      throw error
+    }
+    const isValid = checkToken(token)
     if (isValid) {
-      req.userId = isValid.userId
-      req.isAdmin = isValid.isAdmin
       return next()
     }
-    res.status(401).send('Not Authorized')
+    const error = new Error('Not Authorized')
+    error.statusCode = 401
+    throw error
+    
   } catch(err) {
-    res.status(401).send('Invalid Token')
+    // console.log(err)
+    next(err)
   }
 }
 

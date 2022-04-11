@@ -42,8 +42,11 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import AppButton from '~/components/auth/UI-Components/AppButton.vue'
+import AppControlInput from '~/components/auth/UI-Components/AppControlInput.vue'
 export default {
   name: 'SubscribeToJobs',
+  components: { AppControlInput, AppButton },
   layout: 'auth',
   async asyncData ({ $axios }) {
     const res = await $axios.$get('jobs/get-settings')
@@ -89,22 +92,14 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   padding: 30px;
-  /* border-radius: 20px 0px 0px 20px; */
-}
-.auth-columnl{
-  background: #fff;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding: 35px;
-  border-radius: 20px;
+  border-radius: 30px;
 }
 
 .sub-container{
   border-radius: 8px;
 }
 .btn-apply{
-  background-color: #0DB47B !important;
+  background-color: var(--bg-dark-blue) !important;
   border-radius: 8px;
   color: #fff;
 }

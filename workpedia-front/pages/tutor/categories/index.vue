@@ -42,9 +42,12 @@
 </template>
 
 <script>
+import Footer from '~/components/common/Footer.vue'
+import NewsLetter from '~/components/common/NewsLetter.vue'
 import routes from '~/static/tutor/tutorRoutes.js'
 export default {
   name: 'TutorsCategories',
+  components: { Footer, NewsLetter },
   layout: 'tutors',
   data () {
     return {

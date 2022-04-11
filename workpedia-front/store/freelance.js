@@ -1,6 +1,7 @@
 export const state = () => ({
   freelancing: [],
-  freelancer: {}
+  freelancer: {},
+  freelanceCategory: []
 })
 
 export const mutations = {
@@ -12,6 +13,9 @@ export const mutations = {
   },
   UPDATE_FREELANCING (state, payload) {
     state.freelancing = payload
+  },
+  UPDATE_FREELANCING_SETTING (state, payload) {
+    state.freelanceCategory = payload
   }
 }
 
@@ -84,18 +88,16 @@ export const actions = {
     }
   },
 
-  async updateFreelancerHandymen ({ commit, state }) {
+  async updateFreelancerHandymen ({ commit, state }, payload) {
     const freelancerId = state.freelancer._id
     try {
-      if (state.freelancer.cvUrl && state.freelancer.thumbnailUrl) {
-        const res = await this.$axios.$put(
-          `freelance/update-freelancer/${freelancerId}`,
-          state.freelancer
-        )
-        // commit('UPDATE_RESPONSES', res.message, { root: true })
-        this.$toast.success(res.message)
-        commit('UPDATE_FREELANCER', res.result)
-      }
+      const res = await this.$axios.$put(
+        `freelance/update-freelancer/${freelancerId}`,
+        payload
+      )
+      // commit('UPDATE_RESPONSES', res.message, { root: true })
+      this.$toast.success(res.message)
+      commit('UPDATE_FREELANCER', res.result)
     } catch (error) {
       if (error.response.status === 422) {
         this.$toast.error(error.response.data.message)
@@ -116,12 +118,13 @@ export const actions = {
   async getFreelancer ({ commit, state, rootState }) {
     const userId = rootState.auth.user._id
     try {
-      if (!state.freelancer.description) {
+      if (!state.freelancer.title) {
         const res = await this.$axios.$get(
           `freelance/get-freelancer-info/${userId}`
         )
-        this.$toast.success(res.message)
         commit('UPDATE_FREELANCER', res.result)
+        this.$toast.success(res.message)
+        return
       }
       console.log('Did not work')
     } catch (error) {

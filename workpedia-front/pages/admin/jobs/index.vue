@@ -72,9 +72,10 @@
       </template>
       <div class="contact-info">
         <!-- User img -->
-        <div class="contact-detail">
-          <img src="~/assets/img/avatar@2x.png" alt="">
-        </div>
+        <div
+          class="user-img"
+          :style="{backgroundImage: 'url('+ `${envVarable}/${user.imageUrl}` +')'}"
+        />
         <div class="contact-detail row mt-4">
           <span class="col-6">
             Id: {{ foundApplicant._id }}
@@ -133,15 +134,20 @@
       </h4>
     </div>
     <FooterDash
-      class="fixed-bottom"
+      class="mt-5"
     />
   </div>
 </template>
 
 <script>
+import JobsNavAdmin from '~/components/admin/jobs/JobsNavAdmin.vue'
+import FooterDash from '~/components/dashboard/FooterDash.vue'
+import TopNavInfo from '~/components/Navigation/dashboard/TopNavInfo.vue'
+const vars = process.env.BASE_URL
 export default {
   name: 'Applicants',
   layout: 'admin',
+  components: { FooterDash, TopNavInfo, JobsNavAdmin },
   async asyncData ({ $axios }) {
     const { data } = await $axios.get('admin/all-applicants')
     const { results } = data
@@ -154,7 +160,8 @@ export default {
       foundApplicant: {},
       user: {},
       currentPage: 1,
-      perPage: 4,
+      perPage: 10,
+      envVarable: vars,
       fields: [
         { key: 'name', label: 'Applicant Name', sortable: true },
         { key: 'email', label: 'Applicant Email', sortable: true },
@@ -224,40 +231,16 @@ export default {
 }
 .news-input {
   background: #FFFFFF 0% 0% no-repeat padding-box;
-  box-shadow: 0px 0px 1px rgba(37,30,140,0.25098);
+  box-shadow: 0px 0px 1px var(--bg-dark-blue);
   border: #FFFFFF;
   padding: 4px 33px;
 }
 .news-btn {
-  background-color: #0DB47B;
+  background-color: var(--bg-dark-blue);
   padding: 5px 45px;
   color: #FFFFFF;
-  box-shadow: 0px 0px 1px #0DB47B;
-  border: #0DB47B;
+  box-shadow: 0px 0px 1px var(--bg-dark-blue);
+  border: var(--bg-dark-blue);
   margin-left: -4px;
-}
-.pagination {
-  display: flex;
-  padding-left: 0;
-  list-style: none;
-  border-radius: 0.25rem;
-  justify-content: center;
-  color: #0C0573 !important;
-}
-.page-link {
-  position: relative;
-  display: block;
-  padding: 0.5rem 0.75rem;
-  margin-left: -1px;
-  line-height: 1.25;
-  color: #0C0573 !important;
-  background-color: #fff;
-  border: 1px solid #dee2e6;
-}
-.page-item.active .page-link {
-  z-index: 3;
-  color: #fff;
-  background-color: #0C0573 !important;
-  border-color: #0C0573 !important;
 }
 </style>

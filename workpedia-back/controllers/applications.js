@@ -133,6 +133,40 @@ exports.getApplication = async (req, res, next) => {
   }
 }
 
+exports.adminApproveApplications = async (req, res, next) => {
+  try {
+    const { applicationId } = req.params
+    const applications = await Applications.findById(applicationId)
+    if (!applications) {
+      const error = new Error('No application found.')
+      error.statusCode = 404
+      error.data = errors.array()
+      throw error
+    }
+    if (!applications.companyId) {
+      const user = await User.findById(applications.userId).select('-password')
+      const applicant = await Applicant.findById(applications.applicantId).populate('userId')
+      res.status(200).json({ message: 'Application Found', user: user, applicant: applicant, application: applications })
+    }
+    if (!applications.userId) {
+      const company = await Hire.findById(applications.companyId).populate('userId', '-password')
+      const applicant = await Applicant.findById(applications.applicantId).populate('userId')
+      res.status(200).json({ message: 'Application Found', hirer: company, applicant: applicant, application: applications })
+    }
+    if (!applications.userId && !applications.companyId) {
+      const error = new Error('No user posted a job')
+      error.statusCode = 422
+      throw error
+    }
+  } catch (err) {
+    if (!err.statusCode) {
+			err.statusCode = 500
+		}
+		console.log(err)
+		next(err)
+  }
+}
+
 exports.deleteApplication = async (req, res, next) => {
   try {
     const { applicationId } = req.params

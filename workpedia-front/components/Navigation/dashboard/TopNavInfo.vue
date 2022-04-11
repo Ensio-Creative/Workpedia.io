@@ -12,8 +12,10 @@
 </template>
 
 <script>
+import UserSign from '@/components/common/UserSign.vue'
 export default {
   name: 'TopNavInfo',
+  components: { UserSign },
   props: {
     dashTitle: {
       type: String,

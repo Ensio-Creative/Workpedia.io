@@ -22,7 +22,7 @@ const {
 
 exports.registerOPerator = async (req, res, next) => {
   try {
-    const { firstName, lastName, age, email, phone, password, state, city, address } = req.body
+    const { firstName, lastName, email, phone, password, state, city, address } = req.body
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
       const error = new Error('Validation failed.')
@@ -32,16 +32,16 @@ exports.registerOPerator = async (req, res, next) => {
     }
     const hash = await hashPassword(password)
     const user = new User({
-      imageUrl: 'images/avatar@2x.png',
+      imageUrl: 'images/workpedia-avatar.svg',
       firstName,
       lastName,
-      age,
+      age: 18,
       phone,
       email,
       password: hash,
-      state,
-      city,
-      address,
+      state: 'Select a city',
+      city: 'Please add a city',
+      address: 'Please add an address',
       isOperator: true,
       isVerified: true
     })
@@ -140,6 +140,11 @@ exports.deleteUser = async (req, res, next) => {
     const userId = req.params.id
     const user = await User.findByIdAndDelete(userId)
     // console.log(user)
+    const hirer = await Hire.deleteMany({userId})
+    const tutor = await Tutors.deleteMany({userId})
+    const applicant = await Applicant.deleteMany({userId})
+    const freelancer = await Freelance.deleteMany({userId})
+    // console.log(hirer, tutor, applicant, freelancer)
     res.status(203).json({ message: 'User Deleted!!!'})
   } catch (err) {
     if (!err.statusCode) {
@@ -153,7 +158,7 @@ exports.deleteUser = async (req, res, next) => {
 exports.getTutors = async (req, res, next) => {
   try {
 
-    const tutors = await Tutors.find().populate('userId', '-password')
+    const tutors = await Tutors.find().populate('userId', '-password').sort({ createdAt: -1 })
 
     if (!tutors) {
       const error = new Error('Sorry We could not get tutors')
@@ -206,6 +211,7 @@ exports.getTutorsRequests = async (req, res, next) => {
   try {
 
     const requests = await RequestTutor.find().populate('userId', '-password')
+      .sort({ createdAt: -1 })
 
     if (!requests) {
       const error = new Error('Sorry We could not get any request')
@@ -243,7 +249,7 @@ exports.deleteTutorRequest = async (req, res, next) => {
   try {
     const { requestId } = req.params
     const removedTutor = await RequestTutor.findByIdAndDelete(requestId)
-    res.status(200).json({ message: 'Tutor deleted' })
+    res.status(200).json({ message: 'Tutor deleted', removedTutor })
   } catch (err) {
     if (!err.statusCode) {
       err.statusCode = 500
@@ -308,7 +314,7 @@ exports.postJob = async (req, res, next) => {
 
 exports.getAllApplicant = async (req, res, next) => {
   try {
-    const applicants = await Applicant.find().populate('userId', '-password')
+    const applicants = await Applicant.find().populate('userId', '-password').sort({ createdAt: -1 })
     if (!applicants) {
       const error = new Error('No applicants found')
     }
@@ -355,7 +361,7 @@ exports.deleteApplicant = async (req, res, next) => {
 
 exports.getAllHires = async (req, res, next) => {
   try {
-    const hires = await Hire.find().populate('userId', '-password')
+    const hires = await Hire.find().populate('userId', '-password').sort({ createdAt: -1 })
     if (!hires) {
       const error = new Error('Hires could not be found')
       error.statusCode = 500
@@ -406,7 +412,7 @@ exports.deleteHire = async (req, res, next) => {
 
 exports.getAllFreelancers = async (req, res, next) => {
   try {
-    const freelancers = await Freelance.find().populate('userId', '-password')
+    const freelancers = await Freelance.find().populate('userId', '-password').sort({ createdAt: -1 })
     if (!freelancers) {
       const error = new Error('Freelances could not be found')
       error.statusCode = 500

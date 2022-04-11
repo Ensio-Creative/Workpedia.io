@@ -59,10 +59,12 @@ app.use((error, req, res, next) => {
   const status = error.statusCode || 500
   const message = error.message
   const data = error.data
+  console.log(message)
   res.status(status).json({ message: message, data: data })
 })
-// mongodb+srv://GreatAdams:Ifeanyichukwu7@workpedia.sknnk.mongodb.net/workpedia?retryWrites=true&w=majority
-mongoose.connect('mongodb://localhost/workpedia', {
+
+const connect = process.env.MONGODB_CONNECT
+mongoose.connect(connect, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useUnifiedTopology: true,

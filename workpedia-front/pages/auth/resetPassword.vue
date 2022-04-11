@@ -93,9 +93,12 @@
 
 <script>
 import { mapActions } from 'vuex'
+import AppButton from '~/components/auth/UI-Components/AppButton.vue'
+import AppControlInput from '~/components/auth/UI-Components/AppControlInput.vue'
 export default {
   name: 'ResetPassword',
   layout: 'auth',
+  components: { AppControlInput, AppButton },
   emits: ['changeComponent'],
   data () {
     return {
@@ -163,14 +166,14 @@ export default {
 </script>
 
 <style scoped>
-/* .inner-auth-row{
+.inner-auth-row{
   border-radius: 20px;
   margin-top: 40px;
 }
 .login-column{
   margin-top: 0px;
-  height: 97vh;
-} */
+  height: 100vh;
+}
 
 .auth-column{
   background: #fff;

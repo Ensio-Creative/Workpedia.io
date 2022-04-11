@@ -112,8 +112,12 @@
 
 <script>
 import { mapState } from 'vuex'
+import AppControlInput from '~/components/auth/UI-Components/AppControlInput.vue'
+import Footer from '~/components/common/Footer.vue'
+import NewsLetter from '~/components/common/NewsLetter.vue'
 export default {
-  name: 'Jobs',
+  name: 'JobsCategories',
+  components: { AppControlInput, NewsLetter, Footer },
   data () {
     return {
       currentPage: 1,

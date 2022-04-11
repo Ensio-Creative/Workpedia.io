@@ -39,6 +39,8 @@ router.post('/init-pay',
 ],
  paystackController.initPaystack)
 
+ router.get('/get-transactions/:email', paystackController.getUserTransactions)
+
 // router.delete('/delete-job/:jobId', paystackController.deleteJob)
 
 module.exports = router

@@ -31,12 +31,15 @@
 
 <script>
 import { mapState } from 'vuex'
+import TheSideNavToggle from '@/components/Navigation/TheSideNavToggle.vue'
+import UserSign from '../common/UserSign.vue'
 import homeNav from '~/static/baseNav/home.js'
 import tutorNav from '~/static/baseNav/tutor.js'
 import jobsNav from '~/static/baseNav/jobs.js'
 import freelanceNav from '~/static/baseNav/freelance.js'
 export default {
   name: 'TheHeader',
+  components: { UserSign, TheSideNavToggle },
   // Every data been imported has Nav added to it that the inital routes
   // Then the other ones are the data gotten from filtering the initial data
   data () {

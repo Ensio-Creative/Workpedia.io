@@ -6,210 +6,21 @@
     <SettingsNavAdmin
       class="mt-5"
     />
-    <main>
-      <div class="row justify-content-center">
-        <div class="col-12 col-md-5 mt-4">
-          <form
-            class="mb-5"
-            @submit.prevent="onSubmit"
-          >
-            <div class="row">
-              <div class="col">
-                <AppControlInput
-                  v-model.trim="firstName"
-                  type="text"
-                  required
-                  @input="checkFirstName"
-                >
-                  First Name
-                </AppControlInput>
-                <small
-                  :class="[firstName.length < 3 ? 'info-error' : 'info-success']"
-                >
-                  {{ firstNameInfo }}
-                </small>
-              </div>
-              <div class="col">
-                <AppControlInput
-                  v-model.trim="lastName"
-                  type="text"
-                  required
-                  @input="checklastName"
-                >
-                  Last Name
-                </AppControlInput>
-                <small
-                  :class="[lastName.length <= 3 ? 'info-error' : 'info-success']"
-                >
-                  {{ lastNameInfo }}
-                </small>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col">
-                <AppControlInput
-                  v-model="phone"
-                  type="number"
-                  required
-                  @input="checkPhone"
-                >
-                  Phone
-                </AppControlInput>
-                <small
-                  :class="[phone.length === 11 ? 'info-success' : 'info-error']"
-                >
-                  {{ phoneInfo }}
-                </small>
-              </div>
-              <div class="col">
-                <AppControlInput
-                  v-model.number="age"
-                  type="number"
-                  required
-                >
-                  Age
-                </AppControlInput>
-              </div>
-            </div>
-            <AppControlInput
-              v-model.trim="email"
-              type="email"
-              required
-              @input="checkEmail"
-            >
-              Enter Email
-            </AppControlInput>
-            <small
-              :class="[validEmail(email) ? 'info-success' : 'info-error']"
-            >
-              {{ infoTextEmail }}
-            </small>
-            <div class="row">
-              <div class="col">
-                <label for="">State</label>
-                <select
-                  v-model="stateSelect"
-                  class="form-select"
-                  aria-label="Default select example"
-                  required
-                >
-                  <option
-                    v-for="state in states"
-                    :key="state"
-                    selected
-                    :value="state"
-                    required
-                  >
-                    {{ state }}
-                  </option>
-                </select>
-              </div>
-              <div class="col">
-                <AppControlInput
-                  v-model.trim="city"
-                  type="text"
-                  required
-                  @input="checkCity"
-                >
-                  City
-                </AppControlInput>
-                <small
-                  :class="[city.length < 3 ? 'info-error' : 'info-success']"
-                >
-                  {{ cityInfo }}
-                </small>
-              </div>
-            </div>
-            <AppControlInput
-              v-model.trim="address"
-              type="text"
-              required
-            >
-              Address
-            </AppControlInput>
-            <!-- <small
-              :class="[password.length <= 6 ? 'info-error' : 'info-success']"
-            >
-              {{ addressInfo }}
-            </small> -->
-            <AppButton
-              type="submit"
-              class="signin-btn mt-3"
-            >
-              Save update
-            </AppButton>
-          </form>
-        </div>
+    <div class="row justify-content-center mt-5">
+      <div class="col-8">
+        <UserImg />
       </div>
-    </main>
-    <h5
-      class="text-center my-3"
-    >
-      Change Password
-    </h5>
-    <main class="row justify-content-center">
-      <div class="col-12 col-md-5 mt-4">
-        <form
-          @submit.prevent="onUpdatePassword"
-        >
-          <div class="row">
-            <div class="col">
-              <AppControlInput
-                v-model.trim="oldPassword"
-                type="password"
-                required
-                @input="checkOldPassword"
-              >
-                Old password
-              </AppControlInput>
-              <small
-                :class="[oldPassword.length <= 6 ? 'info-error' : 'info-success']"
-              >
-                {{ oldPasswordInfo }}
-              </small>
-            </div>
-            <div class="col">
-              <AppControlInput
-                v-model="newPassword"
-                type="password"
-                required
-                @input="checkNewPassword"
-              >
-                New password
-              </AppControlInput>
-              <small
-                :class="[newPassword.length <= 6 || newPassword === oldPassword ? 'info-error' : 'info-success']"
-              >
-                {{ newPasswordInfo }}
-              </small>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <AppControlInput
-                v-model.trim="confirmPassword"
-                type="password"
-                required
-                @input="checkConfirmPassword"
-              >
-                Confirm password
-              </AppControlInput>
-              <small
-                :class="[confirmPassword !== newPassword ? 'info-error' : 'info-success']"
-              >
-                {{ confirmPasswordInfo }}
-              </small>
-            </div>
-          </div>
-          <AppButton
-            type="submit"
-            class="signin-btn mt-3"
-          >
-            Reset password
-          </AppButton>
-        </form>
+      <div class="col-8">
+        <UpdateUser />
       </div>
-    </main>
+      <div class="col-8">
+        <h2>Change password</h2>
+        <UpdatePassword />
+      </div>
+      <div class="col-8 mt-5">
+        <AddAdmin />
+      </div>
+    </div>
     <FooterDash
       class="mt-5"
     />
@@ -218,10 +29,18 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
+import TopNavInfo from '@/components/Navigation/dashboard/TopNavInfo.vue'
+import UserImg from '@/components/dashboard/UserImg.vue'
+import UpdateUser from '@/components/dashboard/UpdateUser.vue'
 import states from '~/static/data/states.js'
+import SettingsNavAdmin from '~/components/admin/settings/SettingsNavAdmin.vue'
+import FooterDash from '~/components/dashboard/FooterDash.vue'
+import UpdatePassword from '~/components/dashboard/UpdatePassword.vue'
+import AddAdmin from '~/components/auth/AddAdmin.vue'
 export default {
   name: 'Settings',
   layout: 'admin',
+  components: { TopNavInfo, UserImg, UpdateUser, SettingsNavAdmin, FooterDash, UpdatePassword, AddAdmin },
   data () {
     return {
       firstName: '',

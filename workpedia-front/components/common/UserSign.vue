@@ -1,20 +1,20 @@
 <template>
   <div>
     <div
-      v-if="!authenticated"
+      v-if="!user.token"
       class="user-not-logged-in"
     >
-      <button
-        class="btn landing-outline ml-1"
-        @click="hasAccount(false)"
-      >
-        Get Started
-      </button>
       <button
         class="btn landing-outline ml-3"
         @click="hasAccount(true)"
       >
         Login
+      </button>
+      <button
+        class="btn landing-outline ml-1"
+        @click="hasAccount(false)"
+      >
+        Get Started
       </button>
     </div>
     <div
@@ -27,8 +27,8 @@
           class="dropbtn"
         >
           <div
-            class="user-img"
-            :style="{backgroundImage: 'url('+ `http://localhost:8000/${user.imageUrl}` +')'}"
+            class="userSign-img"
+            :style="{backgroundImage: 'url('+ `${envVarable}/${user.imageUrl}` +')'}"
           />
           <i class="fas fa-chevron-down" />
         </a>
@@ -85,13 +85,15 @@
 
 <script>
 import { mapState } from 'vuex'
+const vars = process.env.BASE_URL
 export default {
   name: 'UserRegister',
   data () {
     return {
       showUserDroped: false,
       userOnDashboard: false,
-      authenticated: false
+      authenticated: false,
+      envVarable: vars
     }
   },
   computed: {
@@ -103,7 +105,6 @@ export default {
   },
   mounted () {
     this.checkPath()
-    this.loggedIn()
   },
   methods: {
     // fetchImage()
@@ -120,13 +121,6 @@ export default {
         // console.log(this.$route.params.name)
       }
     },
-    loggedIn () {
-      if (this.user.token) {
-        this.authenticated = true
-      } else {
-        this.authenticated = false
-      }
-    },
     showUserDrop () {
       if (this.showUserDroped === true) {
         this.showUserDroped = false
@@ -137,6 +131,7 @@ export default {
       }
     },
     logOut () {
+      this.$router.push('/')
       this.$store.commit('CLEAR_USER')
       this.$router.push('/')
     }
@@ -145,7 +140,7 @@ export default {
 </script>
 
 <style scoped>
-.user-img {
+.userSign-img {
   margin-top: 0px;
   padding: 20px;
   background-repeat: no-repeat;
@@ -185,6 +180,9 @@ export default {
   cursor: pointer;
 }
 .landing-outline {
+  color: #251e8c;
+}
+.landing-outline:nth-child(2) {
   border: 2px solid #251e8c;
   border-radius: 6px;
   color: #251e8c;

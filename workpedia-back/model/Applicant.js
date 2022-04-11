@@ -2,23 +2,15 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const ApplicantSchema = new Schema({
-  category: {
+  title: {
     type: String,
     required: true
   },
   skills: {
-    type: Array,
+    type: String,
     required: true
   },
   description: {
-    type: String,
-    required: true
-  },
-  state: {
-    type: String,
-    required: true
-  },
-  city: {
     type: String,
     required: true
   },

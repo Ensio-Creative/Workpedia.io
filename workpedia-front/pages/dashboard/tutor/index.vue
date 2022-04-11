@@ -9,7 +9,7 @@
           <div class="col-8 col-md-12 tutor-basic-info">
             <div
               class="user-img"
-              :style="{backgroundImage: 'url('+ `http://localhost:8000/${user.imageUrl}` +')'}"
+              :style="{backgroundImage: 'url('+ `${envVarable}/${user.imageUrl}` +')'}"
             />
             <h4 class="user-name">
               {{ fullName }}
@@ -66,15 +66,19 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
+import FooterDash from '~/components/dashboard/FooterDash.vue'
+import TopNavInfo from '~/components/Navigation/dashboard/TopNavInfo.vue'
 import TutorDetails from '~/components/dashboard/tutor/TutorDetails.vue'
 import TutorQulificatios from '~/components/dashboard/tutor/TutorQulificatios.vue'
+const vars = process.env.BASE_URL
 export default {
   name: 'TutorDashboard',
-  components: { TutorDetails, TutorQulificatios },
+  components: { TutorDetails, TutorQulificatios, FooterDash, TopNavInfo },
   layout: 'dashboard',
   data () {
     return {
       tutorDescription: '',
+      envVarable: vars,
       activeTab: 'TutorDetails'
     }
   },

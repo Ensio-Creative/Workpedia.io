@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const TutorSchema = new Schema({
-	tutorSubject:  Array,
+	tutorSubject:  String,
 	tutoredClass: Array,
 	courseCategory: String,
 	tutorCategory: String,

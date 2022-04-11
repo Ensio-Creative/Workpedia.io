@@ -6,6 +6,13 @@
     <h1>
       An error occurred
     </h1>
+    <div
+      v-if="$nuxt.isOffline"
+      class="network"
+    >
+      No internet connection
+      <i class="fa fa-stop-circle" />
+    </div>
     <NuxtLink to="/">
       Home page
     </NuxtLink>

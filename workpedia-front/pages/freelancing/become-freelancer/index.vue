@@ -63,9 +63,7 @@
                   {{ categorySelect.title }}
                 </option>
               </select>
-              <small
-                :class="[!category.length < 3 ? 'info-error' : 'info-success']"
-              >
+              <small>
                 {{ category }}
               </small>
             </div>
@@ -81,7 +79,7 @@
                 Skills
               </AppControlInput>
               <small
-                :class="[skills.length < 3 ? 'info-error' : 'info-success']"
+                :class="[skills.length < 3 ? 'info-error' : '']"
               >
                 {{ skillsInfo }}
               </small>
@@ -120,32 +118,36 @@
 
 <script>
 import { mapActions } from 'vuex'
-import states from '~/static/data/states.js'
-import categories from '~/static/freelance/freelanceRoutes.js'
+import AppControlInput from '~/components/auth/UI-Components/AppControlInput.vue'
+import AppTextarea from '~/components/auth/UI-Components/AppTextarea.vue'
 export default {
   name: 'BecomeFreelancer',
   layout: 'auth',
+  components: { AppControlInput, AppTextarea },
+  async asyncData ({ $axios }) {
+    const res = await $axios.$get('public/freelance/get-settings')
+    const { result } = res
+    return { result }
+  },
   data () {
     return {
       title: '',
       titleInfo: '',
       serviceCharge: '',
       serviceChargeInfo: '',
+      categories: [],
       category: [],
       categoryItem: '',
-      categories,
       categoryInfo: '',
       skills: '',
       skillsInfo: '',
-      stateSelect: '',
-      stateInfo: '',
-      states,
-      city: '',
-      cityInfo: '',
       description: '',
       descriptionInfo: '',
       errors: []
     }
+  },
+  mounted () {
+    this.categories = this.result.categories
   },
   methods: {
     ...mapActions('freelance', ['registerFreelancerHandymen']),
@@ -210,11 +212,11 @@ export default {
           title: this.title,
           serviceCharge: this.serviceCharge,
           category: this.category,
-          skills: this.skills.split(','),
+          skills: this.skills,
           description: this.description
         }
-        console.log(payload)
-        // this.registerFreelancerHandymen(payload)
+        // console.log(payload)
+        this.registerFreelancerHandymen(payload)
       }
     }
   }
@@ -222,11 +224,11 @@ export default {
 </script>
 
 <style scoped>
-.container-fluid{
+/* .container-fluid{
   height: 108vh;
-}
+} */
 .sub-container{
-  border-radius: 8px;
+  border-radius: 30px;
 }
 .btn-freelance{
   background-color: #251E8C;

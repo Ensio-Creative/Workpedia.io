@@ -19,8 +19,8 @@ export const actions = {
         const res = await this.$axios.$get(
           `applicant/get-applicant-info/${userId}`
         )
-        console.log(res)
         commit('UPDATE_APPLICANT', res.result)
+        this.$toast.success(res.message)
       }
     } catch (error) {
       if (error.response.status === 422) {

@@ -1,6 +1,13 @@
 <template>
   <div>
     <div
+      v-if="$nuxt.isOffline"
+      class="network"
+    >
+      No internet connection
+      <i class="fa fa-stop-circle" />
+    </div>
+    <div
       class="sidenav-backdrop"
     >
       <div
@@ -68,15 +75,23 @@
         <i class="fas fa-bars" />
       </div> -->
     </div>
-    <!-- <Responses /> -->
     <Nuxt />
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import AdminDash from '~/components/Navigation/admin/AdminDash.vue'
+import AdminMobile from '~/components/Navigation/admin/AdminMobile.vue'
 export default {
   name: 'AdminLayout',
+  components: { AdminDash, AdminMobile },
+  middleware ({ store, redirect }) {
+    // If the user is not authenticated
+    if (!store.state.auth.user.token) {
+      return redirect('/auth')
+    }
+  },
   data () {
     return {
       resize: false,
@@ -117,7 +132,7 @@ export default {
 
 <style scoped>
 .sidenav {
-  background-color: #0C0573;
+  background-color: var(--bg-dark-blue);
   width: 140px;
   height: 100vh;
   z-index: 10000;
@@ -130,7 +145,7 @@ export default {
 }
 .sidenav-resided {
   display: none;
-  background-color: #0C0573;
+  background-color: var(--bg-dark-blue);
   width: 100px;
   height: 100vh;
   position: fixed;
@@ -169,18 +184,6 @@ export default {
   .sidenav:nth-child(2) {
     display: block;
   }
-  /* .sidenav-backdrop {
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 1000;
-    position: fixed;
-    top: 0;
-    left: 0;
-} */
-  /* .sidenav-resided{
-    display: block;
-  } */
   .side-mobile{
   display: block;
 }

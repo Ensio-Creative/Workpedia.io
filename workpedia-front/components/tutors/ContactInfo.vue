@@ -4,158 +4,153 @@
       <h2 class="text-center mb-4">
         Contact Information
       </h2>
-      <div class="row justify-content-center">
-        <div class="col-12 col-md-6">
-          <div class="row mt-3">
-            <h4>Your Contact details</h4>
-            <div class="col">
-              <label for="">Last name</label>
-              <input
-                v-model.trim="lastName"
-                type="text"
-                class="form-control"
-                placeholder="Last Name"
-                required
-              >
-            </div>
-            <div class="col">
-              <label for="">First name</label>
-              <input
-                v-model.trim="firstName"
-                type="text"
-                class="form-control"
-                placeholder="First Name"
-                required
-              >
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col">
-              <label for="">Email</label>
-              <input
-                v-model.trim="email"
-                type="email"
-                class="form-control"
-                placeholder="Email Address"
-                required
-              >
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col">
-              <label for="">Phone</label>
-              <input
-                v-model.number="phone"
-                type="number"
-                class="form-control"
-                placeholder="Phone Number"
-                required
-              >
-            </div>
-            <div class="col">
-              <label for="">How did you hear about us</label>
-              <input
-                v-model.trim="hearAbout"
-                type="text"
-                class="form-control"
-                placeholder="How did you hear about us"
-                required
-              >
-            </div>
-          </div>
-          <h4 class="mt-4">
-            Contact Address
-          </h4>
-          <div class="row mt-3">
-            <div class="col">
-              <label for="">Select state</label>
-              <select
-                v-model="selectedStates"
-                class="form-select"
-                required
-              >
-                <option
-                  v-for="state in states"
-                  :key="state"
-                  selected
-                  :value="state"
-                  required
-                >
-                  {{ state }}
-                </option>
-              </select>
-            </div>
-            <div class="col">
-              <label for="">City</label>
-              <input
-                v-model.trim="city"
-                type="text"
-                class="form-control"
-                placeholder="City"
-                required
-              >
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col">
-              <label for="">Nearest Bustop</label>
-              <input
-                v-model="nearestBustop"
-                type="text"
-                class="form-control"
-                placeholder="Nearest Bustop"
-                required
-              >
-            </div>
-            <div class="col">
-              <label for="">Nearest Landmark</label>
-              <input
-                v-model="nearestLandmark"
-                type="text"
-                class="form-control"
-                placeholder="Nearest Landmark"
-                required
-              >
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col">
-              <label for="">Address</label>
-              <textarea
-                v-model.trim="address"
-                type="text"
-                class="form-control"
-                placeholder="Enter Address"
-                aria-label="First n ame"
-                rows="2"
-                required
-              />
-            </div>
-          </div>
-          <AppButton
-            type="submit"
-            class="tutor-btn-back mt-3"
-            @click="backToStarted"
+      <h4>Your Contact details</h4>
+      <div class="row mt-3">
+        <div class="col">
+          <label for="">Last name</label>
+          <input
+            v-model.trim="lastName"
+            type="text"
+            class="form-control"
+            placeholder="Last Name"
+            required
           >
-            Back
-          </AppButton>
-          <AppButton
-            type="submit"
-            class="tutor-btn mt-3"
+        </div>
+        <div class="col">
+          <label for="">First name</label>
+          <input
+            v-model.trim="firstName"
+            type="text"
+            class="form-control"
+            placeholder="First Name"
+            required
           >
-            Next
-          </AppButton>
         </div>
       </div>
+      <div class="row mt-3">
+        <div class="col">
+          <label for="">Email</label>
+          <input
+            v-model.trim="email"
+            type="email"
+            class="form-control"
+            placeholder="Email Address"
+            required
+          >
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col">
+          <label for="">Phone</label>
+          <input
+            v-model.number="phone"
+            type="number"
+            class="form-control"
+            placeholder="Phone Number"
+            required
+          >
+        </div>
+        <div class="col">
+          <label for="">How did you hear about us</label>
+          <input
+            v-model.trim="hearAbout"
+            type="text"
+            class="form-control"
+            placeholder="How did you hear about us"
+            required
+          >
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col">
+          <label for="">Select state</label>
+          <select
+            v-model="selectedStates"
+            class="form-select"
+            required
+          >
+            <option
+              v-for="state in states"
+              :key="state"
+              selected
+              :value="state"
+              required
+            >
+              {{ state }}
+            </option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="">City</label>
+          <input
+            v-model.trim="city"
+            type="text"
+            class="form-control"
+            placeholder="City"
+            required
+          >
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col">
+          <label for="">Nearest Bustop</label>
+          <input
+            v-model="nearestBustop"
+            type="text"
+            class="form-control"
+            placeholder="Nearest Bustop"
+            required
+          >
+        </div>
+        <div class="col">
+          <label for="">Nearest Landmark</label>
+          <input
+            v-model="nearestLandmark"
+            type="text"
+            class="form-control"
+            placeholder="Nearest Landmark"
+            required
+          >
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col">
+          <label for="">Address</label>
+          <textarea
+            v-model.trim="address"
+            type="text"
+            class="form-control"
+            placeholder="Enter Address"
+            aria-label="First n ame"
+            rows="2"
+            required
+          />
+        </div>
+      </div>
+      <AppButton
+        type="submit"
+        class="tutor-btn-back mt-3"
+        @click="backToStarted"
+      >
+        Back
+      </AppButton>
+      <AppButton
+        type="submit"
+        class="tutor-btn mt-3"
+      >
+        Submit
+      </AppButton>
     </form>
   </div>
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapActions } from 'vuex'
+import AppButton from '../auth/UI-Components/AppButton.vue'
 import states from '~/static/data/states.js'
 export default {
   name: 'Contact',
+  components: { AppButton },
   emits: ['nextLeson'],
   data () {
     return {
@@ -175,9 +170,9 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('tutors', ['UPDATE_REQUEST_TUTOR']),
+    ...mapActions('tutors', ['sendRequest']),
     backToStarted () {
-      this.$emit('backStarted')
+      this.$emit('nextToContact')
     },
     onSubmit () {
       this.errors = []
@@ -221,8 +216,7 @@ export default {
           nearestLandmark: this.nearestLandmark,
           address: this.address
         }
-        this.UPDATE_REQUEST_TUTOR(payload)
-        this.$emit('nextLeson')
+        this.sendRequest(payload)
       }
     },
     validEmail (email) {
@@ -234,9 +228,6 @@ export default {
 </script>
 
 <style scoped>
-form{
-  margin-bottom: 50px;
-}
 .get-tutor-input input{
   background: #FBFBFB6B 0% 0% no-repeat padding-box;
   border: 1px solid #70707073;

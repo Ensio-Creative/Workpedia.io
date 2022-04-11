@@ -73,7 +73,7 @@
         <div class="contact-detail">
           <div
             class="user-img"
-            :style="{backgroundImage: 'url('+ `http://localhost:8000/${user.imageUrl}` +')'}"
+            :style="{backgroundImage: 'url('+ `${envVarable}/${user.imageUrl}` +')'}"
           />
         </div>
         <div class="contact-detail">
@@ -125,10 +125,10 @@
       </form>
       <template #modal-footer="{ cancel}">
         <!-- Emulate built in modal footer ok and cancel button actions -->
-        <b-button size="sm" variant="btn-apply" @click="cancel()">
+        <b-button size="sm" variant="primary" @click="cancel()">
           Cancel
         </b-button>
-        <b-button size="sm" variant="success" @click="onSubmit(fliteredJobs._id, fliteredJobs.companyId, fliteredJobs.userId)">
+        <b-button size="sm" variant="primary" @click="onSubmit(fliteredJobs._id, fliteredJobs.companyId, fliteredJobs.userId)">
           Submit
         </b-button>
       </template>
@@ -138,12 +138,18 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import AppControlInput from '~/components/auth/UI-Components/AppControlInput.vue'
+import Footer from '~/components/common/Footer.vue'
+import NewsLetter from '~/components/common/NewsLetter.vue'
+const vars = process.env.BASE_URL
 export default {
   name: 'SingleJob',
+  components: { NewsLetter, Footer, AppControlInput },
   data () {
     return {
       routeUrl: this.$route.params.jobId,
       email: '',
+      envVarable: vars,
       phone: '',
       amount: 1000000 // in kobo
     }
@@ -173,8 +179,10 @@ export default {
   methods: {
     ...mapActions('applicant', ['sendApplication']),
     onSubmit (jobID, companyID, userID) {
-      // && this.user.applicantApply >= 1
-      // Add that
+      if (!this.user.token) {
+        this.$router.push('/auth')
+        this.$toast.info('Please sign up')
+      }
       if (this.user.isApplicant && this.applicant.applyChance > 0) {
         // console.log({ job: jobId, Company: companyId, USer: userId })
         const payload = {
@@ -190,7 +198,6 @@ export default {
       if (!this.user.isApplicant) {
         this.$router.push('/jobs/register-applicant')
       }
-      // everythingwork@ensio21
     }
   }
 }
@@ -203,14 +210,6 @@ export default {
   border-radius: 8px;
   color: #fff;
   margin-bottom: 40px;
-}
-
-.user-img {
-  margin-top: 0px;
-  padding: 35px;
-  background-repeat: no-repeat;
-  background-position: right;
-  background-size: contain;
 }
 
 .btn-apply:hover{

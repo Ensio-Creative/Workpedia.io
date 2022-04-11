@@ -2,6 +2,13 @@
   <div>
     <!-- Side nav -->
     <div
+      v-if="$nuxt.isOffline"
+      class="network"
+    >
+      No internet connection
+      <i class="fa fa-stop-circle" />
+    </div>
+    <div
       :class="[!resize ? 'sidenav-backdrop' : '']"
     >
       <div :class="[!resize ? 'sidenav' : 'sidenav-resided']">
@@ -70,16 +77,17 @@
         </nav>
       </div>
     </div>
-    <!-- <Responses /> -->
     <Nuxt />
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import Mobile from '~/components/Navigation/dashboard/Mobile.vue'
+import UserDash from '~/components/Navigation/dashboard/UserDash.vue'
 export default {
   name: 'DashBoardLayout',
-  middleware: 'auth',
+  components: { UserDash, Mobile },
   data () {
     return {
       resize: false
@@ -111,7 +119,7 @@ export default {
 
 <style scoped>
 .sidenav {
-  background-color: #0C0573;
+  background-color: var(--bg-dark-blue);
   width: 140px;
   height: 100vh;
   z-index: 10000;
@@ -120,7 +128,7 @@ export default {
   left: 0;
 }
 .sidenav-resided {
-    background-color: #0C0573;
+    background-color: var(--bg-dark-blue);
     width: 100px;
     height: 100vh;
     position: fixed;

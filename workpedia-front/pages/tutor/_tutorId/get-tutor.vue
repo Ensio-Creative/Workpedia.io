@@ -1,15 +1,20 @@
 <template>
-  <div class="container mt-5">
-    <keep-alive>
-      <component
-        :is="activeForm"
-        class="mt-4"
-        @nextToContact="activeForm = 'ContactInfo'"
-        @nextLeson="activeForm = 'Lesson'"
-        @backStarted="activeForm = 'GetStarted'"
-        @backContact="activeForm = 'ContactInfo'"
-      />
-    </keep-alive>
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-7 form-container">
+        <client-only>
+          <keep-alive>
+            <component
+              :is="activeForm"
+              @nextToContact="activeForm = 'Lesson'"
+              @nextLeson="activeForm = 'ContactInfo'"
+              @backStarted="activeForm = 'GetStarted'"
+              @backContact="activeForm = 'Lesson'"
+            />
+          </keep-alive>
+        </client-only>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -52,5 +57,12 @@ export default {
 </script>
 
 <style scoped>
-
+.form-container {
+  background-color: #fff;
+  border-radius: 30px;
+  padding: 24px;
+}
+html {
+  background-color: #f1f1ff;
+}
 </style>

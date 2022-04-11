@@ -17,60 +17,25 @@
             </h5>
           </div>
         </div>
-      <!-- </div>
-      <div
-        class="col"
-      >
-        <div class="card info-containers2">
-          <div class="card-body">
-            <h5 class="card-title">
-              Applied Jobs
-            </h5>
-            <p class="card-text text-white">
-              0
-            </p>
+        <client-only>
+          <div class="get-verified mt-3">
+            <NuxtLink
+              v-if="!user.isVerified"
+              to="/auth/verify"
+            >
+              Get verified
+            </NuxtLink>
+            <a
+              v-if="!user.isVerified"
+              href="#"
+              @click="resendCodes"
+            >
+              Resend code?
+            </a>
           </div>
-        </div>
-      </div>
-      <div
-        class="col"
-      >
-        <div class="card info-containers3">
-          <div class="card-body">
-            <h5 class="card-title">
-              Hired Freelance/Handymen
-            </h5>
-            <p class="card-text text-white">
-              0
-            </p>
-          </div>
-        </div> -->
+        </client-only>
       </div>
     </div>
-    <!-- <div class="activity-row mt-4">
-      <div
-        class="activity-column"
-        @click="activeTab = 'TutorActivity'"
-      >
-        <div class="activity-img" />
-        <h3>Tutor</h3>
-      </div>
-      <div
-        class="activity-column"
-        @click="activeTab = 'JobsActivity'"
-      >
-        <div class="activity-img" />
-        <h3>Jobs</h3>
-      </div>
-      <div
-        class="activity-column"
-        @click="activeTab = 'FreelaceActivity'"
-      >
-        <div class="activity-img" />
-        <h3>Freelance</h3>
-      </div>
-    </div>
-    <component :is="activeTab" /> -->
     <FooterDash
       class="mt-5"
     />
@@ -78,10 +43,12 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
+import FooterDash from '~/components/dashboard/FooterDash.vue'
+import TopNavInfo from '~/components/Navigation/dashboard/TopNavInfo.vue'
 export default {
   name: 'Dashboard',
-  // components: { FreelaceActivity, TutorActivity, JobsActivity },
+  components: { FooterDash, TopNavInfo },
   layout: 'dashboard',
   data () {
     return {
@@ -93,6 +60,12 @@ export default {
     fullName () {
       const userName = `${this.user.firstName} ${this.user.lastName}`
       return userName
+    }
+  },
+  methods: {
+    ...mapActions('auth', ['resendCode']),
+    resendCodes () {
+      this.resendCode()
     }
   }
 }
@@ -169,9 +142,23 @@ export default {
 }
 
 .card-text {
-    margin-bottom: 0;
-    font-size: 23px;
-    font-weight: bold;
+  margin-bottom: 0;
+  font-size: 23px;
+  font-weight: bold;
 }
 
+.get-verified {
+  display: flex;
+  justify-content: space-evenly;
+  width: 281px;
+}
+.get-verified a {
+  padding: 10px;
+  border: 1px solid;
+}
+.get-verified a:hover {
+  padding: 10px;
+  border: 1px solid;
+  color: var(--bg-dark-blue);
+}
 </style>

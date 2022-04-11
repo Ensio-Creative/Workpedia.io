@@ -7,17 +7,19 @@
 	.st1{clip-path:url(#SVGID_2_);}
 	.st2{fill:#FFD200;}
 </style>
-<circle class="st0" cx="61.4" cy="58.8" r="37.7"/>
+<circle class="st0" cx="103.3" cy="81.4" r="79.7"/>
 <g>
-	<defs>
-		<circle id="SVGID_1_" cx="61.4" cy="58.8" r="37.7"/>
-	</defs>
-	<clipPath id="SVGID_2_">
-		<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
-	</clipPath>
-	<g class="st1">
-		<circle class="st2" cx="61.4" cy="47.9" r="11.8"/>
-		<circle class="st2" cx="61.4" cy="85.9" r="28.3"/>
+	<g>
+		<defs>
+			<circle id="SVGID_1_" cx="103.3" cy="81.4" r="79.7"/>
+		</defs>
+		<clipPath id="SVGID_2_">
+			<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+		</clipPath>
+		<g class="st1">
+			<circle class="st2" cx="103.3" cy="58.3" r="24.9"/>
+			<circle class="st2" cx="103.3" cy="138.6" r="59.8"/>
+		</g>
 	</g>
 </g>
 </svg>

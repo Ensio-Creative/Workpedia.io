@@ -46,9 +46,12 @@
 </template>
 
 <script>
+import Footer from '~/components/common/Footer.vue'
+import NewsLetter from '~/components/common/NewsLetter.vue'
 import category from '~/static/tutor/tutorRoutes.js'
 export default {
   name: 'SingleTutor',
+  components: { NewsLetter, Footer },
   data () {
     return {
       routeUrl: this.$route.params.slug,

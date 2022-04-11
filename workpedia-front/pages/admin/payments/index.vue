@@ -2,7 +2,7 @@
   <div class="container">
     <TopNavInfo
       dash-title="Payments"
-      class="pb-5"
+      class="pb-3"
     />
     <div class="input-area my-3">
       <input
@@ -68,15 +68,18 @@
       </h4>
     </div>
     <FooterDash
-      class="fixed-bottom"
+      class="mt-5"
     />
   </div>
 </template>
 
 <script>
+import FooterDash from '~/components/dashboard/FooterDash.vue'
+import TopNavInfo from '~/components/Navigation/dashboard/TopNavInfo.vue'
 export default {
   name: 'Users',
   layout: 'admin',
+  components: { FooterDash, TopNavInfo },
   async asyncData ({ $axios }) {
     const { results } = await $axios.$get('admin/all-payments')
     return { results }
@@ -86,11 +89,10 @@ export default {
       boxTwo: '',
       rows: 100,
       currentPage: 1,
-      perPage: 3,
+      perPage: 10,
       fields: [
         { key: 'email', sortable: true },
         { key: 'amount', label: 'Amount', sortable: true },
-        { key: 'reference', label: 'Reference', sortable: true },
         { key: 'purpose', sortable: true },
         { key: 'category', sortable: true },
         { key: 'response', sortable: true },
@@ -105,7 +107,7 @@ export default {
       this.$router.push(id)
     },
     showMsgBoxTwo (id) {
-      this.$bvModal.msgBoxConfirm('Please confirm you want to delete this user!.', {
+      this.$bvModal.msgBoxConfirm('Please confirm you want to delete this payment record!.', {
         title: 'Please Confirm',
         size: 'sm',
         buttonSize: 'sm',
@@ -118,7 +120,7 @@ export default {
       })
         .then((value) => {
           if (value) {
-            this.deleteApplication(id)
+            this.deletePayment(id)
           }
           this.boxTwo = value
         })
@@ -127,13 +129,14 @@ export default {
           console.log(err)
         })
     },
-    async deleteApplication (id) {
-      const deletedApplication = await this.$axios.$delete(
-        `application/delete-application/${id}`
+    async deletePayment (id) {
+      const deletedPayment = await this.$axios.$delete(
+        `admin/delete-pay/${id}`
       )
-      if (!deletedApplication) {
+      if (!deletedPayment) {
         console.log('User not deleted')
       }
+      this.$toast.success(deletedPayment.message)
       const result = this.results.filter(user => user._id !== id)
       this.results = result
     }
@@ -147,24 +150,16 @@ export default {
 }
 .news-input {
   background: #FFFFFF 0% 0% no-repeat padding-box;
-  box-shadow: 0px 0px 1px rgba(37,30,140,0.25098);
+  box-shadow: 0px 0px 1px var(--bg-dark-blue);
   border: #FFFFFF;
   padding: 4px 33px;
 }
 .news-btn {
-  background-color: rgba(37,30,140,0.25098);
+  background-color: var(--bg-dark-blue);
   padding: 5px 45px;
   color: #FFFFFF;
-  box-shadow: 0px 0px 1px rgba(37,30,140,0.25098);
-  border: rgba(37,30,140,0.25098);
+  box-shadow: 0px 0px 1px var(--bg-dark-blue);
+  border: var(--bg-dark-blue);
   margin-left: -4px;
-}
-.pagination {
-  display: flex;
-  padding-left: 0;
-  list-style: none;
-  border-radius: 0.25rem;
-  justify-content: center;
-  color: #0C0573 !important;
 }
 </style>

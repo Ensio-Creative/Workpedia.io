@@ -87,8 +87,12 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
+import AppButton from '~/components/auth/UI-Components/AppButton.vue'
+import AppControlInput from '~/components/auth/UI-Components/AppControlInput.vue'
+import AppTextarea from '~/components/auth/UI-Components/AppTextarea.vue'
 export default {
   name: 'BecomeATutor',
+  components: { AppButton, AppControlInput, AppTextarea },
   layout: 'auth',
   data () {
     return {

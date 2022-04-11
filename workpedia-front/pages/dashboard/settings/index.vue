@@ -19,12 +19,12 @@
       </div>
     </div>
     <main>
-      <div class="row">
-        <div class="col-12 col-md-6 mt-4">
-          <UpdateUser />
-        </div>
-        <div class="col-12 col-md-6 ">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 mt-5">
           <UserImg />
+        </div>
+        <div class="col-12 col-md-8 mt-4">
+          <UpdateUser />
         </div>
       </div>
     </main>
@@ -35,8 +35,13 @@
 </template>
 
 <script>
+import TopNavInfo from '@/components/Navigation/dashboard/TopNavInfo.vue'
+import UserImg from '@/components/dashboard/UserImg.vue'
+import UpdateUser from '@/components/dashboard/UpdateUser.vue'
+import FooterDash from '~/components/dashboard/FooterDash.vue'
 export default {
   name: 'Settings',
+  components: { TopNavInfo, UserImg, UpdateUser, FooterDash },
   layout: 'dashboard',
   data () {
     return {

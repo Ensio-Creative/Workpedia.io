@@ -3,7 +3,8 @@
     <form
       @submit.prevent="onSubmit"
     >
-      <div class="form-heading">
+      <div class="form-heading mt-3">
+        <img src="~/assets/img/Workpedia logo transparent (Blue).png" alt="">
         <h2>Create account</h2>
         <p>Have an account ? <strong @click="$emit('changeComponent')">Login</strong> </p>
       </div>
@@ -201,8 +202,11 @@
 
 <script>
 import { mapActions } from 'vuex'
+import AppButton from '@/components/auth/UI-Components/AppButton.vue'
+import AppControlInput from '@/components/auth/UI-Components/AppControlInput.vue'
 import states from '~/static/data/states.js'
 export default {
+  components: { AppControlInput, AppButton },
   emits: ['changeComponent'],
   data () {
     return {
@@ -354,6 +358,10 @@ export default {
 <style scoped>
 .form-heading{
   text-align: center;
+}
+.form-heading img{
+  width: 83px;
+  margin-bottom: 10px;
 }
 .form-heading strong{
   color: #251E8C;

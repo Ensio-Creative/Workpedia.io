@@ -1,29 +1,31 @@
 const Jobs = require('../model/Jobs')
 const Freelance = require('../model/Freelancer')
 const NewsLetter = require('../model/NewsLetter')
+const FreelanceSettings = require('../model/FreelanceSettings')
 const { validationResult } = require('express-validator')
 
 exports.getData = async (req, res, next) => {
   try {
-    // const currentPage = req.query.page || 1
-    // const perPage = 3
     const jobs = await Jobs.find()
       .sort({ createdAt: -1 })
-      // .skip((currentPage - 1) * perPage)
-      // .limit(perPage)
+
     if (!jobs) {
       const error = new Error('Jobs could not be found')
-      error.statusCode = 422
-      throw error
-    }
-    const freelancers = await Freelance.find().populate('userId', '-password')
-    if (!freelancers) {
-      const error = new Error('Freelances could not be found')
       error.statusCode = 500
       throw error
     }
-    res.status(200).json({ message: 'Data found', jobs, freelancers })
-    // res.send(jobs)
+    const freelancers = await Freelance.find()
+      .sort({ createdAt: -1 })
+      .populate('userId', '-password')
+
+    if (!freelancers) {
+      const error = new Error('Freelancers could not be found')
+      error.statusCode = 500
+      throw error
+    }
+    const freelanceSettings = await FreelanceSettings.find()
+    const freelanceCategory = freelanceSettings[0]
+    res.status(200).json({ message: 'Data found', jobs, freelancers, freelanceCategory })
   } catch (err) {
     if (!err.statusCode) {
       err.statusCode = 500
@@ -97,5 +99,18 @@ exports.newsLetter = async (req, res, next) => {
     }
     console.log(err)
     next(err)
+  }
+}
+
+exports.getFreelanceSettings = async (req, res, next) => {
+  try {
+    const result = await FreelanceSettings.find()
+    res.status(200).json({ message: 'Setting found', result: result[0] })
+  } catch (error) {
+    if (!error.statusCode) {
+      error.statusCode = 500
+    }
+    // console.log(erro)
+    next(error)
   }
 }

@@ -113,9 +113,12 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import AppButton from '~/components/auth/UI-Components/AppButton.vue'
+import AppControlInput from '~/components/auth/UI-Components/AppControlInput.vue'
 export default {
   name: 'PostAJobs',
   layout: 'auth',
+  components: { AppButton, AppControlInput },
   data () {
     return {
       companyName: '',

@@ -70,7 +70,11 @@
 
 <script>
 import { mapActions } from 'vuex'
+import AppButton from '@/components/auth/UI-Components/AppButton.vue'
+import AppControlInput from '@/components/auth/UI-Components/AppControlInput.vue'
 export default {
+  name: 'Auth',
+  components: { AppButton, AppControlInput },
   emits: ['changeComponent'],
   data () {
     return {

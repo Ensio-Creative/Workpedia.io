@@ -39,6 +39,10 @@ const PaymentsSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'applicants'
   },
+  tutorRequestId: {
+    type: Schema.Types.ObjectId,
+    ref: 'tutorrequest'
+  },
   freelancerId: {
     type: Schema.Types.ObjectId,
     ref: 'freelance/handymen'

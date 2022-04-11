@@ -49,4 +49,6 @@ router.post('/:id/update-password',[
     .notEmpty()
 ], userController.updatePassword)
 
+router.post('/resend-code/:userId', userController.resendCode)
+
 module.exports = router

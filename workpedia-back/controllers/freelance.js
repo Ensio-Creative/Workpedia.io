@@ -1,11 +1,12 @@
 const Freelance = require('../model/Freelancer')
 const User = require('../model/User')
+const FreelanceMessage = require('../model/FreelanceMessage')
 const FreelanceSettings = require('../model/FreelanceSettings')
 const { validationResult } = require('express-validator')
 
 exports.registerFreelance = async (req, res, next) => {
   try {
-    const { title, serviceCharge, category, skills, state, city, description, userId } = req.body
+    const { title, serviceCharge, category, skills, description, userId } = req.body
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
       const error = new Error('Validation failed.')
@@ -48,11 +49,7 @@ exports.registerFreelance = async (req, res, next) => {
       serviceCharge,
       category,
       skills,
-      state,
-      city,
       description,
-      thumbnailUrl: 'Add thumbnail',
-      resume: 'Add resume',
       userId
     })
     const savedFreelanceHandymen = await freelanceHandymen.save()
@@ -65,7 +62,7 @@ exports.registerFreelance = async (req, res, next) => {
     if (!err.statusCode) {
       err.statusCode = 500
     }
-    console.log(err)
+    // console.log(err)
     next(err)
   }
 }
@@ -73,7 +70,7 @@ exports.registerFreelance = async (req, res, next) => {
 exports.updateFreelancerHandymen = async (req, res, next) => {
   try {
     const { freelancerId } = req.params
-    const { title, category, serviceCharge, skills, state, city, thumbnailUrl, resume, description } = req.body
+    const { title, category, serviceCharge, skills, description } = req.body
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
       const error = new Error('Validation failed.')
@@ -91,8 +88,6 @@ exports.updateFreelancerHandymen = async (req, res, next) => {
     freelancer.serviceCharge = serviceCharge
     freelancer.category = category,
     freelancer.skills =  skills,
-    freelancer.thumbnailUrl = thumbnailUrl,
-    freelancer.resume = resume,
     freelancer.description = description
     const UpdatedFreelanceHandymen = await freelancer.save()
     if (!UpdatedFreelanceHandymen) {
@@ -104,7 +99,7 @@ exports.updateFreelancerHandymen = async (req, res, next) => {
     if (!err.statusCode) {
       err.statusCode = 500
     }
-    console.log(err)
+    // console.log(err)
     next(err)
   }
 }
@@ -136,12 +131,12 @@ exports.getFreelanerInfo = async (req, res, next) => {
       error.statusCode  = 402
       throw error
     }
-    res.status(200).json({mesage: 'Found freelancer', result: freelancerHandymen})
+    res.status(200).json({ message: 'Found freelancer', result: freelancerHandymen })
   } catch (error) {
     if (!error.statusCode) {
       error.statusCode = 500
     }
-    console.log(error)
+    // console.log(error)
     next(error)
   }
 }
@@ -175,7 +170,7 @@ exports.createSettings = async (req, res, next) => {
     if (!error.statusCode) {
       error.statusCode = 500
     }
-    console.log(error)
+    // console.log(error)
     next(error)
   }
 }
@@ -211,7 +206,7 @@ exports.categorySetting = async (req, res, next) => {
     if (!error.statusCode) {
       error.statusCode = 500
     }
-    console.log(error)
+    // console.log(error)
     next(error)
   }
 }
@@ -227,7 +222,7 @@ exports.deleteCategory = async (req, res, next) => {
     if (!error.statusCode) {
       error.statusCode = 500
     }
-    console.log(error)
+    // console.log(error)
     next(error)
   }
 }
@@ -245,7 +240,54 @@ exports.amountFreelanceSettings = async (req, res, next) => {
     if (!error.statusCode) {
       error.statusCode = 500
     }
-    console.log(error)
+    // console.log(error)
     next(error)
+  }
+}
+
+// FREELANCER/HANDYMEN MESSAGES
+
+exports.sendMessage = async (req, res, next) => {
+  try {
+    const { message, freelancerId, userId } = req.body
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      const error = new Error('Validation failed.')
+      error.statusCode = 422
+      error.data = errors.array()
+      throw error
+    }
+    const saveMessage = new FreelanceMessage({
+      message,
+      freelancerId,
+      userId
+    })
+    await saveMessage.save()
+    res.status(201).json({ message: 'Message sent' })
+  } catch (err) {
+    console.log(err)
+    next(err)
+  }
+}
+
+exports.getFreelancersMessage = async (req, res, next) => {
+  try {
+    const freelancerId = req.params.freelancerId
+    const messages = await FreelanceMessage.find({ freelancerId }).populate('userId', '-password')
+    res.status(201).json({ message: 'Messages found', results: messages })
+  } catch (err) {
+    console.log(err)
+    next(err)
+  }
+}
+
+exports.deleteFreelancersMessage = async (req, res, next) => {
+  try {
+    const messageId = req.params.messageId
+    await FreelanceMessage.findOneAndDelete({ messageId })
+    res.status(201).json({ message: 'Message deleted' })
+  } catch (err) {
+    console.log(err)
+    next(err)
   }
 }

@@ -12,10 +12,8 @@ router.post('/register-freelancer',
     .notEmpty(),
   body('serviceCharge')
     .trim()
-    .toInt()
     .notEmpty(),
   body('category')
-    .trim()
     .notEmpty(),
   body('skills')
     .trim()
@@ -37,19 +35,11 @@ router.put('/update-freelancer/:freelancerId',
     .trim()
     .notEmpty(),
   body('category')
-    .trim()
     .notEmpty(),
   body('skills')
     .trim()
     .notEmpty(),
   body('description')
-    .trim()
-    .notEmpty(),
-  body('thumbnailUrl')
-    .trim()
-    .isURL()
-    .notEmpty(),
-  body('resume')
     .trim()
     .notEmpty()
 ], freelanceContorller.updateFreelancerHandymen)
@@ -69,5 +59,24 @@ router.post('/amount-settings/:settingId', freelanceContorller.amountFreelanceSe
 router.post('/category-settings/:settingId', freelanceContorller.categorySetting)
 
 router.delete('/delete-category/:settingId', freelanceContorller.deleteCategory)
+
+// FREELANCERS/HANDYMEN MESSAGES ROUTES
+
+router.post('/send-message',
+[
+  body('message')
+    .trim()
+    .notEmpty(),
+  body('freelancerId')
+    .trim()
+    .notEmpty(),
+  body('userId')
+    .trim()
+    .notEmpty()
+], freelanceContorller.sendMessage)
+
+router.get('/get-freelancers-messages/:freelancerId', freelanceContorller.getFreelancersMessage)
+
+router.delete('/delte-message/:messageId', freelanceContorller.deleteFreelancersMessage)
 
 module.exports = router
